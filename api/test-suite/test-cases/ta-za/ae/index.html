@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<title>Test ae</title> 
+<style>body{ background:red } </style> 
+<body onload="test()" id="body"> 
+<h1 id="verdict">FAIL</h1> 
+<p id="reason">Test did not run.</p> 
+<script> 	
+
+/*Called iff the test passed */
+function pass(excuse){ 		
+	body.style.backgroundColor = "green"; 		
+	verdict.innerHTML = "PASS";
+	reason.innerHTML  = excuse; 
+}
+
+
+/*Called iff the test failed */
+function fail(excuse){
+  reason.innerHTML = excuse; 	
+} 	   	
+
+
+/*Called to perform the test */
+function test(){
+  try{
+    var why;   
+	if(widget.authorEmail === "author email"){
+		why = "Test "+ id +" passed because widget.authorEmail was set correctly."
+		pass(why);	
+	}else{
+	 	why = "Test "+ id +" failed because widget.authorEmail was not set to 'author email'. It was set to: '" + widget.authorEmail +"'" ;
+	   fail(why);  	
+	}
+	
+  }catch(e){
+     why = "Test "+ id +" failed by throwing the following exception: " + e;
+	   fail(why);  
+
+   }
+} 	
+var id 	 = "ae";
+var reason  = document.getElementById("reason"); 	
+var body    = document.getElementById("body"); 	
+var verdict = document.getElementById("verdict"); 
+</script> 

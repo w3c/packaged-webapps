@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<title>Test description_attrreadonly</title>
+<style>body{ background:red } </style>
+<body onload="test()" id="body">
+<h1 id="verdict">FAIL</h1>
+<p id="reason">Test did not run.</p>
+<script>
+/*Called iff the test passed */
+function pass(excuse){
+	body.style.backgroundColor = "green";
+	verdict.innerHTML = "PASS";
+	reason.innerHTML  = "Test "+id+" passed because "+excuse;
+}
+/*Called iff the test failed */
+function fail(excuse){
+	body.style.backgroundColor = "red";
+	verdict.innerHTML = "FAIL";
+	reason.innerHTML  = "Test "+id+" failed because "+excuse;
+}
+/*Called to perform the test */
+function test(){
+    /* Description: widget.description is read-only */
+    // attrreadonly
+    
+    try {
+        var obj = window.widget;
+    var propValue = obj.description;
+    try {
+        obj.description = "newVal";
+    } catch (e) {}
+    
+    if (obj.description === "newVal" || obj.description !== propValue) {
+        return fail("description in window.widget is not read-only");
+    }
+    else pass("description in window.widget is read-only");
+} catch (e) {
+        fail("it threw the exception: "+e);
+    }
+
+}
+var id 	  = "description_attrreadonly";
+var reason  = document.getElementById("reason");
+var body    = document.getElementById("body");
+var verdict = document.getElementById("verdict");
+</script>

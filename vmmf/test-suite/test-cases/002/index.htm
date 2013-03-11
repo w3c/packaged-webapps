@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<title>Empty</title> 
+<style>
+	body{
+		background-color:red;	
+	}
+
+	#ref{
+		visibility:hidden;
+	}
+	
+	#ref::before{
+		visibility:visible;
+		content:"FAIL - User agent failed to use a view-mode media feature.";
+	}		
+	
+
+    @media (view-mode)
+    {
+		body{
+		background-color:green;	
+		}
+		#ref::before 
+		{
+		content:"PASS";
+		}
+    }
+</style>
+<h1 id="ref">Test did not run.</h1>

@@ -1,0 +1,7 @@
+<widget xmlns="http://www.w3.org/ns/widgets" id="test:setItem-fires-event">
+	<name>setItem fires event</name>
+	<description>Test that, upon invocation of the setItem() method, 
+	a user agent queues a task to fire a StorageEvent event at the window object of the iframe. 
+	To pass, a storage event must be fired when a key is set and the associated 
+	test values need to be correct.</description> 
+</widget>

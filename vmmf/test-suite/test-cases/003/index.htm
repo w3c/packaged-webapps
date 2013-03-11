@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<title>fullscreen</title> 
+
+<style>
+	body{
+		background-color:white;	
+	}
+	
+	@media (view-mode){
+		body{
+			background-color:red;	
+		}
+	
+    	#ref{
+			visibility:hidden;
+		}
+		
+		#ref::before{
+			visibility:visible;
+			content:"FAIL - expected to select fullscreen";
+		}
+	}
+	
+	
+    @media (view-mode:fullscreen)
+    {
+	#ref::before 
+	{
+	    content:"PASS";
+	}
+	body{
+		background-color:green;	
+	}
+    }
+</style>
+<h1 id="ref">Test did not run. User agent does not implement <code>view-mode</code> Media Feature.</h1>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<title>Test au</title>
+<style>body{ background:red } </style> 
+<body onload="test()" id="body"> 
+<h1 id="verdict">FAIL</h1> 
+<p id="reason">Test did not run.</p> 
+<script> 	
+
+/*Called iff the test passed */
+function pass(excuse){ 		
+	body.style.backgroundColor = "green"; 		
+	verdict.innerHTML = "PASS";
+	reason.innerHTML  = excuse; 
+}
+
+
+function restart(){ 		
+	body.style.backgroundColor = "gray"; 		
+	verdict.innerHTML = "Please close the widget and open it again";
+	reason.innerHTML  = "If the widget is restarted, and this comes up again, the test has failed."; 
+	window.widget.preferences.setItem("restarted", "true");
+}
+
+
+/*Called iff the test failed */
+function fail(excuse){
+  reason.innerHTML = excuse; 	
+} 	   	
+
+
+/*Called to perform the test */
+function test(){
+   var why;
+   try{
+	var prefs = window.widget.preferences; 
+	if( prefs.getItem("test1")  === "abc123" && 
+		prefs.getItem("test2")  === "protected") 
+	{
+		prefs.clear();
+		prefs.setItem("test3", "123abc");
+	 	//ask that the test be restarted
+		restart();
+	  }else if(prefs.getItem("test1") === null && 
+			   prefs.getItem("test2") === 'protected' && 
+			   prefs.getItem("test3") === '123abc'){
+			why = "Test "+ id +" pass because the values were correctly maintained by subsequently re-initializing the widget."; 
+			pass(why);
+	  }else{
+		why = "Test "+ id +" failed because the values of the stored preferences were not what they should have been. test1 was " + prefs.getItem("test1") + "; test2 was " + prefs.getItem("test2") + " test3 was " + prefs.getItem("test3");
+		fail(why);  
+	  }
+  }catch(e){
+	  	why = "Test "+ id +" failed by throwing the following unxpected exception: " + e;
+		fail(why);  
+  }
+}
+
+var id 	    = "au";
+var reason  = document.getElementById("reason"); 	
+var body    = document.getElementById("body"); 	
+var verdict = document.getElementById("verdict"); 
+</script> 

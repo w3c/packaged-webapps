@@ -1,0 +1,6 @@
+<widget xmlns="http://www.w3.org/ns/widgets"
+ id="test:as">
+ <name>Test as</name>
+ <description>Testing assertion ta-al</description>
+ <preference name="pref" value="readonly" readonly="true" />
+</widget>

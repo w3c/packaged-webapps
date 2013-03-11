@@ -1,0 +1,4 @@
+<widget id="test:empty" xmlns='http://www.w3.org/ns/widgets'  width="500" height="500" viewmodes="">
+<name>Empty viewmodes attribute</name>
+<description>Test that an empty value for viewmodes attribute in the configuration document causes the user agent to use some mode. To pass, the user agent must display the word PASS (dynamically generated via CSS) and a green background.</description>
+</widget>

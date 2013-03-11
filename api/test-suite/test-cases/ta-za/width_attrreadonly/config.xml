@@ -1,0 +1,5 @@
+<widget xmlns="http://www.w3.org/ns/widgets"
+ id="test:width_attrreadonly">
+ <name>Test width_attrreadonly</name>
+ <description>Testing assertion ta-za</description>
+</widget>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<title>Test ax</title> 
+<style>body{ background:red } </style> 
+<body onload="test()" id="body"> 
+<h1 id="verdict">FAIL</h1> 
+<p id="reason">Test did not run.</p> 
+<script> 	
+
+
+/*Called iff the test passed */
+function pass(excuse){ 		
+	body.style.backgroundColor = "green"; 		
+	verdict.innerHTML = "PASS";
+	reason.innerHTML  = excuse; 
+}
+
+
+/*Called iff the test failed */
+function fail(excuse){
+  reason.innerHTML = excuse; 	
+} 	   	
+
+
+/*Called to perform the test */
+function test(){
+  var why;
+  try{ 
+		  if( window.widget.preferences["test1"]  === "pass1" && 
+			  window.widget.preferences["test2"]  === "pass2" &&
+			  window.widget.preferences["test3"]  === "pass3" ){ 
+		  
+			  why = "Test "+ id +" passed successfully because no storage event was fired.";
+			  pass(why); 
+			  
+		   }else{ 
+		
+			  why = "Test "+ id +" failed because at least one preference was not correctly set.";
+			  fail(why);  		
+		  }
+  }catch(e){
+	fail("Test " + id + " failed by trowing the following exception: '" + e + "'") ; 
+  }
+} 	
+
+window.addEventListener("Storage", function(){ fail("Test Failed because Storage event was fired") }, true); 
+
+var id 	    = "ax";
+var reason  = document.getElementById("reason"); 	
+var body    = document.getElementById("body"); 	
+var verdict = document.getElementById("verdict"); 
+</script> 

@@ -1,0 +1,4 @@
+<widget xmlns='http://www.w3.org/ns/widgets' width="500" height="500" id="test:default">
+<name>default</name>
+<description>Test that the user agent to some view mode when no declaration of a viewmodes attribute appears in the configuration document. To pass, the user agent must display the word PASS (dynamically generated via CSS) and a green background.</description>
+</widget>

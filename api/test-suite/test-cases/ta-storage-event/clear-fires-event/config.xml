@@ -1,0 +1,7 @@
+<widget xmlns="http://www.w3.org/ns/widgets" id="test:clear-fires-event"
+	width="600" height="500">
+	<name>clear fires event</name>
+	<description>Test that, upon invocation of the clear() method, a user agent queues a task to fire a StorageEvent event at the window object of the embedded iframe. To pass, a storage event must be fired when a key is removed via clear and the associated test values need to be correct.</description> 
+    <preference name="lockedkey" value="lockedvalue" readonly="true"/>
+    <preference name="unlockedkey" value="unlocked" readonly="false"/>
+</widget>

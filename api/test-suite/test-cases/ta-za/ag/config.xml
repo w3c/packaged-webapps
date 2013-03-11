@@ -1,0 +1,5 @@
+<widget xmlns="http://www.w3.org/ns/widgets"
+ id="tests:ag">
+ <name>Test ag</name>
+ <description>test ag testing assertion ta-ac</description> 
+</widget>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<title>view-mode media feature support in the browser</title> 
+<style>
+	body{
+		background-color:red;	
+	}
+
+	#ref{
+		visibility:hidden;
+	}
+
+	#ref::before{
+		visibility:visible;
+		content:"FAIL - User agent does not support view-mode media feature.";
+	}		
+
+
+	@media (view-mode)
+	{
+		body{
+			background-color:green;	
+		}
+		#ref::before 
+		{
+			content:"PASS";
+		}
+	}
+</style>
+<h1 id="ref">Test did not run.</h1>

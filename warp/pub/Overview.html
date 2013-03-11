@@ -461,42 +461,57 @@ pre.sh_sourceCode .sh_attribute {
 	color: #006400;
 }
 </style>
-<link href="http://www.w3.org/StyleSheets/TR/W3C-PR" rel="stylesheet" type="text/css" charset="utf-8" />
+<link href="http://www.w3.org/StyleSheets/TR/W3C-REC" rel="stylesheet" type="text/css" charset="utf-8" />
 </head>
 <body style="display: inherit; ">
 <div class="head">
 <p><a href="http://www.w3.org/"><img width="72" height="48" src="http://www.w3.org/Icons/w3c_home" alt="W3C" /></a></p>
 <h1 class="title" id="title">Widget Access Request Policy</h1>
-<h2 id="w3c-proposed-recommendation-29-november-2011">W3C Proposed Recommendation 13 December 2011</h2>
+<h2 id="w3c-proposed-recommendation-29-november-2011">W3C  Recommendation 7 February 2012</h2>
 <dl>
   <dt>This version:</dt>
-  <dd><a href="http://www.w3.org/TR/2011/PR-widgets-access-20111213/">http://www.w3.org/TR/2011/PR-widgets-access-20111213/</a></dd>
+  <dd><a href="http://www.w3.org/TR/2011/REC-widgets-access-20120207/">http://www.w3.org/TR/2011/REC-widgets-access-20120207/</a></dd>
   <dt>Latest published version:</dt>
   <dd><a href="http://www.w3.org/TR/widgets-access/">http://www.w3.org/TR/widgets-access/</a></dd>
   <dt>Latest editor's draft:</dt>
   <dd><a href="http://dev.w3.org/2006/waf/widgets-access/">http://dev.w3.org/2006/waf/widgets-access/</a></dd>
   <dt>Previous version:</dt>
-  <dd><a href="http://www.w3.org/TR/2010/CR-widgets-access-20100420/">http://www.w3.org/TR/2010/CR-widgets-access-20100420/</a></dd>
+  <dd><a href="http://www.w3.org/TR/2011/PR-widgets-access-20111213/">http://www.w3.org/TR/2011/PR-widgets-access-20111213/</a></dd>
   <dt>Implementation report:</dt>
   <dd><a href="http://dev.w3.org/2006/waf/widgets-access/imp-report/">http://dev.w3.org/2006/waf/widgets-access/imp-report/</a></dd>
-  <dt>Editor:</dt>
-  <dd><a href="http://datadriven.com.au/">Marcos Cáceres</a>, W3C Invited Expert</dd>
+  <dt>Test Suite:</dt>
+  <dd><a href="http://dev.w3.org/2006/waf/widgets-access/test-suite/">Test Suite for Widget Access Request Policy</a></dd>
+  <dt>Editors:</dt>
+  <dd><a href="http://datadriven.com.au/"><span title="Batman">Marcos</span> Cáceres</a></dd>
+  <dd><a href="http://berjon.com/">Robin Berjon</a></dd>
 </dl>
-<p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2011 <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>, <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p>
+<p>Please refer to the <a href="http://dev.w3.org/2006/waf/widgets-access/errata.html"><strong>errata</strong></a> for this document, which may include some normative corrections.</p>
+  <p>See also <a href=" http://www.w3.org/2003/03/Translations/byTechnology?technology=widgets-access"> <strong>translations</strong></a>.</p>
+<p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2012 <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>, <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p>
 <hr />
 </div>
 <h2 id="abstract">Abstract</h2>
 This specification defines the security model controlling network access from within a
       widget, as well as a method for  authors to request that the <a class="product-ua" href="#product-ua">user agent</a> <a href="#dfn-grant-access" class="internalDFN">grant access</a> to certain <a title="network resource" href="#dfn-network-resource" class="internalDFN">network resources</a> or sets thereof.
-      <h2 id="sotd">Status of This Document</h2>
-      <p><em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current W3C publications and the latest revision of this technical report can be found in the <a href="http://www.w3.org/TR/">W3C technical reports index</a> at http://www.w3.org/TR/.</em></p>
-      <p>The public is encouraged to send comments to the WebApps Working Group's public mailing list <a href="mailto:public-webapps@w3.org">public-webapps@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webapps/">archive</a>) by 17 January 2012. See <a href="http://www.w3.org/Mail/">W3C mailing list and archive usage guidelines</a>. Advisory Committee Representatives should consult their questionnaires.      </p>
-      <p> The Last Call review period for this specification ended on 13 January 2010, for which a <a href="http://www.w3.org/2006/02/lc-comments-tracker/42538/WD-widgets-access-20091208/doc/">disposition of comments</a> is available. </p>
-      <p> The Web Applications Working Group has demonstrated to the Director at least two <a href="http://dev.w3.org/2006/waf/widgets-access/imp-report/"> interoperable implementations</a> (interoperable meaning at least two implementations that pass each mandatory test in the <a href="http://dev.w3.org/2006/waf/widgets-access/test-suite/">test suite</a>). </p>
-      <p>This document was published by the <a href="http://www.w3.org/2008/webapps/">Web Applications WG</a> as a Proposed Recommendation. This document is intended to become a W3C Recommendation. If you wish to make comments regarding this document, please send them to <a href="mailto:public-webapps@w3.org">public-webapps@w3.org</a> (<a href="mailto:public-webapps-request@w3.org?subject=subscribe">subscribe</a>, <a href="http://lists.w3.org/Archives/Public/public-webapps/">archives</a>). All feedback is welcome.</p>
-<p>Publication as a Proposed Recommendation does not imply endorsement by the W3C Membership. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.</p>
-<p>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 W3C Patent Policy</a>. W3C maintains a <a href="http://www.w3.org/2004/01/pp-impl/42538/status" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section 6 of the W3C Patent Policy</a>.</p>
-<p>This Specification takes into account the <a href="http://www.w3.org/2009/11/widgets-pag/pagreport.html">recommendations</a> from the <a href="http://www.w3.org/2009/11/widgets-pag/">Widget  Patent Advisory Group</a> (Member only), which recommended that work on WARP &quot;should be continued without changes&quot; in light of the significant amount of <a href="http://www.w3.org/2009/11/widgets-pag/prior-art.html">prior art</a> the PAG found.</p>
+        <h2 class="no-num no-toc" id="sotd">Status of this Document </h2>
+<p><em>This section describes the status of this document at the time of its
+  publication. Other documents may supersede this document. A list of current W3C
+  publications and the latest revision of this technical report can be found in the
+  <a href="http://www.w3.org/TR/">W3C technical reports index</a> at
+  http://www.w3.org/TR/.</em>  </p>
+  <p>This is the 07 February 2012 Recommendation of the <cite>Widget Access Request Policy</cite> specification. This document is produced by the <a href="http://www.w3.org/2008/webapps/">Web
+    Applications WG</a>, part of the <a href="http://www.w3.org/2006/rwc/Activity">Rich Web
+      Client Activity</a> in the W3C <a href="http://www.w3.org/Interaction/">Interaction
+  Domain</a>.  </p>
+  <p>This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.</p>
+  <p>The public is encouraged to send comments to the WebApps Working Group's public mailing list <a href="mailto:public-webapps@w3.org">public-webapps@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webapps/">archive</a>).  </p>
+<p>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 W3C Patent
+    Policy</a>. W3C maintains a <a href="http://www.w3.org/2004/01/pp-impl/42538/status" rel="disclosure">public list of any patent disclosures</a> made in connection with the
+    deliverables of the group; that page also includes instructions for disclosing a
+    patent. An individual who has actual knowledge of a patent which the individual
+    believes contains <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential
+      Claim(s)</a> must disclose the information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section 6 of the
+W3C Patent Policy</a>.</p>
 <h2 id="toc" class="introductory">Table of Contents</h2>
 <ul class="toc">
   <li class="tocline"><a href="#Introduction" class="tocxref"><span class="secno">1. </span>Introduction</a>
@@ -580,7 +595,7 @@ This specification defines the security model controlling network access from wi
       
 <h2 id="policy"><span class="secno">5. </span>Policy</h2>
       <p> A <a class="product-ua" href="#product-ua">user agent</a> enforces an <a href="#dfn-access-request-policy" class="internalDFN">access request policy</a>.
-  However, how a user agent enforces a policy is beyond the scope of this specification: this specification does not define any data indicative of a security event, which is left up to other specifications (e.g.,  <a href="#bib-xhr">[XMLHTTPRequest]</a> defines its own <a href="http://www.w3.org/TR/XMLHttpRequest/#security-err">security errors</a> which is indicative of a security event). </p>
+  However, how a user agent enforces a policy is beyond the scope of this specification: this specification does not define any data indicative of a security event, which is left up to other specifications (e.g.,  <a href="#bib-xhr">[XMLHTTPRequest]</a> defines its own security errors which is indicative of a security event). </p>
       <p id="ta-default-policy"> In the <dfn id="dfn-default-policy">default policy</dfn>, a <a class="product-ua" href="#product-ua">user agent</a> <em class="ct">must</em> <a href="#dfn-deny-access" class="internalDFN">deny access</a> to <a title="network resource" href="#dfn-network-resource" class="internalDFN">network resources</a> external to the widget by default, 
   whether this access is requested through APIs (e.g. <code>XMLHttpRequest</code>) or through 
   markup (e.g. <code>iframe</code>, <code>script</code>, <code>img</code>). </p>
@@ -747,18 +762,10 @@ This specification defines the security model controlling network access from wi
             </li>
       <li>
               <p>the URI's <a class="externalDFN">port component</a> is the same as <var>port</var>.</p>
-            </li>
+      </li>
     </ul>
   </li>
 </ol>
-<h2 id="changes">Changes since last publication </h2>
-<p>There have been a few non-normative changes since last publication (<a href="http://www.w3.org/2007/10/htmldiff?doc1=http%3A%2F%2Fwww.w3.org%2FTR%2Fwidgets-access%2F&amp;doc2=http%3A%2F%2Fdev.w3.org%2F2006%2Fwaf%2Fwidgets-access%2F">see also the diff</a>): </p>
-<ul>
-  <li>Converted some conformance requirements into statements of fact, as they were redundant. </li>
-  <li>Made examples more realistic. </li>
-  <li>Cleaned up bibliography. </li>
-  <li>Minor stylistic cleanup to &quot;Rule for processing an access element&quot;. </li>
-</ul>
 <h2 id="normative-references">Normative references</h2>
       <dl class="bibliography">
   <dt id="bib-RFC1034">[RFC1034]</dt>
@@ -778,8 +785,6 @@ This specification defines the security model controlling network access from wi
       <dl class="bibliography">
   <dt id="bib-HTML5">[HTML]</dt>
    <dd><cite><a href="http://www.w3.org/TR/html5/">HTML5</a></cite> (Work in progress). W3C.</dd>
-   
-    <dd><cite><a href="http://www.whatwg.org/specs/web-apps/current-work/">HTML: Living Standard</a></cite> (Work in progress). WHATWG.</dd>
 
   <dt id="bib-WIDGETS-REQS">[WIDGETS-REQS]</dt>
   <dd><a href="http://www.w3.org/TR/widgets-reqs/"><cite> Requirements For Standardizing Widgets.</cite></a> W3C. </dd>

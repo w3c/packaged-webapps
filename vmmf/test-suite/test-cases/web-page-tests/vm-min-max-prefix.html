@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<title>view-mode: min- and max- prefixes</title> 
+<style>
+	body{
+		background-color:white;	
+	}
+	@media (view-mode){
+		#ref{
+			visibility:hidden;
+		}
+		#ref::before{
+			visibility:visible;
+		}
+		body{
+			background-color:green;	
+		}
+		#ref::before 
+		{
+			content:"PASS";
+		}
+	}
+
+	@media (min-view-mode: 0),
+	(max-view-mode: 1),
+	(min-view-mode: windowed),
+	(max-view-mode: windowed)
+	{
+		body{
+			background-color:red;	
+		}	
+		#ref::before 
+		{
+			content:"FAIL - min- or max- prefixes should not be applied to view mode media feature.";
+		}
+	}
+</style>
+<h1 id="ref">Test did not run. User agent does not implement <code>view-mode</code> Media Feature.</h1>

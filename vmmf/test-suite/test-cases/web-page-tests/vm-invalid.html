@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<title>view-mode: invalid value (ae314afasqq23)</title> 
+<style>
+	body{
+		background-color:white;	
+	}
+
+	@media (view-mode)
+	{
+		body{
+			background-color:green;	
+		}
+		#ref{
+			visibility:hidden;
+		}		
+		#ref::before 
+		{
+			visibility:visible;
+			content:"PASS";
+		}
+	}
+
+	@media (view-mode:ae314afasqq23)
+	{
+		body{
+			background-color:red;	
+		}	
+		#ref{
+			visibility:hidden;
+		}
+		#ref::before 
+		{
+			content:"FAIL - bogus viewmode value was applied.";
+		}
+	}
+</style>
+<h1 id="ref">Test did not run. User agent does not implement <code>view-mode</code> Media Feature.</h1>

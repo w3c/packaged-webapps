@@ -1,4 +1,3 @@
-
 <?xml version='1.0' encoding='UTF-8'?>
 <!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
 <html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
@@ -465,28 +464,35 @@ pre.sh_sourceCode .sh_attribute {
 <link href="http://www.w3.org/StyleSheets/TR/W3C-REC" rel="stylesheet" type="text/css" charset="utf-8" />
 </head>
 <body style="display: inherit; ">
-<div class="head">
+<div><div class="head">
 <p><a href="http://www.w3.org/"><img width="72" height="48" src="http://www.w3.org/Icons/w3c_home" alt="W3C" /></a></p>
 <h1 class="title" id="title">Widget Access Request Policy</h1>
-<h2 id="">Living Standard - Last updated 7 February 2012</h2>
+<h2 id="w3c-proposed-recommendation-29-november-2011">W3C  Recommendation 7 February 2012</h2>
 <dl>
+  <dt>This version:</dt>
+  <dd><a href="http://www.w3.org/TR/2011/REC-widgets-access-20120207/">http://www.w3.org/TR/2011/REC-widgets-access-20120207/</a></dd>
   <dt>Latest published version:</dt>
   <dd><a href="http://www.w3.org/TR/widgets-access/">http://www.w3.org/TR/widgets-access/</a></dd>
   <dt>Latest editor's draft:</dt>
   <dd><a href="http://dev.w3.org/2006/waf/widgets-access/">http://dev.w3.org/2006/waf/widgets-access/</a></dd>
+  <dt>Previous version:</dt>
+  <dd><a href="http://www.w3.org/TR/2011/PR-widgets-access-20111213/">http://www.w3.org/TR/2011/PR-widgets-access-20111213/</a></dd>
   <dt>Implementation report:</dt>
   <dd><a href="http://dev.w3.org/2006/waf/widgets-access/imp-report/">http://dev.w3.org/2006/waf/widgets-access/imp-report/</a></dd>
   <dt>Test Suite:</dt>
-  <dd><a href="http://dev.w3.org/2006/waf/widgets-access/test-suite/">Test Suite for Widget Access Request Policy</a></dd>
+  <dd><a href="http://dev.w3.org/2006/waf/widgets-access/test-suite/">Test Suite for Widget Access Request Policy</a></dd>
+  <dt>Editors:</dt>
+  <dd><a href="http://datadriven.com.au/"><span title="Batman">Marcos</span> Cáceres</a></dd>
+  <dd><a href="http://berjon.com/">Robin Berjon</a></dd>
 </dl>
 <p>Please refer to the <a href="http://dev.w3.org/2006/waf/widgets-access/errata.html"><strong>errata</strong></a> for this document, which may include some normative corrections.</p>
   <p>See also <a href=" http://www.w3.org/2003/03/Translations/byTechnology?technology=widgets-access"> <strong>translations</strong></a>.</p>
-<p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2013 <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>, <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p>
+<p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2012 <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>, <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p>
 <hr />
 </div>
 <h2 id="abstract">Abstract</h2>
-<p>This specification defines the security model controlling network access from within a
-      widget, as well as a method for  authors to request that the <a class="product-ua" href="#product-ua">user agent</a> <a href="#dfn-grant-access" class="internalDFN">grant access</a> to certain <a title="network resource" href="#dfn-network-resource" class="internalDFN">network resources</a> or sets thereof.</p>
+This specification defines the security model controlling network access from within a
+      widget, as well as a method for  authors to request that the <a class="product-ua" href="#product-ua">user agent</a> <a href="#dfn-grant-access" class="internalDFN">grant access</a> to certain <a title="network resource" href="#dfn-network-resource" class="internalDFN">network resources</a> or sets thereof.
         <h2 class="no-num no-toc" id="sotd">Status of this Document </h2>
 <p><em>This section describes the status of this document at the time of its
   publication. Other documents may supersede this document. A list of current W3C
@@ -496,7 +502,7 @@ pre.sh_sourceCode .sh_attribute {
   <p>This is the 07 February 2012 Recommendation of the <cite>Widget Access Request Policy</cite> specification. This document is produced by the <a href="http://www.w3.org/2008/webapps/">Web
     Applications WG</a>, part of the <a href="http://www.w3.org/2006/rwc/Activity">Rich Web
       Client Activity</a> in the W3C <a href="http://www.w3.org/Interaction/">Interaction
-  Domain</a>. There have been no changes since the previous publication.  </p>
+  Domain</a>.  </p>
   <p>This document has been reviewed by W3C Members, by software developers, and by other W3C groups and interested parties, and is endorsed by the Director as a W3C Recommendation. It is a stable document and may be used as reference material or cited from another document. W3C's role in making the Recommendation is to draw attention to the specification and to promote its widespread deployment. This enhances the functionality and interoperability of the Web.</p>
   <p>The public is encouraged to send comments to the WebApps Working Group's public mailing list <a href="mailto:public-webapps@w3.org">public-webapps@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webapps/">archive</a>).  </p>
 <p>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 W3C Patent
@@ -525,6 +531,8 @@ W3C Patent Policy</a>.</p>
   </li>
   <li class="tocline"><a href="#processing" class="tocxref"><span class="secno">7. </span>Processing <span class="internalDFN formerLink"><code>access</code></span> elements in the Configuration Document</a></li>
   <li class="tocline"><a href="#rule" class="tocxref"><span class="secno">8. </span>Rules for Granting Access to a Network Resource</a></li>
+  <li class="tocline"><a href="#changes" class="tocxref"> Changes since last publication</a></li>
+  
 <li><a href="#normative-references">Normative references</a> </li>
   <li><a href="#informative-references" class="tocxref">Informative references</a></li>
 </ul>
@@ -629,11 +637,11 @@ W3C Patent Policy</a>.</p>
       <h3 id="attributes"><span class="secno">6.1 </span>Attributes</h3>
       <dl>
   <dt> <code><dfn id="dfn-origin">origin</dfn></code> </dt>
-  <dd> An <a class="externalDFN" href="http://www.w3.org/TR/widgets/#iri-attribute">IRI attribute</a> that defines the specifics of the access request that is made. Only the <a class="externalDFN">scheme</a> and <a class="externalDFN">authority</a> components can be present in the IRI that this 
+  <dd> An <a class="externalDFN" href="http://dev.w3.org/2006/waf/widgets/#iri-attribute">IRI attribute</a> that defines the specifics of the access request that is made. Only the <a class="externalDFN">scheme</a> and <a class="externalDFN">authority</a> components can be present in the IRI that this 
           attribute contains ([<cite><a class="bibref" rel="biblioentry" href="#bib-URI">URI</a></cite>], [<cite><a class="bibref" rel="biblioentry" href="#bib-RFC3987">RFC3987</a></cite>]). Additionally, an author can use the special value of U+002A ASTERISK (*).
           This special value provides a means for an author to request from the <a class="product-ua" href="#product-ua">user agent</a> unrestricted access to <a title="network resource" href="#dfn-network-resource" class="internalDFN">network resources</a>. </dd>
   <dt> <code><dfn id="dfn-subdomains">subdomains</dfn></code> </dt>
-  <dd> A <a class="externalDFN" href="http://www.w3.org/TR/widgets/#boolean-attribute">boolean attribute</a> that indicates whether or not the host component part of the access request applies to subdomains (as 
+  <dd> A <a class="externalDFN" href="http://dev.w3.org/2006/waf/widgets/#boolean-attribute">boolean attribute</a> that indicates whether or not the host component part of the access request applies to subdomains (as 
           defined in [<cite><a class="bibref" rel="biblioentry" href="#bib-RFC1034">RFC1034</a></cite>]) of domain in the <code>origin</code> attribute. The default value when this 
           attribute is absent is <code>false</code>, meaning that access to subdomains is not requested. </dd>
 </dl>
@@ -650,7 +658,7 @@ W3C Patent Policy</a>.</p>
       <pre class="example sh_xml sh_sourceCode"><span class="sh_keyword">&lt;access</span> <span class="sh_type">origin</span><span class="sh_symbol">=</span><span class="sh_string">&quot;*&quot;</span><span class="sh_keyword">/&gt;</span></pre>
       
 <h2 id="processing"><span class="secno">7. </span>Processing <a href="#dfn-access" class="internalDFN"><code>access</code></a> elements in the Configuration Document</h2>
-      <p>When processing <a href="#dfn-access" class="internalDFN"><code>access</code></a> elements in the configuration document, a <a class="product-ua" href="#product-ua">user agent</a> behaves as if the following had been defined in the <a href="http://www.w3.org/TR/widgets/#table-of-configuration-defaults">Table of Configuration Defaults</a> in <a href="http://www.w3.org/TR/widgets/#step-3-set-the-configuration-defaults">Step 3</a> of the [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>] specification. </p>
+      <p>When processing <a href="#dfn-access" class="internalDFN"><code>access</code></a> elements in the configuration document, a <a class="product-ua" href="#product-ua">user agent</a> behaves as if the following had been defined in the <a href="http://dev.w3.org/2006/waf/widgets/#table-of-configuration-defaults">Table of Configuration Defaults</a> in <a href="http://dev.w3.org/2006/waf/widgets/#step-3-set-the-configuration-defaults">Step 3</a> of the [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>] specification. </p>
       <table summary="The configuration defaults that a user agent must set prior to instantiation." class="simple">
   <caption>
         Table of Configuration Defaults (addendum)
@@ -669,14 +677,14 @@ W3C Patent Policy</a>.</p>
       <th scope="row"><dfn id="dfn-access-request-list"><var>access-request list</var></dfn></th>
       <td>List</td>
       <td><code>null</code></td>
-      <td><a href="http://www.w3.org/TR/widgets/#step-7-process-the-configuration-document">Step 7</a></td>
+      <td><a href="http://dev.w3.org/2006/waf/widgets/#step-7-process-the-configuration-document">Step 7</a></td>
       <td>An empty list  that represent the
               author's <a title="access request" href="#dfn-access-request" class="internalDFN">access requests</a> to <a title="network resource" href="#dfn-network-resource" class="internalDFN">network resources</a>. </td>
     </tr>
         </tbody>
 </table>
       <p id="ta-parsing"> Secondly, a <a class="product-ua" href="#product-ua">user agent</a> <em class="ct">must</em> apply the <a href="#dfn-rule-for-processing-an-access-element" class="internalDFN">rule for processing an <code>access</code> element</a> at 
-  the appropriate point in the <a href="http://www.w3.org/TR/widgets/#algorithm-to-process-a-configuration-document">algorithm to process a
+  the appropriate point in the <a href="http://dev.w3.org/2006/waf/widgets/#algorithm-to-process-a-configuration-document">algorithm to process a
         configuration document</a>: the appropriate point is where the algorithm allows for processing 
   'any other type of element' [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>]. </p>
       <h4 id="rule-for-processing-an-access-element">Rule for processing an <code>access</code> element </h4>
@@ -690,24 +698,24 @@ W3C Patent Policy</a>.</p>
           <p>Let <var>element</var> be the <code>access</code> element to be processed. </p>
         </li>
   <li>
-          <p id="ta-missing-origin-attr"> If the <code>origin</code> attribute is absent, then this <var>element</var> is <a class="externalDFN" href="http://www.w3.org/TR/widgets/#in-error">in error</a> and 
-      the <a class="product-ua" href="#product-ua">user agent</a> <em class="ct">must</em> <a class="externalDFN" href="http://www.w3.org/TR/widgets/#ignore">ignore</a> this element. </p>
+          <p id="ta-missing-origin-attr"> If the <code>origin</code> attribute is absent, then this <var>element</var> is <a class="externalDFN" href="http://dev.w3.org/2006/waf/widgets/#in-error">in error</a> and 
+      the <a class="product-ua" href="#product-ua">user agent</a> <em class="ct">must</em> <a class="externalDFN" href="http://dev.w3.org/2006/waf/widgets/#ignore">ignore</a> this element. </p>
         </li>
   <li>
-          <p id="ta-parsing-wildcard"> Let <var>origin</var> be the result of applying the <a class="externalDFN" href="http://www.w3.org/TR/widgets/#rule-for-getting-a-single-attribute-value">rule
+          <p id="ta-parsing-wildcard"> Let <var>origin</var> be the result of applying the <a class="externalDFN" href="http://dev.w3.org/2006/waf/widgets/#rule-for-getting-a-single-attribute-value">rule
             for getting a single attribute value</a> to the value of the <code>origin</code> attribute. If the result is a 
       single U+002A ASTERISK (<code>*</code>) character, then the <a class="product-ua" href="#product-ua">user agent</a> <em class="ct">must</em> prepend the U+002A ASTERISK to 
       the <var>access-request list</var> and skip all steps below. </p>
         </li>
   <li>
-          <p id="ta-parse-origin-attr"> If <var>origin</var> is not a <a class="externalDFN" href="http://www.w3.org/TR/widgets/#valid-iri">valid 
+          <p id="ta-parse-origin-attr"> If <var>origin</var> is not a <a class="externalDFN" href="http://dev.w3.org/2006/waf/widgets/#valid-iri">valid 
             IRI</a>, if it has components other than <a class="externalDFN"><code>scheme</code></a> and <a class="externalDFN"><code>iauthority</code></a>,
-      if it has no <a class="externalDFN"><code>host</code></a> component, or if it has a <a class="externalDFN"><code>iuser</code> info</a> component, then this element is <a class="externalDFN" href="http://www.w3.org/TR/widgets/#in-error">in error</a> and 
-      the <a class="product-ua" href="#product-ua">user agent</a> <em class="ct">must</em> <a class="externalDFN" href="http://www.w3.org/TR/widgets/#ignore">ignore</a> this element. </p>
+      if it has no <a class="externalDFN"><code>host</code></a> component, or if it has a <a class="externalDFN"><code>iuser</code> info</a> component, then this element is <a class="externalDFN" href="http://dev.w3.org/2006/waf/widgets/#in-error">in error</a> and 
+      the <a class="product-ua" href="#product-ua">user agent</a> <em class="ct">must</em> <a class="externalDFN" href="http://dev.w3.org/2006/waf/widgets/#ignore">ignore</a> this element. </p>
         </li>
   <li>
-          <p> If  the <code>subdomains</code> attribute is absent, then let <var>sub domains</var> be the value <code>false</code>. Otherwise, or let <var>sub domains</var> be the result of applying the <a class="externalDFN" href="http://www.w3.org/TR/widgets/#rule-for-getting-a-single-attribute-value">rule 
-            for getting a single attribute value</a> to the value of the <code>subdomains</code> attribute. If the value of <var>sub domains</var> is not a <a class="externalDFN" href="http://www.w3.org/TR/widgets/#valid-boolean-value">valid
+          <p> If  the <code>subdomains</code> attribute is absent, then let <var>sub domains</var> be the value <code>false</code>. Otherwise, or let <var>sub domains</var> be the result of applying the <a class="externalDFN" href="http://dev.w3.org/2006/waf/widgets/#rule-for-getting-a-single-attribute-value">rule 
+            for getting a single attribute value</a> to the value of the <code>subdomains</code> attribute. If the value of <var>sub domains</var> is not a <a class="externalDFN" href="http://dev.w3.org/2006/waf/widgets/#valid-boolean-value">valid
             boolean value</a>, then let <var>sub domains</var> be the value <code>false</code>. </p>
         </li>
   <li>
@@ -716,7 +724,7 @@ W3C Patent Policy</a>.</p>
       port component, the <a class="product-ua" href="#product-ua">user agent</a> <em class="ct">must</em> use the default value for the protocol that corresponds to <var>scheme</var>. </p>
         </li>
   <li>
-          <p id="ta-ignore-unsupported-scheme"> If <var>scheme</var> is <a class="externalDFN" href="http://www.w3.org/TR/widgets/#unsupported">unsupported</a> by the <a class="product-ua" href="#product-ua">user agent</a>, then this element is <a class="externalDFN" href="http://www.w3.org/TR/widgets/#in-error">in error</a> and the <a class="product-ua" href="#product-ua">user agent</a> <em class="ct">must</em> <a class="externalDFN">ignore</a> this element. </p>
+          <p id="ta-ignore-unsupported-scheme"> If <var>scheme</var> is <a class="externalDFN" href="http://dev.w3.org/2006/waf/widgets/#unsupported">unsupported</a> by the <a class="product-ua" href="#product-ua">user agent</a>, then this element is <a class="externalDFN" href="http://dev.w3.org/2006/waf/widgets/#in-error">in error</a> and the <a class="product-ua" href="#product-ua">user agent</a> <em class="ct">must</em> <a class="externalDFN">ignore</a> this element. </p>
         </li>
   <li>
           <p id="ta-toASCII"> If <var>scheme</var> is &quot;<code>http</code>&quot; or &quot;<code>https</code>&quot;, then the <a class="product-ua" href="#product-ua">user agent</a> <em class="ct">must</em> process the value of <var>host</var> using the <a class="externalDFN">ToASCII</a> algorithm as per
@@ -771,7 +779,7 @@ W3C Patent Policy</a>.</p>
   <dt id="bib-URI">[URI]</dt>
   <dd><a href="http://www.ietf.org/rfc/rfc3986.txt"><cite>Uniform Resource Identifiers (URI): generic syntax.</cite></a> IETF.</dd>
   <dt id="bib-WIDGETS">[WIDGETS]</dt>
-  <dd><a href="http://www.w3.org/TR/widgets/"><cite>Widget Packaging and XML Configuration</cite></a>. W3C. </dd>
+  <dd><a href="http://dev.w3.org/2006/waf/widgets/"><cite>Widget Packaging and XML Configuration</cite></a>. W3C. </dd>
 </dl>
 <h2 id="informative-references">Informative references</h2>
       <dl class="bibliography">
@@ -782,6 +790,6 @@ W3C Patent Policy</a>.</p>
   <dd><a href="http://www.w3.org/TR/widgets-reqs/"><cite> Requirements For Standardizing Widgets.</cite></a> W3C. </dd>
   <dt><dfn id="bib-xhr">[XHR]</dfn></dt>
   <dd><a href="http://www.w3.org/TR/XMLHttpRequest/"><cite>XMLHttpRequest</cite></a> (Work in progress). W3C.</dd>
-</dl>
+</dl></div>
 </body>
 </html>

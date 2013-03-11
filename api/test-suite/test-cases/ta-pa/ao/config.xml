@@ -1,0 +1,5 @@
+<widget xmlns="http://www.w3.org/ns/widgets"
+ id		 ="tests:ao">
+ <name>Test ao</name>
+ <description>testing assertion ta-pa</description> 
+</widget>

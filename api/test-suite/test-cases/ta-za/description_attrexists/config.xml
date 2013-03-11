@@ -1,0 +1,5 @@
+<widget xmlns="http://www.w3.org/ns/widgets"
+ id="test:description_attrexists">
+ <name>Test description_attrexists</name>
+ <description>Testing assertion ta-za</description>
+</widget>

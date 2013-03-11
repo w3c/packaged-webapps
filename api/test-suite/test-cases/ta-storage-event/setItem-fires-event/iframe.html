@@ -1,0 +1,17 @@
+<!DOCTYPE html> 
+<title>setItem-fires-event iframe</title> 
+<style>body{ background:red } </style> 
+<body id="body">  
+<script> 	
+	window.addEventListener("storage", function(e){
+	  if(e.key         === "testkey"   && 
+		 e.oldValue    === null        && 
+		 e.newValue    === "testvalue") {
+			var passmsg = "Test "+ window.parent.id + " passed because storage event was fired when an item was added.";
+			window.parent.pass(passmsg);
+		}else{
+	        var failmsg = "The test failed because one or more of the StorageEvent values were wrong.";
+		    window.parent.fail(failmsg);			
+		}
+	}, false); 
+</script>

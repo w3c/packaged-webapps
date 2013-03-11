@@ -1,0 +1,7 @@
+<widget xmlns="http://www.w3.org/ns/widgets"
+ id="test:au">
+ <name>Test au</name>
+ <description>Testing assertion ta-aa</description>
+ <preference name="test1" value="abc123" />
+ <preference name="test2" value="protected" readonly="true" />
+</widget>

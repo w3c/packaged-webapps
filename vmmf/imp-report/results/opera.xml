@@ -1,0 +1,16 @@
+<results testsuite="http://dev.w3.org/2006/waf/widgets/test-suite/test-suite.xml" 
+ id="Opera" 
+ product="Opera 11.5" 
+ href="http://www.opera.com/browser/">
+<result for="default" verdict="pass"/>
+<result for="empty" verdict="pass"/>
+<result for="fullscreen" verdict="pass"/>
+<result for="maximized" verdict="pass"/>
+<result for="minimized" verdict="pass"/>
+<result for="invalid" verdict="pass"/>
+<result for="floating" verdict="pass"/>
+<result for="invalid-ordered" verdict="pass"/>
+<result for="windowed" verdict="pass"/>
+<result for="negation" verdict="pass"/>
+<result for="min-max" verdict="pass"/>
+</results>

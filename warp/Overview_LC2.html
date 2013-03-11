@@ -1,0 +1,831 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>
+<html lang="en" dir="ltr">
+<head>
+
+  
+    <title>Widget Access Request Policy</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    
+    
+  <style type="text/css">
+/*****************************************************************
+ * ReSpec CSS
+ * Robin Berjon <robin at berjon dot com>
+ * v0.05 - 2009-07-31
+ *****************************************************************/
+
+
+/* --- INLINES --- */
+em.rfc2119 { 
+    text-transform:     lowercase;
+    font-variant:       small-caps;
+    font-style:         normal;
+    color:              #900;
+}
+
+h1 acronym, h2 acronym, h3 acronym, h4 acronym, h5 acronym, h6 acronym, a acronym,
+h1 abbr, h2 abbr, h3 abbr, h4 abbr, h5 abbr, h6 abbr, a abbr {
+    border: none;
+}
+
+dfn {
+    font-weight:    bold;
+}
+
+a.internalDFN {
+    color:  inherit;
+    border-bottom:  medium solid #99c;
+    text-decoration:    none;
+}
+
+a.externalDFN {
+    color:  inherit;
+    border-bottom:  medium dotted #ccc;
+    text-decoration:    none;
+}
+
+a.bibref {
+    text-decoration:    none;
+}
+
+code {
+    color:  #ff4500;
+}
+
+
+/* --- WEB IDL --- */
+pre.idl {
+    border-top: 1px solid #90b8de;
+    border-bottom: 1px solid #90b8de;
+    padding:    1em;
+    line-height:    120%;
+}
+
+pre.idl::before {
+    content:    "WebIDL";
+    display:    block;
+    width:      150px;
+    background: #90b8de;
+    color:  #fff;
+    font-family:    initial;
+    padding:    3px;
+    font-weight:    bold;
+    margin: -1em 0 1em -1em;
+}
+
+.idlType {
+    color:  #ff4500;
+    font-weight:    bold;
+    text-decoration:    none;
+}
+
+/*.idlModule*/
+/*.idlModuleID*/
+/*.idlInterface*/
+.idlInterfaceID {
+    font-weight:    bold;
+    color:  #005a9c;
+}
+
+.idlSuperclass {
+    font-style: italic;
+    color:  #005a9c;
+}
+
+/*.idlAttribute*/
+.idlAttrType {
+    color:  #005a9c;
+}
+.idlAttrName {
+    color:  #ff4500;
+}
+.idlAttrName a {
+    color:  #ff4500;
+    border-bottom:  1px dotted #ff4500;
+    text-decoration: none;
+}
+
+/*.idlMethod*/
+.idlMethType {
+    color:  #005a9c;
+}
+.idlMethName {
+    color:  #ff4500;
+}
+.idlMethName a {
+    color:  #ff4500;
+    border-bottom:  1px dotted #ff4500;
+    text-decoration: none;
+}
+
+/*.idlParam*/
+.idlParamType {
+    color:  #005a9c;
+}
+.idlParamName {
+    font-style: italic;
+}
+
+.extAttr {
+    color:  #666;
+}
+
+/*.idlConst*/
+.idlConstType {
+    color:  #005a9c;
+}
+.idlConstName {
+    color:  #ff4500;
+}
+.idlConstName a {
+    color:  #ff4500;
+    border-bottom:  1px dotted #ff4500;
+    text-decoration: none;
+}
+
+/*.idlException*/
+.idlExceptionID {
+    font-weight:    bold;
+    color:  #c00;
+}
+
+.idlTypedefID, .idlTypedefType {
+    color:  #005a9c;
+}
+
+.idlRaises, .idlRaises a.idlType, .idlRaises a.idlType code, .excName a, .excName a code {
+    color:  #c00;
+    font-weight:    normal;
+}
+
+.excName a {
+    font-family:    monospace;
+}
+
+.idlRaises a.idlType, .excName a.idlType {
+    border-bottom:  1px dotted #c00;
+}
+
+.excGetSetTrue, .excGetSetFalse, .prmNullTrue, .prmNullFalse, .prmOptTrue, .prmOptFalse {
+    width:  45px;
+    text-align: center;
+}
+.excGetSetTrue, .prmNullTrue, .prmOptTrue { color:  #0c0; }
+.excGetSetFalse, .prmNullFalse, .prmOptFalse { color:  #c00; }
+
+.idlImplements a {
+    font-weight:    bold;
+}
+
+dl.attributes, dl.methods, dl.constants {
+    margin-left:    2em;
+}
+
+.attributes dt, .methods dt, .constants dt {
+    font-weight:    normal;
+}
+
+.attributes dt code, .methods dt code, .constants dt code {
+    font-weight:    bold;
+    color:  #000;
+    font-family:    monospace;
+}
+
+.attributes dt code {
+    background:  #ffffd2;
+}
+
+.attributes dt .idlAttrType code {
+    color:  #005a9c;
+    background:  transparent;
+    font-family:    inherit;
+    font-weight:    normal;
+    font-style: italic;
+}
+
+.methods dt code {
+    background:  #d9e6f8;
+}
+
+.constants dt code {
+    background:  #ddffd2;
+}
+
+.attributes dd, .methods dd, .constants dd {
+    margin-bottom:  1em;
+}
+
+table.parameters, table.exceptions {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    margin: 0.5em 0;
+    width:  100%;
+}
+table.parameters { border-bottom:  1px solid #90b8de; }
+table.exceptions { border-bottom:  1px solid #deb890; }
+
+.parameters th, .exceptions th {
+    color:  #fff;
+    padding:    3px 5px;
+    text-align: left;
+    font-family:    initial;
+    font-weight:    normal;
+    text-shadow:    #666 1px 1px 0;
+}
+.parameters th { background: #90b8de; }
+.exceptions th { background: #deb890; }
+
+.parameters td, .exceptions td {
+    padding:    3px 10px;
+    border-top: 1px solid #ddd;
+    vertical-align: top;
+}
+
+.parameters tr:first-child td, .exceptions tr:first-child td {
+    border-top: none;
+}
+
+.parameters td.prmName, .exceptions td.excName, .exceptions td.excCodeName {
+    width:  100px;
+}
+
+.parameters td.prmType {
+    width:  120px;
+}
+
+table.exceptions table {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    width:  100%;
+}
+
+/* --- TOC --- */
+.toc a {
+    text-decoration:    none;
+}
+
+a .secno {
+    color:  #000;
+}
+
+/* --- TABLE --- */
+table.simple {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    border-bottom:  3px solid #005a9c;
+}
+
+.simple th {
+    background: #005a9c;
+    color:  #fff;
+    padding:    3px 5px;
+    text-align: left;
+}
+
+.simple th[scope="row"] {
+    background: inherit;
+    color:  inherit;
+    border-top: 1px solid #ddd;
+}
+
+.simple td {
+    padding:    3px 10px;
+    border-top: 1px solid #ddd;
+}
+
+.simple tr:nth-child(even) {
+    background: #f0f6ff;
+}
+
+/* --- DL --- */
+.section dd > p:first-child {
+    margin-top: 0;
+}
+
+.section dd > p:last-child {
+    margin-bottom: 0;
+}
+
+.section dd {
+    margin-bottom:  1em;
+}
+
+/* --- EXAMPLES --- */
+pre.example {
+    border-top: 1px solid #ff4500;
+    border-bottom: 1px solid #ff4500;
+    padding:    1em;
+    margin-top: 1em;
+}
+
+pre.example::before {
+    content:    "Example";
+    display:    block;
+    width:      150px;
+    background: #ff4500;
+    color:  #fff;
+    font-family:    initial;
+    padding:    3px;
+    font-weight:    bold;
+    margin: -1em 0 1em -1em;
+}
+
+/* --- EDITORIAL NOTES --- */
+.issue {
+    padding:    1em;
+    border: 1px solid #f00;
+    background: #ffc;
+}
+
+.issue::before {
+    content:    "Issue";
+    display:    block;
+    width:  150px;
+    margin: -1.5em 0 0.5em 0;
+    font-weight:    bold;
+    border: 1px solid #f00;
+    background: #fff;
+    padding:    3px 1em;
+}
+
+.note {
+    padding:    1em;
+    border: 2px solid #cff6d9;
+    background: #e2fff0;
+}
+
+.note::before {
+    content:    "Note";
+    display:    block;
+    width:  150px;
+    margin: -1.5em 0 0.5em 0;
+    font-weight:    bold;
+    border: 1px solid #cff6d9;
+    background: #fff;
+    padding:    3px 1em;
+}
+
+/* --- SYNTAX HIGHLIGHTING --- */
+pre.sh_sourceCode {
+  background-color: white;
+  color: black;
+  font-style: normal;
+  font-weight: normal;
+}
+
+pre.sh_sourceCode .sh_keyword { color: #005a9c; font-weight: bold; }           /* language keywords */
+pre.sh_sourceCode .sh_type { color: #666; }                            /* basic types */
+pre.sh_sourceCode .sh_usertype { color: teal; }                             /* user defined types */
+pre.sh_sourceCode .sh_string { color: red; font-family: monospace; }        /* strings and chars */
+pre.sh_sourceCode .sh_regexp { color: orange; font-family: monospace; }     /* regular expressions */
+pre.sh_sourceCode .sh_specialchar { color: 	#ffc0cb; font-family: monospace; }  /* e.g., \n, \t, \\ */
+pre.sh_sourceCode .sh_comment { color: #A52A2A; font-style: italic; }         /* comments */
+pre.sh_sourceCode .sh_number { color: purple; }                             /* literal numbers */
+pre.sh_sourceCode .sh_preproc { color: #00008B; font-weight: bold; }       /* e.g., #include, import */
+pre.sh_sourceCode .sh_symbol { color: blue; }                            /* e.g., <, >, + */
+pre.sh_sourceCode .sh_function { color: black; font-weight: bold; }         /* function calls and declarations */
+pre.sh_sourceCode .sh_cbracket { color: red; }                              /* block brackets (e.g., {, }) */
+pre.sh_sourceCode .sh_todo { font-weight: bold; background-color: #00FFFF; }   /* TODO and FIXME */
+
+/* Predefined variables and functions (for instance glsl) */
+pre.sh_sourceCode .sh_predef_var { color: #00008B; }
+pre.sh_sourceCode .sh_predef_func { color: #00008B; font-weight: bold; }
+
+/* for OOP */
+pre.sh_sourceCode .sh_classname { color: teal; }
+
+/* line numbers (not yet implemented) */
+pre.sh_sourceCode .sh_linenum { display: none; }
+
+/* Internet related */
+pre.sh_sourceCode .sh_url { color: blue; text-decoration: underline; font-family: monospace; }
+
+/* for ChangeLog and Log files */
+pre.sh_sourceCode .sh_date { color: blue; font-weight: bold; }
+pre.sh_sourceCode .sh_time, pre.sh_sourceCode .sh_file { color: #00008B; font-weight: bold; }
+pre.sh_sourceCode .sh_ip, pre.sh_sourceCode .sh_name { color: #006400; }
+
+/* for Prolog, Perl... */
+pre.sh_sourceCode .sh_variable { color: #006400; }
+
+/* for LaTeX */
+pre.sh_sourceCode .sh_italics { color: #006400; font-style: italic; }
+pre.sh_sourceCode .sh_bold { color: #006400; font-weight: bold; }
+pre.sh_sourceCode .sh_underline { color: #006400; text-decoration: underline; }
+pre.sh_sourceCode .sh_fixed { color: green; font-family: monospace; }
+pre.sh_sourceCode .sh_argument { color: #006400; }
+pre.sh_sourceCode .sh_optionalargument { color: purple; }
+pre.sh_sourceCode .sh_math { color: orange; }
+pre.sh_sourceCode .sh_bibtex { color: blue; }
+
+/* for diffs */
+pre.sh_sourceCode .sh_oldfile { color: orange; }
+pre.sh_sourceCode .sh_newfile { color: #006400; }
+pre.sh_sourceCode .sh_difflines { color: blue; }
+
+/* for css */
+pre.sh_sourceCode .sh_selector { color: purple; }
+pre.sh_sourceCode .sh_property { color: blue; }
+pre.sh_sourceCode .sh_value { color: #006400; font-style: italic; }
+
+/* other */
+pre.sh_sourceCode .sh_section { color: black; font-weight: bold; }
+pre.sh_sourceCode .sh_paren { color: red; }
+pre.sh_sourceCode .sh_attribute { color: #006400; }
+
+</style><link charset="utf-8" type="text/css" rel="stylesheet" href="http://www.w3.org/StyleSheets/TR/W3C-WD.css"></head><body style="display: inherit;"><div class="head"><p><a href="http://www.w3.org/"><img src="http://www.w3.org/Icons/w3c_home" alt="W3C" height="48" width="72"></a></p><h1>Widget Access Request Policy</h1><h2><acronym title="World Wide Web Consortium">W3C</acronym> Working Draft 08 December 2009</h2><dl><dt>This Version:</dt><dd><a href="http://www.w3.org/TR/2009/WD-widgets-access-20091208/">http://www.w3.org/TR/2009/WD-widgets-access-20091208/</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/widgets-access/">http://www.w3.org/TR/widgets-access/</a></dd><dt>Latest Editor's Draft:</dt><dd><a href="http://dev.w3.org/2006/waf/widgets-access/">http://dev.w3.org/2006/waf/widgets-access/</a></dd><dt>Previous version:</dt><dd><a href="http://www.w3.org/TR/2009/WD-widgets-access-20090804/">http://www.w3.org/TR/2009/WD-widgets-access-20090804/</a></dd><dt>Editor:</dt><dd><a href="http://berjon.com/">Robin Berjon</a>, <a href="http://vodafone.com/">Vodafone</a></dd></dl><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2009 <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium"><acronym title="World Wide Web Consortium">W3C</acronym></acronym></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology"><acronym title="Massachusetts Institute of Technology">MIT</acronym></acronym></a>, <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></acronym></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. <acronym title="World Wide Web Consortium">W3C</acronym> <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p><hr></div>
+    <div class="introductory section" id="abstract"><h2>Abstract</h2>
+      This specification defines the security model controlling network access from within a
+      widget, as well as a method for widget authors to request that the <a class="internalDFN" href="#dfn-user-agent">user agent</a> <a class="internalDFN" href="#dfn-grant-access">grant access</a> 
+      to certain <a class="internalDFN" href="#dfn-network-resource" title="network resource">network resources</a> or sets thereof.
+    </div><div id="sotd" class="introductory section"><h2>Status of This Document</h2><p><em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current <acronym title="World Wide Web Consortium">W3C</acronym> publications and the latest revision of this technical report can be found in the <a href="http://www.w3.org/TR/"><acronym title="World Wide Web Consortium">W3C</acronym> technical reports index</a> at http://www.w3.org/TR/.</em></p>
+      <p>
+        <strong>Implementers should be aware that this document is not stable.</strong> 
+        Implementers who are not taking part in the discussions are likely to find the specification 
+        changing out from under them in incompatible ways. Vendors interested in implementing this 
+        document before it eventually reaches the Candidate Recommendation stage should join the 
+        aforementioned mailing lists and take part in the discussions.
+      </p>
+      <p>
+        User agents that wish to extend this specification in any way are encouraged to discuss 
+        their extensions on a public forum, such as 
+        <a href="mailto:public-webapps@w3.org">public-webapps</a> so their extensions can be considered 
+        for standardisation.
+      </p>
+      <p>
+        This specification is part of the <a href="http://www.w3.org/2008/webapps/wiki/WidgetSpecs">Widgets
+        Family of Specifications</a>.
+      </p>
+    <p>This document was published by the <a href="http://www.w3.org/2008/webapps/">Web Applications WG</a> as a Last Call Working Draft. This document is intended to become a <acronym title="World Wide Web Consortium">W3C</acronym> Recommendation. If you wish to make comments regarding this document, please send them to <a href="mailto:public-webapps@w3.org">public-webapps@w3.org</a> (<a href="mailto:public-webapps-request@w3.org?subject=subscribe">subscribe</a>, <a href="http://lists.w3.org/Archives/Public/public-webapps/">archives</a>). The Last Call period ends 13 January 2010. All feedback is welcome.</p><p>Publication as a Working Draft does not imply endorsement by the <acronym title="World Wide Web Consortium">W3C</acronym> Membership. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.</p><p>This is a Last Call Working Draft and thus the Working Group has determined that this document has satisfied the relevant technical requirements and is sufficiently stable to advance through the Technical Recommendation process.</p><p>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 <acronym title="World Wide Web Consortium">W3C</acronym> Patent Policy</a>. <acronym title="World Wide Web Consortium">W3C</acronym> maintains a <a href="http://www.w3.org/2004/01/pp-impl/42538/status" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section 6 of the <acronym title="World Wide Web Consortium">W3C</acronym> Patent Policy</a>.</p></div><div class="section" id="toc"><h2 class="introductory">Table of Contents</h2><ul class="toc"><li><a href="#introduction"><span class="secno">1. </span>Introduction</a></li><li><a href="#definitions"><span class="secno">2. </span>Definitions</a></li><li><a href="#conformance"><span class="secno">3. </span>Conformance</a></li><li><a href="#policy"><span class="secno">4. </span>Policy</a></li><li><a href="#the-access-element"><span class="secno">5. </span>The <span><code>access</code></span> Element</a></li><li><ul class="toc"><li><a href="#attributes"><span class="secno">5.1 </span>Attributes</a></li><li><a href="#usage-example"><span class="secno">5.2 </span>Usage example</a></li></ul></li><li><a href="#processing"><span class="secno">6. </span>Processing <span class="internalDFN formerLink internalDFN"><code>access</code></span> elements in the Configuration Document</a></li><li><a href="#rule"><span class="secno">7. </span>Rules for Granting Access to a Network Resources</a></li><li><a href="#design-goals-and-requirements"><span class="secno">A. </span>Design Goals and Requirements</a></li><li><a href="#acknowledgements"><span class="secno">B. </span>Acknowledgements</a></li><li><a href="#references"><span class="secno">C. </span>References</a></li><li><ul class="toc"><li><a href="#normative-references"><span class="secno">C.1 </span>Normative references</a></li><li><a href="#informative-references"><span class="secno">C.2 </span>Informative references</a></li></ul></li></ul></div>
+    
+    
+    
+    <div id="introduction" class="informative section">
+      <h2><span class="secno">1. </span>Introduction</h2><p><em>This section is non-normative.</em></p>
+      <p>
+        User agents running widgets are expected to provide access to potentially sensitive APIs
+        (phone book, calendar, file system, etc.) that expose data which should not be exposed
+        without the user's consent.
+      </p>
+      <p>
+        The purpose of this specification is to define the security model for network
+        interactions from within a widget that has access to sensitive information. It
+        provides means for a widget to declare its intent to access specific 
+        <a class="internalDFN" href="#dfn-network-resource" title="network resource">network resources</a> so that a policy may control it.
+      </p>
+    </div>
+
+    <div class="section" id="definitions">
+      <h2><span class="secno">2. </span>Definitions</h2>
+      <p>
+        An <dfn id="dfn-access-request">access request</dfn> is a request made by an author to the <a class="internalDFN" href="#dfn-user-agent">user agent</a> for
+        the ability to retrieve one or more <a class="internalDFN" href="#dfn-network-resource" title="network resource">network resources</a>. The 
+        <a class="internalDFN" href="#dfn-network-resource" title="network resource">network resources</a> and author requests to access are identified
+        using <code>access</code> elements in the widget's configuration document.
+      </p>
+      <p>
+        To <dfn id="dfn-grant-access">grant access</dfn> means that the <a class="internalDFN" href="#dfn-user-agent">user agent</a> authorises <a>widget execution 
+        scopes</a> to retrieve one or more <a class="internalDFN" href="#dfn-network-resource" title="network resource">network resources</a> 
+        via the <a class="internalDFN" href="#dfn-user-agent">user agent</a>.
+      </p>
+      <p class="note">
+        Some schemes (e.g. <code>mailto:</code>) may be handled by third-party applications and 
+        are therefore not controlled by the access mechanism defined in this specification.
+        Similarly, policies defined using this specification do not apply to opening content in 
+        external applications (e.g. through the <code>openURL()</code>
+        method [<a href="#bib-WIDGETS-APIS" rel="biblioentry" class="bibref">WIDGETS-APIS</a>]).
+      </p>
+      <p>
+        To <dfn id="dfn-deny-access">deny access</dfn> means that the <a class="internalDFN" href="#dfn-user-agent">user agent</a> rejects an author's request to 
+        <a class="internalDFN" href="#dfn-grant-access">grant access</a>.
+      </p>
+      <p>
+        An <dfn id="dfn-access-request-policy">access request policy</dfn>, or <dfn id="dfn-policy">policy</dfn> for short, is a set of rules
+        that details whether given some conditions the <a class="internalDFN" href="#dfn-user-agent">user agent</a> will <a class="internalDFN" href="#dfn-grant-access" title="grant access">grant</a>
+        or <a class="internalDFN" href="#dfn-deny-access">deny access</a> to a given <a class="internalDFN" href="#dfn-network-resource">network resource</a>.
+      </p>
+      <p>
+        A <dfn id="dfn-network-resource">network resource</dfn> is a retrievable resource of any media type that is identified by a 
+        URI that has a DNS or IP as its authority component [<a href="#bib-URI" rel="biblioentry" class="bibref">URI</a>].
+      </p>
+      <p class="note">
+        This deliberately excludes some schemes (e.g. <code>sms:</code>, <code>tel:</code>) from being
+        controlled by the means provided by this specification.
+      </p>
+      <p>
+        A <dfn id="dfn-feature-enabled-api">feature-enabled API</dfn> is an API that for one reason or another  
+        is considered to be sensitive (typically because it has access to the  
+        user's private data). Such an API may for instance have been activated
+        through use of the <code>&lt;feature&gt;</code> element [<a href="#bib-WIDGETS" rel="biblioentry" class="bibref">WIDGETS</a>].
+      </p>
+      <p>
+        The <dfn id="dfn-widget-execution-scope">widget execution scope</dfn> is the scope (or set of scopes, seen  
+        as a single one for simplicity's sake) being the execution context for  
+        code running from documents that are part of the widget package.
+      </p>
+      <p>
+        The <dfn id="dfn-external-execution-scope">external execution scope</dfn> is the scope (or set thereof) being the  
+        execution context for code running from documents that originate outside
+        the widget package.
+      </p>
+    </div>
+    
+    <div class="section" id="conformance"><h2><span class="secno">3. </span>Conformance</h2><p>As well as sections marked as non-normative, all authoring guidelines, diagrams, examples, and notes in this specification are non-normative. Everything else in this specification is normative.</p>
+<p>The key words <em title="must" class="rfc2119">must</em>, <em title="must not" class="rfc2119">must not</em>, <em title="required" class="rfc2119">required</em>, <em title="should" class="rfc2119">should</em>, <em title="should not" class="rfc2119">should not</em>, <em title="recommended" class="rfc2119">recommended</em>, <em title="may" class="rfc2119">may</em>, and <em title="optional" class="rfc2119">optional</em> in this specification are to be interpreted as described in [<a href="#bib-RFC2119" rel="biblioentry" class="bibref">RFC2119</a>].</p>
+
+      <p>
+        This specification defines conformance criteria that apply to a single product:
+        <dfn id="dfn-user-agent" title="user agent">user agents</dfn> that implement the interfaces that it contains.
+      </p>
+    </div>
+    
+    <div class="section" id="policy">
+      <h2><span class="secno">4. </span>Policy</h2>
+      <p>
+        A <a class="internalDFN" href="#dfn-user-agent">user agent</a> enforces an <a class="internalDFN" href="#dfn-access-request-policy">access request policy</a>. In the default <a class="internalDFN" href="#dfn-policy">policy</a>,
+        a <a class="internalDFN" href="#dfn-user-agent">user agent</a> <em title="must" class="rfc2119">must</em> <a class="internalDFN" href="#dfn-deny-access">deny access</a> to <a class="internalDFN" href="#dfn-network-resource" title="network resource">network resources</a>
+        external to the widget by default, whether this access is requested through APIs
+        (e.g. <code>XMLHttpRequest</code>) or through markup (e.g. <code>iframe</code>,
+        <code>script</code>, <code>img</code>).
+      </p>
+      <p>
+        A more lenient <a class="internalDFN" href="#dfn-policy">policy</a> can be defined with the <a class="internalDFN" href="#dfn-access-request-list">access-request list</a> as defined in
+        the <a href="#processing">processing section</a>. A <a class="internalDFN" href="#dfn-user-agent">user agent</a> <em title="may" class="rfc2119">may</em> <a class="internalDFN" href="#dfn-grant-access">grant access</a> to
+        <a class="internalDFN" href="#dfn-network-resource" title="network resource">network resources</a> listed in the <a class="internalDFN" href="#dfn-access-request-list">access-request list</a>;
+        in this case the <a class="internalDFN" href="#dfn-user-agent">user agent</a> <em title="must" class="rfc2119">must</em> <a class="internalDFN" href="#dfn-grant-access">grant access</a> based on the 
+        <a href="#rule">Rules for Granting Access to a Network Resources</a>.
+      </p>
+      <p>
+        Furthermore, a <a class="internalDFN" href="#dfn-user-agent">user agent</a> <em title="may" class="rfc2119">may</em> <a class="internalDFN" href="#dfn-grant-access">grant access</a> to certain URI schemes
+        (e.g., <code>mailto:</code>) without the need of an <a class="internalDFN" href="#dfn-access-request">access request</a> if its security
+        policy considers those schemes benign. A <a class="internalDFN" href="#dfn-user-agent">user agent</a> <em title="may" class="rfc2119">may</em> <a class="internalDFN" href="#dfn-deny-access">deny access</a>
+        requests made via the <code>access</code> element (e.g. based on a security policy, user
+        prompting, etc.).
+      </p>
+      <!-- <p>
+        Scripts executing in the <a>widget execution scope</a> have access to feature-enabled APIs.
+        Note that other mechanisms MAY provide access to the same APIs
+        in other contexts, but that that is outside the scope of this specification.
+      </p> -->
+      <p>
+        When a <a class="internalDFN" href="#dfn-user-agent">user agent</a> <a class="internalDFN" href="#dfn-grant-access" title="grant access">grants access</a> to a given set of
+        <a class="internalDFN" href="#dfn-network-resource" title="network resource">network resources</a>, it <em title="must" class="rfc2119">must</em> do so equally for APIs and 
+        markup.
+      </p>
+      <p>
+        The exact rules defining which execution scope applies to <a class="internalDFN" href="#dfn-network-resource" title="network resource">network resources</a>
+        loaded into a document running in the <a class="internalDFN" href="#dfn-widget-execution-scope">widget execution scope</a> depend on the language that
+        is being used inside the the widget.
+      </p>
+      <p class="note">
+        For instance, in HTML 5 [<a href="#bib-HTML5" rel="biblioentry" class="bibref">HTML5</a>] a script loaded off the network into a document running in the 
+        <a class="internalDFN" href="#dfn-widget-execution-scope">widget execution scope</a> is itself in the same scope, whereas a document loaded off the network 
+        in an <code>iframe</code> will be in the <a class="internalDFN" href="#dfn-external-execution-scope">external execution scope</a>.
+      </p>
+    </div>
+
+    <div class="section" id="the-access-element">
+      <h2><span class="secno">5. </span>The <dfn id="dfn-access"><code>access</code></dfn> Element</h2>
+      <p>
+        The <code>access</code> element allows authors to request permission from the <a class="internalDFN" href="#dfn-user-agent">user agent</a> to
+        retrieve a set of <a class="internalDFN" href="#dfn-network-resource" title="network resource">network resources</a>. Zero or more <code>access</code>
+        elements can be placed in the configuration document.
+      </p>
+      <p>
+        The <code>access</code> element is in the <code>http://www.w3.org/ns/widgets</code> namespace
+        as defined in [<a href="#bib-WIDGETS" rel="biblioentry" class="bibref">WIDGETS</a>].
+      </p>
+      <dl>
+        <dt>Context in which this element <em title="may" class="rfc2119">may</em> be used:</dt>
+        <dd>As a child of the <code>widget</code> element [<a href="#bib-WIDGETS" rel="biblioentry" class="bibref">WIDGETS</a>].</dd>
+        <dt>Content model:</dt>
+        <dd>Empty.</dd>
+        <dt>Occurrences:</dt>
+        <dd>Zero or more.</dd>
+        <dt>Expected children:</dt>
+        <dd>none.</dd>
+        <dt>Localizable via <code>xml:lang</code>:</dt>
+        <dd>No.</dd>
+      </dl>
+
+      <div class="section" id="attributes">
+        <h3><span class="secno">5.1 </span>Attributes</h3>
+        <dl>
+          <dt>
+            <code><dfn id="dfn-origin">origin</dfn></code>
+          </dt>
+          <dd>
+            An <a class="externalDFN" href="http://www.w3.org/TR/widgets/#iri-attribute">IRI attribute</a> 
+            that defines the specifics of the
+            access request that is requested. Additionally, the <dfn id="dfn-special-value">special value</dfn> of U+002A ASTERISK
+            (<code>*</code>) <em title="may" class="rfc2119">may</em> be used. This special value provides a means for an
+            author to request from the <a class="internalDFN" href="#dfn-user-agent">user agent</a> unrestricted access to 
+            <a class="internalDFN" href="#dfn-network-resource" title="network resource">network resources</a>. Only the <a class="externalDFN">scheme</a> 
+            and <a class="externalDFN">authority</a> components can be present in the IRI that this 
+            attribute contains ([<a href="#bib-URI" rel="biblioentry" class="bibref">URI</a>], [<a href="#bib-RFC3987" rel="biblioentry" class="bibref">RFC3987</a>]).
+          </dd>
+          <dt>
+            <code><dfn id="dfn-subdomains">subdomains</dfn></code>
+          </dt>
+          <dd>
+            A <a class="externalDFN" href="http://www.w3.org/TR/widgets/#boolean-attribute">boolean attribute</a> 
+            that indicates whether or not the host component part of the access request applies to subdomains of 
+            domain in the <code>origin</code> attribute. The default value when this attribute is absent is
+            <code>false</code>, meaning that access to subdomains is not requested.
+          </dd>
+        </dl>
+      </div>
+
+      <div class="section" id="usage-example">
+        <h3><span class="secno">5.2 </span>Usage example</h3>
+        <p>
+          This example contains multiple uses of the <code>access</code> element (not contained in
+          the same configuration as the last one would make the others useless). They presume that
+          <code>http://www.w3.org/ns/widgets</code> is the default namespace defined in their context:
+        </p>
+        <pre class="example sh_xml sh_sourceCode"><span class="sh_keyword">&lt;access</span> <span class="sh_type">origin</span><span class="sh_symbol">=</span><span class="sh_string">"https://example.net"</span><span class="sh_keyword">/&gt;</span>
+<span class="sh_keyword">&lt;access</span> <span class="sh_type">origin</span><span class="sh_symbol">=</span><span class="sh_string">"http://example.org"</span> <span class="sh_type">subdomains</span><span class="sh_symbol">=</span><span class="sh_string">"true"</span><span class="sh_keyword">/&gt;</span>
+<span class="sh_keyword">&lt;access</span> <span class="sh_type">origin</span><span class="sh_symbol">=</span><span class="sh_string">"http://dahut.example.com:4242"</span><span class="sh_keyword">/&gt;</span>
+<span class="sh_keyword">&lt;access</span> <span class="sh_type">origin</span><span class="sh_symbol">=</span><span class="sh_string">"*"</span><span class="sh_keyword">/&gt;</span></pre>
+      </div>
+    </div>
+
+    <div class="section" id="processing">
+      <h2><span class="secno">6. </span>Processing <a class="internalDFN" href="#dfn-access"><code>access</code></a> elements in the Configuration Document</h2>
+      <p>
+        A <a class="internalDFN" href="#dfn-user-agent">user agent</a> <em title="must" class="rfc2119">must</em> add the following to the 
+        <a href="http://www.w3.org/TR/widgets/#table-of-configuration-defaults">Table of Configuration Defaults</a>
+        [<a href="#bib-WIDGETS" rel="biblioentry" class="bibref">WIDGETS</a>].
+      </p>
+      <table summary="The configuration defaults that a widget user agent must set prior to instantiation." class="simple">
+        <caption>Table of Configuration Defaults (addendum)</caption>
+        <thead>
+          <tr>
+            <th scope="col">Variable</th>
+            <th scope="col">Type</th>
+            <th scope="col">Default Value</th>
+            <th scope="col">Overridden in</th>
+            <th scope="col">Description</th>
+          </tr>
+        </thead>
+        <tbody><tr>
+          <th scope="row"><dfn id="author-email"><var>access-request list</var></dfn></th>
+          <td>List</td>
+          <td><code>null</code></td>
+          <td><a href="#processing">Processing </a><a class="internalDFN" href="#dfn-access"><code>access</code></a> elements in the Configuration Document</td>
+          <td>
+            The list of items extracted from <a class="internalDFN" href="#dfn-access"><code>access</code></a> elements to which the <a class="internalDFN" href="#dfn-user-agent">user agent</a>
+            will <a class="internalDFN" href="#dfn-grant-access">grant access</a>.
+          </td>
+        </tr>
+      </tbody></table>
+      <p>
+        This processing takes place as part of
+        <a href="http://www.w3.org/TR/widgets/#step-7--process-the-configuration-docume">Step 7 - 
+        Process the Configuration Document</a> in [<a href="#bib-WIDGETS" rel="biblioentry" class="bibref">WIDGETS</a>].
+      </p>
+      <p>
+        Let <dfn id="dfn-access-request-list"><var>access-request list</var></dfn> be an empty list of objects that represent the
+        author's <a class="internalDFN" href="#dfn-access-request" title="access request">access requests</a> to <a class="internalDFN" href="#dfn-network-resource" title="network resource">network resources</a>.
+      </p>
+      <p class="note">
+        The following sequence of steps relies on terminology that
+        is defined in RFC 3987 [<a href="#bib-RFC3987" rel="biblioentry" class="bibref">RFC3987</a>] and in the URI [<a href="#bib-URI" rel="biblioentry" class="bibref">URI</a>] specification. The
+        particular the terms derived from the URI and IRI specifications include:
+        <a class="externalDFN">host</a>, 
+        <a class="externalDFN">port</a>, 
+        <a class="externalDFN">scheme</a>, 
+        <a class="externalDFN">ifragment</a>, and
+        <a class="externalDFN">iuser info</a>.
+      </p>
+      <p>
+        For each <code>access</code> element that is a direct child of the <var><code>widget</code>
+        element</var>:
+      </p>
+      <ol>
+        <li>
+          If the <code>origin</code> attribute is absent, then this element is 
+          <a class="externalDFN" href="http://www.w3.org/TR/widgets/#in-error">in error</a> and 
+          the <a class="internalDFN" href="#dfn-user-agent">user agent</a> <em title="must" class="rfc2119">must</em> <a class="externalDFN" href="http://www.w3.org/TR/widgets/#ignore">ignore</a> it.
+        </li>
+        <li>
+          Let <var>origin</var> be result of applying the 
+          <a class="externalDFN" href="http://www.w3.org/TR/widgets/#rule-for-getting-a-single-attribute-valu0">rule
+          for getting a single attribute value</a> to the value of the <code>origin</code> attribute. If the result is a 
+          single U+002A ASTERISK (<code>*</code>) character, then prepend the U+002A ASTERISK to 
+          the <var>access-request list</var> and skip all steps below.
+        </li>
+        <li>
+          If <var>origin</var> is not a <a class="externalDFN" href="http://www.w3.org/TR/widgets/#valid-iri">valid 
+          IRI</a>, if it has components other than <a class="externalDFN">scheme</a> and <a class="externalDFN">iauthority</a>,
+          if it has no <a class="externalDFN">host</a> component, or if it has a <a class="externalDFN">iuser info</a>
+          component, then this element is <a class="externalDFN" href="http://www.w3.org/TR/widgets/#in-error">in error</a> and 
+          the <a class="internalDFN" href="#dfn-user-agent">user agent</a> <em title="must" class="rfc2119">must</em> <a class="externalDFN" href="http://www.w3.org/TR/widgets/#ignore">ignore</a> it.
+        </li>
+        <li>
+          Let <var>sub domains</var> be the result of applying the 
+          <a class="externalDFN" href="http://www.w3.org/TR/widgets/#rule-for-getting-a-single-attribute-valu0">rule 
+          for getting a single attribute value</a> to the value of the <code>subdomains</code> attribute. If the value of
+          <var>sub domains</var> is not a <a class="externalDFN" href="http://www.w3.org/TR/widgets/#valid-boolean-value">valid
+          boolean value</a>, then this element is <a class="externalDFN" href="http://www.w3.org/TR/widgets/#in-error">in
+          error</a> and the <a class="internalDFN" href="#dfn-user-agent">user agent</a> <em title="must" class="rfc2119">must</em> 
+          <a class="externalDFN" href="http://www.w3.org/TR/widgets/#ignore">ignore</a> it.
+        </li>
+        <li>
+          Let <var>scheme</var> be the scheme component of <var>origin</var>. Let <var>host</var> be the host
+          component of <var>origin</var>. Let <var>port</var> be the port component of <var>origin</var> or if there is no
+          port component the default value for the protocol that corresponds to <var>scheme</var>.
+        </li>
+        <li>
+          If <var>scheme</var> is <a class="externalDFN" href="http://www.w3.org/TR/widgets/#unsupported">unsupported</a> 
+          by the <a class="internalDFN" href="#dfn-user-agent">user agent</a>, then this element is
+          <a class="externalDFN" href="http://www.w3.org/TR/widgets/#in-error">in error</a> and the <a class="internalDFN" href="#dfn-user-agent">user agent</a> 
+          <em title="must" class="rfc2119">must</em> <a class="externalDFN">ignore</a> it.
+        </li>
+        <li>
+          If <var>scheme</var> is "<code>http</code>" or "<code>https</code>", then the value of <var>host</var> 
+          <em title="must" class="rfc2119">must</em> be processed using the <a class="externalDFN">ToASCII</a> algorithm as per
+          [<a href="#bib-RFC3490" rel="biblioentry" class="bibref">RFC3490</a>].
+        </li>
+        <li>
+          Append an item inside the <var><a class="internalDFN" href="#dfn-access-request-list">access-request list</a></var> that is the tuple: <var>scheme</var>,
+          <var>host</var>, <var>port</var>, <var>sub domains</var>.
+        </li>
+      </ol>
+    </div>
+
+    <div class="section" id="rule">
+      <h2><span class="secno">7. </span>Rules for Granting Access to a Network Resources</h2>
+      <p>
+        When multiple <code>access</code> elements are used, the set of network connections that are
+        allowed is the union of all the access requests that were granted by the <a class="internalDFN" href="#dfn-user-agent">user agent</a>. The
+        following rule is applied to determine what each <code>access</code> element is requesting
+        access to.
+      </p>
+      <p>
+        If the <a class="internalDFN" href="#dfn-access-request-list"><var>access-request list</var></a> contains an item that is just the U+002A ASTERISK
+        (<code>*</code>) character, then all <a class="internalDFN" href="#dfn-access-request" title="access request">access requests</a> are
+        <a class="internalDFN" href="#dfn-grant-access" title="grant access">granted</a>.
+      </p>
+      <p>
+        An <a class="internalDFN" href="#dfn-access-request">access request</a> is <a class="internalDFN" href="#dfn-grant-access" title="grant access">granted</a> for a given URI if there exists 
+        an item inside the <a class="internalDFN" href="#dfn-access-request-list"><var>access-request list</var></a> such that:
+      </p>
+      <ul>
+        <li>the URI's <a class="externalDFN">scheme component</a> is the same as <var>scheme</var>; and</li>
+        <li>
+          if <var>subdomains</var> is <code>false</code>, the URI's <a class="externalDFN">host component</a> is
+          the same as <var>host</var>; or
+        </li>
+        <li>
+          if <var>subdomains</var> is <code>true</code>, the URI's <a class="externalDFN">host component</a> is
+          either the same as <var>host</var>, or is a subdomain of <var>host</var>; and
+        </li>
+        <li>the URI's <a class="externalDFN">port component</a> is the same as <var>port</var>.</li>
+      </ul>
+      <p>
+        At runtime, when a network request is made from within the <a class="internalDFN" href="#dfn-widget-execution-scope">widget execution scope</a>, 
+        the <a class="internalDFN" href="#dfn-user-agent">user agent</a> matches it against the rules
+        defined above, accepting it if it matches and blocking it if it doesn't. If
+        <var>scheme</var> is "<code>http</code>" or "<code>https</code>", the <a class="internalDFN" href="#dfn-user-agent">user agent</a> <em title="must" class="rfc2119">must</em> compare hosts
+        in a case-insensitive manner.
+      </p>
+    </div>
+
+    <div id="design-goals-and-requirements" class="appendix section">
+      <h2><span class="secno">A. </span>Design Goals and Requirements</h2>
+      <p>
+        The design goals and requirements for this specification are addressed in the
+        30 April 2009 Working Draft of the <cite>Widgets 1.0 Requirements</cite> [<a href="#bib-WIDGETS-REQS" rel="biblioentry" class="bibref">WIDGETS-REQS</a>] 
+        document. This document addresses the following requirements:
+      </p>
+      <ul>
+          <li>
+            <a href="http://www.w3.org/TR/widgets-reqs/#default-security-policy">Default Security Policy</a>
+          </li>
+          <li>
+            <a href="http://www.w3.org/TR/widgets-reqs/#security-declarations">Security Declarations</a>
+          </li>
+          <li>
+            <!-- <a href="http://www.w3.org/TR/widgets-reqs/#restrict-access-to-external-resources">Restrict access 
+            to external resources</a> -->
+            Restrict access to external resources (to be published)
+          </li>
+      </ul>
+      <p>
+        Additional considerations guiding this specification are maximal compatibility
+        with existing web technology (including not breaking linking to JS libraries,
+        embedded media, ads, etc.); and not restricting the platform in such a way that
+        would make it less powerful than the web platform.
+      </p>
+    </div>
+
+    <div id="acknowledgements" class="appendix section">
+      <h2><span class="secno">B. </span>Acknowledgements</h2>
+      <p>
+        The editor would like to thank (in no particular order): the OMTP BONDI effort, Jere Kapyaho,
+        Thomas Roessler, Art Barstow, Mohamed Zergaoui, Arve Bersvendsen, Stephen Jolly, Marcin Hanclik, 
+        Josh Soref, and Batman Càceres.
+      </p>
+    </div>
+  <div class="appendix section" id="references"><h2><span class="secno">C. </span>References</h2><div class="section" id="normative-references"><h3><span class="secno">C.1 </span>Normative references</h3><dl class="bibliography"><dt id="bib-RFC2119">[RFC2119]</dt><dd>S. Bradner. <a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use in RFCs to Indicate Requirement Levels.</cite></a> Internet RFC 2119. URL: <a href="http://www.ietf.org/rfc/rfc2119.txt">http://www.ietf.org/rfc/rfc2119.txt</a> </dd><dt id="bib-RFC3490">[RFC3490]</dt><dd>P. Faltstrom; P. Hoffman; A. Costello. <a href="http://www.rfc-editor.org/rfc/rfc3490.txt"><cite>Internationalizing Domain Names in Applications (IDNA).</cite></a> March 2003. Internet RFC 3490. URL: <a href="http://www.rfc-editor.org/rfc/rfc3490.txt">http://www.rfc-editor.org/rfc/rfc3490.txt</a></dd><dt id="bib-RFC3987">[RFC3987]</dt><dd>M. Dürst; M. Suignard. <a href="http://www.ietf.org/rfc/rfc3987.txt"><cite>Internationalized Resource Identifiers (IRIs).</cite></a> January 2005. Internet RFC 3987. URL: <a href="http://www.ietf.org/rfc/rfc3987.txt">http://www.ietf.org/rfc/rfc3987.txt</a> </dd><dt id="bib-URI">[URI]</dt><dd>T. Berners-Lee; R. Fielding; L. Masinter. <a href="http://www.ietf.org/rfc/rfc3986.txt"><cite>Uniform Resource Identifiers (URI): generic syntax.</cite></a> January 2005. Internet RFC 3986. URL: <a href="http://www.ietf.org/rfc/rfc3986.txt">http://www.ietf.org/rfc/rfc3986.txt</a> </dd><dt id="bib-WIDGETS">[WIDGETS]</dt><dd>Marcos Caceres. <a href="http://www.w3.org/TR/2009/CR-widgets-20091201/"><cite>Widget Packaging and Configuration.</cite></a> 01 December 2009. W3C Candidate Recommendation. (Work in progress.) URL: <a href="http://www.w3.org/TR/2009/CR-widgets-20091201/">http://www.w3.org/TR/2009/CR-widgets-20091201/</a> </dd></dl></div><div class="section" id="informative-references"><h3><span class="secno">C.2 </span>Informative references</h3><dl class="bibliography"><dt id="bib-HTML5">[HTML5]</dt><dd>Ian Hickson; David Hyatt. <a href="http://www.w3.org/TR/2009/WD-html5-20090825/"><cite>HTML 5.</cite></a> 25 August 2009. W3C Working Draft. (Work in progress.) URL: <a href="http://www.w3.org/TR/2009/WD-html5-20090825/">http://www.w3.org/TR/2009/WD-html5-20090825/</a> </dd><dt id="bib-WIDGETS-APIS">[WIDGETS-APIS]</dt><dd>Marcos Caceres; Robin Berjon; Arve Bersvendsen. <a href="http://www.w3.org/TR/2009/WD-widgets-apis-20091117/"><cite>Widgets 1.0: The widget Interface.</cite></a> 17 November 2009. W3C Working Draft. (Work in progress.) URL: <a href="http://www.w3.org/TR/2009/WD-widgets-apis-20091117/">http://www.w3.org/TR/2009/WD-widgets-apis-20091117/</a> </dd><dt id="bib-WIDGETS-REQS">[WIDGETS-REQS]</dt><dd>Marcos Caceres. <a href="http://www.w3.org/TR/2009/WD-widgets-reqs-20090430"><cite>Widgets 1.0: Requirements.</cite></a> 30 April 2009. W3C Working Draft. (Work in progress.) URL: <a href="http://www.w3.org/TR/2009/WD-widgets-reqs-20090430">http://www.w3.org/TR/2009/WD-widgets-reqs-20090430</a> </dd></dl></div></div></body></html>

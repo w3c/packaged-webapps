@@ -1,0 +1,216 @@
+body {
+    counter-reset: section;
+}
+
+tr.wonttest td {
+    background-color: yellow;
+}
+
+tr.unknow td {
+    background-color: #e2edf4;
+}
+
+tr.comment ul {
+    margin: 0;
+    padding: 0;
+}
+
+tr.comment ul li {
+    list-style: none;
+}
+
+td.assertion,td.testcase,tr.comment td {
+    vertical-align: top;
+}
+
+td.assertion:before {
+    content: counter(section) ". ";
+    counter-increment: section;
+}
+
+td.assertion {
+    background-color: #f2f3ef;
+}
+
+td.testcase {
+    background-color: #cfc;
+}
+
+td.comment {
+    cursor: help;
+}
+
+img.comment {
+    float: right;
+    margin-right: 5px;
+}
+
+td.pass,td.fail,td.incomplete,td.cannottest,td.untested {
+    color: #fff;
+    text-align: center;
+    width: 100px;
+	text-shadow: 1px 1px 10px #000;
+}
+
+td.pass {
+    background-color: #00882d;
+	border-left: 1px solid #286423;
+	border-bottom: 1px solid #286423;
+}
+
+
+td.fail {
+    background-color: #cb000f;
+	border-left: 1px solid #9C1817;
+	border-bottom: 1px solid #9C1817;
+}
+
+td.incomplete {
+    background-color: #969;
+}
+
+td.cannottest {
+    background-color: #efa82c;
+}
+
+td.untested {
+	
+    background-color: #ccc; 
+	border-left: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
+}
+
+ #dashboard, #results{
+	 border: 1px solid #CCC; 
+	 margin: auto; 
+	 border-radius: 5px;
+	 text-align: center;
+	 box-shadow: 0px 0px 10px #bbb;
+	}
+   
+   #loader{
+   }
+   
+  
+   
+   #progress{
+	   	width: 50%;
+		border-radius: 5px;
+	    margin: auto; 
+	   	 background-color: #444;
+		  color: #0F0;
+	 	  font-weight: normal;
+	      padding: 5px;
+	      font-size: .8em;
+	      text-shadow: 0px 0px 20px #090; 
+   }
+  
+
+	td.no-test{
+		color: red;	
+	}
+   
+   #dashboard caption, #results caption{
+	 border-radius: 5px 5px 0px 0px;
+	 background-color: #ddd;
+	 text-shadow: 1px 1px 2px white;
+	 color: #111;
+	 font-size: 1.2em;
+	 padding: 10px;
+	 border-bottom: 1px solid #999;  
+	 border-right: 1px solid #999; 
+	 border-top: 1px solid eee;
+	 border-left: 1px solid eee;
+	 box-shadow: 0px 0px 5px #888;
+   }
+   
+      
+	
+   	#dashboard th, #results th{
+		text-align:center;
+		background-color: #444;
+		color: white;
+		font-weight: normal;
+		padding: 5px;
+		font-size: .8em;
+		text-shadow: 0px 0px 10px #000; 
+		box-shadow: 0px 0px 10px #444;
+	}
+	#dashboard tr{box-shadow: 0px 0px 10px #0f0;}
+	
+	#dashboard tr>td{
+		padding: 10px;
+		border-bottom: 1px solid #aaa;
+	}
+	
+
+	#dashboard a{
+		color: black;
+		text-decoration:none;
+		font-size: .8em;
+	}
+	
+	#dashboard a:hover{
+		background:none;
+		text-shadow:0px 0px 20px #FC0; 
+		
+	}
+   
+    td.ua{
+		border-right: 1px solid  #D3D9E5;	
+		background-color: #EAF0FA;	
+		font-weight: bold;
+	}
+
+   .TSResult-display{
+	 text-align: left;   
+	}
+	small{ color: #333; font-weight:normal; font-size:0.7em;}
+	
+
+	td.confreq{
+		border-right: 1px solid  #D3D9E5;
+		border-bottom: 1px solid  #AEB5BF;
+		background-color: #EAF0FA;	
+		padding: 10px;
+		font-size: .8em;
+	}
+	
+	td.testcase{
+		
+		border-bottom:1px solid #A9A9A9;
+		border-left:1px solid #A9A9A9;
+		
+
+	}
+	.testcase:nth-child(odd){	
+		background-color: #EAEAEA;
+	}
+	
+	.testcase:nth-child(even) {
+  		background-color: #DBDBDB;
+		
+	}
+
+	.testcase p{
+		font-size: .8em;
+		margin: 0px;
+		padding: 0px;
+	}
+	
+	
+	.testcase .testid{
+		
+		text-align: center; 
+		border-bottom: 1px solid #3F3F3F;
+		color: white;
+		padding: 2px 0px 2px 0px; 
+		background-color: #484848;
+		margin-bottom: 5px;
+		font-size: .8em;
+		font-weight:normal;
+		text-shadow: 1px 1px 1px #000; 
+		border-bottom: 1px solid black;
+	}
+
+	

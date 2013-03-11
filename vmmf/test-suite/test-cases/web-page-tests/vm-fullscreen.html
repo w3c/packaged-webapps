@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<title>view-mode: fullscreen</title> 
+
+<style>
+	body{
+		background-color:white;	
+	}
+
+	@media (view-mode){
+
+		#ref{
+			visibility:hidden;
+		}
+
+		#ref::before{
+			visibility:visible;
+			content:"Switch to fullscreen, you should see PASS.";
+		}
+	}
+
+
+	@media (view-mode:fullscreen)
+	{
+		#ref::before 
+		{
+			content:"PASS";
+		}
+		body{
+			background-color:green;	
+		}
+	}
+</style>
+<h1 id="ref">Test did not run. User agent does not implement <code>view-mode</code> Media Feature.</h1>
+<p id="note" style="background-color:#FFBB66;"><strong>Pre-requisite:</strong>The browser window should be in fullscreen mode.</p>

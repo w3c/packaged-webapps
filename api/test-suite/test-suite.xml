@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<testsuite spec="http://dev.w3.org/2006/waf/widgets-api/" name="Widget API"> 
+<test id="return-emtpy-strings" for="ta-attribute-tests" 
+	  src="test-cases/ta-attribute-tests/return-emtpy-strings/return-emtpy-strings.wgt">
+Test that upon getting any of the attributes from the attributes column of the configuration attributes table, a user agent must return the corresponding value from the 'Values in Table of Configuration Defaults' column. To pass, the user agent must return all empty strings for the attributes gotten. 
+</test>
+<test id="return-proper-strings" for="ta-attribute-tests" 
+	src="test-cases/ta-attribute-tests/return-proper-strings/return-proper-strings.wgt">
+Test that upon getting any of the attributes from the attributes column of the configuration attributes table, a user agent must return the corresponding value from the 'Values in Table of Configuration Defaults' column. To pass, the user agent must return all the appropriate strings for the attributes gotten. 
+</test>
+
+<test id="setItem-fires-event" for="ta-storage-event" src="test-cases/ta-storage-event/setItem-fires-event/setItem-fires-event.wgt">
+Test that, upon invocation of the setItem() method, a user agent queues a task to fire a StorageEvent event at the window object of an iframe contained by the start file. To pass, a storage event must be fired when a key is set and the associated test values need to be correct.	
+</test>
+
+<test id="removeItem-fires-event" for="ta-storage-event" src="test-cases/ta-storage-event/removeItem-fires-event/removeItem-fires-event.wgt">
+Test that, upon invocation of the removeItem() method, a user agent queues a task to fire a StorageEvent event at the window object of  an iframe contained by the start file. To pass, a storage event must be fired when a key is removed and the associated test values need to be correct. 	
+</test>
+
+<test id="clear-fires-event" for="ta-storage-event" src="test-cases/ta-storage-event/clear-fires-event/clear-fires-event.wgt">
+Test that, upon invocation of the clear() method, a user agent queues a task to fire a StorageEvent event at the window object of an iframe contained by the start file. To pass, a storage event must be fired when a key is removed via the clear() method and the associated test values need to be correct. 	
+</test>
+ 
+<test id="aa" for="ta-za" src="test-cases/ta-za/aa/aa.wgt">
+Tests if the UA has attribute called "widget" on the window object (window.widget).
+To pass, the user agent must have a window.widget attribute of type [object Widget].
+</test> 
+ 
+<test id="NoInterfaceObject" for="ta-za" src="test-cases/ta-za/NoInterfaceObject/NoInterfaceObject.wgt"> 
+Test that a UA correctly implements the NoInterfaceObject extended attribute. To pass, the user agent must not expose a WindowWidget object, but must allow window.widget to be compared to an instance of Widget.  
+</test> 
+  
+<test id="author_attrexists" for="ta-za" src="test-cases/ta-za/author_attrexists/author_attrexists.wgt"> 
+Tests if the UA has attribute called "author" on the window.widget object. To pass, the user agent must have an attribute author on window.widget.
+</test> 
+ 
+<test id="authorEmail_attrexists" for="ta-za" src="test-cases/ta-za/authorEmail_attrexists/authorEmail_attrexists.wgt"> 
+Tests if the UA has attribute called "authorEmail" on the window.widget object. To pass, the user agent must have an attribute authorEmail on window.widget.
+</test> 
+ 
+<test id="authorHref_attrexists" for="ta-za" src="test-cases/ta-za/authorHref_attrexists/authorHref_attrexists.wgt"> 
+Tests if the UA has attribute called "authorHref" on the window.widget object. To pass, the user agent must have an attribute authorHref on window.widget.
+</test> 
+ 
+<test id="description_attrexists" for="ta-za" src="test-cases/ta-za/description_attrexists/description_attrexists.wgt"> 
+Tests if the UA has attribute called "description" on the window.widget object. To pass, the user agent must have an attribute description on window.widget.
+</test> 
+ 
+<test id="height_attrexists" for="ta-za" src="test-cases/ta-za/height_attrexists/height_attrexists.wgt"> 
+Tests if the UA has attribute called "height" on the window.widget object. To pass, the user agent must have an attribute height on window.widget.
+</test> 
+ 
+<test id="id_attrexists" for="ta-za" src="test-cases/ta-za/id_attrexists/id_attrexists.wgt"> 
+Tests if the UA has attribute called "id" on the window.widget object. To pass, the user agent must have an attribute id on window.widget.
+</test> 
+ 
+<test id="name_attrexists" for="ta-za" src="test-cases/ta-za/name_attrexists/name_attrexists.wgt"> 
+Tests if the UA has attribute called "name" on the window.widget object. To pass, the user agent must have an attribute name on window.widget.
+</test> 
+ 
+<test id="preferences_attrexists" for="ta-za" src="test-cases/ta-za/preferences_attrexists/preferences_attrexists.wgt"> 
+Tests if the UA has attribute called "preferences" on the window.widget object. To pass, the user agent must have an attribute preferences on window.widget.
+</test> 
+ 
+<test id="shortName_attrexists" for="ta-za" src="test-cases/ta-za/shortName_attrexists/shortName_attrexists.wgt"> 
+Tests if the UA has attribute called "shortName" on the window.widget object. To pass, the user agent must have an attribute shortName on window.widget.
+</test> 
+ 
+<test id="version_attrexists" for="ta-za" src="test-cases/ta-za/version_attrexists/version_attrexists.wgt"> 
+Tests if the UA has attribute called "version" on the window.widget object. To pass, the user agent must have an attribute version on window.widget.
+</test> 
+ 
+<test id="width_attrexists" for="ta-za" src="test-cases/ta-za/width_attrexists/width_attrexists.wgt"> 
+Tests if the UA has attribute called "width" on the window.widget object. To pass, the user agent must have an attribute width on window.widget.
+</test> 
+ 
+<test id="author_attrreadonly" for="ta-za" src="test-cases/ta-za/author_attrreadonly/author_attrreadonly.wgt"> 
+Tests if the attribute "author" on the window.widget object is read only. To pass, the user agent must not allow author to be modified.
+</test> 
+ 
+<test id="authorEmail_attrreadonly" for="ta-za" src="test-cases/ta-za/authorEmail_attrreadonly/authorEmail_attrreadonly.wgt"> 
+Tests if the attribute "authorEmail" on the window.widget object is read only. To pass, the user agent must not allow authorEmail to be modified.
+</test> 
+ 
+<test id="authorHref_attrreadonly" for="ta-za" src="test-cases/ta-za/authorHref_attrreadonly/authorHref_attrreadonly.wgt"> 
+Tests if the attribute "authorHref" on the window.widget object is read only. To pass, the user agent must not allow authorHref to be modified.
+</test> 
+ 
+<test id="description_attrreadonly" for="ta-za" src="test-cases/ta-za/description_attrreadonly/description_attrreadonly.wgt"> 
+Tests if the attribute "description" on the window.widget object is read only. To pass, the user agent must not allow description to be modified.
+</test> 
+ 
+<test id="height_attrreadonly" for="ta-za" src="test-cases/ta-za/height_attrreadonly/height_attrreadonly.wgt"> 
+Tests if the attribute "height" on the window.widget object is read only. To pass, the user agent must not allow height to be modified.
+</test> 
+ 
+<test id="id_attrreadonly" for="ta-za" src="test-cases/ta-za/id_attrreadonly/id_attrreadonly.wgt"> 
+Tests if the attribute "id" on the window.widget object is read only. To pass, the user agent must not allow id to be modified.
+</test> 
+ 
+<test id="name_attrreadonly" for="ta-za" src="test-cases/ta-za/name_attrreadonly/name_attrreadonly.wgt"> 
+Tests if the attribute "name" on the window.widget object is read only. To pass, the user agent must not allow name to be modified.
+</test> 
+ 
+<test id="preferences_attrreadonly" for="ta-za" src="test-cases/ta-za/preferences_attrreadonly/preferences_attrreadonly.wgt"> 
+Tests if the attribute "preferences" on the window.widget object is read only. To pass, the user agent must not allow preferences to be modified.
+</test> 
+ 
+<test id="shortName_attrreadonly" for="ta-za" src="test-cases/ta-za/shortName_attrreadonly/shortName_attrreadonly.wgt"> 
+Tests if the attribute "shortName" on the window.widget object is read only. To pass, the user agent must not allow shortName to be modified.
+</test> 
+ 
+<test id="version_attrreadonly" for="ta-za" src="test-cases/ta-za/version_attrreadonly/version_attrreadonly.wgt"> 
+Tests if the attribute "version" on the window.widget object is read only. To pass, the user agent must not allow version to be modified.
+</test> 
+ 
+<test id="width_attrreadonly" for="ta-za" src="test-cases/ta-za/width_attrreadonly/width_attrreadonly.wgt"> 
+Tests if the attribute "width" on the window.widget object is read only. To pass, the user agent must not allow width to be modified.
+</test> 
+ 
+<test id="author_attrtype" for="ta-za" src="test-cases/ta-za/author_attrtype/author_attrtype.wgt"> 
+Tests if the attribute "author" on the window.widget object is of the type DOMString. To pass, author_attrtype must be of type DOMString.
+</test> 
+ 
+<test id="authorEmail_attrtype" for="ta-za" src="test-cases/ta-za/authorEmail_attrtype/authorEmail_attrtype.wgt"> 
+Tests if the attribute "authorEmail" on the window.widget object is of the type DOMString. To pass, authorEmail_attrtype must be of type DOMString.
+</test> 
+ 
+<test id="authorHref_attrtype" for="ta-za" src="test-cases/ta-za/authorHref_attrtype/authorHref_attrtype.wgt"> 
+Tests if the attribute "authorHref" on the window.widget object is of the type DOMString. To pass, authorHref_attrtype must be of type DOMString.
+</test> 
+ 
+<test id="description_attrtype" for="ta-za" src="test-cases/ta-za/description_attrtype/description_attrtype.wgt"> 
+Tests if the attribute "description" on the window.widget object is of the type DOMString. To pass, description_attrtype must be of type DOMString.
+</test> 
+ 
+<test id="height_attrtype" for="ta-za" src="test-cases/ta-za/height_attrtype/height_attrtype.wgt"> 
+Tests if the attribute "height" on the window.widget object is of the type unsigned long. To pass, height_attrtype must be of type unsigned long.
+</test> 
+ 
+<test id="id_attrtype" for="ta-za" src="test-cases/ta-za/id_attrtype/id_attrtype.wgt"> 
+Tests if the attribute "id" on the window.widget object is of the type DOMString. To pass, id_attrtype must be of type DOMString.
+</test> 
+ 
+<test id="name_attrtype" for="ta-za" src="test-cases/ta-za/name_attrtype/name_attrtype.wgt"> 
+Tests if the attribute "name" on the window.widget object is of the type DOMString. To pass, name_attrtype must be of type DOMString.
+</test> 
+ 
+<test id="shortName_attrtype" for="ta-za" src="test-cases/ta-za/shortName_attrtype/shortName_attrtype.wgt"> 
+Tests if the attribute "shortName" on the window.widget object is of the type DOMString. To pass, shortName_attrtype must be of type DOMString.
+</test> 
+ 
+<test id="version_attrtype" for="ta-za" src="test-cases/ta-za/version_attrtype/version_attrtype.wgt"> 
+Tests if the attribute "version" on the window.widget object is of the type DOMString. To pass, version_attrtype must be of type DOMString.
+</test> 
+ 
+<test id="width_attrtype" for="ta-za" src="test-cases/ta-za/width_attrtype/width_attrtype.wgt"> 
+Tests if the attribute "width" on the window.widget object is of the type unsigned long. To pass, width_attrtype must be of type unsigned long.
+</test> 
+ 
+<test id="ab" for="ta-ah" src="test-cases/ta-ah/ab/ab.wgt"> 
+Tests if the UA initializes the preferences attribute according to spec.
+To pass, the preference values need to be correctly set.
+</test>  
+ 
+<test id="ax" for="ta-ah" src="test-cases/ta-ah/ax/ax.wgt"> 
+Tests if the UA initializes the preferences attribute according to spec.
+To pass, the preference values need to be correctly set and storage event must not be fired.
+</test> 
+ 
+<test id="ad" for="ta-za" src="test-cases/ta-za/ad/ad.wgt"> 
+Test if widget.author matches what would be 'author name' in the configuration defaults table after the widget has been instantiated.
+To pass, widget.author must be the value 'author name'.
+</test> 
+ 
+<test id="ae" for="ta-za" src="test-cases/ta-za/ae/ae.wgt"> 
+Test if widget.authorEmail matches what would be 'author email' in the configuration defaults table after the widget has been instantiated.
+To pass, widget.authorEmail must be the string value 'author email'.
+</test> 
+ 
+<test id="af" for="ta-za" src="test-cases/ta-za/af/af.wgt"> 
+Test if widget.authorHref matches what would be 'author href' in the configuration defaults table after the widget has been instantiated.
+To pass, widget.authorHref must be the value 'http://test.example'
+</test> 
+ 
+<test id="ag" for="ta-za" src="test-cases/ta-za/ag/ag.wgt"> 
+Test if widget.description matches what would be 'widget description' in the configuration defaults table after the widget has been instantiated.
+To pass, widget.description must be the value 'test ag testing assertion ta-ac'
+</test> 
+ 
+<test id="ah" for="ta-za" src="test-cases/ta-za/ah/ah.wgt"> 
+Test if widget.id matches what would be 'widget id' in the configuration defaults table after the widget has been instantiated.
+To pass, widget.id must be the value 'test:ah'
+</test> 
+ 
+<test id="ai" for="ta-za" src="test-cases/ta-za/ai/ai.wgt"> 
+Test if widget.name matches what would be 'widget name' in the configuration defaults table after the widget has been instantiated.
+To pass, widget.name must be the value 'Test ai'.
+</test> 
+ 
+<test id="aj" for="ta-za" src="test-cases/ta-za/aj/aj.wgt"> 
+Test if widget.version matches what would be 'widget version' in the configuration defaults table after the widget has been instantiated.
+To pass, widget.version must be the value 'widget version'.
+</test> 
+ 
+<test id="ak" for="ta-za" src="test-cases/ta-za/ak/ak.wgt"> 
+Test if widget.shortName matches what would be 'widget short name' in the configuration defaults table after the widget has been instantiated.
+To pass, widget.shortName must be the value 'widget short name'.
+</test> 
+  
+<test id="ao" for="ta-pa" src="test-cases/ta-pa/ao/ao.wgt"> 
+Test that the user agent returns an number as the value type of widget.width.
+To pass, the type of the widget.width must be a number.
+</test> 
+ 
+<test id="ap" for="ta-pb" src="test-cases/ta-pb/ap/ap.wgt"> 
+Test that the user agent returns an number as the value type of widget.height.
+To pass, the type of the widget.height must be a number.
+</test> 
+ 
+<test id="ar" for="ta-al" src="test-cases/ta-al/ar/ar.wgt"> 
+Test that the UA throws a NO_MODIFICATION_ALLOWED_ERR when trying to set a read only key.
+To pass, the UA must throw a NO_MODIFICATION_ALLOWED_ERR.
+</test> 
+ 
+<test id="as" for="ta-al" src="test-cases/ta-al/as/as.wgt"> 
+Test that the UA throws a NO_MODIFICATION_ALLOWED_ERR when trying to invoke removeItem on a read only key.
+To pass, the UA must throw a NO_MODIFICATION_ALLOWED_ERR.
+</test> 
+ 
+<test id="at" for="ta-ae" src="test-cases/ta-ae/at/at.wgt"> 
+Test that the UA does not throws a NO_MODIFICATION_ALLOWED_ERR when clear() is invoked.
+To pass, the UA must not throw a NO_MODIFICATION_ALLOWED_ERR when clear is invoked. In addition, the 'protected' item must not be removed from preferences and the 'deletable' must be removed from preferences.
+</test> 
+ 
+<test id="au" for="ta-aa" src="test-cases/ta-aa/au/au.wgt"> 
+Test that the UA retains the changes made to storage on subsequent initializations.
+To pass, the UA must maintain the values set by the script on subsequent re-initializations of the widget.
+</test>
+
+<test id='i18nlro01' for='ta-get-18n-string' src='test-cases/i18n-lro/001/i18nlro01.wgt'>
+	Tests that LRO direction applies to the name element.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202D\u05E7\u05D7\u05DC\u05DC\u05E4\u05DD\u202C".
+    </test>
+<test id='i18nlro02' for='ta-get-18n-string' src='test-cases/i18n-lro/002/i18nlro02.wgt'>
+	Tests that LRO direction applies to the name element&#39;s short attribute.
+	To pass, the widget.shortName object must return the ECMAScript equivalent of "\u202D\u05E7\u05D7\u05DC\u05DC\u05E4\u05DD\u202C".
+    </test>
+<test id='i18nlro03' for='ta-get-18n-string' src='test-cases/i18n-lro/003/i18nlro03.wgt'>
+	Tests that LRO direction applies to the description element.
+	To pass, the widget.description object must return the ECMAScript equivalent of "\u202D\u05E7\u05D7\u05DC\u05DC\u05E4\u05DD\u202C".
+    </test>
+<test id='i18nlro04' for='ta-get-18n-string' src='test-cases/i18n-lro/004/i18nlro04.wgt'>
+	Tests that LRO direction applies to the author element.
+	To pass, the widget.author object must return the ECMAScript equivalent of "\u202D\u05E7\u05D7\u05DC\u05DC\u05E4\u05DD\u202C".
+    </test>
+<test id='i18nlro06' for='ta-get-18n-string' src='test-cases/i18n-lro/006/i18nlro06.wgt'>
+	Tests that LRO direction applies to the span element within the name element.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u05DD\u05E4\u05DC\u202D\u05D7\u05DC\u202C\u05E7".
+    </test>
+<test id='i18nlro07' for='ta-get-18n-string' src='test-cases/i18n-lro/007/i18nlro07.wgt'>
+	Tests that LRO direction applies to the span element within the description element.
+	To pass, the widget.description object must return the ECMAScript equivalent of "\u05DD\u05E4\u05DC\u202D\u05D7\u05DC\u202C\u05E7".
+    </test>
+<test id='i18nlro08' for='ta-get-18n-string' src='test-cases/i18n-lro/008/i18nlro08.wgt'>
+	Tests that LRO direction applies to the span element within the author element.
+	To pass, the widget.author object must return the ECMAScript equivalent of "\u05DD\u05E4\u05DC\u202D\u05D7\u05DC\u202C\u05E7".
+    </test>
+<test id='i18nlro10' for='ta-get-18n-string' src='test-cases/i18n-lro/010/i18nlro10.wgt'>
+	Tests that nested LRO and RLO directions applies within the name element.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202D\u202D\u05E7\u05D7\u202C\u05DC\u05DC\u202E\u05DD\u05E4\u202C\u202C".
+    </test>
+<test id='i18nlro11' for='ta-get-18n-string' src='test-cases/i18n-lro/011/i18nlro11.wgt'>
+	Tests that nested LRO and RLO directions applies within the description element.
+	To pass, the widget.description object must return the ECMAScript equivalent of "\u202D\u202D\u05E7\u05D7\u202C\u05DC\u05DC\u202E\u05DD\u05E4\u202C\u202C".
+    </test>
+<test id='i18nlro12' for='ta-get-18n-string' src='test-cases/i18n-lro/012/i18nlro12.wgt'>
+	Tests that nested LRO and RLO directions applies within the author element.
+	To pass, the widget.author object must return the ECMAScript equivalent of "\u202D\u202D\u05E7\u05D7\u202C\u05DC\u05DC\u202E\u05DD\u05E4\u202C\u202C".
+    </test>
+<test id='i18nlro14' for='ta-get-18n-string' src='test-cases/i18n-lro/014/i18nlro14.wgt'>
+	Tests that LRO direction is inherited by the name element from the widget element.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202D\u05E7\u05D7\u05DC\u05DC\u05E4\u05DD\u202C".
+    </test>
+<test id='i18nlro15' for='ta-get-18n-string' src='test-cases/i18n-lro/015/i18nlro15.wgt'>
+	Tests that LRO direction is inherited by the name element&#39;s short attribute from the widget element.
+	To pass, the widget.shortName object must return the ECMAScript equivalent of "\u202D\u05E7\u05D7\u05DC\u05DC\u05E4\u05DD\u202C".
+    </test>
+<test id='i18nlro16' for='ta-get-18n-string' src='test-cases/i18n-lro/016/i18nlro16.wgt'>
+	Tests that LRO direction is inherited by the description element from the widget element.
+	To pass, the widget.description object must return the ECMAScript equivalent of "\u202D\u05E7\u05D7\u05DC\u05DC\u05E4\u05DD\u202C".
+    </test>
+<test id='i18nlro17' for='ta-get-18n-string' src='test-cases/i18n-lro/017/i18nlro17.wgt'>
+	Tests that LRO direction is inherited by the author element from the widget element.
+	To pass, the widget.author object must return the ECMAScript equivalent of "\u202D\u05E7\u05D7\u05DC\u05DC\u05E4\u05DD\u202C".
+    </test>
+<test id='i18nlro19' for='ta-get-18n-string' src='test-cases/i18n-lro/019/i18nlro19.wgt'>
+	Tests that nested LRO and LTR directions apply correctly to the name element.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202D&lt; PAS\u202ASED -->\u202C\u202C".
+    </test>
+<test id='i18nlro20' for='ta-get-18n-string' src='test-cases/i18n-lro/020/i18nlro20.wgt'>
+	Tests that nested LRO and RTL directions apply correctly to the name element.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202D&lt; PAS\u202B&lt;-- SED\u202C\u202C".
+    </test>
+<test id='i18nlro21' for='ta-get-18n-string' src='test-cases/i18n-lro/021/i18nlro21.wgt'>
+	Tests that nested LRO and LRO directions apply correctly to the name element.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202D&lt; PAS\u202DSED -->\u202C\u202C".
+    </test>
+<test id='i18nlro22' for='ta-get-18n-string' src='test-cases/i18n-lro/022/i18nlro22.wgt'>
+	Tests that nested LRO and RLO directions apply correctly to the name element.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202D&lt; PAS\u202E&lt;-- DES\u202C\u202C".
+    </test>
+<test id='i18nlro36' for='ta-get-18n-string' src='test-cases/i18n-lro/036/i18nlro36.wgt'>
+	Tests that LRO direction does not apply to the author element&#39;s href attribute.
+	To pass, the widget.authorHref object must return the ECMAScript equivalent of "http://widget.example.org/".example.org/&quot;.
+    </test>
+<test id='i18nlro37' for='ta-get-18n-string' src='test-cases/i18n-lro/037/i18nlro37.wgt'>
+	Tests that LRO direction does not apply to the author element&#39;s email attribute.
+	To pass, the widget.authorEmail object must return the ECMAScript equivalent of "\u05DD\u05E4\u05DC\u05DC\u05D7\u05E7".
+    </test>
+<test id='i18nlro41' for='ta-get-18n-string' src='test-cases/i18n-lro/041/i18nlro41.wgt'>
+	Tests that LRO direction does not apply to the widget element&#39;s id attribute.
+	To pass, the widget.id object must return the ECMAScript equivalent of "http://widget.example.org/".example.org/&quot;.
+    </test>
+<test id='i18nlro42' for='ta-get-18n-string' src='test-cases/i18n-lro/042/i18nlro42.wgt'>
+	Tests that LRO direction applies to the widget element&#39;s version attribute.
+	To pass, the widget.version object must return the ECMAScript equivalent of "\u202D\u05E7\u05D7\u05DC\u05DC\u05E4\u05DD\u202C".
+    </test>
+<test id='i18nlro44' for='ta-get-18n-string' src='test-cases/i18n-lro/044/i18nlro44.wgt'>
+	Tests that LRO direction does not apply to the widget element&#39;s xml:lang attribute.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202DPASS\u202C".
+    </test>
+<test id='i18nrlo01' for='ta-get-18n-string' src='test-cases/i18n-rlo/001/i18nrlo01.wgt'>
+	Tests that RLO direction applies to the name element.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202EDESSAP\u202C".
+    </test>
+<test id='i18nrlo02' for='ta-get-18n-string' src='test-cases/i18n-rlo/002/i18nrlo02.wgt'>
+	Tests that RLO direction applies to the name element&#39;s short attribute.
+	To pass, the widget.shortName object must return the ECMAScript equivalent of "\u202EDESSAP\u202C".
+    </test>
+<test id='i18nrlo03' for='ta-get-18n-string' src='test-cases/i18n-rlo/003/i18nrlo03.wgt'>
+	Tests that RLO direction applies to the description element.
+	To pass, the widget.description object must return the ECMAScript equivalent of "\u202EDESSAP\u202C".
+    </test>
+<test id='i18nrlo04' for='ta-get-18n-string' src='test-cases/i18n-rlo/004/i18nrlo04.wgt'>
+	Tests that RLO direction applies to the author element.
+	To pass, the widget.author object must return the ECMAScript equivalent of "\u202EDESSAP\u202C".
+    </test>
+<test id='i18nrlo10' for='ta-get-18n-string' src='test-cases/i18n-rlo/010/i18nrlo10.wgt'>
+	Tests that nested RLO and LRO directions applies within the name element.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202E\u202EDE\u202CS\u202DAS\u202CP\u202C".
+    </test>
+<test id='i18nrlo11' for='ta-get-18n-string' src='test-cases/i18n-rlo/011/i18nrlo11.wgt'>
+	Tests that nested RLO and LRO directions applies within the description element.
+	To pass, the widget.description object must return the ECMAScript equivalent of "\u202E\u202EDE\u202CS\u202DAS\u202CP\u202C".
+    </test>
+<test id='i18nrlo12' for='ta-get-18n-string' src='test-cases/i18n-rlo/012/i18nrlo12.wgt'>
+	Tests that nested RLO and LRO directions applies within the author element.
+	To pass, the widget.author object must return the ECMAScript equivalent of "\u202E\u202EDE\u202CS\u202DAS\u202CP\u202C".
+    </test>
+<test id='i18nrlo14' for='ta-get-18n-string' src='test-cases/i18n-rlo/014/i18nrlo14.wgt'>
+	Tests that RLO direction is inherited by the name element from the widget element.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202EDESSAP\u202C".
+    </test>
+<test id='i18nrlo15' for='ta-get-18n-string' src='test-cases/i18n-rlo/015/i18nrlo15.wgt'>
+	Tests that RLO direction is inherited by the name element&#39;s short attribute from the widget element.
+	To pass, the widget.shortName object must return the ECMAScript equivalent of "\u202EDESSAP\u202C".
+    </test>
+<test id='i18nrlo16' for='ta-get-18n-string' src='test-cases/i18n-rlo/016/i18nrlo16.wgt'>
+	Tests that RLO direction is inherited by the description element from the widget element.
+	To pass, the widget.description object must return the ECMAScript equivalent of "\u202EDESSAP\u202C".
+    </test>
+<test id='i18nrlo17' for='ta-get-18n-string' src='test-cases/i18n-rlo/017/i18nrlo17.wgt'>
+	Tests that RLO direction is inherited by the author element from the widget element.
+	To pass, the widget.author object must return the ECMAScript equivalent of "\u202EDESSAP\u202C".
+    </test>
+<test id='i18nrlo19' for='ta-get-18n-string' src='test-cases/i18n-rlo/019/i18nrlo19.wgt'>
+	Tests that nested RLO and LTR directions apply correctly to the name element.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202E&lt;-- DES\u202AAS\u202CP >\u202C".
+    </test>
+<test id='i18nrlo20' for='ta-get-18n-string' src='test-cases/i18n-rlo/020/i18nrlo20.wgt'>
+	Tests that nested RLO and RTL directions apply correctly to the name element.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202E&lt;-- DES\u202BAS\u202CP >\u202C".
+    </test>
+<test id='i18nrlo21' for='ta-get-18n-string' src='test-cases/i18n-rlo/021/i18nrlo21.wgt'>
+	Tests that nested RLO and LRO directions apply correctly to the name element.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202E&lt;-- DES\u202DAS\u202CP >\u202C".
+    </test>
+<test id='i18nrlo22' for='ta-get-18n-string' src='test-cases/i18n-rlo/022/i18nrlo22.wgt'>
+	Tests that nested RLO directions apply correctly to the name element.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202E&lt;-- DES\u202ESA\u202CP >\u202C".
+    </test>
+<test id='i18nrlo36' for='ta-get-18n-string' src='test-cases/i18n-rlo/036/i18nrlo36.wgt'>
+	Tests that RLO direction does not apply to the author element&#39;s href attribute.
+	To pass, the widget.authorHref object must return the ECMAScript equivalent of "http://widget.example.org/".example.org/&quot;.
+    </test>
+<test id='i18nrlo37' for='ta-get-18n-string' src='test-cases/i18n-rlo/037/i18nrlo37.wgt'>
+	Tests that RLO direction does not apply to the author element&#39;s email attribute.
+	To pass, the widget.authorEmail object must return the ECMAScript equivalent of "PASSED".
+    </test>
+<test id='i18nrlo41' for='ta-get-18n-string' src='test-cases/i18n-rlo/041/i18nrlo41.wgt'>
+	Tests that RLO direction does not apply to the widget element&#39;s id attribute.
+	To pass, the widget.id object must return the ECMAScript equivalent of "http://widget.example.org/".example.org/&quot;.
+    </test>
+<test id='i18nrlo42' for='ta-get-18n-string' src='test-cases/i18n-rlo/042/i18nrlo42.wgt'>
+	Tests that RLO direction applies to the widget element&#39;s version attribute.
+	To pass, the widget.version object must return the ECMAScript equivalent of "\u202EDESSAP\u202C".
+</test>
+<test id='i18nrlo44' for='ta-get-18n-string' src='test-cases/i18n-rlo/044/i18nrlo44.wgt'>
+	Tests that RLO direction does not apply to the widget element&#39;s xml:lang attribute.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202EPASS\u202C".
+    </test>
+<test id='i18nltr01' for='ta-get-18n-string' src='test-cases/i18n-ltr/001/i18nltr01.wgt'>
+	Tests that LTR direction applies to the name element.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202AThe arrow should point right -->\u202C".
+    </test>
+<test id='i18nltr02' for='ta-get-18n-string' src='test-cases/i18n-ltr/002/i18nltr02.wgt'>
+	Tests that LTR direction applies to the name element&#39;s short attribute.
+	To pass, the widget.shortName object must return the ECMAScript equivalent of "\u202AThe arrow should point right -->\u202C".
+    </test>
+<test id='i18nltr03' for='ta-get-18n-string' src='test-cases/i18n-ltr/003/i18nltr03.wgt'>
+	Tests that LTR direction applies to the description element.
+	To pass, the widget.description object must return the ECMAScript equivalent of "\u202AThe arrow should point right -->\u202C".
+    </test>
+<test id='i18nltr04' for='ta-get-18n-string' src='test-cases/i18n-ltr/004/i18nltr04.wgt'>
+	Tests that LTR direction applies to the author element.
+	To pass, the widget.author object must return the ECMAScript equivalent of "\u202AThe arrow should point right -->\u202C".
+    </test>
+<test id='i18nltr06' for='ta-get-18n-string' src='test-cases/i18n-ltr/006/i18nltr06.wgt'>
+	Tests that LTR direction applies to the span element within the name element.
+	To pass, the widget.name object must return the ECMAScript equivalent of "The arrow should point right \u202A-->\u202C".
+    </test>
+<test id='i18nltr07' for='ta-get-18n-string' src='test-cases/i18n-ltr/007/i18nltr07.wgt'>
+	Tests that LTR direction applies to the span element within the description element.
+	To pass, the widget.description object must return the ECMAScript equivalent of "The arrow should point right \u202A-->\u202C".
+    </test>
+<test id='i18nltr08' for='ta-get-18n-string' src='test-cases/i18n-ltr/008/i18nltr08.wgt'>
+	Tests that LTR direction applies to the span element within the author element.
+	To pass, the widget.author object must return the ECMAScript equivalent of "The arrow should point right \u202A-->\u202C".
+    </test>
+<test id='i18nltr10' for='ta-get-18n-string' src='test-cases/i18n-ltr/010/i18nltr10.wgt'>
+	Tests that nested LTR and RTL directions applies within the name element.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202AThe arrow should point right \u202B\&lt;--\u202C\u202C".
+    </test>
+<test id='i18nltr11' for='ta-get-18n-string' src='test-cases/i18n-ltr/011/i18nltr11.wgt'>
+	Tests that nested LTR and RTL directions applies within the description element.
+	To pass, the widget.description object must return the ECMAScript equivalent of "\u202AThe arrow should point right \u202B\&lt;--\u202C\u202C".
+    </test>
+<test id='i18nltr12' for='ta-get-18n-string' src='test-cases/i18n-ltr/012/i18nltr12.wgt'>
+	Tests that nested LTR and RTL directions applies within the author element.
+	To pass, the widget.author object must return the ECMAScript equivalent of "\u202AThe arrow should point right \u202B\&lt;--\u202C\u202C".
+    </test>
+<test id='i18nltr14' for='ta-get-18n-string' src='test-cases/i18n-ltr/014/i18nltr14.wgt'>
+	Tests that LTR direction is inherited by the name element from the widget element.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202AThe arrow should point right -->\u202C".
+    </test>
+<test id='i18nltr15' for='ta-get-18n-string' src='test-cases/i18n-ltr/015/i18nltr15.wgt'>
+	Tests that LTR direction is inherited by the name element&#39;s short attribute from the widget element.
+	To pass, the widget.shortName object must return the ECMAScript equivalent of "\u202AThe arrow should point right -->\u202C".
+    </test>
+<test id='i18nltr16' for='ta-get-18n-string' src='test-cases/i18n-ltr/016/i18nltr16.wgt'>
+	Tests that LTR direction is inherited by the description element from the widget element.
+	To pass, the widget.description object must return the ECMAScript equivalent of "\u202AThe arrow should point right -->\u202C".
+    </test>
+<test id='i18nltr17' for='ta-get-18n-string' src='test-cases/i18n-ltr/017/i18nltr17.wgt'>
+	Tests that LTR direction is inherited by the author element from the widget element.
+	To pass, the widget.author object must return the ECMAScript equivalent of "\u202AThe arrow should point right -->\u202C".
+    </test>
+<test id='i18nltr20' for='ta-get-18n-string' src='test-cases/i18n-ltr/020/i18nltr20.wgt'>
+	Tests that nested LTR and RTL directions apply correctly to the name element.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202A&lt; PAS\u202B&lt;-- SED\u202C\u202C".
+    </test>
+<test id='i18nltr21' for='ta-get-18n-string' src='test-cases/i18n-ltr/021/i18nltr21.wgt'>
+	Tests that nested LTR and LRO directions apply correctly to the name element.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202A&lt; PAS\u202DSED -->\u202C\u202C".
+    </test>
+<test id='i18nltr22' for='ta-get-18n-string' src='test-cases/i18n-ltr/022/i18nltr22.wgt'>
+	Tests that nested LTR and RLO directions apply correctly.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202A&lt; PAS\u202E&lt;-- DES\u202C\u202C".
+    </test>
+<test id='i18nltr36' for='ta-get-18n-string' src='test-cases/i18n-ltr/036/i18nltr36.wgt'>
+	Tests that LTR direction does not apply to the author element&#39;s href attribute.
+	To pass, the widget.authorHref object must return the ECMAScript equivalent of "http://widget.example.org/".example.org/&quot;.
+    </test>
+<test id='i18nltr37' for='ta-get-18n-string' src='test-cases/i18n-ltr/037/i18nltr37.wgt'>
+	Tests that LTR direction does not apply to the author element&#39;s email attribute.
+	To pass, the widget.authorEmail object must return the ECMAScript equivalent of "PASS".
+    </test>
+<test id='i18nltr41' for='ta-get-18n-string' src='test-cases/i18n-ltr/041/i18nltr41.wgt'>
+	Tests that LTR direction does not apply to the widget element&#39;s id attribute.
+	To pass, the widget.id object must return the ECMAScript equivalent of "http://widget.example.org/".example.org/&quot;.
+    </test>
+<test id='i18nltr42' for='ta-get-18n-string' src='test-cases/i18n-ltr/042/i18nltr42.wgt'>
+	Tests that LTR direction applies to the widget element&#39;s version attribute.
+	To pass, the widget.version object must return the ECMAScript equivalent of "\u202AThe arrow should point right -->\u202C".
+</test>
+<test id='i18nltr44' for='ta-get-18n-string' src='test-cases/i18n-ltr/044/i18nltr44.wgt'>
+	Tests that LTR direction does not apply to the widget element&#39;s xml:lang attribute.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202APASS\u202C".
+    </test>
+<test id='i18nrtl01' for='ta-get-18n-string' src='test-cases/i18n-rtl/001/i18nrtl01.wgt'>
+	Tests that RTL direction applies to the name element.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202B&lt;-- The arrow should point right\u202C".
+    </test>
+<test id='i18nrtl02' for='ta-get-18n-string' src='test-cases/i18n-rtl/002/i18nrtl02.wgt'>
+	Tests that RTL direction applies to the name element&#39;s short attribute.
+	To pass, the widget.shortName object must return the ECMAScript equivalent of "\u202B&lt;-- The arrow should point right\u202C".
+    </test>
+<test id='i18nrtl03' for='ta-get-18n-string' src='test-cases/i18n-rtl/003/i18nrtl03.wgt'>
+	Tests that RTL direction applies to the description element.
+	To pass, the widget.description object must return the ECMAScript equivalent of "\u202B&lt;-- The arrow should point right\u202C".
+    </test>
+<test id='i18nrtl04' for='ta-get-18n-string' src='test-cases/i18n-rtl/004/i18nrtl04.wgt'>
+	Tests that RTL direction applies to the author element.
+	To pass, the widget.author object must return the ECMAScript equivalent of "\u202B&lt;-- The arrow should point right\u202C".
+    </test>
+<test id='i18nrtl06' for='ta-get-18n-string' src='test-cases/i18n-rtl/006/i18nrtl06.wgt'>
+	Tests that RTL direction applies to the span element within the name element.
+	To pass, the widget.name object must return the ECMAScript equivalent of "The arrow should point right \u202B&lt;--\u202C".
+    </test>
+<test id='i18nrtl07' for='ta-get-18n-string' src='test-cases/i18n-rtl/007/i18nrtl07.wgt'>
+	Tests that RTL direction applies to the span element within the description element.
+	To pass, the widget.description object must return the ECMAScript equivalent of "The arrow should point right \u202B&lt;--\u202C".
+    </test>
+<test id='i18nrtl08' for='ta-get-18n-string' src='test-cases/i18n-rtl/008/i18nrtl08.wgt'>
+	Tests that RTL direction applies to the span element within the author element.
+	To pass, the widget.author object must return the ECMAScript equivalent of "The arrow should point right \u202B&lt;--\u202C".
+    </test>
+<test id='i18nrtl10' for='ta-get-18n-string' src='test-cases/i18n-rtl/010/i18nrtl10.wgt'>
+	Tests that nested RTL and RTL directions applies within the name element.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202BThe arrow should point right \u202A-->\u202C\u202C".
+    </test>
+<test id='i18nrtl11' for='ta-get-18n-string' src='test-cases/i18n-rtl/011/i18nrtl11.wgt'>
+	Tests that nested RTL and RTL directions applies within the description element.
+	To pass, the widget.description object must return the ECMAScript equivalent of "\u202BThe arrow should point right \u202A-->\u202C\u202C".
+    </test>
+<test id='i18nrtl12' for='ta-get-18n-string' src='test-cases/i18n-rtl/012/i18nrtl12.wgt'>
+	Tests that nested RTL and RTL directions applies within the author element.
+	To pass, the widget.author object must return the ECMAScript equivalent of "\u202BThe arrow should point right \u202A-->\u202C\u202C".
+    </test>
+<test id='i18nrtl14' for='ta-get-18n-string' src='test-cases/i18n-rtl/014/i18nrtl14.wgt'>
+	Tests that RTL direction is inherited by the name element from the widget element.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202B&lt;-- The arrow should point right\u202C".
+    </test>
+<test id='i18nrtl15' for='ta-get-18n-string' src='test-cases/i18n-rtl/015/i18nrtl15.wgt'>
+	Tests that RTL direction is inherited by the name element&#39;s short attribute from the widget element.
+	To pass, the widget.shortName object must return the ECMAScript equivalent of "\u202B&lt;-- The arrow should point right\u202C".
+    </test>
+<test id='i18nrtl16' for='ta-get-18n-string' src='test-cases/i18n-rtl/016/i18nrtl16.wgt'>
+	Tests that RTL direction is inherited by the description element from the widget element.
+	To pass, the widget.description object must return the ECMAScript equivalent of "\u202B&lt;-- The arrow should point right\u202C".
+    </test>
+<test id='i18nrtl17' for='ta-get-18n-string' src='test-cases/i18n-rtl/017/i18nrtl17.wgt'>
+	Tests that RTL direction is inherited by the author element from the widget element.
+	To pass, the widget.author object must return the ECMAScript equivalent of "\u202B&lt;-- The arrow should point right\u202C".
+    </test>
+<test id='i18nrtl20' for='ta-get-18n-string' src='test-cases/i18n-rtl/020/i18nrtl20.wgt'>
+	Tests that nested RTL directions apply correctly to the name element.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202B&lt;-- \u202BPAS >\u202CSED\u202C".
+    </test>
+<test id='i18nrtl21' for='ta-get-18n-string' src='test-cases/i18n-rtl/021/i18nrtl21.wgt'>
+	Tests that nested RTL and LRO directions apply correctly to the name element.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202BPAS\u202DSED -->\u202C >\u202C".
+    </test>
+<test id='i18nrtl36' for='ta-get-18n-string' src='test-cases/i18n-rtl/036/i18nrtl36.wgt'>
+	Tests that RTL direction does not apply to the author element&#39;s href attribute.
+	To pass, the widget.authorHref object must return the ECMAScript equivalent of "http://widget.example.org/".example.org/&quot;.
+    </test>
+<test id='i18nrtl37' for='ta-get-18n-string' src='test-cases/i18n-rtl/037/i18nrtl37.wgt'>
+	Tests that RTL direction does not apply to the author element&#39;s email attribute.
+	To pass, the widget.authorEmail object must return the ECMAScript equivalent of "The arrow should point right -->".
+    </test>
+<test id='i18nrtl41' for='ta-get-18n-string' src='test-cases/i18n-rtl/041/i18nrtl41.wgt'>
+	Tests that RTL direction does not apply to the widget element&#39;s id attribute.
+	To pass, the widget.id object must return the ECMAScript equivalent of "http://widget.example.org/".example.org/&quot;.
+</test>
+<test id='i18nrtl42' for='ta-get-18n-string' src='test-cases/i18n-rtl/042/i18nrtl42.wgt'>
+	Tests that RTL direction applies to the widget element&#39;s version attribute.
+	To pass, the widget.version object must return the ECMAScript equivalent of "\u202B&lt;-- The arrow should point right\u202C".
+</test>
+<test id='i18nrtl44' for='ta-get-18n-string' src='test-cases/i18n-rtl/044/i18nrtl44.wgt'>
+	Tests that RTL direction does not apply to the widget element&#39;s xml:lang attribute.
+	To pass, the widget.name object must return the ECMAScript equivalent of "\u202BPASS\u202C".
+</test>
+
+ 
+</testsuite> 

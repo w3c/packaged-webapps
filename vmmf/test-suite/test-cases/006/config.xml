@@ -1,0 +1,4 @@
+<widget id="test:invalid" xmlns='http://www.w3.org/ns/widgets'  width="500" height="500" viewmodes="ae314afasqq23">
+<name>invalid</name>
+<description>	Test that an invalid viewmode (&apos;ae314afasqq23&apos;) for view-mode media feature is ignored by the widget UA. To pass, the user agent must display the word PASS (dynamically generated via CSS) and a green background.  </description>
+</widget>

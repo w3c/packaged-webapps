@@ -1,0 +1,7 @@
+<widget xmlns="http://www.w3.org/ns/widgets"
+	version="test-version"
+	id="id:return-proper-strings">
+	<name short="test-short">return proper strings</name>
+	<description>test-description</description>
+	<author email="test-email" href="test://href">test-author</author>
+</widget>

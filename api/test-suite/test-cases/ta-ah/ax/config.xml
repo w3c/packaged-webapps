@@ -1,0 +1,8 @@
+<widget xmlns="http://www.w3.org/ns/widgets"
+ id="test:ax">
+ <name>Test ax</name>
+ <description>Testing assertion ta-ah</description>
+ <preference name="test1" value="pass1"/>
+ <preference name="test3" value="pass3"/>
+ <preference name="test2" value="pass2"/>
+</widget>

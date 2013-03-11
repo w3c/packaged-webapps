@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<testsuite spec="http://dev.w3.org/2006/waf/widgets-vmmf/" name="View Modes">
+<test for="ta-vmmf" id="default" src="test-cases/001/test-001.wgt">
+	Test that the user agent to defaults to some mode when no declaration of a viewmodes attribute appears in the configuration document. To pass, the user agent must display the word PASS (dynamically generated via CSS) and a green background. 
+</test>
+<test for="ta-vmmf" id="empty" src="test-cases/002/test-002.wgt">
+	Test that an empty value for viewmodes attribute in the configuration document causes the user agent to use some mode. To pass, the user agent must display the word PASS (dynamically generated via CSS) and a green background. 
+ </test>
+<test for="ta-vmmf" id="fullscreen" src="test-cases/003/test-003.wgt">
+	Test that the value &apos;fullscreen&apos; for view-mode media feature is applied by the widget UA, if this is supported. To pass, the user agent must display the word PASS (dynamically generated via CSS) and a green background. 
+    </test>
+<test for="ta-vmmf" id="maximized" src="test-cases/004/test-004.wgt">
+	Test that the value &apos;maximized&apos; for view-mode media feature is applied by the widget UA, if this is supported. To pass, the user agent must display the word PASS (dynamically generated via CSS) and a green background. 
+    </test>
+<test for="ta-vmmf" id="minimized" src="test-cases/005/test-005.wgt">
+	Test that the value &apos;minimized&apos; for view-mode media feature is applied by the widget UA, if this is supported. To pass, the user agent must display the word PASS (dynamically generated via CSS) and a green background. 
+    </test>
+<test for="ta-vmmf" id="invalid" src="test-cases/006/test-006.wgt">
+	Test that an invalid viewmode (&apos;ae314afasqq23&apos;) for view-mode media feature is ignored by the widget UA. To pass, the user agent must display the word PASS (dynamically generated via CSS) and a green background.  
+    </test>
+<test for="ta-vmmf" id="floating" src="test-cases/007/test-007.wgt">
+	Test that the value &apos;floating&apos; for view-mode media feature is applied by the widget UA, if this is supported. To pass, the user agent must display the word PASS (dynamically generated via CSS) and a green background. 
+    </test>		
+<test for="ta-vmmf" id="invalid-ordered" src="test-cases/009/test-009.wgt">
+	Test that a combination of valid and invalid viewmodes values are processed by the UA and only the valid ones are applied when the relevant view mode is set; also that the valid ones are not ignored.
+    </test>
+<test for="ta-vmmf" id="windowed" src="test-cases/010/test-010.wgt">
+	Test that the value &apos;windowed&apos; for view-mode media feature is applied by the widget UA, if this is supported. To pass, the user agent must display the word PASS (dynamically generated via CSS) and a green background. 
+    </test>	
+<test for="ta-vmmf" id="min-max" src="test-cases/016/test-016.wgt">
+	Test that the user agent does not support min- or max- prefixes on the viewmode media feature. To pass, the user agent must display the word PASS (dynamically generated via CSS) and a green background.  
+ </test>
+</testsuite>

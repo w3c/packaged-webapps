@@ -1,0 +1,716 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>The 'view-mode' Media Feature</title>
+    
+    
+  <style type="text/css">
+/*****************************************************************
+ * ReSpec CSS
+ * Robin Berjon (robin at berjon dot com)
+ * v0.05 - 2009-07-31
+ *****************************************************************/
+
+
+/* --- INLINES --- */
+em.rfc2119 { 
+    text-transform:     lowercase;
+    font-variant:       small-caps;
+    font-style:         normal;
+    color:              #900;
+}
+
+h1 acronym, h2 acronym, h3 acronym, h4 acronym, h5 acronym, h6 acronym, a acronym,
+h1 abbr, h2 abbr, h3 abbr, h4 abbr, h5 abbr, h6 abbr, a abbr {
+    border: none;
+}
+
+dfn {
+    font-weight:    bold;
+}
+
+a.internalDFN {
+    color:  inherit;
+    border-bottom:  1px solid #99c;
+    text-decoration:    none;
+}
+
+a.externalDFN {
+    color:  inherit;
+    border-bottom:  1px dotted #ccc;
+    text-decoration:    none;
+}
+
+a.bibref {
+    text-decoration:    none;
+}
+
+code {
+    color:  #ff4500;
+}
+
+
+/* --- WEB IDL --- */
+pre.idl {
+    border-top: 1px solid #90b8de;
+    border-bottom: 1px solid #90b8de;
+    padding:    1em;
+    line-height:    120%;
+}
+
+pre.idl::before {
+    content:    "WebIDL";
+    display:    block;
+    width:      150px;
+    background: #90b8de;
+    color:  #fff;
+    font-family:    initial;
+    padding:    3px;
+    font-weight:    bold;
+    margin: -1em 0 1em -1em;
+}
+
+.idlType {
+    color:  #ff4500;
+    font-weight:    bold;
+    text-decoration:    none;
+}
+
+/*.idlModule*/
+/*.idlModuleID*/
+/*.idlInterface*/
+.idlInterfaceID {
+    font-weight:    bold;
+    color:  #005a9c;
+}
+
+.idlSuperclass {
+    font-style: italic;
+    color:  #005a9c;
+}
+
+/*.idlAttribute*/
+.idlAttrType, .idlFieldType {
+    color:  #005a9c;
+}
+.idlAttrName, .idlFieldName {
+    color:  #ff4500;
+}
+.idlAttrName a, .idlFieldName a {
+    color:  #ff4500;
+    border-bottom:  1px dotted #ff4500;
+    text-decoration: none;
+}
+
+/*.idlMethod*/
+.idlMethType {
+    color:  #005a9c;
+}
+.idlMethName {
+    color:  #ff4500;
+}
+.idlMethName a {
+    color:  #ff4500;
+    border-bottom:  1px dotted #ff4500;
+    text-decoration: none;
+}
+
+/*.idlParam*/
+.idlParamType {
+    color:  #005a9c;
+}
+.idlParamName {
+    font-style: italic;
+}
+
+.extAttr {
+    color:  #666;
+}
+
+/*.idlConst*/
+.idlConstType {
+    color:  #005a9c;
+}
+.idlConstName {
+    color:  #ff4500;
+}
+.idlConstName a {
+    color:  #ff4500;
+    border-bottom:  1px dotted #ff4500;
+    text-decoration: none;
+}
+
+/*.idlException*/
+.idlExceptionID {
+    font-weight:    bold;
+    color:  #c00;
+}
+
+.idlTypedefID, .idlTypedefType {
+    color:  #005a9c;
+}
+
+.idlRaises, .idlRaises a.idlType, .idlRaises a.idlType code, .excName a, .excName a code {
+    color:  #c00;
+    font-weight:    normal;
+}
+
+.excName a {
+    font-family:    monospace;
+}
+
+.idlRaises a.idlType, .excName a.idlType {
+    border-bottom:  1px dotted #c00;
+}
+
+.excGetSetTrue, .excGetSetFalse, .prmNullTrue, .prmNullFalse, .prmOptTrue, .prmOptFalse {
+    width:  45px;
+    text-align: center;
+}
+.excGetSetTrue, .prmNullTrue, .prmOptTrue { color:  #0c0; }
+.excGetSetFalse, .prmNullFalse, .prmOptFalse { color:  #c00; }
+
+.idlImplements a {
+    font-weight:    bold;
+}
+
+dl.attributes, dl.methods, dl.constants, dl.fields {
+    margin-left:    2em;
+}
+
+.attributes dt, .methods dt, .constants dt, .fields dt {
+    font-weight:    normal;
+}
+
+.attributes dt code, .methods dt code, .constants dt code, .fields dt code {
+    font-weight:    bold;
+    color:  #000;
+    font-family:    monospace;
+}
+
+.attributes dt code, .fields dt code {
+    background:  #ffffd2;
+}
+
+.attributes dt .idlAttrType code, .fields dt .idlFieldType code {
+    color:  #005a9c;
+    background:  transparent;
+    font-family:    inherit;
+    font-weight:    normal;
+    font-style: italic;
+}
+
+.methods dt code {
+    background:  #d9e6f8;
+}
+
+.constants dt code {
+    background:  #ddffd2;
+}
+
+.attributes dd, .methods dd, .constants dd, .fields dd {
+    margin-bottom:  1em;
+}
+
+table.parameters, table.exceptions {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    margin: 0.5em 0;
+    width:  100%;
+}
+table.parameters { border-bottom:  1px solid #90b8de; }
+table.exceptions { border-bottom:  1px solid #deb890; }
+
+.parameters th, .exceptions th {
+    color:  #fff;
+    padding:    3px 5px;
+    text-align: left;
+    font-family:    initial;
+    font-weight:    normal;
+    text-shadow:    #666 1px 1px 0;
+}
+.parameters th { background: #90b8de; }
+.exceptions th { background: #deb890; }
+
+.parameters td, .exceptions td {
+    padding:    3px 10px;
+    border-top: 1px solid #ddd;
+    vertical-align: top;
+}
+
+.parameters tr:first-child td, .exceptions tr:first-child td {
+    border-top: none;
+}
+
+.parameters td.prmName, .exceptions td.excName, .exceptions td.excCodeName {
+    width:  100px;
+}
+
+.parameters td.prmType {
+    width:  120px;
+}
+
+table.exceptions table {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    width:  100%;
+}
+
+/* --- TOC --- */
+.toc a {
+    text-decoration:    none;
+}
+
+a .secno {
+    color:  #000;
+}
+
+/* --- TABLE --- */
+table.simple {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    border-bottom:  3px solid #005a9c;
+}
+
+.simple th {
+    background: #005a9c;
+    color:  #fff;
+    padding:    3px 5px;
+    text-align: left;
+}
+
+.simple th[scope="row"] {
+    background: inherit;
+    color:  inherit;
+    border-top: 1px solid #ddd;
+}
+
+.simple td {
+    padding:    3px 10px;
+    border-top: 1px solid #ddd;
+}
+
+.simple tr:nth-child(even) {
+    background: #f0f6ff;
+}
+
+/* --- DL --- */
+.section dd > p:first-child {
+    margin-top: 0;
+}
+
+.section dd > p:last-child {
+    margin-bottom: 0;
+}
+
+.section dd {
+    margin-bottom:  1em;
+}
+
+.section dl.attrs dd, .section dl.eldef dd {
+    margin-bottom:  0;
+}
+
+/* --- EXAMPLES --- */
+pre.example {
+    border-top: 1px solid #ff4500;
+    border-bottom: 1px solid #ff4500;
+    padding:    1em;
+    margin-top: 1em;
+}
+
+pre.example::before {
+    content:    "Example";
+    display:    block;
+    width:      150px;
+    background: #ff4500;
+    color:  #fff;
+    font-family:    initial;
+    padding:    3px;
+    font-weight:    bold;
+    margin: -1em 0 1em -1em;
+}
+
+/* --- EDITORIAL NOTES --- */
+.issue {
+    padding:    1em;
+    margin: 1em 0em 0em;
+    border: 1px solid #f00;
+    background: #ffc;
+}
+
+.issue::before {
+    content:    "Issue";
+    display:    block;
+    width:  150px;
+    margin: -1.5em 0 0.5em 0;
+    font-weight:    bold;
+    border: 1px solid #f00;
+    background: #fff;
+    padding:    3px 1em;
+}
+
+.note {
+    margin: 1em 0em 0em;
+    padding:    1em;
+    border: 2px solid #cff6d9;
+    background: #e2fff0;
+}
+
+.note::before {
+    content:    "Note";
+    display:    block;
+    width:  150px;
+    margin: -1.5em 0 0.5em 0;
+    font-weight:    bold;
+    border: 1px solid #cff6d9;
+    background: #fff;
+    padding:    3px 1em;
+}
+
+/* --- Best Practices --- */
+div.practice {
+    border: solid #bebebe 1px;
+    margin: 2em 1em 1em 2em;
+}
+
+span.practicelab {
+    margin: 1.5em 0.5em 1em 1em;
+    font-weight: bold;
+    font-style: italic;
+}
+
+span.practicelab   { background: #dfffff; }
+
+span.practicelab {
+    position: relative;
+    padding: 0 0.5em;
+    top: -1.5em;
+}
+
+p.practicedesc {
+    margin: 1.5em 0.5em 1em 1em;
+}
+
+@media screen {
+    p.practicedesc {
+        position: relative;
+        top: -2em;
+        padding: 0;
+        margin: 1.5em 0.5em -1em 1em;
+}
+
+/* --- SYNTAX HIGHLIGHTING --- */
+pre.sh_sourceCode {
+  background-color: white;
+  color: black;
+  font-style: normal;
+  font-weight: normal;
+}
+
+pre.sh_sourceCode .sh_keyword { color: #005a9c; font-weight: bold; }           /* language keywords */
+pre.sh_sourceCode .sh_type { color: #666; }                            /* basic types */
+pre.sh_sourceCode .sh_usertype { color: teal; }                             /* user defined types */
+pre.sh_sourceCode .sh_string { color: red; font-family: monospace; }        /* strings and chars */
+pre.sh_sourceCode .sh_regexp { color: orange; font-family: monospace; }     /* regular expressions */
+pre.sh_sourceCode .sh_specialchar { color: 	#ffc0cb; font-family: monospace; }  /* e.g., \n, \t, \\ */
+pre.sh_sourceCode .sh_comment { color: #A52A2A; font-style: italic; }         /* comments */
+pre.sh_sourceCode .sh_number { color: purple; }                             /* literal numbers */
+pre.sh_sourceCode .sh_preproc { color: #00008B; font-weight: bold; }       /* e.g., #include, import */
+pre.sh_sourceCode .sh_symbol { color: blue; }                            /* e.g., *, + */
+pre.sh_sourceCode .sh_function { color: black; font-weight: bold; }         /* function calls and declarations */
+pre.sh_sourceCode .sh_cbracket { color: red; }                              /* block brackets (e.g., {, }) */
+pre.sh_sourceCode .sh_todo { font-weight: bold; background-color: #00FFFF; }   /* TODO and FIXME */
+
+/* Predefined variables and functions (for instance glsl) */
+pre.sh_sourceCode .sh_predef_var { color: #00008B; }
+pre.sh_sourceCode .sh_predef_func { color: #00008B; font-weight: bold; }
+
+/* for OOP */
+pre.sh_sourceCode .sh_classname { color: teal; }
+
+/* line numbers (not yet implemented) */
+pre.sh_sourceCode .sh_linenum { display: none; }
+
+/* Internet related */
+pre.sh_sourceCode .sh_url { color: blue; text-decoration: underline; font-family: monospace; }
+
+/* for ChangeLog and Log files */
+pre.sh_sourceCode .sh_date { color: blue; font-weight: bold; }
+pre.sh_sourceCode .sh_time, pre.sh_sourceCode .sh_file { color: #00008B; font-weight: bold; }
+pre.sh_sourceCode .sh_ip, pre.sh_sourceCode .sh_name { color: #006400; }
+
+/* for Prolog, Perl... */
+pre.sh_sourceCode .sh_variable { color: #006400; }
+
+/* for LaTeX */
+pre.sh_sourceCode .sh_italics { color: #006400; font-style: italic; }
+pre.sh_sourceCode .sh_bold { color: #006400; font-weight: bold; }
+pre.sh_sourceCode .sh_underline { color: #006400; text-decoration: underline; }
+pre.sh_sourceCode .sh_fixed { color: green; font-family: monospace; }
+pre.sh_sourceCode .sh_argument { color: #006400; }
+pre.sh_sourceCode .sh_optionalargument { color: purple; }
+pre.sh_sourceCode .sh_math { color: orange; }
+pre.sh_sourceCode .sh_bibtex { color: blue; }
+
+/* for diffs */
+pre.sh_sourceCode .sh_oldfile { color: orange; }
+pre.sh_sourceCode .sh_newfile { color: #006400; }
+pre.sh_sourceCode .sh_difflines { color: blue; }
+
+/* for css */
+pre.sh_sourceCode .sh_selector { color: purple; }
+pre.sh_sourceCode .sh_property { color: blue; }
+pre.sh_sourceCode .sh_value { color: #006400; font-style: italic; }
+
+/* other */
+pre.sh_sourceCode .sh_section { color: black; font-weight: bold; }
+pre.sh_sourceCode .sh_paren { color: red; }
+pre.sh_sourceCode .sh_attribute { color: #006400; }
+
+</style><link href="http://www.w3.org/StyleSheets/TR/W3C-PR" rel="stylesheet" type="text/css" charset="utf-8" /></head>
+  <body style="display: inherit; "><div class="head"><p><a href="http://www.w3.org/"><img width="72" height="48" src="http://www.w3.org/Icons/w3c_home" alt="W3C" /></a></p><h1 class="title" id="title">The 'view-mode' Media Feature</h1><h2 id="w3c-proposed-recommendation-11-august-2011">W3C Proposed Recommendation 11 August 2011</h2><dl><dt>This version:</dt><dd><a href="http://www.w3.org/TR/2011/PR-view-mode-20110811/">http://www.w3.org/TR/2011/PR-view-mode-20110811/</a></dd><dt>Latest published version:</dt><dd><a href="http://www.w3.org/TR/view-mode/">http://www.w3.org/TR/view-mode/</a></dd><dt>Latest editor's draft:</dt><dd><a href="http://dev.w3.org/2006/waf/widgets-vmmf/">http://dev.w3.org/2006/waf/widgets-vmmf/</a></dd><dt>Previous version:</dt><dd><a href="http://www.w3.org/TR/2010/WD-view-mode-20100420/">http://www.w3.org/TR/2010/WD-view-mode-20100420/</a></dd><dt>Editors:</dt><dd><a href="http://berjon.com/">Robin Berjon</a>, Robineko</dd>
+<dd><a href="http://datadriven.com.au/">Marcos Cáceres</a>, <a href="http://w3.org">W3C Invited Expert</a></dd>
+</dl><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2011 <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>, <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p><hr /></div>
+    <div id="abstract" class="introductory section"><h2>Abstract</h2>
+      This specification defines a media feature to match the different visual presentation modes that
+      can be applied to web applications and thereby apply different styling based on these
+      different modes using CSS Media Queries [<cite><a class="bibref" rel="biblioentry" href="#bib-MEDIAQ">MEDIAQ</a></cite>].
+    </div><div id="sotd" class="introductory section"><h2>Status of This Document</h2><p><em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current W3C publications and the latest revision of this technical report can be found in the <a href="http://www.w3.org/TR/">W3C technical reports index</a> at http://www.w3.org/TR/.</em></p>
+    <p>The public is encouraged
+    to send comments to the WebApps Working Group's public mailing list <a href="mailto:public-webapps@w3.org">public-webapps@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webapps/">archive</a>) by the <strong>15 September 2011</strong>. See <a href="http://www.w3.org/Mail/">W3C mailing list and archive usage guidelines</a>.   Advisory Committee Representatives should consult their <a href="http://www.w3.org/2002/09/wbs/myQuestionnaires">questionnaires</a>.</p>
+    
+		<p>No
+  substantive changes were made as a result of the Candidate Recommendation phase. Advance of this specification to Recommendation is blocked until the <a href="http://www.w3.org/TR/css3-mediaqueries/">Media Queries</a> specification (a normative reference for this specification) advances to Proposed Recommendation.</p>
+    <p>This document was published by the <a href="http://www.w3.org/2008/webapps/">Web Applications WG</a> as a Proposed Recommendation. This document is intended to become a W3C Recommendation. If you wish to make comments regarding this document, please send them to <a href="mailto:public-webapps@w3.org">public-webapps@w3.org</a> (<a href="mailto:public-webapps-request@w3.org?subject=subscribe">subscribe</a>, <a href="http://lists.w3.org/Archives/Public/public-webapps/">archives</a>). All feedback is welcome.</p><p>Publication as a Proposed Recommendation does not imply endorsement by the W3C Membership. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.</p><p>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 W3C Patent Policy</a>. W3C maintains a <a href="http://www.w3.org/2004/01/pp-impl/42538/status" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section 6 of the W3C Patent Policy</a>.</p></div><div id="toc" class="section"><h2 class="introductory">Table of Contents</h2><ul class="toc"><li class="tocline"><a href="#introduction" class="tocxref"><span class="secno">1. </span>Introduction</a><ul class="toc"><li class="tocline"><a href="#design-goals-and-requirements" class="tocxref"><span class="secno">1.1 </span>Design Goals and Requirements</a></li></ul></li><li class="tocline"><a href="#conformance" class="tocxref"><span class="secno">2. </span>Conformance</a></li><li class="tocline"><a href="#security-considerations" class="tocxref"><span class="secno">3. </span>Security considerations</a></li><li class="tocline"><a href="#definitions" class="tocxref"><span class="secno">4. </span>Definitions</a></li><li class="tocline"><a href="#the--view-mode--media-feature" class="tocxref"><span class="secno">5. </span>The <code>'view-mode'</code> media feature</a><ul class="toc"><li class="tocline"><a href="#view-modes" class="tocxref"><span class="secno">5.1 </span>View modes</a></li><li class="tocline"><a href="#examples" class="tocxref"><span class="secno">5.2 </span>Examples</a></li></ul></li><li class="tocline"><a href="#acknowledgements" class="tocxref"><span class="secno">6. </span>Acknowledgements</a></li><li class="tocline"><a href="#references" class="tocxref"><span class="secno">A. </span>References</a><ul class="toc"><li class="tocline"><a href="#normative-references" class="tocxref"><span class="secno">A.1 </span>Normative references</a></li><li class="tocline"><a href="#informative-references" class="tocxref"><span class="secno">A.2 </span>Informative references</a></li></ul></li></ul></div>
+
+    
+
+    <div class="informative section" id="introduction">
+      
+<!-- OddPage -->
+<h2><span class="secno">1. </span>Introduction</h2><p><em>This section is non-normative.</em></p>
+      <p>
+        <a title="Web application" href="#dfn-web-application" class="internalDFN">Web applications</a>, be they widgets or in-browser, can on most platforms
+        be run in multiple visual modes. At times they may occupy the entire screen, at others they may be 
+        minimized to a specific docking area; at times they may have chrome that matches the operating 
+        system's style while at others they may be providing their own controls in order to provide for 
+        a more <a href="#dfn-immersive" class="internalDFN">immersive</a> experience.
+      </p>
+      <p>
+        The user is generally in control of at least several aspects of these modalities, and it is
+        therefore important for authors to be able to react to these in order to provide different
+        styling to their applications. In order to achieve this, this specification defines a
+        <a href="#dfn-media-feature" class="internalDFN">media feature</a> that allows different CSS style rules to be applied depending on whether
+        a given media query [<cite><a class="bibref" rel="biblioentry" href="#bib-MEDIAQ">MEDIAQ</a></cite>] matches.
+      </p>
+      <div class="informative section" id="design-goals-and-requirements">
+        <h3><span class="secno">1.1 </span>Design Goals and Requirements</h3><p><em>This section is non-normative.</em></p>
+        <p>
+          The design goals and requirements for this specification are documented in the 
+          Widgets 1.0 Requirements [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS-REQS">WIDGETS-REQS</a></cite>] document.
+        </p>
+        <p>
+          This document addresses one requirement from 
+          "<a href="http://www.w3.org/TR/2009/WD-widgets-reqs-20090430/#user-experience">User Experience</a>":
+        </p>
+        <ol>
+          <li><a href="http://www.w3.org/TR/2009/WD-widgets-reqs-20090430/#display-modes">Display Modes</a></li>
+        </ol>
+      </div>
+</div>
+
+    <div id="conformance" class="section">
+<!-- OddPage -->
+<h2><span class="secno">2. </span>Conformance</h2><p>As well as sections marked as non-normative, all authoring guidelines, diagrams, examples, and notes in this specification are non-normative. Everything else in this specification is normative.</p>
+<p>The key words <em class="rfc2119" title="must">must</em>, <em class="rfc2119" title="must not">must not</em>, <em class="rfc2119" title="required">required</em>, <em class="rfc2119" title="should">should</em>, <em class="rfc2119" title="should not">should not</em>, <em class="rfc2119" title="recommended">recommended</em>, <em class="rfc2119" title="may">may</em>, and <em class="rfc2119" title="optional">optional</em> in this specification are to be interpreted as described in [<cite><a class="bibref" rel="biblioentry" href="#bib-RFC2119">RFC2119</a></cite>].</p>
+
+      <p>
+        This specification defines conformance criteria that apply to a single product:
+        <dfn id="product-ua" title="user agent">user agents</dfn> that implement the <a>view modes</a> that it contains.
+      </p>
+    </div>
+
+    <div id="security-considerations" class="section">
+      
+<!-- OddPage -->
+<h2><span class="secno">3. </span>Security considerations</h2>
+      <p>
+        An application could be designed to trick users into performing actions they do not wish to or to capture
+        data that they did not intend to provide. Examples of situations in which the user could be tricked
+        include, but are not limited to:
+      </p>
+     	<ul>
+     	  <li>
+     	    applications that the user cannot see (full-screen invisible widgets or tiny web pages) that can be used
+     	    to run services without the user noticing or to intercept the user's interactions with other
+     	    applications (such as a PIN-code entry) by layering themselves on top of them;
+     	  </li>
+     	  <li>
+     	    applications that have no chrome and that could therefore masquerade as some other existing objects on 
+     	    the screen (for example a lock and key logo indicating that a site a trustworthy).
+     	  </li>
+     	</ul>
+     	<p>
+     	  Implementers are encouraged to take these issues into consideration and to provide limitations to what
+     	  a <a href="#dfn-web-application" class="internalDFN">Web application</a> may do in order to ensure that the user is exposed to minimal risk.
+      </p>
+    </div>    
+
+    <div id="definitions" class="section">
+      
+<!-- OddPage -->
+<h2><span class="secno">4. </span>Definitions</h2>
+      <dl>
+        <dt><dfn id="dfn-view-mode">View mode</dfn></dt>
+        <dd>
+          The <a href="#dfn-view-mode" class="internalDFN">view mode</a> is the manner in which a <a href="#dfn-web-application" class="internalDFN">Web application</a> is presented to a user that corresponds to
+          the metaphors and functionalities in use on a given platform. This specification defines a number
+          of view modes that a <a href="#product-ua" class="internalDFN">user agent</a> is expected to match to comparable platform-specific
+          situations.
+        </dd>
+        <dt><dfn id="dfn-chrome">Chrome</dfn></dt>
+        <dd>
+          The <a href="#dfn-chrome" class="internalDFN">chrome</a> comprises the visible parts of the <a href="#product-ua" class="internalDFN">user agent</a> that do not depend on the 
+          content (e.g. window decorations, tool bars, title bars, menus).
+        </dd>
+        <dt><dfn id="dfn-immersive">Immersive</dfn></dt>
+        <dd>
+          A user interface is said to be immersive when its controls and components are created to match the
+          specific style of the application instead of using the chrome and widgets of the platform.
+        </dd>
+        <dt><dfn id="dfn-media-feature">Media feature</dfn></dt>
+        <dd>
+          The term <a href="http://www.w3.org/TR/css3-mediaqueries/#media1">media feature</a> is defined in 
+          [<cite><a class="bibref" rel="biblioentry" href="#bib-MEDIAQ">MEDIAQ</a></cite>].
+        </dd>
+        <dt><dfn id="dfn-screen-area">Screen area</dfn></dt>
+        <dd>
+          The area of the screen that is generally available for applications, excluding parts that the system
+          generally keeps to itself (e.g. a bar at the top for menus, time, or context, or at the bottom with
+          a list of running applications).
+        </dd>
+        <dt><dfn id="dfn-web-application">Web application</dfn></dt>
+        <dd>
+          A Web application is an application built and shipped using Web technology that may be running
+          inside of a browser, as a <a>widget</a>, or in another type of container designed for this
+          purpose.
+        </dd>
+        <dt><dfn id="dfn-widgets">Widgets</dfn></dt>
+        <dd>
+          The term <a href="http://www.w3.org/TR/widgets/#widget">widget</a> is defined in [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>].
+        </dd>
+        <dt><dfn id="dfn-viewport">Viewport</dfn></dt>
+        <dd>
+          The term <a href="http://www.w3.org/TR/CSS21/visuren.html#viewport">viewport</a> is defined in [<cite><a class="bibref" rel="biblioentry" href="#bib-CSS21">CSS21</a></cite>].
+        </dd>
+      </dl>
+    </div>
+
+    <div id="the--view-mode--media-feature" class="section">
+      
+<!-- OddPage -->
+<h2><span class="secno">5. </span>The <code>'view-mode'</code> media feature</h2>
+      <p>
+        The <dfn id="dfn-view-mode-1">view-mode</dfn> media feature describes the mode in which the <a href="#dfn-web-application" class="internalDFN">Web application</a> is being shown as a running
+        application on the platform.
+      </p>
+      <dl>
+        <dt>Value:</dt>
+        <dd>
+          <a href="#dfn-windowed" class="internalDFN">windowed</a> | <a href="#dfn-floating" class="internalDFN">floating</a> | <a href="#dfn-fullscreen" class="internalDFN">fullscreen</a> | <a href="#dfn-maximized" class="internalDFN">maximized</a> | <a href="#dfn-minimized" class="internalDFN">minimized</a>
+        </dd>
+        <dt>Applies to:</dt>
+        <dd>
+          visual media types
+        </dd>
+        <dt>Accepts min/max prefixes:</dt>
+        <dd>
+          No
+        </dd>
+      </dl>
+      <p id="ta-vmmf">
+        A <a class="product-ua" href="#product-ua">user agent</a> <em class="rfc2119" title="should">should</em> make a best-effort attempt at matching the great variety of platform conventions
+        in which it may be running a <a href="#dfn-web-application" class="internalDFN">Web application</a> to the list of view modes defined in this specification so that the
+        <a href="#dfn-view-mode-1" class="internalDFN">view-mode</a> media feature may describe common situations in a manner that is useful to authors.
+        Each <a href="#dfn-view-mode" class="internalDFN">view mode</a> is defined to be exclusive of the others.
+      </p>
+      
+      <div id="view-modes" class="section">
+        <h3><span class="secno">5.1 </span>View modes</h3>
+        <p>
+          The <a href="#dfn-view-mode-1" class="internalDFN">view-mode</a> media feature accepts the following enumerated values:
+        </p>
+        <dl>
+          <dt><dfn id="dfn-windowed">windowed</dfn></dt>
+          <dd>
+            Describes a <a href="#dfn-web-application" class="internalDFN">Web application</a> running in a windowed manner, which is to say with <a href="#dfn-chrome" class="internalDFN">chrome</a> and 
+            without occupying the entire <a href="#dfn-screen-area" class="internalDFN">screen area</a>.
+          </dd>
+          <dt><dfn id="dfn-floating">floating</dfn></dt>
+          <dd>
+            Describes a <a href="#dfn-web-application" class="internalDFN">Web application</a> providing a more <a href="#dfn-immersive" class="internalDFN">immersive</a> interface, running in a windowed manner but
+            without <a href="#dfn-chrome" class="internalDFN">chrome</a>, and with the viewport's initial background being transparent such that other system items
+            (other applications, the display's background...) can be seen through parts of the viewport that are not being 
+            painted to.
+          </dd>
+          <dt><dfn id="dfn-fullscreen">fullscreen</dfn></dt>
+          <dd>
+            Describes a <a href="#dfn-web-application" class="internalDFN">Web application</a> that is occupying the entirety of the display, including the parts normally
+            excluded from the <a href="#dfn-screen-area" class="internalDFN">screen area</a> (e.g. a fullscreen video) and without any <a href="#dfn-chrome" class="internalDFN">chrome</a>.
+          </dd>
+          <dt><dfn id="dfn-maximized">maximized</dfn></dt>
+          <dd>
+            Describes a <a href="#dfn-web-application" class="internalDFN">Web application</a> that is occupying the entirety of the <a href="#dfn-screen-area" class="internalDFN">screen area</a> but with <a href="#dfn-chrome" class="internalDFN">chrome</a>.
+          </dd>
+          <dt><dfn id="dfn-minimized">minimized</dfn></dt>
+          <dd>
+            Describes a <a href="#dfn-web-application" class="internalDFN">Web application</a> docked or otherwise minimized, but with a dynamic graphical representation 
+            being available nevertheless (i.e. the application isn't entirely hidden, or maybe its icon is still shown
+            and it has control over what it contains). This may correspond for instance to a thumbnail of the 
+            application's content being shown.
+          </dd>
+        </dl>
+      </div>
+
+      <div id="examples" class="section">
+        <h3><span class="secno">5.2 </span>Examples</h3>
+        <p>
+          A simple example in CSS:
+        </p>
+        <pre class="example sh_css sh_sourceCode">
+@media handheld and <span class="sh_symbol">(</span>view<span class="sh_symbol">-</span>mode<span class="sh_symbol">:</span> floating<span class="sh_symbol">)</span> and <span class="sh_symbol">(</span>orientation<span class="sh_symbol">:</span> landscape<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+    <span class="sh_comment">// ...</span>
+<span class="sh_cbracket">}</span>
+@media tv and <span class="sh_symbol">(</span>view<span class="sh_symbol">-</span>mode<span class="sh_symbol">:</span> windowed<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+    <span class="sh_comment">// ...</span>
+<span class="sh_cbracket">}</span>
+@media handheld and <span class="sh_symbol">(</span>view<span class="sh_symbol">-</span>mode<span class="sh_symbol">:</span> fullscreen<span class="sh_symbol">)</span> <span class="sh_cbracket">{</span>
+    <span class="sh_comment">// ...</span>
+<span class="sh_cbracket">}</span></pre>
+      </div>
+    </div>
+
+    <div class="informative section" id="acknowledgements">
+      
+<!-- OddPage -->
+<h2><span class="secno">6. </span>Acknowledgements</h2><p><em>This section is non-normative.</em></p>
+      <p>
+    Daniel Herzog, Arve Bersvendsen, Arthur Barstow, Jochen Cichon, Sebastian Markbåge, Cameron McCormack, 
+    David Rogers, Richard Tibbett, Scott Wilson, Boris Zbarsky, Kenneth Christiansen, Daniel Glazman, 
+    Tab Atkins Jr, Josh Soresh, Marcin Hanclik, the CSS WG.
+  </p>
+    </div>
+  
+
+<div id="references" class="appendix section">
+<!-- OddPage -->
+<h2><span class="secno">A. </span>References</h2><div id="normative-references" class="section"><h3><span class="secno">A.1 </span>Normative references</h3><dl class="bibliography"><dt id="bib-MEDIAQ">[MEDIAQ]</dt><dd>Håkon Wium Lie; et al. <a href="http://www.w3.org/TR/2009/CR-css3-mediaqueries-20090915/"><cite>Media Queries.</cite></a>. W3C Candidate Recommendation. (Work in progress.) URL: <a href="http://www.w3.org/TR/2009/CR-css3-mediaqueries-20090915/">http://www.w3.org/TR/2009/CR-css3-mediaqueries-20090915/</a> 
+</dd><dt id="bib-RFC2119">[RFC2119]</dt><dd>S. Bradner. <a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use in RFCs to Indicate Requirement Levels.</cite></a> March 1997. Internet RFC 2119.  URL: <a href="http://www.ietf.org/rfc/rfc2119.txt">http://www.ietf.org/rfc/rfc2119.txt</a> 
+</dd></dl></div><div id="informative-references" class="section"><h3><span class="secno">A.2 </span>Informative references</h3><dl class="bibliography"><dt id="bib-CSS21">[CSS21]</dt><dd>Bert Bos; et al. <a href="http://www.w3.org/TR/CSS21/"><cite>Cascading Style Sheets Level 2 Revision 1 (CSS 2.1) Specification.</cite></a>. W3C Recommendation. URL: <a href="http://www.w3.org/TR/CSS21">http://www.w3.org/TR/CSS21/</a> 
+</dd><dt id="bib-WIDGETS">[WIDGETS]</dt>
+<dd>Marcos Cáceres. <a href="http://www.w3.org/TR/widgets/"><cite>Widget Packaging and XML Configuration</cite></a>. W3C Proposed Recommendation (Work in progress). URL: <a href="http://www.w3.org/TR/widgets/">http://www.w3.org/TR/widgets/</a> 
+</dd><dt id="bib-WIDGETS-REQS">[WIDGETS-REQS]</dt><dd>Marcos Cáceres. <a href="http://www.w3.org/TR/widgets-reqs/"><cite> Requirements For Standardizing Widgets.</cite></a>. W3C Working Draft. (Work in progress.) URL: <a href="http://www.w3.org/TR/widgets-reqs/">http://www.w3.org/TR/widgets-reqs/</a> 
+</dd></dl></div></div></body></html>

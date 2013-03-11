@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<!--script type="text/javascript" src="resources/syntaxhighlighter/scripts/shCore.js"></script>
+<script type="text/javascript" src="resources/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+<script type='text/javascript' src='resources/syntaxhighlighter/scripts/shBrushXml.js' ></script>
+<link type="text/css" rel="stylesheet" href="resources/syntaxhighlighter/styles/shCoreDefault.css"/>
+<script type="text/javascript">SyntaxHighlighter.all();</script-->
+<link href="http://www.w3.org/StyleSheets/TR/W3C-PR" rel="stylesheet" type="text/css"/>
+<title>Widget Interface</title>
+<style type="text/css">
+/*<![CDATA[*/
+  pre.idl {
+	border:solid thin;
+	background:#eee;
+	color:#000;
+	padding:0.5em
+}
+pre.idl :link, pre.idl :visited {
+	color:inherit;
+	background:transparent
+}
+dfn {
+	font-style:normal;
+	font-weight:bolder
+}
+dfn.external {
+	font-weight: normal;
+	font-style: italic;
+}
+em.ct {
+	font-style:normal;
+	font-weight:normal;
+	color:#990000 /*font-variant:small-caps*/
+}
+.issue {
+	padding:.5em;
+	border:solid red
+}
+.example {
+	padding:0 .5em;
+	border-left:double
+}
+.note {
+	margin-left:2em;
+	font-weight:bold;
+	font-style:italic;
+	color:#008000
+}
+h3 + .element {
+	margin-top:-3em;
+	padding-top:2.5em
+}
+h3 + p + .element {
+	margin-top:-5em;
+	padding-top:4em
+}
+
+.element {
+	background:#efe;
+	color:#000;
+	margin:0 0 1em -1em;
+	padding:0 1em 0.25em 0.75em;
+	border-left:solid #9f9 0.25em;
+}
+dd > dl {
+	margin:0px;
+	padding:0px
+}
+code {
+	color: #FF9966;
+	font-size: 1em;
+}
+code :link, code :visited {
+	color:inherit
+}
+pre code {
+	color:inherit
+}
+.redNote {
+	color: red;
+}
+span.notetitle {
+	padding: .2em;
+	color:#066;
+	border: none;
+	position:relative;
+	display: block;
+	width: 40px;
+	left: -1.5em;
+	top: -.7em;
+	background: #F2FFF1;
+	padding-left: .2em;
+	text-align: center;
+}
+em.ct-samp {
+	text-transform:uppercase;
+	font-style:normal;
+	font-weight:normal;
+	color:#990000;
+	border: 5px double #F0C;
+}
+.widget {
+	padding: 20px;
+	box-shadow: 2px 2px 10px #444;
+	border-radius: 15px;
+	background-color: #ECEDCF;
+	width: 600px
+}
+#aboutBox {
+	padding: 20px;
+	border-radius: 15px;
+	background-color: #ECEDCF;
+	text-align:center;
+}
+#aboutbox>h1 {
+	background-color: #ECEDCF;
+}
+
+.toc ol>li{
+	list-style: none;
+}
+
+/*]]>*/
+</style>
+</head>
+<body>
+<div>
+  <div class="head">
+    <p><a href="http://www.w3.org/"><img alt="W3C" height="48" src="http://www.w3.org/Icons/w3c_home" width="72"></a></p>
+    <h1 class="head"> Widget Interface</h1>
+    <h2 class="no-num no-toc" id="w3c-proposed-recommendation-22-may-2012">W3C Proposed Recommendation 22 May 2012 
+    </h2>
+    <dl>
+      <dt>This Version:</dt>
+     <dd><a href="http://www.w3.org/TR/2012/PR-widgets-apis-20120522/">http://www.w3.org/TR/2012/PR-widgets-apis-20120522/</a></dd>
+      <dt>Latest Version:</dt>
+      <dd><a href="http://www.w3.org/TR/widgets-apis/">http://www.w3.org/TR/widgets-apis/</a></dd>
+      <dt>Previous Version:</dt>
+      <dd><a href="http://www.w3.org/TR/2011/CR-widgets-apis-20111213/">http://www.w3.org/TR/2011/CR-widgets-apis-20111213/</a></dd> 
+
+      <dt>Latest  Editor's Draft:</dt>
+      <dd><a href="http://dev.w3.org/2006/waf/widgets-api/">http://dev.w3.org/2006/waf/widgets-api/</a><a href="http://dev.w3.org/2006/waf/widgets/"></a></dd>
+      <dt>Test suite:</dt>
+      <dd><a href="http://dev.w3.org/2006/waf/widgets-api/test-suite/">http://dev.w3.org/2006/waf/widgets-api/test-suite/</a></dd>
+      <dt>Implementation report:</dt>
+      <dd><a href="http://dev.w3.org/2006/waf/widgets-api/imp-report/">http://dev.w3.org/2006/waf/widgets-api/imp-report/</a></dd>
+      <dt>Editor:</dt>
+      <dd><a href="http://datadriven.com.au/">Marcos Cáceres</a>, W3C Invited Expert</dd>
+    </dl>
+<p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2012 <a href="http://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="http://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p>  
+</div>
+  <hr>
+  <h2 class="no-num no-toc" id="abstract">Abstract</h2>
+  <p>This specification defines an application programming interface (API) for widgets
+    
+    that provides, amongst other things, functionality for accessing a widget's metadata and persistently storing
+    
+    data.</p>
+<h2 class="no-num no-toc" id="sotd">Status of this Document </h2>
+    <p><em>This section describes the status of this document at the time of its
+  publication. Other documents may supersede this document. A list of current W3C
+  publications and the latest revision of this technical report can be found in the
+  <a href="http://www.w3.org/TR/">W3C technical reports index</a> at
+  http://www.w3.org/TR/.</em></p>
+
+  <p>Publication as a Proposed Recommendation does not imply endorsement by the W3C Membership.
+  This is a draft document and may be updated, replaced or obsoleted by other documents
+  at any time. It is inappropriate to cite this document as other than work in progress.
+  You can find the latest <a href="http://dev.w3.org/2006/waf/widgets-api/">Editor's
+  Draft</a> of this document in the <a href="http://dev.w3.org/">W3C's CVS
+  repository</a>.</p>
+
+  <p>This is the 22 May 2012 W3C Proposed Recommendation of the <cite>Widget Interface</cite> specification. The
+  Last Call period for this specification ended on 28 June 2011<strong>.</strong>  As the <a href="http://dev.w3.org/2006/waf/widgets-api/imp-report/">implementation report</a> shows, the exit criteria for the Candidate Recommendation phase was met (at least two conforming implementations pass the <a href="http://dev.w3.org/2006/waf/widgets-api/test-suite/">test suite</a>). </p>
+  <p><strong>Please note that advancement to Recommendation is blocked
+until Web IDL and Web Storage are both Proposed Recommendations.</strong></p>
+  <p>This document is produced by the <a href="http://www.w3.org/2008/webapps/">Web
+    Applications WG</a>, part of the <a href="http://www.w3.org/2006/rwc/Activity">Rich Web
+      Client Activity</a> in the W3C <a href="http://www.w3.org/Interaction/">Interaction
+        Domain</a>. It is expected that this document will progress along the W3C's
+  Recommendation track.  The public is encouraged
+  to send comments to the WebApps Working Group's public mailing list <a href="mailto:public-webapps@w3.org">public-webapps@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webapps/">archive</a>) by the <strong>19 June 2012</strong>. See <a href="http://www.w3.org/Mail/">W3C mailing list and archive usage guidelines</a>.   Advisory Committee Representatives should consult their questionnaires.</p>
+<p>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 W3C Patent
+    Policy</a>. W3C maintains a <a href="http://www.w3.org/2004/01/pp-impl/42538/status" rel="disclosure">public list of any patent disclosures</a> made in connection with the
+    deliverables of the group; that page also includes instructions for disclosing a
+    patent. An individual who has actual knowledge of a patent which the individual
+    believes contains <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential
+      Claim(s)</a> must disclose the information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section 6 of the
+  W3C Patent Policy</a>.</p>
+
+  <p>The public is encouraged to send comments to the Web Apps Working Group's public
+  mailing list <a href="mailto:public-webapps@w3.org">public-Webapps@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webapps/">archive</a>). See <a href="http://www.w3.org/Mail/">W3C mailing list and archive usage guidelines</a>. A detailed
+  <a href="http://dev.w3.org/cvsweb/2006/waf/widgets/">list of changes</a> from the
+  previous version is also available from the W3C's CVS server.</p>
+  <h2 class="no-num no-toc" id="toc">Table of Contents</h2>
+  
+<!--begin-toc-->
+<ol class="toc">
+ <li><a href="#introduction"><span class="secno">1 </span>Introduction</a>
+  <ol class="toc">
+   <li><a class="done" href="#the-widget-family-of-specifications"><span class="secno">1.1 </span>The Widget Family of Specifications</a></li>
+   <li><a href="#design-goals-and-requirements"><span class="secno">1.2 </span>Design Goals and Requirements</a></ol></li>
+ <li><a href="#conformance"><span class="secno">2 </span>Conformance</a></li>
+ <li><a href="#definitions"><span class="secno">3 </span>Definitions</a></li>
+ <li><a href="#user-agent-0"><span class="secno">4 </span>User Agent</a></li>
+ <li><a href="#the-windowwidget-interface"><span class="secno">5 </span>The <code title="">WindowWidget</code> Interface</a></li>
+ <li><a href="#the-widget-interface"><span class="secno">6 </span>The <code>Widget</code> Interface</a>
+  <ol class="toc">
+   <li><a href="#metadata-attribute-values"><span class="secno">6.2 </span>Metadata Attribute Values</a>
+    <ol class="toc">
+     <li><a href="#localizable-strings"><span class="secno">6.2.1 </span>Localizable strings</a></li>
+     <li><a href="#examples"><span class="secno">6.2.2 </span>Examples</a></ol></li>
+   <li><a href="#the-width-attribute"><span class="secno">6.3 </span>The <code>width</code> Attribute</a></li>
+   <li><a href="#the-height-attribute"><span class="secno">6.4 </span>The <code>height</code> Attribute</a></li>
+   <li><a href="#the-preferences-attribute"><span class="secno">6.5 </span>The <code>preferences</code> Attribute</a>
+    <ol class="toc">
+     <li><a class="" href="#usage-example-1"><span class="secno">6.5.3 </span>Usage Example 1</a></li>
+     <li><a href="#usage-example-2"><span class="secno">6.5.4 </span>Usage Example 2</a></ol></ol></li>
+ <li><a href="#the-widgetstorage-interface"><span class="secno">7 </span>The <code>WidgetStorage</code> Interface</a>
+  <ol class="toc">
+   <li><a href="#example-comparing-storage-areas"><span class="secno">7.1 </span>Example - comparing storage areas</a></ol></li>
+ <li><a href="#widget-storage-areas"><span class="secno">8 </span>Widget Storage Areas</a>
+  <ol class="toc">
+   <li><a href="#read-only-items"><span class="secno">8.1 </span>Read-only Items</a></ol></li>
+ <li><a href="#getting-localizable-strings"><span class="secno">9 </span>Getting Localizable Strings </a>
+  <ol class="toc">
+   <li><a href="#example-1"><span class="secno">9.1 </span>Example 1</a></li>
+   <li><a href="#example-2"><span class="secno">9.2 </span>Example 2</a></li>
+   <li><a href="#example-3"><span class="secno">9.3 </span>Example 3</a></ol></li>
+ <li><a class="no-num" href="#revision-history">Revision history  </a>
+  <ol class="toc">
+   <li><a class="no-num" href="#x19-april-2012">19 April 2012</a></li>
+   <li><a class="no-num" href="#x5-december-2011">5 December 2011</a></li>
+   <li><a class="no-num" href="#x13-june-2011">13 June 2011  </a></li>
+   <li><a class="no-num" href="#x7-september-2010">7 September, 2010</a></ol></li>
+ <li><a class="no-num" href="#normative-references">Normative References</a></li>
+ <li><a class="no-num" href="#informative-references">Informative References</a></ol>
+<!--end-toc-->
+  <h2 id="introduction"><span class="secno">1 </span>Introduction</h2>
+  <p><em>This section is non-normative.</em></p>
+  <p>This specification defines an application programming interface that enables  the ability to:</p>
+  <ul>
+    <li>Access some of the metadata declared in a widget's <a href="#configuration-document">configuration
+      
+      document</a>.</li>
+    <li>Persistently store data relating to a <a href="#widget-instance">widget instance</a>. </li>
+    <li> Retrieve the name and value of <a href="#preference" title="preference">preferences</a>, which may have been declared in a widget's <a href="#configuration-document">configuration document</a> or at runtime.</li>
+  </ul>
+  <p>This specification uses <a href="#webidl">[WebIDL]</a> to specify application programming interfaces.</p>
+  <h3 class="done" id="the-widget-family-of-specifications"><span class="secno">1.1 </span>The Widget Family of Specifications</h3>
+  <p><em>This section is non-normative.</em></p>
+  <p>This specification is part of the <dfn id="widgets-family-of-specifications">Widgets  family of specifications</dfn>,
+    
+    which together standardize widgets as a whole. The <a href="http://www.w3.org/2008/webapps/wiki/WidgetSpecs">list of specifications</a> that make up the Widgets family of specifications can be found on the <a href="http://www.w3.org/2008/webapps/wiki/">Web Applications Working Group's wiki</a>. </p>
+  <h3 id="design-goals-and-requirements"><span class="secno">1.2 </span>Design Goals and Requirements</h3>
+  <p><em>This section is non-normative.</em></p>
+  <p>The design goals for this specification are documented in the <a href="#widget-requirements">[Widget Requirements]</a> document. This document addresses some of the requirements relating to <a href="http://www.w3.org/TR/2009/WD-widgets-reqs-20090430/#application-programming-interfaces"> Application Programming Interfaces</a> of the <a href="#widget-requirements">[Widget Requirements]</a> document:</p>
+  <ul>
+    <li>
+      <p><a href="http://www.w3.org/TR/2009/WD-widgets-reqs-20090430/#instantiated-widget-api">Instantiated
+        
+        Widget API</a>: addressed by <code><a href="#widget">widget</a></code> object.</p>
+    </li>
+    <li>
+      <p><a href="http://www.w3.org/TR/2009/WD-widgets-reqs-20090430/#idl-definitions">IDL
+        
+        Definitions</a>: to meet this requirement, this specification makes use of <a href="#webidl">[WebIDL]</a>.</p>
+    </li>
+    <li>
+      <p><a href="http://www.w3.org/TR/2009/WD-widgets-reqs-20090430/#manipulation-of-author-defined-start-up-values"> Manipulation of Author-defined start-up values</a>: addressed by using a <a href="#widget-storage-area">widget storage
+        
+        area</a> and <code>preferences</code> attribute's extension of the <code><a href="#storage">Storage</a></code> interface defined in <a href="#webstorage">[Web Storage]</a>.</p>
+    </li>
+    <li>
+      <p><a href="http://www.w3.org/TR/2009/WD-widgets-reqs-20090430/#configuration-document-data">Configuration
+        
+        Document Data</a>: this is addressed by the <code><a href="#widget">widget</a></code> object's
+        
+        attributes.</p>
+    </li>
+  </ul>
+  <h2 id="conformance"><span class="secno">2 </span>Conformance</h2>
+  <p>All  examples and notes in this specification are non-normative, as are all sections explicitly marked as non-normative. Everything else in this specification is normative.</p>
+  <p>The key words <em class="ct">must</em>, <em class="ct">must not</em>, <em class="ct">should</em>, <em class="ct">recommended</em>, <em class="ct">may</em> and <em class="ct">optional</em> in the normative parts of this specification are to be interpreted as described in <a href="#rfc2119">[RFC2119]</a>.</p>
+  <p>Only <a href="#user-agent" title="user agent">user agents</a> can claim conformance to this specification. Conformance requirements phrased as algorithms or specific steps can be implemented in any manner, so long as the end result is equivalent to what would be achieved when following the specification. </p>
+  <p class="note"> Note: Implementations can partially check
+    
+    their level of conformance to this specification by successfully passing the test cases
+    
+    of the <a href="#interface-test-suite">[Interface-Test-Suite]</a>. Passing all the tests in
+    
+    the test suite does not imply conformance to this specification; It only implies that
+    
+    the implementation conforms to aspects tested by the test suite.</p>
+  <h2 id="definitions"><span class="secno">3 </span>Definitions</h2>
+  <p>The following definitions are used throughout this specification. Please note that the following list is not exhaustive; other terms are defined throughout this specification. </p>
+  <dl>
+    <dt><dfn id="author-script">Author script</dfn></dt>
+    <dd>
+      <p>Some code running within a <a href="#widget-instance">widget instance</a> (e.g., some
+        
+        ECMAScript).</p>
+    </dd>
+    <dt><dfn id="configuration-document">Configuration document</dfn></dt>
+    <dd>
+      <p>A configuration document is reserved file called "<code>config.xml</code>" at the root of the widget package  as specified in the <a href="#widgets-packaging">[Widgets-Packaging]</a> specification.</p>
+    </dd>
+    <dt><dfn id="getting">Getting</dfn></dt>
+    <dd>
+      <p>A <abbr title="Document Object Model">DOM</abbr> attribute is said to be getting when its value is being retrieved (e.g. by
+        
+        an <a href="#author-script">author script</a>).</p>
+    </dd>
+    <dt><dfn id="initialization">Initialization</dfn></dt>
+    <dd>
+      <p> The act of <a href="#user-agent">user agent</a> processing a widget package through the <a href="http://dev.w3.org/2006/waf/widgets/#steps-for-processing-a-widget-package">Steps
+        
+        for Processing a Widget Package</a>, as specified in the <a href="#widgets-packaging">[Widgets-Packaging]</a> specification.</p>
+    </dd>
+    <dt><dfn id="preference">Preference</dfn></dt>
+    <dd>
+      <p>A  persistently stored
+        
+        name-value pair that is associated with the widget the
+        
+        first time the widget is <a href="#initialization" title="initialization">initiated</a>.</p>
+    </dd>
+    <dt><dfn id="start-file">Start file</dfn></dt>
+    <dd>
+      <p>A  file in the widget package to be
+        
+        loaded by the user agent when it instantiates the widget, as specified in the <a href="#widgets-packaging">[Widgets-Packaging]</a> specification.</p>
+    </dd>
+    <dt><dfn id="setting">Setting</dfn></dt>
+    <dd>
+      <p>A <abbr title="Document Object Model">DOM</abbr> attribute is said to be setting when its value is being set to some value (e.g. by
+        
+        an <a href="#author-script">author script</a>).</p>
+    </dd>
+    <dt><dfn id="supports">Supports</dfn></dt>
+    <dd>
+      <p>A user agent implements a mentioned specification
+        
+        or conformance clause.</p>
+    </dd>
+    <dt><dfn id="viewport">Viewport</dfn></dt>
+    <dd>
+      <p>A <a href="http://www.w3.org/TR/CSS21/visuren.html#viewport"><dfn class="external" id="css-viewport">CSS viewport</dfn></a>. For a <a href="#start-file">start file</a> rendered on <a href="http://www.w3.org/TR/CSS21/media.html#continuous-media-group"><dfn class="external" id="continuous-media">continuous media</dfn></a>, as defined in the <a href="#css21">[CSS]</a> specification, a viewport is the area on which the <code>Document</code> of the <a href="#start-file">start file</a> is rendered by the user agent. The dimensions of a viewport excludes scrollbars, toolbars, and other user interface 
+        
+        "chrome".</p>
+    </dd>
+    <dt><dfn id="widget-instance">Widget Instance</dfn></dt>
+    <dd>
+      <p>A <a href="#browsing-context">browsing context</a> that comes into existence after <a href="#initialization">initialization</a>. The concept of a <dfn id="browsing-context">browsing context</dfn> is defined in <a href="#html5">[HTML]</a>. Multiple widget instances can be instantiated from a single widget package. A widget instance is unique and does not share any DOM attribute values, <a href="#widget-storage-area">widget storage area</a>, or <a href="#webstorage">[Web Storage]</a> storage areas with any other widget instance. </p>
+    </dd>
+  </dl>
+  <h2 id="user-agent-0"><span class="secno">4 </span>User Agent</h2>
+  <p>A <dfn id="user-agent" title="user agent">user agent</dfn> is a software implementation of this specification that also <a href="#supports">supports</a> the <a href="#widgets-packaging">[Widgets-Packaging]</a> specification.</p>
+  <p class="note">Note: The user agent described in this specification does not denote a
+    
+    "widget user agent" at large. That is, a user agent that implements all the
+    
+    specifications, and dependencies, defined in the <a href="#widgets-family-of-specifications">widgets family of
+    
+    specifications</a>. The user agent described in this specification is only concerned
+    
+    with the behavior of programming interfaces. A user agent needs to impose implementation-specific limits on otherwise unconstrained inputs, e.g. to prevent denial of service attacks, to guard against running out of memory, or to work around platform-specific limitations. </p>
+  <h2 id="the-windowwidget-interface"><span class="secno">5 </span>The <code title="">WindowWidget</code> Interface</h2>
+  <p id="ta-za">For a <a href="#widget-instance">widget instance</a>, a <a class="product-ua" href="#user-agent">user agent</a> <em class="ct">must</em> expose a unique object that implements the <code><a href="#widget">Widget</a></code> interface to <a href="#author-script" title="author script">author scripts</a> that are same <a href="#origin">origin</a> as the instance of the widget (e.g., a <code>Document</code> loaded in a <a href="#html5">[HTML]</a> <code>iframe</code> element with content from within a widget package). User agent implementing <a href="#html5"> [HTML]</a>'s <code>Window</code> interface <em class="ct">must</em> implement
+    
+    the <code><a href="#widget">Widget</a></code> interface as the <code><a href="#widget">widget</a></code> attribute of the <code>window</code> object in the manner defined by the <code><a href="#windowwidget">WindowWidget</a></code> interface. </p>
+  <pre class="idl">[<a href="http://dev.w3.org/2006/webapi/WebIDL/#NoInterfaceObject">NoInterfaceObject</a>]
+interface <dfn id="windowwidget">WindowWidget</dfn> {
+  readonly attribute Widget widget;
+};
+
+<a href="http://www.whatwg.org/specs/web-apps/current-work/#window">Window</a> <a href="http://dev.w3.org/2006/webapi/WebIDL/#es-implements-statements">implements</a> <a href="#windowwidget">WindowWidget</a>;</pre>
+  <h2 id="the-widget-interface"><span class="secno">6 </span>The <code id="widget-interface"><a href="#widget">Widget</a></code> Interface</h2>
+  <p>An object that implements the <code><a href="#widget">Widget</a></code> interface exposes the following attributes:</p>
+  <pre class="idl">interface <dfn id="widget">Widget</dfn> {
+    readonly attribute DOMString     <a href="#author-0">author</a>;
+    readonly attribute DOMString     <a href="#description-0">description</a>;
+    readonly attribute DOMString     <a href="#name-0">name</a>;
+    readonly attribute DOMString     <a href="#shortname">shortName</a>;
+    readonly attribute DOMString     <a href="#version-0">version</a>;
+    readonly attribute DOMString     <a href="#id">id</a>;
+    readonly attribute DOMString     <a href="#authoremail">authorEmail</a>;
+    readonly attribute DOMString     <a href="#authorhref">authorHref</a>;
+    readonly attribute <a href="#widgetstorage">WidgetStorage</a> <a href="#the-preferences-attribute" title="widget-preferences">preferences</a>;
+    readonly attribute unsigned long <a href="#the-height-attribute" title="widget-height">height</a>;
+    readonly attribute unsigned long <a href="#the-width-attribute" title="widget-width">width</a>;
+};</pre> 
+  <p class="note">Note: A user agent can <a href="#supports" title="supports"> support</a> the <code><a href="#storage">Storage</a></code> interface on
+    
+    DOM attributes other than the <code>preferences</code> attribute (e.g., a user agent
+    
+    can  support the <a href="#webstorage">[Web Storage]</a> specification's <code>localStorage</code> attribute of the <code>window</code> object in conjunction to the <code>preferences</code> attribute). For the sake of interoperability across widget user agents, and
+    
+    where it makes sense, authors can use the <code>preferences</code> attribute in conjunction to
+    
+    other APIs that expose an object that implements the <code><a href="#storage">Storage</a></code> interface. </p>
+  <p id="ta-ah">If a user agent has previously associated a <a href="#widget-storage-area">widget storage area</a> with a widget instance, the user agent <em class="ct">must not</em> re-create the <code>preferences</code> attribute unless explicitly requested to do so by the end-user or for security or privacy reasons (e.g., the end-user wants to purge personal data). Instead, the previously associated <a href="#widget-storage-area">widget storage area</a> (or an equivalent clone) can be accessed using the <code><a href="#storage">Storage</a></code> interface. When an object implementing the <code><a href="#widget">Widget</a></code> interface is instantiated, if a user agent has not previously associated a <a href="#widget-storage-area">widget storage area</a> with the <a href="#widget-instance" title="widget instance">instance of a widget</a>, then the <a class="product-ua" href="#user-agent">user agent</a> <em class="ct">must</em> <a href="#create-the-preferences-attribute">create the <code>preferences</code> attribute</a>. </p>
+  <h4 class="no-toc" id="usage-example"><span class="secno">6.1 </span>Usage Example</h4>
+  <p><em>This section is non-normative</em>.</p>
+  <p>This example shows how a widget's metadata can be accessed by through the widget interface. </p>
+  <p>Given the following <a href="#configuration-document">configuration document</a>: </p>
+  <div class="example">
+    <pre class="brush: xml">&lt;widget xmlns      = "http://www.w3.org/ns/widgets"
+         id        = "http://example.org/exampleWidget"
+         version   = "2.0 Beta"
+         height    = "200"
+         width     = "200"
+         viewmodes = "floating"&gt;
+
+&lt;name short="Example 2.0"&gt;The example Widget!&lt;/name&gt;
+
+&lt;description&gt;A sample widget to demonstrate some of the possibilities.&lt;/description&gt;
+
+&lt;author href  = "http://foo-bar.example.org/"
+        email = "foo-bar@example.org"&gt;Foo Bar Corp&lt;/author&gt;
+
+&lt;preference name     = "apikey"
+            value    = "ea31ad3a23fd2f"
+            readonly = "true"/&gt;
+
+&lt;/widget&gt;</pre>
+  </div>
+  <p>And given the following <a href="#start-file">start file</a>:</p>
+  <div class="example">
+    <pre class="brush: js">&lt;!doctype html&gt;
+&lt;title&gt;About this Widget&lt;/title&gt;
+&lt;style&gt;
+html {
+  padding: 20px;
+}
+
+#aboutBox{
+  padding: 20px;
+  box-shadow: 2px 2px 10px #444;
+  border-radius: 15px;
+  background-color: #ECEDCF;
+  text-align:center;
+}
+&lt;/style&gt;
+
+&lt;body onload="makeAboutBox()"&gt;
+&lt;div id="aboutBox"&gt;
+&lt;h1&gt;&lt;a id="storeLink"&gt;&lt;img src="icon.png" id="icon"&gt;&lt;/a&gt;&lt;/h1&gt;
+&lt;h1 id="name"&gt;Name&lt;/h1&gt;
+&lt;p id="version"&gt;Version: &lt;/p&gt;
+&lt;hr&gt;
+&lt;p id="description"&gt;...&lt;/p&gt;
+&lt;hr&gt;
+&lt;p id="author"&gt;© &lt;/p&gt;
+&lt;/div&gt;
+&lt;script&gt;
+  // example that generates an about box 
+  // using metadata from a widget's configuration document. 
+  function makeAboutBox(){
+  var storeLink = document.getElementById("storeLink");
+  storeLink     = storeLink.setAttribute("href", widget.id); 
+
+  var icon     = document.getElementById("icon");
+  icon.setAttribute("alt", widget.shortName); 
+  var title    = document.getElementById("name");
+  title.innerHTML = widget.name;
+
+  var version       = document.getElementById("version"); 
+  var prodKey       = widget.preferences["productKey"];
+  version.innerHTML += widget.version + 
+" (" + prodKey + ")"; 
+  var description   = document.getElementById("description"); 
+  description.innerHTML = widget.description; 
+
+  var author = document.getElementById("author");
+  author.innerHTML += widget.author; 
+  }
+&lt;/script&gt;
+    </pre>
+  </div>
+  <p>The widget would render as:</p>
+  <div class="widget">
+    <div id="aboutBox">
+      <div style="text-align:center;"><img alt="Example 2.0" src="images/widget.png" style=" background-color: ECEDCF;"></div>
+      <p class="no-toc" id="name" style="font-size: 2em; font-weight:bold;text-align:center; background-color: #ECEDCF; color: black">The Example Widget!</p>
+      <p id="version">Version: 2.0 Beta (aeg-sadf-asfd-asd) </p>
+      <hr>
+      <p id="description">A sample widget to demonstrate some of the possibilities.</p>
+      <hr>
+      <p id="author">© Foo Bar Corp</p>
+    </div>
+  </div>
+  <h3 id="metadata-attribute-values"><span class="secno">6.2 </span>Metadata Attribute Values</h3>
+  <p> Most of the attributes of the <code><a href="#widget">widget</a></code> interface correspond to the metadata derived from the <a href="#initialization">initialization</a> process.</p>
+  <p>When an object implementing the <code><a href="#widget">Widget</a></code> interface is instantiated, a <a class="product-ua" href="#user-agent">user agent</a> sets the attributes identified in the left column of the <a href="#configuration-attributes-table">configuration attributes table</a> to the values that correspond to values in <dfn class="external" id="table-of-configuration-defaults" title="table of configuration defaults"><a href="http://www.w3.org/TR/widgets/#table-of-configuration-defaults">table of configuration defaults</a></dfn> as defined in <a href="#widgets-packaging">[Widgets-Packaging</a>] (identified by the values in the right hand column).</p>
+  <table>
+    <caption>
+    <dfn id="configuration-attributes-table"> Configuration Attributes Table </dfn>
+    </caption>
+    <tr>
+      <th scope="col"> Attributes</th>
+      <th scope="col">Values in Table of Configuration Defaults</th>
+      <th scope="col">Is localizable string</th>
+    </tr>
+    <tr>
+      <td><code><dfn id="author-0">author</dfn></code></td>
+      <td><var>author name</var></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code><dfn id="version-0">version</dfn></code></td>
+      <td><var>widget version</var></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code><dfn id="shortname">shortName</dfn></code></td>
+      <td><var>widget short name </var></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code><dfn id="name-0">name</dfn></code></td>
+      <td><var>widget name</var></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code><dfn id="description-0">description</dfn></code></td>
+      <td><var>widget description</var></td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td><code><dfn id="authoremail">authorEmail</dfn></code></td>
+      <td><var>author email</var></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code><dfn id="authorhref">authorHref</dfn></code></td>
+      <td><var>author href</var></td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <td><code><dfn id="id">id</dfn></code></td>
+      <td><var>widget id</var></td>
+      <td>no</td>
+    </tr>
+  </table>
+  <p id="ta-attribute-tests">Upon <a href="#getting">getting</a> any of the attributes from the attributes column of the <a href="#configuration-attributes-table">configuration
+    
+    attributes table</a>, a <a class="product-ua" href="#user-agent">user agent</a> <em class="ct">must</em> return the corresponding value from the 'Values in Table of Configuration Defaults' column. </p>
+  <p>Attributes that contain a localizable string are identified by having word yes in the "Is localizable string" column in the <a href="#configuration-attributes-table">Configuration Attributes Table</a> above. </p>
+  <h4 id="localizable-strings"><span class="secno">6.2.1 </span>Localizable strings</h4>
+  <p>Some attributes in  the <a href="#configuration-attributes-table">Configuration Attributes Table</a> come in the form of a <dfn id="localizable-string">localizable string</dfn>, which is defined by the <a href="#widgets-packaging">[Widgets-Packaging]</a> specification as a... </p>
+  <blockquote>
+    <p><q>data structure containing a sequence of one or more strings, each having some associated directional information and language information (if any). The purpose of a localizable string is to assist user agent in correctly applying the Unicode <span>[BIDI]</span> algorithm when displaying text.</q> 
+  </blockquote>
+  <p id="ta-get-18n-string">When <a href="#getting">getting</a> an attribute that is identified as a <a href="#localizable-string">localizable string</a>, the <a class="product-ua" href="#user-agent">user agent</a> <em class="ct">must</em> apply the <a href="#rule-for-getting-localizable-strings">rule for getting localizable strings</a> and return the result.</p>
+  <h4 id="examples"><span class="secno">6.2.2 </span>Examples</h4>
+  <div class="example">
+    <p>This example shows how a user agent is expected to behave when an empty <a href="#configuration-document">configuration document</a> is given:</p>
+    <pre class="brush: xml"> &lt;widget xmlns = "http://www.w3.org/ns/widgets"/&gt; 
+  </pre>
+    <p>Would result in the following being reflected in the through the <code title="">widget</code> object:</p>
+    <pre class="brush: js">&lt;!doctype html&gt;
+&lt;script&gt;
+  alert(widget.version     === "") //true
+  alert(widget.name        === "") //true
+  alert(widget.author      === "") //true
+  alert(widget.authorEmail === "") //true
+  alert(widget.authorHref  === "") //true
+  alert(widget.description === "") //true
+  alert(widget.id          === "") //true
+  alert(widget.shortName   === "") //true
+&lt;/script&gt;
+</pre>
+  </div>
+  <h3 id="the-width-attribute"><span class="secno">6.3 </span>The <dfn title="widget-width"><code>width</code></dfn> Attribute</h3>
+  <p id="ta-pa">Upon <a href="#getting">getting</a> the <code>width</code> attribute, a <a class="product-ua" href="#user-agent">user agent</a> <em class="ct">must</em> return a number that represents the width of the <a href="#widget-instance" title="widget instance">widget instance’s</a> <a href="#viewport">viewport</a> in <a href="#css21">[CSS]</a> pixels. </p>
+  <h3 id="the-height-attribute"><span class="secno">6.4 </span>The <dfn title="widget-height"><code>height</code></dfn> Attribute</h3>
+  <p id="ta-pb">Upon <a href="#getting">getting</a> the <code>height</code> attribute, a <a class="product-ua" href="#user-agent">user agent</a> <em class="ct">must</em> return a number that represents the height of the <a href="#widget-instance" title="widget instance">widget instance’s</a> <a href="#viewport">viewport</a> in <a href="#css21">[CSS]</a> pixels. </p>
+  <h3 id="the-preferences-attribute"><span class="secno">6.5 </span>The <dfn title="widget-preferences"><code>preferences</code></dfn> Attribute</h3>
+  <p>The <code>preferences</code> attribute allows authors to
+    
+    manipulate a <a href="#widget-storage-area">widget storage area</a> that is unique for the <a href="#widget-instance" title="widget instance">instance of a widget</a>. It does this by  implementing the <code><a href="#storage">Storage</a></code> interface specified in <a href="#webstorage">[Web Storage]</a>. </p>
+  <p id="ta-storage-event">Upon invocation of the <code>setItem()</code>, <code>removeItem()</code> and <code>clear()</code> methods, if the invocation did something, a <a class="product-ua" href="#user-agent">user agent</a> <em class="ct">must</em> dispatch a <a href="http://dev.w3.org/html5/webstorage/#event-storage">storage</a> event akin to what is specified in "<a href="http://dev.w3.org/html5/webstorage/#event-storage">the storage event</a>" section of <a href="#webstorage">[Web Storage]</a> (i.e., the <code>preferences</code> attribute behaves the same as<code> localStorage</code> with regards to dispatching events). </p>
+  <p id="ta-al">Upon invocation of the <code>setItem()</code> or <code>removeItem()</code> method by
+    
+    an <a href="#author-script">author script</a> on a <a href="#read-only-item">read-only item</a>, a <a class="product-ua" href="#user-agent">user agent</a> <em class="ct">must</em> throw a <code><a href="#no_modification_allowed_err">NO_MODIFICATION_ALLOWED_ERR</a></code> exception and <em class="ct">must not</em> fire a <span>storage event</span>. The <code><dfn id="no_modification_allowed_err">NO_MODIFICATION_ALLOWED_ERR</dfn></code> is defined in the <a href="#dom3core">[DOM3Core]</a> specification.</p>
+  <p id="ta-ae">Upon invocation of the <code>preferences</code> attribute's <code>clear()</code> method, a <a class="product-ua" href="#user-agent">user agent</a> <em class="ct">must not</em> remove <a href="#read-only-item" title="read-only item">read-only items</a> and corresponding values from a <a href="#widget-storage-area">widget storage area</a>. A user agent <em class="ct">must</em>, however, remove other items from
+    
+    the <a href="#widget-storage-area">widget storage area</a> in the manner described in the <a href="#webstorage">[Web Storage]</a> specification  without throwing a <code><a href="#no_modification_allowed_err">NO_MODIFICATION_ALLOWED_ERR</a></code> exception for items that the user agent cannot remove. </p>
+ <p>When <a href="#getting">getting</a> or <a href="#setting">setting</a> the <code>preferences</code> attribute, if the <a href="#origin">origin</a> of a <a href="#widget-instance">widget instance</a> is mutable (e.g., if the user agent allows <code>document.domain</code> to be dynamically changed), then the <a class="product-ua" href="#user-agent">user agent</a> <em class="ct">must</em> perform the <a href="#preference-origin-security-check-0">preference-origin security check</a>. The concept of <dfn id="origin">origin</dfn> is  defined in <a href="#html5">[HTML]</a>.  </p>
+ <h4 class="no-toc" id="preference-origin-security-check"><span class="secno">6.5.1 </span>Preference Origin Security Check</h4> 
+  <p>The steps to perform the <dfn id="preference-origin-security-check-0">preference-origin security check</dfn> are given by the following algorithm:</p> 
+  <ol> 
+    <li> 
+      <p>The user agent <em class="ct">may</em> throw a <code>SECURITY_ERR</code> exception instead of returning a <code><a href="#storage">Storage</a></code> object if the request violates a policy decision (e.g. if the user agent is configured to not allow the page to persist data).</p>
+    </li>
+    <li>
+      <p>If the <code>Document</code>'s <a href="#origin">origin</a> is not a scheme/host/port tuple, then throw a <code>SECURITY_ERR</code> exception and abort these steps. </p>
+    </li> 
+    <li> 
+      <p>Otherwise, return the <code><a href="#storage">Storage</a></code> object associated with that <a href="#widget-instance" title="widget instance">widget instance's</a> <code>preferences</code> attribute.</p> 
+    </li> 
+  </ol> 
+  <h4 class="no-toc" id="creating-the-preferences-attribute"><span class="secno">6.5.2 </span>Creating the <code>preferences</code> Attribute</h4>
+  <p>The steps to <dfn id="create-the-preferences-attribute">create the <code>preferences</code> attribute</dfn> are given by the following algorithm:</p>
+  <ol>
+    <li>
+      <p>Create a <a href="#widget-storage-area">widget storage area</a> that is unique for the <a href="#origin">origin</a> of this <a href="#widget-instance" title="widget instance">instance of a widget</a>.</p>
+    </li>
+    <li>
+      <p>If the <var>widget preferences</var> variable of the <a href="#table-of-configuration-defaults">table of configuration defaults</a> contains any <var>preferences</var>, then for each <var><a href="#preference">preference</a></var> held by <var>widget preferences</var>:</p>
+      <ol style="list-style:lower-alpha">
+        <li>
+          <p>Let <var>pref-key</var> be the <var><a href="#name-0">name</a></var> of the <var><a href="#preference">preference</a></var>.</p>
+        </li>
+        <li>
+          <p>If the <var>pref-key</var> already exists in the <var>storage area</var>, stop processing this <var><a href="#preference">preference:</a></var> go back to step 2 in this algorithm, and process the next <var><a href="#preference">preference</a></var> (if any). </p>
+        </li>
+        <li>
+          <p>Let <var>pref-value</var> be the <var>value</var> of the <var><a href="#preference">preference</a></var>.</p>
+        </li>
+        <li>
+          <p> Add <var>pref-key</var> and <var>pref-value</var> to the <a href="#widget-storage-area">widget storage area</a>:</p>
+          <ol>
+            <li>
+              <p>If the user agent cannot write to the <a href="#widget-storage-area">widget storage area</a> (e.g.,
+                
+                because it ran out of disk space, or the space quota was exceeded, etc.),
+                
+                terminate all processing of this widget. It is <em class="ct">recommended</em> that the user agent inform the end-user of the error. </p>
+            </li>
+            <li>
+              <p>If this <var><a href="#preference">preference</a></var>'s associated <var>readonly</var> value is <code>true</code>, then flag this key as a <a href="#read-only-item">read-only item</a> in
+                
+                the <a href="#widget-storage-area">widget storage area</a>.</p>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li>
+      <p>Implement the <a href="#storage">Storage</a> interface on the <a href="#widget-storage-area">widget storage area</a>,
+        
+        and make the <code>preferences</code> attribute a pointer to that <a href="#widget-storage-area" title="widget storage area">storage
+        
+        area</a>.</p>
+    </li>
+  </ol>
+  <h4 class="" id="usage-example-1"><span class="secno">6.5.3 </span>Usage Example 1</h4>
+  <p><em>This section is non-normative</em>. </p>
+  <p>The following example shows the different means by which an author can interface with the <code title="">widget</code> object's <code>preferences</code> attribute in ECMAScript. The possibilities include  using either the <code>getItem()</code> and <code>setItem()</code> methods, or  bracket access (or a combination of both). </p>
+  <pre class="brush: js">&lt;!doctype html&gt;
+...
+
+&lt;fieldset id="prefs-form"&gt;
+&lt;legend&gt;Game Options&lt;/legend&gt;
+  &lt;label&gt;Volume:  &lt;input type="range" min="0" max="100" name="volume"/&gt; &lt;/label&gt; 
+  &lt;label&gt;Difficulty:  &lt;input type="range" min="0" max="100" name="difficulty"/&gt; &lt;/label&gt;
+  &lt;input type="button" value="Save" onclick="savePrefs()"/&gt;
+  &lt;input type="button" value="load" onclick="loadPrefs()"/&gt;
+&lt;/fieldset&gt;
+
+...
+
+&lt;script&gt;
+var form   = document.getElementById("prefs-form");
+var fields = form.querySelectorAll("input[type='range']"); 
+function loadPrefs () {
+   for(var i = 0; i &lt; fields.length; i++){
+      var field = fields[i];
+      if (typeof widget.preferences[field.name] !== "undefined") {
+        field.value = widget.preferences.getItem(field.name); 
+      }
+   }  
+}
+
+function savePrefs () {
+  for(var i = 0; i &lt; fields.length; i++){
+      var field = fields[i];
+      widget.preferences.setItem(field.name,field.value);
+  }
+}
+&lt;/script&gt;</pre>
+  <h4 id="usage-example-2"><span class="secno">6.5.4 </span>Usage Example 2</h4>
+  <p><em>This section is non-normative.</em></p>
+  <p>This example demonstrates the expected behavior of a user agent that is interacting with <a href="#preference" title="preference">preferences</a> that were declared in a <a href="#configuration-document">configuration document</a>. The user is able to modify and save various preferences. However, if the user attempts to modify and save the license key, which is set to read-only, the widget will throw an error and display an alert message. </p>
+  <div class="example" style="width: 100%">
+    <div style="display: inline-block; width: 48%;">
+      <pre class="brush: xml">&lt;!-- Configuration Document --&gt;
+
+&lt;widget xmlns="http://www.w3.org/ns/widgets"&gt; 
+  &lt;name&gt;The 80's: Greatest Hits!&lt;/name&gt;
+  &lt;preference name="licenseKey" 
+              value="f199bb20-1499-11df" 
+              readonly="true"/&gt;
+  &lt;preference name="favtrack" 
+              value="billy"/&gt;
+  &lt;preference name="playorder"
+              value="1" /&gt;  
+&lt;/widget&gt;</pre>
+    </div>
+    <div style="display: inline-block; width: 48%"> 
+    <pre class="brush: js">&lt;!doctype html&gt;
+
+...
+
+&lt;script&gt;
+var fields;
+function init(){
+  fields = document.forms[0].elements;
+  loadPrefs()
+}
+
+
+function loadPrefs () { 
+  for(var i = 0; i &lt; fields.length; i++){
+     var field = fields[i]; 
+     if (typeof widget.preferences[field.name] !== "undefined") {
+        field.value = widget.preferences[field.name]; 
+     }
+  } 
+}
+
+function savePrefs () {
+  for(var i = 0; i &lt; fields.length; i++){
+    var field = fields[i];
+    try{
+      widget.preferences.setItem(field.name,field.value);
+    }catch(e){
+       if(e.code === DOMException.NO_MODIFICATION_ALLOWED_ERR){
+          alert(e);
+       }
+    }
+   }
+  }
+&lt;/script&gt;
+
+&lt;body onload="init()"&gt;
+  &lt;fieldset id="prefs-form"&gt;
+  &lt;legend&gt;Album Playback Settings&lt;/legend&gt;
+  &lt;form&gt;
+  &lt;label&gt;Volume: 
+  &lt;input type="range" min="0" max="100" 
+         step="10.0" value="50" name="volume"&gt; 
+  &lt;/label&gt;
+  &lt;label&gt;Playback: 
+  &lt;select name="playorder"&gt; 
+     &lt;option value=0&gt;Loop
+     &lt;option value=1&gt;Random 
+     &lt;option value=2&gt;Normal
+  &lt;/select&gt;
+  &lt;/label&gt;
+
+  &lt;label&gt;Favorite Song
+
+  &lt;select name="favtrack"&gt;
+     &lt;option value=kate&gt;Kate Bush: Babooshka
+     &lt;option value=billy&gt;Billy Idol: White Wedding 
+     &lt;option value=culture&gt;Culture Club: Karma Chameleon
+  &lt;/select&gt;
+  &lt;/label&gt; 
+
+  &lt;label&gt;License Key: &lt;input name="licenseKey"&gt;&lt;/label&gt; 
+&lt;/form&gt; 
+&lt;button onclick="savePrefs()"&gt;Save&lt;/button&gt;
+&lt;button onclick="loadPrefs()"&gt;Load&lt;/button&gt;
+&lt;/fieldset&gt;
+
+...
+
+</pre>
+</div>
+  </div>
+  <h2 id="the-widgetstorage-interface"><span class="secno">7 </span>The <code><a href="#widgetstorage">WidgetStorage</a></code> Interface</h2>
+  <p>The <code><a href="#widgetstorage">WidgetStorage</a></code> Interface extends  <a href="#webstorage">[Web Storage]</a>'s <code><a href="#storage">Storage</a></code> interface so that it can provide the necessary functionality provided by this specification. It does not add any new methods or attributes; it just provides a wrapper that makes it easier to implement on some platforms. </p>
+  <pre class="idl">[NoInterfaceObject]
+interface <dfn id="widgetstorage">WidgetStorage</dfn> : Storage {
+};</pre>
+  <h3 id="example-comparing-storage-areas"><span class="secno">7.1 </span>Example - comparing storage areas</h3>
+  <p>This example shows how to work out if a <a href="http://dev.w3.org/html5/webstorage/#event-storage">storage event</a> came from the widget or from the Web Storage's <code>localStorage</code>. </p>
+  <div class="example">
+    <pre class="brush: js">&lt;!doctype html&gt;
+&lt;script&gt;  
+//note that this code is only really useful inside an iframe! 
+window.addEventListener("storage", function handleStorage(event){
+   if (event.storageArea === widget.preferences) {
+
+      //the event was fired by the widget
+
+   } else if (event.storageArea === window.localStorage || 
+              event.storageArea === window.sessionStorage){
+
+      //the event was fired by the Web Storage
+
+   } else {
+
+      //the event was fired by some other object. 
+
+   }
+}); 
+&lt;/script&gt;</pre></div>
+  <h2 id="widget-storage-areas"><span class="secno">8 </span>Widget Storage Areas</h2>
+  <p>A <dfn id="widget-storage-area">widget storage area</dfn> is a data-store that is unique for the <a href="#widget-instance">widget instance</a> that uses   [Web Storage]'s  <code><a href="#storage">Storage</a></code> interface but modifies the behavior of [Web Storage] by allowing some items to be <a href="#read-only-item" title="read-only item">read-only</a>. A user agent uses a <a href="#widget-storage-area">widget storage area</a> to store  key-value pairs that pertain to the <code>preferences</code> attribute. An <a href="#author-script">author script</a> interfaces with the <a href="#widget-storage-area">widget storage area</a> via the <a href="#webstorage">[Web Storage]</a> specification's <code><dfn id="storage">Storage</dfn></code> interface.</p>
+  <p id="ta-aa"> A <a class="product-ua" href="#user-agent">user agent</a> <em class="ct">must</em> preserve the values stored in a <a href="#widget-storage-area">widget storage area</a> when a widget is re-instantiated (i.e.,  when the device is rebooted and the widget is reopened, the previously set data is made available to the <a href="#widget-storage-area">widget storage area</a>). </p>
+  <h3 id="read-only-items"><span class="secno">8.1 </span>Read-only Items</h3>
+  <p>As an extension to the <a href="#webstorage">[Web Storage]</a> specification, a <a href="#widget-storage-area">widget storage area</a> allows certain key-value pairs (items) to be
+    
+    
+    read-only: a <dfn id="read-only-item">read-only item</dfn> is an item in a <a href="#widget-storage-area">widget storage area</a> that cannot be modified or deleted by  an <a href="#author-script" title="author script">author script</a>. A read-only item always represents a <a href="#preference">preference</a> that author explicitly flagged as "read-only" in the widget's <a href="#configuration-document">configuration document</a> (denoted by a <code title="">preference</code> element having a <code title="">readonly</code> attribute value set to <code>true</code>).</p>
+  <h2 id="getting-localizable-strings"><span class="secno">9 </span>Getting Localizable Strings </h2>
+  <p>The <dfn id="rule-for-getting-localizable-strings">rule for getting localizable strings</dfn> is as follows: </p>
+  <ol>
+    <li>
+      <p>Let <var>lString</var> be a copy of the <a href="#localizable-string">localizable string</a> to be processed. </p>
+    </li>
+    <li>
+      <p>If <var>lString</var> has no directional information associated with it  (i.e., no <code>dir</code> attribute was used anywhere in the ancestor chain of the element or attribute in question), and the localized string does not contain any sub-strings with directional information within the string itself, return the <var>lString</var> and terminate this algorithm. </p>
+      <div class="example">
+        <p>For example, the consider the following configuration document :</p>
+        <pre class="brush: xml">&lt;widget xmlns = "http://www.w3.org/ns/widgets" 
+    version   = "1.0"&gt;
+   &lt;name&gt;Hello&lt;/name&gt; 
+&lt;/widget&gt;       </pre>
+        <p>Would result in the following in the API:</p>
+        <pre class="brush: js">&lt;!doctype html&gt;
+&lt;script&gt;
+  alert(widget.version === "1.0")   //returns true
+  alert(widget.name    === "Hello") //returns true
+&lt;/script&gt;</pre>
+      </div>
+    </li>
+    <li>
+      <p>If the <var>lString</var> contains directional information and/or contains any sub-strings with directional information, then recursively do the following from the outermost string to the inner most sub-string of <var>lString</var>: </p>
+      <ol style="list-style-type:upper-alpha">
+        <li>
+          <p>Let <var>direction</var> be the direction of the sub-string. </p>
+        </li>
+        <li>Prepend one of the following Unicode characters to the sub-string based on matching the following directions:
+          <dl>
+            <dt><code>lro </code></dt>
+            <dd>U+202D 'LEFT-TO-RIGHT OVERRIDE'.</dd>
+            <dt><code>ltr </code></dt>
+            <dd>U+202A 'LEFT-TO-RIGHT EMBEDDING'.</dd>
+            <dt><code>rlo</code></dt>
+            <dd>U+202E 'RIGHT-TO-LEFT OVERRIDE'.</dd>
+            <dt><code>rtl </code></dt>
+            <dd>U+202B 'RIGHT-TO-LEFT EMBEDDING'. </dd>
+          </dl>
+        </li>
+        <li>
+          <p>Append the sub-string with a  U+202C 'POP DIRECTIONAL FORMATTING' character. </p>
+        </li>
+        <li> If the sub-string contains any further sub-strings with directional information repeat the steps A-D in this algorithm. </li>
+      </ol>
+    </li>
+    <li>
+      <p>Return <var>lString</var>.</p>
+    </li>
+  </ol>
+  <h4 id="example-1"><span class="secno">9.1 </span>Example 1</h4>
+  <p><em>This section is non-normative.</em></p>
+  <div class="example">
+    <p>The following configuration document demonstrates how having an <code>dir</code> attribute is handled by the Widget API:</p>
+    <pre class="brush: xml">&lt;widget xmlns = "http://www.w3.org/ns/widgets" 
+    version   = "1.0" 
+    dir       = "ltr"&gt;
+   &lt;name&gt;Hello&lt;/name&gt; 
+&lt;/widget&gt; 
+    </pre>
+    <p>Would result in the following in the API:</p>
+    <pre class="brush: js">&lt;!doctype html&gt;
+&lt;title&gt;Example 1&lt;/title&gt;
+&lt;body style="background-color: #ECEDCF"&gt;
+&lt;p id ="name"&gt;&lt;/p&gt;
+&lt;p id = "version"&gt; &lt;/p&gt;
+
+&lt;script&gt;
+var nameElem    = document.getElementById("name"); 
+var versionElem = document.getElementById("version");
+
+nameElem.innerHTML    = 'The widget's name is "' + widget.name + 
+                        '". &lt;br&gt;Escaped, the value of name is "' +
+                        escape(widget.name) + '".'; 
+
+versionElem.innerHTML = 'The widget\'s version is "' + widget.version + 
+                        '". &lt;br&gt; Escaped, the value of version is "' +
+                        escape(widget.version) +'".';
+&lt;/script&gt;</pre>
+    <p>Would render as:</p>
+    <div class="widget">
+      <p>The widget's name is 'Hello'. <br>
+        Escaped, the value of name is [%u202AHello%u202C].</p>
+      <p>The widget's version is '1.0'. <br>
+        Escaped, the value of version is [%u202A1.0%u202C].</p>
+    </div>
+  </div>
+  <h4 id="example-2"><span class="secno">9.2 </span>Example 2</h4>
+  <p><em>This section is non-normative.</em></p>
+  <div class="example">
+    <p>Given this  configuration document, where the widget element has <code>dir</code> set to <code>ltr</code> and name has a <code>span</code> element with a <code>dir</code> attribute set to <code>lro</code>: </p>
+    <pre class="brush: xml">&lt;widget xmlns = "http://www.w3.org/ns/widgets" 
+    version   = "1.0" 
+    dir       = "ltr"&gt;
+   &lt;name&gt;&lt;span dir="rlo"&gt;olleH&lt;/span&gt;&lt;/name&gt; 
+&lt;/widget&gt; 
+    </pre>
+    <p> The following would result in the start file of the widget:</p>
+    <pre class="brush: js">&lt;!doctype html&gt;
+&lt;title&gt;Example 2&lt;/title&gt;
+&lt;body style="background-color: #ECEDCF"&gt;
+&lt;p id ="name"&gt;&lt;/p&gt;
+&lt;p id = "version"&gt; &lt;/p&gt;
+
+&lt;script&gt;
+var nameElem    = document.getElementById("name"); 
+var versionElem = document.getElementById("version");
+nameElem.innerHTML    = 'The widget\'s name is "' + widget.name + 
+                        '". &lt;br&gt;Escaped, the value of name is "' +
+                        escape(widget.name) + '".'; 
+
+versionElem.innerHTML = 'The widget\'s version is "' + widget.version + 
+                        '". &lt;br&gt; Escaped, the value of version is "' +
+                        escape(widget.version) +'".';
+&lt;/script&gt;</pre>
+    <p>Would render as:</p>
+    <div class="widget">
+      <p>The widget's name is '‪‮olleH‬‬'. <br>
+        Escaped, the value of name is "%u202A%u202EolleH%u202C%u202C".</p>
+      <p>The widget's version is '1.0'. <br>
+        Escaped, the value of version is "%u202A1.0%u202C".</p>
+    </div>
+  </div>
+  <h4 id="example-3"><span class="secno">9.3 </span>Example 3</h4>
+  <p><em>This section is non-normative.</em></p>
+  <div class="example">
+    <p>Given this  configuration document, where the widget element has no base direction set, the <code><a href="#name-0">name</a></code> has two <code>span</code> element with a <code>dir</code> attribute set to <code>lro</code>: </p>
+    <pre class="brush: xml">&lt;widget xmlns = "http://www.w3.org/ns/widgets" 
+    version   = "1.0"&gt;
+     &lt;name&gt;
+          Hello1 
+			&lt;span dir="rlo"&gt;2olleH&lt;/span&gt; 
+          
+			Goodbye1  
+          &lt;span dir="rlo"&gt;2eybdooG&lt;/span&gt;
+    &lt;/name&gt; 
+&lt;/widget&gt; 
+    </pre>
+    <p> The following would result in the start file of the widget:</p>
+    <pre class="brush: js">&lt;!doctype html&gt;
+&lt;title&gt;Example 3&lt;/title&gt;
+&lt;body style="background-color: #ECEDCF"&gt;
+&lt;p id ="name"&gt;&lt;/p&gt;
+&lt;p id = "version"&gt; &lt;/p&gt;
+
+&lt;script&gt;
+var nameElem    = document.getElementById("name"); 
+var versionElem = document.getElementById("version");
+nameElem.innerHTML    = 'The widget\'s name is "' + widget.name + 
+                        '". &lt;br&gt;Escaped, the value of name is "' +
+                        escape(widget.name) + '".'; 
+versionElem.innerHTML = 'The widget\'s version is "' + widget.version + 
+                        '". &lt;br&gt; Escaped, the value of version is "' +
+                        escape(widget.version) +'".';
+&lt;/script&gt;</pre>
+    <p>Would render as:</p>
+    <div class="widget">
+      <p>The widget's name is 'Hello1 ‮2olleH‬ Goodbye1 ‮2eybdooG‬'. <br>
+        Escaped, the value of name is "Hello1%20%u202E2olleH%u202C%20Goodbye1%20%u202E2eybdooG%u202C".</p>
+      <p>The widget's version is '1.0'. <br>
+        Escaped, the value of version is [1.0].</p>
+    </div>
+  </div>
+  <h2 class="no-num" id="revision-history">Revision history  </h2>
+  <h3 class="no-num" id="x19-april-2012">19 April 2012</h3>
+  <p>Clarified "the origin of a widget instance" based on <a href="http://lists.w3.org/Archives/Public/public-webapps/2012AprJun/0250.html">feeback</a> we received that indicated it was unclear. </p>
+  <h3 class="no-num" id="x5-december-2011">5 December 2011</h3>
+  <p>Added example of how to compare storage areas. </p>
+  <p>Added <code><a href="#widgetstorage">WidgetStorage</a></code> interface.  </p>
+  <h3 class="no-num" id="x13-june-2011">13 June 2011  </h3>
+  <p>Clarified storage event text (hopefully).</p>
+  <p>Editorial cleanup, found a few conformance requirements that were not being tested. </p>
+  <p>Removed the definition of valid IRI, as it was not referenced anywhere. </p>
+  <p>Removed the definition of feature, as it was not referenced anywhere. </p>
+  <p>Added examples for i18n related material.</p>
+  <h3 class="no-num" id="x7-september-2010">7 September, 2010</h3>
+  <p>The 7 September, 2010 version of the specification drops support for the <code>openURL</code> method, which was part of previous versions of this specification. The Working Group found a number of privacy and security issues relating to <code>openURL</code>, as well as a way to achieve the same intended functionality via other means, and hence decided to drop it from the specification.</p>
+  <p>The working group recommends that authors use HTML's <a href="http://www.w3.org/TR/html5/text-level-semantics.html#the-a-element"> <code>a</code> element</a> to achieve the same functionality, or use the <code>window.open()</code> method where appropriate. Some examples of how the a element can be used to achieve the same functionality as <code>openURL</code> are given below. Of course, the examples will only work on implementations that actually have scheme handlers to handle each type of URI.</p>
+  <dl>
+    <dt>Send email: </dt>
+    <dd> Was: <code>openURL("mailto:jsmith@example.org?subject=A%20Hello&amp;body=hi")</code></dd>
+    <dd>Now: <code>&lt;a href="mailto:jsmith@example.org?subject=A%20Hello&amp;amp;body=hi"&gt;Email Jane&lt;/a&gt;</code></dd>
+    <dt>Make a phone call: </dt>
+    <dd>Was: <code>openURL("tel:+1234567678") </code></dd>
+    <dd>Now: <code>&lt;a href="tel:+1234567678"&gt;Call Bill!&lt;/a&gt; </code></dd>
+    <dt>Open a web page: </dt>
+    <dd> Was:<code> openURL("http://example.org")</code></dd>
+    <dd>Now: <code>&lt;a href="http://example.org"&gt;Example&lt;/a&gt; </code></dd>
+    <dt>Send and sms: </dt>
+    <dd>Was: <code>openURL("sms:+41796431851,+4116321035;?body=hello%20there")</code></dd>
+    <dd>Now: <code>&lt;a href="sms:+41796431851,+4116321035;?body=hello%20there"&gt;SMS Bob&lt;/a&gt;</code></dd>
+  </dl>
+  <h2 class="no-num" id="normative-references">Normative References</h2>
+  <dl>
+    <dt><dfn id="css21">[CSS]</dfn></dt>
+    <dd><cite><a href="http://www.w3.org/TR/CSS2/">Cascading Style Sheets
+      
+      Level 2 Revision 1 (CSS 2.1) Specification</a>.</cite> W3C.</dd>
+    <dt><dfn id="dom3core">[DOM3Core]</dfn></dt>
+    <dd><a href="http://www.w3.org/TR/DOM-Level-3-Core/"><cite>Document Object Model
+      
+      (DOM) Level 3 Core Specification</cite></a>. W3C.</dd>
+    <dt>[DOM2Events]</dt>
+    <dd><a href="http://www.w3.org/TR/DOM-Level-2-Events/">Document Object Model (DOM) Level 2 Events Specification</a>. W3C.</dd>
+    <dt><dfn id="rfc2119">[RFC2119]</dfn></dt>
+    <dd><a href="http://www.ietf.org/rfc/rfc2119"><cite>Key words for use in RFCs to
+      
+      Indicate Requirement Levels</cite></a>. IETF.</dd>
+    <dt><dfn id="widgets-packaging">[Widgets-Packaging]</dfn></dt>
+    <dd><a href="http://www.w3.org/TR/widgets/"><cite>Widget Packaging
+      
+      and Configuration</cite></a>.  W3C.</dd>
+    <dt><dfn id="webidl">[WebIDL]</dfn></dt>
+    <dd><a href="http://www.w3.org/TR/WebIDL/"><cite>Web
+      
+      IDL</cite></a> (Work in progress). W3C.</dd>
+    <dt><dfn id="webstorage">[Web Storage]</dfn></dt>
+    <dd><a href="http://www.w3.org/TR/webstorage/"><cite>Web
+      
+      Storage</cite></a> (Work
+      
+      in progress). W3C.</dd>
+     <dt><dfn id="html5">[HTML]</dfn></dt>
+    <dd><cite><a href="http://dev.w3.org/html5/spec/Overview.html">HTML</a></cite> (Work in progress). W3C.</dd>
+    <dd> </dd>
+  </dl>
+  <h2 class="no-num" id="informative-references">Informative References</h2>
+  <dl>
+    <dt><dfn id="interface-test-suite">[Interface-Test-Suite]</dfn></dt>
+    
+    <dd> <cite><a href="http://dev.w3.org/2006/waf/widgets-api/test-suite/">Test Suite for the Widget Interface Specification</a></cite>. </dd>
+    
+    <dt><dfn id="widget-requirements">[Widget Requirements]</dfn></dt>
+    <dd><cite><a href="http://dev.w3.org/2006/waf/widgets-reqs/">Widgets
+      
+      Requirements</a></cite>.  W3C.</dd>
+  </dl>
+</div>
+
+

@@ -1,0 +1,30 @@
+<!DOCTYPE html> 
+<title>Test clearItem-fires-event iframe</title> 
+<style>body{ background: white } </style> 
+<body id="body">  
+<script> 	
+window.addEventListener("storage", function(e){
+		//pass/fail message 
+		var msg;
+		
+		//alias  
+		var prefs = widget.preferences; 
+		
+		//the Web Storage spec says that clear() cause e.key to be null, but webkit changes it to "null"; 
+		if(e.key === null || e.key === "" || e.key === "null"){
+			if((prefs.getItem("unlockedkey") === null || prefs.getItem("unlockedkey") === "") && 
+			   (prefs.getItem("lockedkey") === "lockedvalue" ) 
+				&& (prefs.length === 1)){ 
+				 document.body.style.backgroundColor = "green"; 
+				 msg = "Test "+ window.parent.id + " passed because storage event was fired when item was cleared.";
+				 window.parent.pass(msg); 
+				 return; 
+			}
+		}
+		//stop listening, as the test has failed. 
+		window.removeEventListener("storage",this, false); 
+		document.body.style.backgroundColor = "red"; 
+		msg = "Test "+ window.parent.id + " failed because the event was not fired correctly.";
+		window.parent.fail(msg);		
+	}, false); 
+</script>

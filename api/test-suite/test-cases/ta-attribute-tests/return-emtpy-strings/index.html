@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<title>Test return-emtpy-strings</title> 
+<style>body{ background:red } </style> 
+<body onload="test()" id="body"> 
+<h1 id="verdict">FAIL</h1> 
+<p id="reason">Test did not run.</p> 
+<script> 	
+
+/*Called iff the test passed */
+function pass(excuse){ 		
+	body.style.backgroundColor = "green"; 		
+	verdict.innerHTML = "PASS";
+	reason.innerHTML  = excuse; 
+}
+
+
+/*Called iff the test failed */
+function fail(excuse){
+  reason.innerHTML = excuse; 	
+} 	   	
+
+
+/*Called to perform the test */
+function test(){
+  try{
+    var why;  
+    if( 
+	  (widget.version     === "") &&
+	  (widget.name        === "") &&
+	  (widget.author      === "") &&
+	  (widget.authorEmail === "") &&
+	  (widget.authorHref  === "") &&
+	  (widget.description === "") &&
+	  (widget.id          === "") &&
+	  (widget.shortName   === "") 
+	 )
+	{
+		why = "Test "+ id +" passed because all values returned an empty string."
+		pass(why);	
+	}else{
+	 	why = "Test "+ id +" failed because one of the attributes returned an incorrect value";
+	   fail(why);  	
+	}
+	
+  }catch(e){
+     why = "Test "+ id +" failed by throwing the following exception: " + e;
+	 fail(why);  
+
+   }
+} 	
+var id 	 = "return-emtpy-strings";
+var reason  = document.getElementById("reason"); 	
+var body    = document.getElementById("body"); 	
+var verdict = document.getElementById("verdict"); 
+
+var x = document.getElementById("x"); 
+
+</script>

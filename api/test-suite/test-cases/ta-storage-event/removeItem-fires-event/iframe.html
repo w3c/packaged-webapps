@@ -1,0 +1,19 @@
+<!DOCTYPE html> 
+<title>removeItem-fires-event iframe</title> 
+<style>body{ background:red } </style> 
+<body id="body">  
+<script> 	
+window.addEventListener("storage", function(e){
+	  if((e.key         === "testkey")   && 
+		 (e.oldValue    === "testvalue") && 
+		 (e.newValue    ===  null)
+		 ) {
+		   	var passmsg = "Test "+ window.parent.id +" passed because storage event was fired when an item was removed.";
+			window.parent.pass(passmsg);
+			window.document.body.style = "background: green";
+		}else{
+	        var failmsg = "The test failed because one or more of the StorageEvent values were wrong.";
+		    window.parent.fail(failmsg);			
+		}
+	}, false); 
+</script>

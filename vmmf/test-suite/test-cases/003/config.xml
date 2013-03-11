@@ -1,0 +1,4 @@
+<widget id="test:fullscreen" xmlns='http://www.w3.org/ns/widgets'  width="500" height="500" viewmodes="fullscreen">
+<name>fullscreen</name>
+<description>Test that the value &apos;fullscreen&apos; for view-mode media feature is applied by the widget UA, if this is supported. To pass, the user agent must display the word PASS (dynamically generated via CSS) and a green background. </description>
+</widget>

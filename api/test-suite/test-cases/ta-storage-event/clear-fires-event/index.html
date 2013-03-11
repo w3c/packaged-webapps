@@ -1,0 +1,39 @@
+<!DOCTYPE html> 
+<title>Test clearItem-fires-event</title> 
+<style>body{ background:red } </style> 
+<body id="body"> 
+<h1 id="verdict">FAIL</h1> 
+<p id="reason">Test did not run or storage event was never fired.</p> 
+
+<script> 	
+var id      = "clearItem-fires-event";
+var reason  = document.getElementById("reason"); 	
+var body    = document.getElementById("body"); 	
+var verdict = document.getElementById("verdict");
+
+/*Called to perform the test onload*/
+function test(){	
+  try{
+  	//removes "unlockedkey", which was set in config.xml
+	//this should cause an event to be fired at the iframe as per the Web Storage spec 
+	widget.preferences.clear(); 
+  }catch(e){
+     var why = "Test "+ id +" failed by throwing the following exception: " + e;
+	 fail(why);  
+   }
+} 	
+
+/*Called iff the test passed */
+function pass(excuse){ 		
+	body.style.backgroundColor = "green"; 		
+	verdict.innerHTML = "PASS";
+	reason.innerHTML  = excuse; 
+}
+ 
+ 
+/*Called iff the test failed */
+function fail(excuse){
+  reason.innerHTML = excuse; 	
+} 	   	
+</script>
+<iframe src="iframe.html" onload="test()" width="300" height="300"></iframe> 

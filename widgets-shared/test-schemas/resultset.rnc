@@ -1,0 +1,10 @@
+element results {
+	attribute testsuite { xsd:anyURI },
+	attribute id { text },
+	attribute product { text },
+	attribute href { xsd:anyURI },
+  element result {
+	attribute for { text },
+	attribute verdict { string "pass" | string "fail" }
+  }*
+}

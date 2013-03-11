@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<title>Test at</title>
+<style>body{ background:red } </style> 
+<body onload="test()" id="body"> 
+<h1 id="verdict">FAIL</h1> 
+<p id="reason">Test did not run.</p> 
+<script> 	
+
+/*Called iff the test passed */
+function pass(excuse){ 		
+	body.style.backgroundColor = "green"; 		
+	verdict.innerHTML = "PASS";
+	reason.innerHTML  = excuse; 
+}
+
+
+/*Called iff the test failed */
+function fail(excuse){
+  reason.innerHTML = excuse; 	
+} 	   	
+
+
+/*Called to perform the test */
+function test(){
+  var why;
+  try{ 
+ 	window.widget.preferences.clear(); 
+	if(window.widget.preferences.getItem("protected") === "abc123" && window.widget.preferences.getItem("deletable") === null){
+		why = "Test "+ id +" pass because the 'protected' item was not removed from preferences and deletable was removed"; 
+		pass(why);
+	}else{
+		why = "Test "+ id +" because either window.widget.preferences.getItem('protected') is not 'abc123' or window.widget.preferences.getItem('deletable') was not null."; 
+		fail(why);
+	}
+  }catch (e) {
+	if (window.DOMException && e !== null && e.code === DOMException.NO_MODIFICATION_ALLOWED_ERR) {	
+		why = "Test "+ id +" failed because a NO_MODIFICATION_ALLOWED_ERR exception was throw. This exception must not be thrown when clear() is invoked.";
+		fail(why);
+	}else{
+		why = "Test "+ id +" failed by throwing the following exception: " + e;
+		fail(why);  
+	}
+  }
+ }
+
+
+var id 	    = "at";
+var reason  = document.getElementById("reason"); 	
+var body    = document.getElementById("body"); 	
+var verdict = document.getElementById("verdict"); 
+</script> 

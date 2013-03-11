@@ -1,0 +1,5 @@
+<widget xmlns="http://www.w3.org/ns/widgets"
+ id="test:version_attrtype">
+ <name>Test version_attrtype</name>
+ <description>Testing assertion ta-za</description>
+</widget>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<title>view-mode: windowed</title>
+<style>
+	body{
+		background-color:white;	
+	}
+	@media (view-mode){
+    	#ref{
+			visibility:hidden;
+		}
+		#ref::before{
+			visibility:visible;
+			content:"FAIL";
+		}
+	}
+	
+    @media (view-mode:windowed)
+    {
+		#ref::before 
+		{
+			visibility:visible;
+			content:"PASS";
+		}
+		body{
+			background-color:green;	
+		}
+    }
+</style> 
+<h1 id="ref">Test did not run. User agent does not implement <code>view-mode</code> Media Feature.</h1>
+<p id="note" style="background-color:#FFBB66;"><strong>Pre-requisite:</strong>The browser window should have application chrome and should not be maximised or fullscreen.</p>

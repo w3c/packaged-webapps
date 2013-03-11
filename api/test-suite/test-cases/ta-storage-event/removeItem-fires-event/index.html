@@ -1,0 +1,36 @@
+<!DOCTYPE html> 
+<title>Test removeItem-fires-event</title> 
+<style>body{ background:red } </style> 
+<body id="body"> 
+<h1 id="verdict">FAIL</h1> 
+<p id="reason">Test did not run or storage event was never fired.</p> 
+<iframe src="iframe.html" onload="test()" width="300" height="300" style="display:none"></iframe> 
+<script> 	
+var id      = "removeItem-fires-event";
+var reason  = document.getElementById("reason"); 	
+var body    = document.getElementById("body"); 	
+var verdict = document.getElementById("verdict");
+
+/*Called to perform the test onload*/
+function test(){
+  try{
+	widget.preferences.removeItem("testkey"); 
+  }catch(e){
+     var why = "Test "+ id +" failed by throwing the following exception: " + e;
+	 fail(why);  
+   }
+} 	
+
+/*Called iff the test passed */
+function pass(excuse){ 		
+	body.style.backgroundColor = "green"; 		
+	verdict.innerHTML = "PASS";
+	reason.innerHTML  = excuse; 
+}
+ 
+ 
+/*Called iff the test failed */
+function fail(excuse){
+  reason.innerHTML = excuse; 	
+} 	   	
+</script>

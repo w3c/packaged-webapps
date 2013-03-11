@@ -1,0 +1,5 @@
+<widget id="test:ignore-min-max" xmlns='http://www.w3.org/ns/widgets'
+viewmodes="windowed">
+<name>ignore min max</name>
+<description>Test that the user agent does not support min- or max- prefixes on the viewmode media feature. To pass, the user agent must display the word PASS (dynamically generated via CSS) and a green background.</description>
+</widget>

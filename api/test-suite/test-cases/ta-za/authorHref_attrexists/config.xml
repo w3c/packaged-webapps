@@ -1,0 +1,5 @@
+<widget xmlns="http://www.w3.org/ns/widgets"
+ id="test:authorHref_attrexists">
+ <name>Test authorHref_attrexists</name>
+ <description>Testing assertion ta-za</description>
+</widget>

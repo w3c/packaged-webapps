@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<title>Test ao</title> 
+<style>body{ background:red } </style> 
+<body onload="test()" id="body"> 
+<h1 id="verdict">FAIL</h1> 
+<p id="reason">Test did not run.</p> 
+<script> 	
+
+/*Called iff the test passed */
+function pass(excuse){ 		
+	body.style.backgroundColor = "green"; 		
+	verdict.innerHTML = "PASS";
+	reason.innerHTML  = excuse; 
+}
+
+
+/*Called iff the test failed */
+function fail(excuse){
+  reason.innerHTML = excuse; 	
+} 	   	
+
+
+/*Called to perform the test */
+function test(){
+  try{
+    var why;   
+	if(typeof window.widget.width === "number"){
+		why = "Test "+ id +" passed because window.widget.width returned a number";
+		pass(why);
+	}else{
+     why = "Test "+ id +" failed because window.widget.width in not a number. Calling typeof returned a '" + typeof window.widget.width + "'.";
+	 fail(why);  	
+	}
+  }catch(e){
+     why = "Test "+ id +" failed by throwing the following exception: " + e;
+	 fail(why);  
+   }
+} 	
+var id      = "ao";
+var reason  = document.getElementById("reason"); 	
+var body    = document.getElementById("body"); 	
+var verdict = document.getElementById("verdict"); 
+</script> 

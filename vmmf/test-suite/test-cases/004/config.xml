@@ -1,0 +1,4 @@
+<widget id="test:maximized" xmlns='http://www.w3.org/ns/widgets'  width="500" height="500" viewmodes="maximized">
+<name>maximized</name>
+<description>Test that the value &apos;maximized&apos; for view-mode media feature is applied by the widget UA, if this is supported. To pass, the user agent must display the word PASS (dynamically generated via CSS) and a green background.</description>
+</widget>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<title>Test xxx</title> 
+<style>body{ background:red } </style> 
+<body onload="test()" id="body"> 
+<h1 id="verdict">FAIL</h1> 
+<p id="reason">Test did not run.</p> 
+<script> 	
+
+/*Called iff the test passed */
+function pass(excuse){ 		
+	body.style.backgroundColor = "green"; 		
+	verdict.innerHTML = "PASS";
+	reason.innerHTML  = excuse; 
+}
+
+
+/*Called iff the test failed */
+function fail(excuse){
+  reason.innerHTML = excuse; 	
+} 	   	
+
+
+/*Called to perform the test */
+function test(){
+  if( 1 === 1 ){/* TEST GOES HERE */
+		
+      var why = "Test "+ id +" passed successfully. It did so because... ";
+      pass(why); 
+
+   }else{
+
+      var why = "Test "+ id +" failed because...";
+      fail(why);  		
+  } 	
+} 	
+var id 	  = "xxx";
+var reason  = document.getElementById("reason"); 	
+var body    = document.getElementById("body"); 	
+var verdict = document.getElementById("verdict"); 
+</script> 

@@ -1,0 +1,93 @@
+hr
+{
+	height: 1px;
+	border: 0;
+	color: #999;
+	background: #999;
+}
+
+.bad { color: #EE0025; }
+
+blockquote
+{
+	border-left: 1px solid #999;
+	padding-left: 1em;
+}
+
+#tests dl { margin: 0 40px; }
+
+a.hash
+{
+	color: #999;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+#tests { margin-top: 10px; }
+
+.tabs > ul
+{
+	margin: 0;
+	padding: 0;
+}
+
+.tabs > ul li
+{
+	list-style: none;
+	float: left;
+}
+
+.tabs > ul a
+{
+	display: block;
+	padding: 6px 10px;
+	text-decoration: none!important;
+	margin-right: -1px;
+	border: 1px solid #999;
+	background: #CCC;
+	color: #000;
+}
+
+.tabs > ul a:hover { background: #EEE; }
+
+.tabs > ul a.selected
+{
+	background: #FFF;
+	border-bottom: 1px #FFF solid;
+	position: relative;
+	z-index: 50;
+	cursor: default;
+	padding: 9px 10px;
+	margin-top: -6px;
+}
+
+.tabs > div
+{
+	padding: 10px 10px 8px 10px;
+	position: relative;
+	top: -1px;
+	clear: left;
+	border: 1px solid #999;
+}
+
+@media print
+{
+	#testedAssertions { page-break-before: always; }
+	.toggleTests .hash { display: none; }
+	
+	hr
+	{
+		display: block;
+		margin-left: -20px;
+	}
+	
+	.tabs { margin-left: 40px; }
+	
+	.tabs > div
+	{
+		padding-right: 0;
+		border-width: 1px 0 0 1px;
+	}
+	
+	.tabs blockquote .tabs dl { margin-right: 0; }
+}

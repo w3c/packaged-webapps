@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<title>Test width_attrtype</title>
+<style>body{ background:red } </style>
+<body onload="test()" id="body">
+<h1 id="verdict">FAIL</h1>
+<p id="reason">Test did not run.</p>
+<script>
+/*Called iff the test passed */
+function pass(excuse){
+	body.style.backgroundColor = "green";
+	verdict.innerHTML = "PASS";
+	reason.innerHTML  = "Test "+id+" passed because "+excuse;
+}
+/*Called iff the test failed */
+function fail(excuse){
+	body.style.backgroundColor = "red";
+	verdict.innerHTML = "FAIL";
+	reason.innerHTML  = "Test "+id+" failed because "+excuse;
+}
+/*Called to perform the test */
+function test(){
+    /* Description: widget.width is a unsigned long */
+    // attrtype
+    
+    try {
+        var obj = window.widget;
+if (typeof obj.width !== "number") {return fail("window.widget.width is not a number");}
+if (!(obj.width >= 0 && obj.width <= 4294967295)) { return fail("window.widget.width is not in range 0, 4294967295");}
+if (Math.round(obj.width) != obj.width) { return fail("window.widget.width is not an integer");}
+pass("window.widget.width is an unsigned long");
+} catch (e) {
+        fail("it threw the exception: "+e);
+    }
+
+}
+var id 	  = "width_attrtype";
+var reason  = document.getElementById("reason");
+var body    = document.getElementById("body");
+var verdict = document.getElementById("verdict");
+</script>

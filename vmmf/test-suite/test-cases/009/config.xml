@@ -1,0 +1,4 @@
+<widget id="test:invalid-ordered" xmlns='http://www.w3.org/ns/widgets'  width="500" height="500" viewmodes="ae314afasqq23 maximized ae3XXafasqq23 windowed ae314afasqq23">
+<name>invalid-ordered</name>
+<description>Test that a combination of valid and invalid view modes values are processed by the UA and only the valid ones are applied when the relevant view mode is set; also that the valid ones are not ignored.</description>
+</widget>

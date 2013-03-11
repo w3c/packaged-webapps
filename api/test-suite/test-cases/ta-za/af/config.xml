@@ -1,0 +1,6 @@
+<widget xmlns="http://www.w3.org/ns/widgets"
+ id="tests:af">
+ <name>Test af</name>
+ <author email="	author email 	" href=" 	 http://test.example 	">author name</author>
+ <description>Testing assertion ta-ac</description> 
+</widget>
