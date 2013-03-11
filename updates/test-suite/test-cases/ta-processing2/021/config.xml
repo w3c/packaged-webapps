@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="ta-processing2:21" version="42.0">
+	<name>ta-processing2-21</name>
+	<description>Tests that a widget is not updated if the potential update is an invalid widget.</description>
+	<update-description xmlns="http://www.w3.org/ns/widgets" href="http://people.opera.com/harig/wupdres/resources/out.php?udd-src-invalid-wgt"/>
+</widget>

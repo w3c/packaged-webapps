@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="ta-verifying4:2" version="42.0">
+	<name>ta-verifying4-2</name>
+	<description>Tests that if the versions of the potential update and incumbent widget are the same, the update is terminated.</description>
+	<update-description xmlns="http://www.w3.org/ns/widgets" href="http://people.opera.com/harig/wupdres/resources/out.php?udd-same-version"/>
+</widget>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="ta-processing2:15" version="42.0">
+	<name>ta-processing2-15</name>
+	<description>Tests that src of update-info document is used to fetch the update package.</description>
+	<update-description xmlns="http://www.w3.org/ns/widgets" href="http://people.opera.com/harig/wupdres/resources/out.php?udd-pass"/>
+</widget>

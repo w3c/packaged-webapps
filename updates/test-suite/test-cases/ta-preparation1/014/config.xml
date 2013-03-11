@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="ta-preparation1:14" version="42.0">
+	<name>ta-preparation1-14</name>
+	<description>Tests that the update-description element with the W3C namespace is recognised.</description>
+	<foo:update-description xmlns:foo="http://www.w3.org/ns/widgets" href="http://people.opera.com/harig/wupdres/resources/out.php?udd-pass"/>
+</widget>

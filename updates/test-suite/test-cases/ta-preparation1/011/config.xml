@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="ta-preparation1:11" version="42.0">
+	<name>ta-preparation1-11</name>
+	<description>Tests that dir does not affect the update-description element</description>
+	<update-description dir="rlo" href="http://people.opera.com/harig/wupdres/resources/out.php?udd-pass"/>
+</widget>

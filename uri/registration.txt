@@ -1,0 +1,46 @@
+This is the filled out registration template for the URI scheme described in:
+
+  http://dev.w3.org/2006/waf/widgets-uri/
+
+URI scheme name.
+	widget
+
+Status.
+	permanent
+	(Provisional registration is also acceptable.)
+
+URI scheme syntax.
+	Generic URI.
+
+URI scheme semantics.
+	Locating resources at runtime inside of a widget package.
+
+Encoding considerations.
+	n/a
+
+Applications/protocols that use this URI scheme name.
+	This scheme is used in user-agents that implement W3C Widgets [WIDGETS]
+
+Interoperability considerations.
+	n/a
+
+Security considerations.
+	Since such URIs cannot be used to address content outside of a widget package,
+	they introduce no specific further security considerations.
+
+Contact.
+	Robin Berjon <robin@berjon.com>
+	W3C WebApps WG <public-webapps@w3.org>
+	Arthur Barstow <art.barstow@nokia.com> (Chair)
+	
+Author/Change controller.
+	Same as above.
+	
+References.
+	[WIDGETS]
+	    Marcos Caceres.
+		Widget Packaging and Configuration. 
+		01 December 2009. 
+		W3C Candidate Recommendation. (Work in progress.) 
+		URL: http://www.w3.org/TR/2009/CR-widgets-20091201/
+

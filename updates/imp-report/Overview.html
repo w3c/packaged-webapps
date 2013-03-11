@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Compatibility Matrix for Widgets Updates Test Suite." />
+    <meta name="keywords" content="W3C, WebApps, Widget, Widgets" />
+    <title>Implementation Report: Widgets Updates</title>
+  <link href="http://www.w3.org/StyleSheets/TR/W3C-ED" rel="stylesheet"
+  type="text/css" />
+  
+  <style type="text/css">
+  #dashboard, #results{
+	 border: 1px solid #CCC; 
+	 width: 90%;
+	 margin: auto; 
+	 border-radius: 5px;
+	 box-shadow: 10px 10px 5px #888;
+	 padding: 5px 5px 5px 15px;
+	 text-align: center;
+   }
+   
+   .TSResult-display{
+	 text-align: left;   
+	}
+  </style>
+  
+  <link type="text/css" rel="stylesheet" href="../../widgets-shared/styles/resultsMatrix.css"/>
+</head>
+<body>
+<header>
+  <hgroup>
+            <h1>Implementation Report: Widgets Updates</h1>
+            <h2>Work in progress</h2>
+    </hgroup>
+    <dl>
+        <dt>Document Maintainers:</dt>
+        <dd><a href="http://datadriven.com.au">Marcos Cáceres</a>, W3C Invited Expert</dd>
+        <dd><a href="http://richt.me">Richard Tibbett</a>, <a href="http://opera.com">Opera Software ASA</a></dd>
+        
+        <dt>Testers/Contributors:</dt>
+          <dd><a href="http://richt.me">Richard Tibbett</a>, <a href="http://opera.com">Opera Software ASA</a></dd>
+          <dd>Hari Kumar G, <a href="http://opera.com">Opera Software ASA</a></dd>
+    </dl>
+  </header>
+<hr />
+<section>
+        <h2>Preface</h2>
+  <p>This implementation report presents the results from running the <a href="../test-suite/test-cases/">test cases</a> of the <a href="../test-suite/">Test Suite for the Widget Updates</a> specification against various user agents that claim to support the Widgets Updates Specification. </p>
+  <p>This implementation report serves two purposes: </p>
+    <ol>
+      <li>
+        <p>Allow the working group to retrospectively analyze how implementers have interpreted the assertions of the specification, which is part of the W3C's Candidate Recommendation phase. Analyzing how the specification has been interpreted by implementers allows the Working Group to clear up ambiguities or change the specification retrospectively to match the behavior of implementations (i.e., match reality).</p>
+      </li>
+      <li>
+        <p>Allow the working group to demonstrate interoperability across various implementations, thus allowing meeting the W3C requirements to progress this specification along the W3C's recommendation track. </p>
+      </li>
+    </ol>
+    <p>As new new implementations, tests, and result data is continually being added to this report, this report relies on the JQuery javascript library to &quot;mash up&quot; and present the testing results. As there is a significant amount of XML data being loaded and dynamically displayed, this test report can take a little while to load. </p>
+</section>
+    <section>
+        <h2>User Agents Conformance Dashboard</h2>
+        <p>This &quot;dashboard&quot; represents the level of conformance that each implementation currently achieves. This data is based on results gathered from manually testing implementations against the test cases in the test suite. This data does not represent real-time results from automated testing; as such the results may not be up-to-date. Although we strive to keep this data up to date, these results may be obsoleted at any time. The following list represents the user agents that have been tested for conformance in this report. They have been included because they claim to support a version of the W3C's Widgets Updates specification. </p>
+</section>
+
+      <section>
+        <div id="dashboard"></div>
+      </section>
+ 
+      <section>
+      <h2>Test Results</h2>
+      <p>This data is based on results gathered from manually testing implementations against the test cases in the test suite. This data does not represent real-time results from automated testing; as such the results may not be up-to-date. Although we strive to keep this data up to date, this results may be obseleted at any time. </p>
+      <div id="results"></div>
+      </section>
+
+ <!-- http://ajax.googleapis.com/ajax/libs/jquery/1 -->
+ 
+ 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="../../widgets-shared/javascript/visualizeTestSuite.js"></script>
+<script>var userAgentsNames   = "opera,wookie".split(","); </script>
+
+
+
+</body>
+</html>

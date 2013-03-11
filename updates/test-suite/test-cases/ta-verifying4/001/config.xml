@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="ta-verifying4:1" version="42.0">
+	<name>ta-verifying4-1</name>
+	<description>Tests that only if the src of update-info document returns content with MIME type application/widget the update package is used.</description>
+	<update-description xmlns="http://www.w3.org/ns/widgets" href="http://people.opera.com/harig/wupdres/resources/out.php?udd-udi-wrong-ct"/>
+</widget>

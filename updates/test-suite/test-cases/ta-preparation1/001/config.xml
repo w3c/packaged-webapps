@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="ta-preparation1:1" version="42.0">
+	<name>ta-preparation1-1</name>
+	<description>Tests that the UA recognises the update-description element and parses the href attribute as the update-source.</description>
+	<update-description href="http://people.opera.com/harig/wupdres/resources/out.php?udd-pass"/>
+</widget>

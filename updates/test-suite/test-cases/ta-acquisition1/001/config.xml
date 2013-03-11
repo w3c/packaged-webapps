@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="ta-acquisition1:1" version="42.0">
+	<name>ta-acquisition1-1</name>
+	<description>Tests that the Etag sent for last update check is sent in the If-None-Match header when the next update is requested.</description>
+	<update-description xmlns="http://www.w3.org/ns/widgets" href="http://people.opera.com/harig/wupdres/resources/out.php?udd-if-none-match"/>
+</widget>

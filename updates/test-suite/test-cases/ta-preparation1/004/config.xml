@@ -1,0 +1,5 @@
+<widget xmlns="http://www.w3.org/ns/widgets" id="" >
+	<name>002</name>
+	<description>update-description element not a child of widget element.</description>
+	<update-description href="http://people.opera.com/harig/wupdres/resources/out.php?udd-pass"/>
+</widget>

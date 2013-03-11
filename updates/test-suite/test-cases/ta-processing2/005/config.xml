@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="ta-processing2:5" version="42.0">
+	<name>ta-processing2-5</name>
+	<description>Tests that update-info element's version attribute should have a value higher than current version for the widget to be updated.</description>
+	<update-description xmlns="http://www.w3.org/ns/widgets" href="http://people.opera.com/harig/wupdres/resources/out.php?udd-lesser-version"/>
+</widget>

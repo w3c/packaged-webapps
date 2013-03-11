@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>ta-acquisition1-1</title>
+		<style>
+			body {
+				background-color:#efefef;
+				}
+		</style>
+	</head>
+	<body>
+		<p>The update check need to be done twice. First check will get an Etag, the second check will verify that it was sent back. Alternatively you can use a network packet sniffer to check that the If-None-Match header was sent.</p>
+		<p>Tests that the Etag sent for last update check is sent in the If-None-Match header when the next update is requested.</p>
+	</body>
+</html>

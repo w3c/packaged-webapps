@@ -1,0 +1,5 @@
+<widget xmlns="http://www.w3.org/ns/widgets" id="http://a.net/widget/ta-xx/042" version="0.9.1">
+	<name>002</name>
+	<description>This widget has an id but the updated widget does not.</description>
+	<update-description href="http://people.opera.com/harig/wupdres/resources/out.php?udd-changed-id"/>
+</widget>

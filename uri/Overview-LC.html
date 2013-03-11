@@ -1,0 +1,679 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>
+<html lang="en" dir="ltr">
+<head>
+
+  
+    <title>Widgets 1.0: Widget URIs</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    
+    
+  <link charset="utf-8" type="text/css" rel="stylesheet" href="http://www.w3.org/StyleSheets/TR/W3C-WD.css"><style type="text/css">
+/*****************************************************************
+ * ReSpec CSS
+ * Robin Berjon <robin at berjon dot com>
+ * v0.05 - 2009-07-31
+ *****************************************************************/
+
+
+/* --- INLINES --- */
+em.rfc2119 { 
+    text-transform:     lowercase;
+    font-variant:       small-caps;
+    font-style:         normal;
+    color:              #900;
+}
+
+h1 acronym, h2 acronym, h3 acronym, h4 acronym, h5 acronym, h6 acronym, a acronym,
+h1 abbr, h2 abbr, h3 abbr, h4 abbr, h5 abbr, h6 abbr, a abbr {
+    border: none;
+}
+
+dfn {
+    font-weight:    bold;
+}
+
+a.internalDFN {
+    color:  inherit;
+    border-bottom:  medium solid #99c;
+    text-decoration:    none;
+}
+
+a.externalDFN {
+    color:  inherit;
+    border-bottom:  medium dotted #ccc;
+    text-decoration:    none;
+}
+
+a.bibref {
+    text-decoration:    none;
+}
+
+code {
+    color:  #ff4500;
+}
+
+
+/* --- WEB IDL --- */
+pre.idl {
+    border-top: 1px solid #90b8de;
+    border-bottom: 1px solid #90b8de;
+    padding:    1em;
+    line-height:    120%;
+}
+
+pre.idl::before {
+    content:    "WebIDL";
+    display:    block;
+    width:      150px;
+    background: #90b8de;
+    color:  #fff;
+    font-family:    initial;
+    padding:    3px;
+    font-weight:    bold;
+    margin: -1em 0 1em -1em;
+}
+
+.idlType {
+    color:  #ff4500;
+    font-weight:    bold;
+    text-decoration:    none;
+}
+
+/*.idlModule*/
+/*.idlModuleID*/
+/*.idlInterface*/
+.idlInterfaceID {
+    font-weight:    bold;
+    color:  #005a9c;
+}
+
+.idlSuperclass {
+    font-style: italic;
+    color:  #005a9c;
+}
+
+/*.idlAttribute*/
+.idlAttrType {
+    color:  #005a9c;
+}
+.idlAttrName {
+    color:  #ff4500;
+}
+.idlAttrName a {
+    color:  #ff4500;
+    border-bottom:  1px dotted #ff4500;
+    text-decoration: none;
+}
+
+/*.idlMethod*/
+.idlMethType {
+    color:  #005a9c;
+}
+.idlMethName {
+    color:  #ff4500;
+}
+.idlMethName a {
+    color:  #ff4500;
+    border-bottom:  1px dotted #ff4500;
+    text-decoration: none;
+}
+
+/*.idlParam*/
+.idlParamType {
+    color:  #005a9c;
+}
+.idlParamName {
+    font-style: italic;
+}
+
+.extAttr {
+    color:  #666;
+}
+
+/*.idlConst*/
+.idlConstType {
+    color:  #005a9c;
+}
+.idlConstName {
+    color:  #ff4500;
+}
+.idlConstName a {
+    color:  #ff4500;
+    border-bottom:  1px dotted #ff4500;
+    text-decoration: none;
+}
+
+/*.idlException*/
+.idlExceptionID {
+    font-weight:    bold;
+    color:  #c00;
+}
+
+.idlTypedefID, .idlTypedefType {
+    color:  #005a9c;
+}
+
+.idlRaises, .idlRaises a.idlType, .idlRaises a.idlType code, .excName a, .excName a code {
+    color:  #c00;
+    font-weight:    normal;
+}
+
+.excName a {
+    font-family:    monospace;
+}
+
+.idlRaises a.idlType, .excName a.idlType {
+    border-bottom:  1px dotted #c00;
+}
+
+.excGetSetTrue, .excGetSetFalse {
+    width:  45px;
+    text-align: center;
+}
+.excGetSetTrue { color:  #0c0; }
+.excGetSetFalse { color:  #c00; }
+
+
+dl.attributes, dl.methods, dl.constants {
+    margin-left:    2em;
+}
+
+.attributes dt, .methods dt, .constants dt {
+    font-weight:    normal;
+}
+
+.attributes dt code, .methods dt code, .constants dt code {
+    font-weight:    bold;
+    color:  #000;
+    font-family:    monospace;
+}
+
+.attributes dt code {
+    background:  #ffffd2;
+}
+
+.attributes dt .idlAttrType code {
+    color:  #005a9c;
+    background:  transparent;
+    font-family:    inherit;
+    font-weight:    normal;
+    font-style: italic;
+}
+
+.methods dt code {
+    background:  #d9e6f8;
+}
+
+.constants dt code {
+    background:  #ddffd2;
+}
+
+.attributes dd, .methods dd, .constants dd {
+    margin-bottom:  1em;
+}
+
+table.parameters, table.exceptions {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    margin: 0.5em 0;
+    width:  100%;
+}
+table.parameters { border-bottom:  1px solid #90b8de; }
+table.exceptions { border-bottom:  1px solid #deb890; }
+
+.parameters th, .exceptions th {
+    color:  #fff;
+    padding:    3px 5px;
+    text-align: left;
+    font-family:    initial;
+    font-weight:    normal;
+    text-shadow:    #666 1px 1px 0;
+}
+.parameters th { background: #90b8de; }
+.exceptions th { background: #deb890; }
+
+.parameters td, .exceptions td {
+    padding:    3px 10px;
+    border-top: 1px solid #ddd;
+    vertical-align: top;
+}
+
+.parameters td.prmName, .exceptions td.excName, .exceptions td.excCodeName {
+    width:  100px;
+}
+
+.parameters td.prmType {
+    width:  120px;
+}
+
+table.exceptions table {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    width:  100%;
+}
+
+/* --- TOC --- */
+.toc a {
+    text-decoration:    none;
+}
+
+a .secno {
+    color:  #000;
+}
+
+/* --- TABLE --- */
+table.simple {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    border-bottom:  3px solid #005a9c;
+}
+
+.simple th {
+    background: #005a9c;
+    color:  #fff;
+    padding:    3px 5px;
+    text-align: left;
+}
+
+.simple td {
+    padding:    3px 10px;
+    border-top: 1px solid #ddd;
+}
+
+.simple tr:nth-child(even) {
+    background: #f0f6ff;
+}
+
+/* --- DL --- */
+.section dd > p:first-child {
+    margin-top: 0;
+}
+
+.section dd > p:last-child {
+    margin-bottom: 0;
+}
+
+.section dd {
+    margin-bottom:  1em;
+}
+
+/* --- EXAMPLES --- */
+pre.example {
+    border-top: 1px solid #ff4500;
+    border-bottom: 1px solid #ff4500;
+    padding:    1em;
+    margin-top: 1em;
+}
+
+pre.example::before {
+    content:    "Example";
+    display:    block;
+    width:      150px;
+    background: #ff4500;
+    color:  #fff;
+    font-family:    initial;
+    padding:    3px;
+    font-weight:    bold;
+    margin: -1em 0 1em -1em;
+}
+
+/* --- EDITORIAL NOTES --- */
+.issue {
+    padding:    1em;
+    border: 1px solid #f00;
+    background: #ffc;
+}
+
+.issue::before {
+    content:    "Issue";
+    display:    block;
+    width:  150px;
+    margin: -1.5em 0 0.5em 0;
+    font-weight:    bold;
+    border: 1px solid #f00;
+    background: #fff;
+    padding:    3px 1em;
+}
+
+.note {
+    padding:    1em;
+    border: 2px solid #cff6d9;
+    background: #e2fff0;
+}
+
+.note::before {
+    content:    "Note";
+    display:    block;
+    width:  150px;
+    margin: -1.5em 0 0.5em 0;
+    font-weight:    bold;
+    border: 1px solid #cff6d9;
+    background: #fff;
+    padding:    3px 1em;
+}
+
+/* --- SYNTAX HIGHLIGHTING --- */
+pre.sh_sourceCode {
+  background-color: white;
+  color: black;
+  font-style: normal;
+  font-weight: normal;
+}
+
+pre.sh_sourceCode .sh_keyword { color: #005a9c; font-weight: bold; }           /* language keywords */
+pre.sh_sourceCode .sh_type { color: #666; }                            /* basic types */
+pre.sh_sourceCode .sh_usertype { color: teal; }                             /* user defined types */
+pre.sh_sourceCode .sh_string { color: red; font-family: monospace; }        /* strings and chars */
+pre.sh_sourceCode .sh_regexp { color: orange; font-family: monospace; }     /* regular expressions */
+pre.sh_sourceCode .sh_specialchar { color: 	#ffc0cb; font-family: monospace; }  /* e.g., \n, \t, \\ */
+pre.sh_sourceCode .sh_comment { color: #A52A2A; font-style: italic; }         /* comments */
+pre.sh_sourceCode .sh_number { color: purple; }                             /* literal numbers */
+pre.sh_sourceCode .sh_preproc { color: #00008B; font-weight: bold; }       /* e.g., #include, import */
+pre.sh_sourceCode .sh_symbol { color: blue; }                            /* e.g., <, >, + */
+pre.sh_sourceCode .sh_function { color: black; font-weight: bold; }         /* function calls and declarations */
+pre.sh_sourceCode .sh_cbracket { color: red; }                              /* block brackets (e.g., {, }) */
+pre.sh_sourceCode .sh_todo { font-weight: bold; background-color: #00FFFF; }   /* TODO and FIXME */
+
+/* Predefined variables and functions (for instance glsl) */
+pre.sh_sourceCode .sh_predef_var { color: #00008B; }
+pre.sh_sourceCode .sh_predef_func { color: #00008B; font-weight: bold; }
+
+/* for OOP */
+pre.sh_sourceCode .sh_classname { color: teal; }
+
+/* line numbers (not yet implemented) */
+pre.sh_sourceCode .sh_linenum { display: none; }
+
+/* Internet related */
+pre.sh_sourceCode .sh_url { color: blue; text-decoration: underline; font-family: monospace; }
+
+/* for ChangeLog and Log files */
+pre.sh_sourceCode .sh_date { color: blue; font-weight: bold; }
+pre.sh_sourceCode .sh_time, pre.sh_sourceCode .sh_file { color: #00008B; font-weight: bold; }
+pre.sh_sourceCode .sh_ip, pre.sh_sourceCode .sh_name { color: #006400; }
+
+/* for Prolog, Perl... */
+pre.sh_sourceCode .sh_variable { color: #006400; }
+
+/* for LaTeX */
+pre.sh_sourceCode .sh_italics { color: #006400; font-style: italic; }
+pre.sh_sourceCode .sh_bold { color: #006400; font-weight: bold; }
+pre.sh_sourceCode .sh_underline { color: #006400; text-decoration: underline; }
+pre.sh_sourceCode .sh_fixed { color: green; font-family: monospace; }
+pre.sh_sourceCode .sh_argument { color: #006400; }
+pre.sh_sourceCode .sh_optionalargument { color: purple; }
+pre.sh_sourceCode .sh_math { color: orange; }
+pre.sh_sourceCode .sh_bibtex { color: blue; }
+
+/* for diffs */
+pre.sh_sourceCode .sh_oldfile { color: orange; }
+pre.sh_sourceCode .sh_newfile { color: #006400; }
+pre.sh_sourceCode .sh_difflines { color: blue; }
+
+/* for css */
+pre.sh_sourceCode .sh_selector { color: purple; }
+pre.sh_sourceCode .sh_property { color: blue; }
+pre.sh_sourceCode .sh_value { color: #006400; font-style: italic; }
+
+/* other */
+pre.sh_sourceCode .sh_section { color: black; font-weight: bold; }
+pre.sh_sourceCode .sh_paren { color: red; }
+pre.sh_sourceCode .sh_attribute { color: #006400; }
+
+</style></head><body style="display: inherit;"><div class="head"><p><a href="http://www.w3.org/"><img src="http://www.w3.org/Icons/w3c_home" alt="W3C" height="48" width="72"></a></p><h1>Widgets 1.0: Widget URIs</h1><h2><acronym title="World Wide Web Consortium">W3C</acronym> Working Draft 08 October 2009</h2><dl><dt>This Version:</dt><dd><a href="http://www.w3.org/TR/2009/WD-widgets-uri-20091008/">http://www.w3.org/TR/2009/WD-widgets-uri-20091008/</a></dd><dt>Latest Published Version:</dt><dd><a href="http://www.w3.org/TR/widgets-uri/">http://www.w3.org/TR/widgets-uri/</a></dd><dt>Latest Editor's Draft:</dt><dd><a href="http://dev.w3.org/2006/waf/widget-uris/">http://dev.w3.org/2006/waf/widget-uris/</a></dd><dt>Previous version:</dt><dd><a href="http://www.w3.org/TR/2009/WD-widgets-uri-20090618/">http://www.w3.org/TR/2009/WD-widgets-uri-20090618/</a></dd><dt>Editor:</dt><dd><a href="http://berjon.com/">Robin Berjon</a>, <a href="http://vodafone.com/">Vodafone</a></dd></dl><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2009 <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium"><acronym title="World Wide Web Consortium">W3C</acronym></acronym></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology"><acronym title="Massachusetts Institute of Technology">MIT</acronym></acronym></a>, <a href="http://www.ercim.org/"><acronym title="European Research Consortium for Informatics and Mathematics"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></acronym></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. <acronym title="World Wide Web Consortium">W3C</acronym> <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p><hr></div>
+    
+    <div class="introductory section" id="abstract"><h2>Abstract</h2>
+      This specification defines the <code>widget</code> URI scheme that is used to address resources
+      inside a widget package [<a href="#bib-WIDGETS" rel="biblioentry" class="bibref">WIDGETS</a>].
+    </div><div id="sotd" class="introductory section"><h2>Status of This Document</h2><p><em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current <acronym title="World Wide Web Consortium">W3C</acronym> publications and the latest revision of this technical report can be found in the <a href="http://www.w3.org/TR/"><acronym title="World Wide Web Consortium">W3C</acronym> technical reports index</a> at http://www.w3.org/TR/.</em></p><p>This document was published by the <a href="http://www.w3.org/2008/webapps/">Web Applications WG</a> as a Last Call Working Draft. This document is intended to become a <acronym title="World Wide Web Consortium">W3C</acronym> Recommendation. If you wish to make comments regarding this document, please send them to <a href="mailto:public-webapps@w3.org">public-webapps@w3.org</a> (<a href="mailto:public-webapps-request@w3.org?subject=subscribe">subscribe</a>, <a href="http://lists.w3.org/Archives/Public/public-webapps/">archives</a>). The Last Call period ends 10 November 2009. All feedback is welcome.</p><p>Publication as a Working Draft does not imply endorsement by the <acronym title="World Wide Web Consortium">W3C</acronym> Membership. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.</p><p>This is a Last Call Working Draft and thus the Working Group has determined that this document has satisfied the relevant technical requirements and is sufficiently stable to advance through the Technical Recommendation process.</p><p>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 <acronym title="World Wide Web Consortium">W3C</acronym> Patent Policy</a>. <acronym title="World Wide Web Consortium">W3C</acronym> maintains a <a href="http://www.w3.org/2004/01/pp-impl/42538/status" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section 6 of the <acronym title="World Wide Web Consortium">W3C</acronym> Patent Policy</a>.</p></div><div class="section" id="toc"><h2 class="introductory">Table of Contents</h2><ul class="toc"><li><a href="#introduction"><span class="secno">1. </span>Introduction</a></li><li><ul class="toc"><li><a href="#not-in-this-specification"><span class="secno">1.1 </span>Not in this specification</a></li></ul></li><li><a href="#conformance"><span class="secno">2. </span>Conformance</a></li><li><a href="#definitions"><span class="secno">3. </span>Definitions</a></li><li><a href="#widget-uris"><span class="secno">4. </span>Widget URIs</a></li><li><ul class="toc"><li><a href="#syntax"><span class="secno">4.1 </span>Syntax</a></li><li><a href="#authority"><span class="secno">4.2 </span>Authority</a></li><li><a href="#base-uri-and-relative-uri-reference-resolution"><span class="secno">4.3 </span>Base URI and Relative URI Reference Resolution</a></li><li><a href="#mapping-widget-uris-to-files-within-a-widget-package"><span class="secno">4.4 </span>Mapping widget URIs to files within a widget package</a></li></ul></li><li><a href="#usage-as-origin"><span class="secno">A. </span>Usage as Origin</a></li><li><a href="#requirements"><span class="secno">B. </span>Requirements</a></li><li><a href="#acknowledgments"><span class="secno">C. </span>Acknowledgments</a></li><li><a href="#references"><span class="secno">D. </span>References</a></li><li><ul class="toc"><li><a href="#normative-references"><span class="secno">D.1 </span>Normative references</a></li><li><a href="#informative-references"><span class="secno">D.2 </span>Informative references</a></li></ul></li></ul></div>
+
+    <div id="introduction" class="informative section">
+      <h2><span class="secno">1. </span>Introduction</h2><p><em>This section is non-normative.</em></p>
+      <p>
+        Resources inside a widget package are identified and located using a method that is specific to
+        widgets technology. Widget URIs reflect this by providing these specific locators with their
+        own syntax so that resources in widget packages can be readily identified.
+      </p>
+      <p>
+        In general, authors of widget content use relative <a class="internalDFN" href="#dfn-uri">URI</a> references. Widget URIs are 
+        therefore primarily synthesised by the user agent as it absolutises <a class="internalDFN" href="#dfn-uri">URI</a> references 
+        found in documents contained in widgets packages.
+      </p>
+      <div class="section" id="not-in-this-specification">
+        <h3><span class="secno">1.1 </span>Not in this specification</h3>
+        <p>
+          There are many different efforts specifying URI schemes to access the content of Zip archives
+          and formats based on Zip, or endeavour to do so. While these efforts have merit, and
+          while <acronym title="World Wide Web Consortium">W3C</acronym> Widgets is one such format, the use cases that this specification
+          addresses are substantially different: rather than identify packaged resources from the outside,
+          widget URIs identify them only on the inside of a package, irrespective of that package's
+          own location. In fact, it is possible that both this scheme and another defined to access Zip 
+          archive content would be used jointly, with little or no overlap in functionality.
+        </p>
+        <p>
+          Uniquely identifying widgets, or multiple instances of the same widget package, as well as
+          enabling inter-widget communication are also outside the scope of this document.
+        </p>
+      </div>
+    </div>
+    
+    <div class="section" id="conformance"><h2><span class="secno">2. </span>Conformance</h2><p>As well as sections marked as non-normative, all authoring guidelines, diagrams, examples, and notes in this specification are non-normative. Everything else in this specification is normative.</p>
+<p>The key words <em title="must" class="rfc2119">must</em>, <em title="must not" class="rfc2119">must not</em>, <em title="required" class="rfc2119">required</em>, <em title="should" class="rfc2119">should</em>, <em title="should not" class="rfc2119">should not</em>, <em title="recommended" class="rfc2119">recommended</em>, <em title="may" class="rfc2119">may</em>, and <em title="optional" class="rfc2119">optional</em> in this specification are to be interpreted as described in [<a href="#bib-RFC2119" rel="biblioentry" class="bibref">RFC2119</a>].</p>
+
+      <p>
+        There are three classes of products that can claim conformance to this specification:
+      </p>
+      <ul>
+        <li>
+          widget URI <dfn id="dfn-producer" title="producer">producers</dfn>, which generate string representations of
+          widget URIs;
+        </li>
+        <li>
+          widget URI <dfn id="dfn-consumer" title="consumer">consumers</dfn>, which parse or otherwise process string 
+          representations of widget URIs;
+        </li>
+        <li>
+          and <dfn id="dfn-valid-widget-uri" title="valid widget URI">valid widget URIs</dfn>, the string representations of
+          widget URIs.
+        </li>
+      </ul>
+    </div>
+
+    <div class="section" id="definitions">
+      <h2><span class="secno">3. </span>Definitions</h2>
+      <p>
+        Throughout this specification, wherever the term <dfn id="dfn-uri">URI</dfn> [<a href="#bib-URI" rel="biblioentry" class="bibref">URI</a>] is used, it can be replaced
+        interchangeably with the term <a class="externalDFN">IRI</a> [<a href="#bib-RFC3987" rel="biblioentry" class="bibref">RFC3987</a>]. All widget URIs are IRIs, but the term
+        <a class="internalDFN" href="#dfn-uri">URI</a> is more common and was therefore preferred for readability.
+      </p>
+    </div>
+    
+    <div class="section" id="widget-uris">
+      <h2><span class="secno">4. </span>Widget URIs</h2>
+      <p>
+        <dfn id="dfn-widget-uri" title="widget URI">Widget URIs</dfn> are <a class="internalDFN" href="#dfn-uri" title="URI">URIs</a> as per [<a href="#bib-URI" rel="biblioentry" class="bibref">URI</a>] and
+        [<a href="#bib-RFC3987" rel="biblioentry" class="bibref">RFC3987</a>], with specific aspects described in the following sections.
+      </p>
+      
+      <div class="section" id="syntax">
+        <h3><span class="secno">4.1 </span>Syntax</h3>
+        <p>
+          A <a class="internalDFN" href="#dfn-valid-widget-uri">valid widget URI</a> <em title="must" class="rfc2119">must</em> adhere to the <a class="externalDFN">IRI</a> grammar rule
+          from [<a href="#bib-RFC3987" rel="biblioentry" class="bibref">RFC3987</a>], and its <a class="externalDFN">scheme</a> component <em title="must" class="rfc2119">must</em> be the
+          case-insensitive string "<code>widget</code>".
+        </p>
+        <p>
+          A <a class="internalDFN" href="#dfn-valid-widget-uri">valid widget URI</a> reference <em title="must" class="rfc2119">must</em> adhere to the <a class="externalDFN">IRI-reference</a>
+          grammar rule from [<a href="#bib-RFC3987" rel="biblioentry" class="bibref">RFC3987</a>], and if it is an absolute URI reference then it <em title="must" class="rfc2119">must</em>
+          be a <a class="internalDFN" href="#dfn-valid-widget-uri">valid widget URI</a>.
+        </p>
+        <p>
+          A <a class="internalDFN" href="#dfn-producer">producer</a> <em title="must" class="rfc2119">must</em> generate <a class="internalDFN" href="#dfn-uri" title="URI">URIs</a> that are normalised according to
+          chapter 5.3.2. "Syntax-Based Normalization" of [<a href="#bib-RFC3987" rel="biblioentry" class="bibref">RFC3987</a>].
+        </p>
+        <p>
+          A <a class="internalDFN" href="#dfn-consumer">consumer</a> <em title="must" class="rfc2119">must</em> be able to parse any <a class="internalDFN" href="#dfn-valid-widget-uri">valid widget URI</a>.
+        </p>
+        <p class="note">
+          Note that assigning semantics or interpretation to the query or fragment components is
+          outside the scope of this specification. The ways in which they are used depends on the
+          content types that they are applied to, or what executable script decides to do
+          with them.
+        </p>
+        <p>
+          Example widget <a class="internalDFN" href="#dfn-uri" title="URI">URIs</a> could thus be:
+          <code>widget://beefdead/dahuts/sightings/alpes-françaises.svg</code> 
+          (assuming the generated <a class="internalDFN" href="#dfn-opaque-authority">opaque authority</a> is <code>beefdead</code>) or
+          <code>widget:///secret-identities/marcoscàceres/batman.foaf</code> if there is no
+          authority component.
+        </p>
+      </div>
+      
+      <div class="section" id="authority">
+        <h3><span class="secno">4.2 </span>Authority</h3>
+        <p>
+          A <a class="internalDFN" href="#dfn-producer">producer</a> <em title="may" class="rfc2119">may</em> include an <a class="externalDFN">authority</a> component in <a class="internalDFN" href="#dfn-uri" title="URI">URIs</a>.
+          If present, the authority component is said to be <dfn id="dfn-opaque-authority" title="opaque authority">opaque</dfn>, 
+          meaning that the authority component has a syntax as defined by [<a href="#bib-RFC3987" rel="biblioentry" class="bibref">RFC3987</a>] but that 
+          the authority component is devoid of semantics.
+        </p>
+        <p>
+          A <a class="internalDFN" href="#dfn-consumer">consumer</a> <em title="should" class="rfc2119">should</em> ignore the <a class="externalDFN">authority</a> component, when present.
+        </p>
+      </div>
+      
+      <div class="section" id="base-uri-and-relative-uri-reference-resolution">
+        <h3><span class="secno">4.3 </span>Base URI and Relative URI Reference Resolution</h3>
+        <p>
+          When computing the base <a class="internalDFN" href="#dfn-uri">URI</a> for a resource contained in a widget package 
+          a <a class="internalDFN" href="#dfn-producer">producer</a> <em title="must" class="rfc2119">must</em> concatenate <code>widget://</code>, optionally 
+          the opaque authority, the U+002F SOLIDUS (/) character, and the 
+          <a href="http://www.w3.org/TR/widgets/#zip-relative-paths">Zip relative path</a> to the
+          resource. 
+        </p>
+        <p>
+          When resolving a relative <a class="internalDFN" href="#dfn-uri">URI</a> references against a base <a class="internalDFN" href="#dfn-uri">URI</a>, a <a class="internalDFN" href="#dfn-consumer">consumer</a>
+          <em title="must" class="rfc2119">must</em> use the mechanism defined in chapter 5.2. of [<a href="#bib-URI" rel="biblioentry" class="bibref">URI</a>].
+        </p>
+        <p class="note">
+          Note that using <a class="internalDFN" href="#dfn-widget-uri" title="widget URI">widget URIs</a> directly when authoring content is discouraged, 
+          and authors should stick to using schemeless relative <a class="internalDFN" href="#dfn-uri">URI</a> references.
+        </p>
+      </div>
+            
+      <div class="section" id="mapping-widget-uris-to-files-within-a-widget-package">
+        <h3><span class="secno">4.4 </span>Mapping widget URIs to files within a widget package</h3>
+        <p>
+          To resolve a widget <a class="internalDFN" href="#dfn-uri">URI</a> to a resource within a given widget package a <a class="internalDFN" href="#dfn-consumer">consumer</a>
+          <em title="must" class="rfc2119">must</em> apply the following algorithm (or one that guarantees the same result):
+        </p>
+        <ol>
+          <li>
+            Let <var>uri</var> be the <a class="internalDFN" href="#dfn-uri">URI</a> reference to resolve. If <var>uri</var> is a relative <a class="internalDFN" href="#dfn-uri">URI</a>
+            reference, make it absolute as defined in chapter 5.2. of [<a href="#bib-URI" rel="biblioentry" class="bibref">URI</a>].
+          </li>
+          <li>
+            Run the algorithm defined in
+            <a href="http://www.w3.org/TR/widgets#rule-for-finding-a-file-within-a-widget-">Rule for finding a 
+            file within a widget package</a> using the <var>path</var> component as its parameter (excluding any 
+            query or fragment components). Return the result, <a class="externalDFN">file</a> or
+            <a class="externalDFN">error</a>, that was returned.
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <div id="usage-as-origin" class="appendix section">
+      <h2><span class="secno">A. </span>Usage as Origin</h2>
+      <p>
+        In some contexts one needs to map a <a class="internalDFN" href="#dfn-uri">URI</a> into an <a class="externalDFN">origin</a>,
+        for instance in the [<a href="#bib-HTML5" rel="biblioentry" class="bibref">HTML5</a>] <a href="http://www.w3.org/TR/html5/browsers.html#origin-0">HTML5 
+        origin algorithm</a>.
+      </p>
+      <p>
+        Mapping from a widget <a class="internalDFN" href="#dfn-uri">URI</a> to an origin takes place as follows:
+      </p>
+      <ol>
+        <li>
+          Let <var>url</var> be the <a class="internalDFN" href="#dfn-valid-widget-uri">valid widget URI</a> for which the <a class="externalDFN">origin</a> is being determined.
+        </li>
+        <li>Parse <var>url</var> with a <a class="internalDFN" href="#dfn-consumer">consumer</a>.</li>
+        <li>Let <var>scheme</var> be <code>widget</code>.</li>
+        <li>
+            If <var>url</var> contains an <a class="internalDFN" href="#dfn-opaque-authority">opaque authority</a>, let <var>host</var> be its value.
+            Otherwise, generate a unique value that will always be the same for a given widget package
+            and that no two widget packages will share and assign it to <var>host</var>.
+        </li>
+        <li>
+          Let <var>port</var> be <code>null</code>.
+        </li>
+        <li>
+          Return the tuple (<var>scheme</var>, <var>host</var>, <var>port</var>).
+        </li>
+      </ol>
+    </div>
+    
+    <div id="requirements" class="appendix informative section">
+      <h2><span class="secno">B. </span>Requirements</h2><p><em>This section is non-normative.</em></p>
+      <dl>
+        <dt>Must allow addressing resources inside a widget package</dt>
+        <dd> 
+          The scheme must be able to address <a href="http://www.w3.org/TR/widgets/#zip-relative-paths">Zip relative paths</a> 
+          as defined in the Widgets: Packaging and Configuration [<a href="#bib-WIDGETS" rel="biblioentry" class="bibref">WIDGETS</a>] specification.
+        </dd>
+        <dt>Must allow resolving relative URL references inside a widget package</dt>
+        <dd>
+          It must be possible for a document inside a widget package to use a relative reference to another
+          without any specific knowledge of the scheme being used. For instance, if a document located
+          at <code>dahuts/dextrogyrous.html</code> features a link to <code>levrogyrous.html</code>
+          that link must resolve to <code>dahuts/levrogyrous.html</code>.
+        </dd>
+        <dt>Must not allow addressing resources outside a widget</dt>
+        <dd>
+          There is no requirement on how widgets are stored and potentially unpacked within a given
+          user agent, but irrespective of how that is performed, including for instance by storing the
+          unpacked widget on the local file system, it must be impossible to address resources outside
+          of the widget using this scheme.
+        </dd>
+        <dt>Must provide an origin <a class="internalDFN" href="#dfn-uri">URI</a> for widget-contained documents</dt>
+        <dd> 
+          Many mechanisms in widgets (e.g. cookies, local storage, XMLHttpRequest) key off the <a class="internalDFN" href="#dfn-uri">URI</a>
+          or part thereof from which they are used. Since widgets are for all intents and purposes
+          local applications that do not have an origin, this scheme must provide integration with
+          these mechanisms.
+        </dd>
+        <dt>Must be independent of any file system</dt>
+        <dd> 
+          Addressing based on this scheme must only map onto <a href="http://www.w3.org/TR/widgets/#zip-relative-paths">Zip
+          relative paths</a> and remain independent of any file system on which the widget may be stored.
+        </dd>
+        <dt>Must not conflict with existing <a class="internalDFN" href="#dfn-uri">URI</a> usage in web runtimes</dt>
+        <dd>
+          This scheme must enable maximal reuse of existing web runtimes, and therefore not
+          conflict with the architecture of existing <a class="internalDFN" href="#dfn-uri">URI</a> usage.
+        </dd>
+        <dt>Must not require widget developers to be aware of it for basic tasks</dt>
+        <dd>
+          Using this scheme as the <a class="internalDFN" href="#dfn-uri">URI</a> of resources inside a widget package must not force widget
+          developers to be aware of its existence for simple tasks such as linking between widget
+          resources, and would ideally not require such knowledge for advanced tasks either.
+        </dd>
+        <dt>Must be compatible with the Widgets 1.0: Packaging and Configuration localisation model</dt>
+        <dd>
+          Widgets 1.0: Packaging and Configuration [<a href="#bib-WIDGETS" rel="biblioentry" class="bibref">WIDGETS</a>] defines a runtime localisation model that allows
+          <a class="internalDFN" href="#dfn-uri">URI</a> references to be resolved to different resources depending on the user agent's locale settings,
+          this <a class="internalDFN" href="#dfn-uri">URI</a> scheme must enable such resolution.
+        </dd>
+      </dl>
+    </div>
+    
+    <div id="acknowledgments" class="appendix informative section">
+      <h2><span class="secno">C. </span>Acknowledgments</h2><p><em>This section is non-normative.</em></p>
+      <p>
+        The following people were instrumental in producing this specification:
+      </p>
+      <p>
+        Art Barstow, Marcos Caceres, Thomas Roessler, Larry Masinter, Marcin Hanclik, Mark Baker, and Jere Kapyaho.
+      </p>
+    </div>
+  <div class="appendix section" id="references"><h2><span class="secno">D. </span>References</h2><div class="section" id="normative-references"><h3><span class="secno">D.1 </span>Normative references</h3><dl class="bibliography"><dt id="bib-RFC2119">[RFC2119]</dt><dd>S. Bradner. <a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use in RFCs to Indicate Requirement Levels.</cite></a> Internet RFC 2119. URL: <a href="http://www.ietf.org/rfc/rfc2119.txt">http://www.ietf.org/rfc/rfc2119.txt</a> </dd><dt id="bib-RFC3987">[RFC3987]</dt><dd>M. Dürst; M. Suignard. <a href="http://www.ietf.org/rfc/rfc3987.txt"><cite>Internationalized Resource Identifiers (IRIs).</cite></a> January 2005. Internet RFC 3987. URL: <a href="http://www.ietf.org/rfc/rfc3987.txt">http://www.ietf.org/rfc/rfc3987.txt</a> </dd><dt id="bib-URI">[URI]</dt><dd>T. Berners-Lee; R. Fielding; L. Masinter. <a href="http://www.ietf.org/rfc/rfc3986.txt"><cite>Uniform Resource Identifiers (URI): generic syntax.</cite></a> January 2005. Internet RFC 3986. URL: <a href="http://www.ietf.org/rfc/rfc3986.txt">http://www.ietf.org/rfc/rfc3986.txt</a> </dd><dt id="bib-WIDGETS">[WIDGETS]</dt><dd>Marcos Caceres. <a href="http://www.w3.org/TR/2009/CR-widgets-20090723/"><cite>Widgets 1.0: Packaging and Configuration.</cite></a> 23 July 2009. W3C Candidate Recommendation. (Work in progress.) URL: <a href="http://www.w3.org/TR/2009/CR-widgets-20090723/">http://www.w3.org/TR/2009/CR-widgets-20090723/</a> </dd></dl></div><div class="section" id="informative-references"><h3><span class="secno">D.2 </span>Informative references</h3><dl class="bibliography"><dt id="bib-HTML5">[HTML5]</dt><dd>Ian Hickson; David Hyatt. <a href="http://www.w3.org/TR/2009/WD-html5-20090423/"><cite>HTML 5.</cite></a> 23 April 2009. W3C Working Draft. (Work in progress.) URL: <a href="http://www.w3.org/TR/2009/WD-html5-20090423/">http://www.w3.org/TR/2009/WD-html5-20090423/</a> </dd></dl></div></div></body></html>

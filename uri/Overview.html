@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Widget URIs</title>
+    <meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
+    <script src='http://dev.w3.org/2009/dap/ReSpec.js/js/respec.js' class='remove'></script>
+    <script class='remove'>
+      var respecConfig = {
+          specStatus:           "ED",
+          shortName:            "widgets-uri",
+          // publishDate:  "2009-10-08",
+          previousPublishDate:  "2009-10-08",
+          previousMaturity:  "FPWD",
+          edDraftURI:           "http://dev.w3.org/2006/waf/widget-uris/",
+          // lcEnd: "2009-11-10",
+          extraCSS:             ["../../../2009/dap/ReSpec.js/css/respec.css"],
+          inlineCSS:      true,
+          editors:  [
+              { name: "Marcos Cáceres", url: "http://berjon.com/",
+                company: "", companyURL: "" },
+          ],
+          wg:           "Web Applications WG",
+          wgURI:        "http://www.w3.org/2008/webapps/",
+          wgPublicList: "public-webapps",
+          wgPatentURI:  "http://www.w3.org/2004/01/pp-impl/42538/status",
+      };
+    </script>
+  </head>
+  <body>
+  <section id='abstract'>
+      This specification defines the <code>widget</code> URI scheme that is used to address resources
+      inside an packaged/installed Web Application. It is intended to be used with applications running is a packaged container (e.g., a [[ZIP]] container, or a [[!WIDGETS]] package) or similar sand boxed local file system. 
+    </section>
+
+    <section class='informative'>
+      <h2>Introduction</h2>
+      <p>
+      Widget URIs are synthetic URIs that serve two purposes: </p>
+      <ul>
+        <li>Can be used by a user agent as a <a href="http://dev.w3.org/html5/spec/Overview.html#the-document-s-address">document's address</a> [[HTML5]], which can serve as the  <a href="http://dev.w3.org/html5/spec/Overview.html#origin">origin</a> for HTML or SVG applications, which enables the use of many features that rely on the <a href="http://dev.w3.org/html5/spec/Overview.html#same-origin">same-origin policy</a> and allows certain DOM attributes to be <a href="http://dev.w3.org/html5/spec/Overview.html#resolve-a-url">resolved</a> [[!HTML]]. </li>
+        <li>Provides  a means to retrieve data from a file within a package simulating a [[!HTTP]]  GET request semantics through [[!HTTP]] response codes. This allowing as to be used, for instance, with [[XMLHTTPRequest]] and for elements to fire appropriate events when files cannot be found in a package. </li>
+      </ul>
+      <p>An example of  a widget <a title='URI'>URIs</a> is: </p>
+      <p><code>widget://c13c6f30-ce25-11e0-9572-0800200c9a66/index.html</code></p>
+      <h2>Example of usage</h2>
+      <p>Assuming the <a>synthesized</a> <a href="http://dev.w3.org/html5/spec/Overview.html#the-document-s-address">document's address</a> [HTML] is <code>widget://c13c6f30-ce25-11e0-9572-0800200c9a66/index.html#example</code>.</p>
+      <pre><code>
+&lt;!doctype html&gt;
+&lt;script&gt;
+//Example using HTML's Location object
+var loc =  window.location; 
+console.log(loc.protocol ===  &quot;widget:&quot;); //true 
+console.log(loc.host     ===  &quot;c13c6f30-ce25-11e0-9572-0800200c9a66&quot;); //true 
+console.log(loc.href     ===  &quot;widget://c13c6f30-ce25-11e0-9572-0800200c9a66/index.html&quot;); //true 
+console.log(loc.origin   ===  &quot;widget://c13c6f30-ce25-11e0-9572-0800200c9a66&quot;); //true 
+console.log(loc.pathname === &quot;/index.html&quot;); //true 
+console.log(loc.hash     === &quot;#example&quot;); //true 
+console.log(loc.port     === &quot;&quot;); //true</code></pre>
+
+<p>This example shows a widget URI being resolved in [[!HTML5]].</p>
+<pre><code>
+var img = document.createElement(&quot;img&quot;);
+
+//the following setter triggers HTML's resolve algorithm 
+img.src = &quot;example.gif&quot;; 
+
+//and the expected output: 
+console.log(img.src === &quot;widget://c13c6f30-ce25-11e0-9572-0800200c9a66/example.gif&quot;) //true
+
+//Append the image to the document
+document.body.appendChild(img); 
+&lt;/script&gt;</code></pre>
+
+<p>This example shows a resource within a package being retrieved over [[XMLHTTPREQUEST]]. </p>
+
+<pre><code>
+function process(data) {
+ // process the resulting data 
+}
+
+function handler() {
+ if(this.readyState == 4 && this.status == 200) {
+		var text = this.responseText;
+		var json = JSON.parse(text) 
+		process(json); 	
+ } else if (this.readyState == 4 && this.status != 200) {
+      // fetched the wrong page or there was an error...
+ }
+}
+
+var xhr = new XMLHttpRequest();
+xhr.onreadystatechange = handler;
+xhr.open("GET", "playlist.json");
+xhr.send();</code></pre>
+
+  </section>
+    
+  
+    
+  <section id='conformance'>
+    <p>
+        There is one class of products that can claim conformance to this specification:
+    a <a>user agent</a>. </p>
+</section>
+
+  <section>
+      <h2>User agent</h2>
+      <p>A user agent is an implementation an implementation of this specification that is able to synthesize widget URIs as well as dereference them. </p>
+  </section>
+
+
+    
+  <section>
+      <h2>Syntax of Widget URIs</h2>
+      <section>
+        <p>
+        A <a> widget URI</a>  is an [[!URI]] that: </p>
+        <ul>
+          <li>adheres to the <a class='externalDFN'>IRI</a> grammar rule
+            from [[!RFC3987]], </li>
+          <li>its <a class='externalDFN'>scheme</a> component is the 
+            case-insensitive string "<code>widget</code>" ,</li>
+          <li> contains an <a>authority</a> that meets the requirements of this specification. </li>
+        </ul>
+<p>
+      A <a> widget URI</a> reference  is one that: </p>
+<ul>
+  <li>adheres to the <a class='externalDFN'>IRI-reference</a>
+    grammar rule from [[!RFC3987]], </li>
+  <li> if it is an absolute URI reference then it is a <a>widget URI</a>.</li>
+</ul><section>
+<h3>Synthesizing a  widget URI</h3>
+<p>When synthesizing a  widget URI, a user agent <em class="ct">MUST</em> are normalized the URI in accordance with
+  chapter 5.3.2. "Syntax-Based Normalization" of [[!RFC3987]].
+</p></section>
+      </section>
+      
+
+      
+      
+      <section>
+        <h2>Authority Component</h2>
+        <p>The <dfn>authority</dfn> is 
+ a unique string which can be heuristically generated upon demand such that the probability that two are alike is small, and which is hard to guess. The authority component is said to be <dfn title='opaque authority'>opaque</dfn>, 
+          meaning that the authority component has a syntax as defined by [[!RFC3987]] but that 
+        the authority component is devoid of semantics. </p>
+        <p>We strongly is  RECOMMENDED using a  [UUID] as the as the value of the authority .       </p>
+      </section>
+      
+      
+      
+      
+      <section>
+        <h2>Query Component</h2>
+        <p>
+          The <a class='externalDFN'>query</a> component, when present, contains data that complements the
+          <a class='externalDFN'>path</a> component in identifying a resource within a package.
+        </p>
+      </section>
+
+    <section>
+      <h2>Dereferencing and retrieval</h2>
+      <p>This section describes how a user agent is supposed to respond requests to retrieve resources from a widget URI. The purpose is to make responses &quot;look and feel&quot; as much as possible like regular HTTP requests. </p>
+      <p>To dereference a widget <a>URI</a> to a file in a widget package a <a>user agent </a>
+      MUST apply the rules for dereferencing a widget URI.</p>
+      <p>The  <dfn>rules for dereferencing a widget URI</dfn> are as follows: </p>
+      <ol>
+          <li>If the request is not a GET request, return a 501 Not Implemented response and terminate this algorithm.</li>
+          <li>If the  <em> URI</em> uses the scheme 'widget', but is not a valid <a>widget URI</a>, return a 400 Bad Request response and terminate this algorithm. </li>
+          <li>If the <em> URI</em> uses the scheme 'widget', but the authority does not match the one assigned to this package, return a 403 Not Allowed response and terminate this algorithm (i.e., prevent inter-widget content access). </li>
+          <li>If the user agent implements [[!Widgets]] (for the purpose of internationalization):
+            <ol>
+              <li> Let <var>potential-file</var> be the result of running the <a href="http://www.w3.org/TR/widgets/#rule-for-finding-a-file-within-a-widget-package-0">rule for finding a 
+                file within a widget package</a> using the <var>path</var> component as its parameter. </li>
+            </ol>
+          </li>
+          <li>Otherwise, 
+            <ol>
+              <li>Let <var>path</var> be the path to the file being sought by the user agent.</li>
+              <li>Let <var>potential-file</var> be the result of attempting locate the file at  path</li>
+            </ol>
+          </li>
+          <li>If <var>potential-file</var> is not found, return a 404 Not Found response. </li>
+          <li>If retrieving <var>potential-file</var> results in a error (e.g., the file is corrupt), return a 500 Internal Server Error with an optional message describing the error in the response body.</li>
+          <li>Let <var>content-type</var> be the result of applying <a href="http://www.w3.org/TR/widgets/#rule-for-identifying-the-media-type-of-a-file">the rule for identifying the media type of a file</a> using <var>potential-file</var> as an argument.          </li>
+<li>Return a 200 OK response, with the value of content-type as the Content-Type header, and with <var>potential-file</var> as the response body. </li>
+      </ol>
+    </section>
+  </section>
+
+    <section class='appendix'></section>
+
+    <section class='appendix informative'>
+      <h2>Acknowledgments</h2>
+      <p>
+        The following people were instrumental in producing this specification:
+      </p>
+      <p>
+        Art Barstow, Thomas Roessler, Larry Masinter, Marcin Hanclik, Mark Baker, and Jere Kapyaho.
+      </p>
+    </section>
+      <section>
+      <h2>URI vs IRI?</h2>
+      <em>This section is non-normative.</em>
+      <p>
+        Throughout this specification, wherever the term <dfn>URI</dfn> [[!URI]] is used, it can be replaced
+        interchangeably with the term <a class='externalDFN'>IRI</a> [[!RFC3987]]. All widget URIs are IRIs, but the term
+        <a>URI</a> is more common and was therefore preferred for readability.
+      </p>
+    </section>
+    
+</body>
+</html>

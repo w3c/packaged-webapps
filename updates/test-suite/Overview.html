@@ -1,0 +1,282 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head><meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  <meta content="HTML Tidy for Linux/x86 (vers 11 February 2007), see
+  www.w3.org" name="generator" />
+  <!-- processor: http://www.w3.org/Style/Group/css3-src/bin/postprocess -->
+
+  <title>Test Suite for the Widget Updates Specification</title>
+
+  <style type="text/css">
+/*<![CDATA[*/
+
+  body {
+        font-size: 1em;
+  }
+  dfn.external {
+        font-weight: normal;
+        font-style: italic;
+  }
+  pre.idl {
+        border:solid thin;
+        background:#eee;
+        color:#000;
+        padding:0.5em
+  }
+  pre.idl :link, pre.idl :visited {
+        color:inherit;
+        background:transparent
+  }
+  dfn {
+        font-style:normal;
+        font-weight:bolder;
+  }
+  em.ct {
+        text-transform:uppercase;
+        font-style:normal;
+        font-weight:normal;
+        color:#990000
+  }
+  .issue {
+        padding:1em;
+        border: 1px solid red;
+        background:#FFC;
+  }
+  .example {
+        border-left: double;
+        background-color: #fafafa;
+  }
+  .note {
+        margin-left: 2em;
+        border: 2px solid #CFF6D9;
+        padding: .5em;
+        padding-top: 0px;
+        padding-bottom: 1em;
+        color: #444;
+        background-color: #E2FFF0;
+        font-size: 0.8em;
+  }
+  dd > dl {
+        margin:0px;
+        padding:0px
+  }
+  code {
+        font-size: 1.1em;
+        text-decoration: none;
+        color: #002108;
+  }
+  a:link code, a:visited code, a > code {
+        color:green;
+        text-decoration: none;
+        border-bottom: 0;
+  }
+  .dir_listing li {
+        list-style-type:none;
+        font-family: Tahoma, Arial, Helvetica, sans-serif;
+  }
+  span span {
+        background-color: yellow;
+  }
+  li.folder {
+        list-style-image:url(../images/expanded_folder.png)
+  }
+  .authorguide {
+        border: 1px solid #67BBB5;
+        background:#E8EBFC;
+        padding: 1em;
+        font-size: .9em;
+        color: #003;
+  }
+  .authorguide strong {
+        padding: .2em;
+        color: #003;
+        border: none;
+        position:relative;
+        display: block;
+        width: 200px;
+        left: -1.5em;
+        top: -1.5em;
+        background: #C6D8E6;
+        text-align: center;
+  }
+  span.notetitle {
+        padding: .2em;
+        color:#066;
+        border: none;
+        position:relative;
+        display: block;
+        width: 40px;
+        left: -1.5em;
+        top: -.7em;
+        background: #F2FFF1;
+        padding-left: .2em;
+        text-align: center;
+  }
+  var {
+        font-family: "Lucida Console", Monaco, monospace;
+  }
+  li.folder li {
+        list-style-image: none;
+  }
+  .dir_listing .comment {
+        border: none;
+        font-family:"Courier New", Courier, monospace;
+        color: #669933;
+  }
+  .dir_listing img {
+        vertical-align: middle;
+  }
+  .redNote {
+        color: red;
+  }
+  dl.procedure dt {
+        font-weight: normal;
+  }
+  .editorialNote {
+        padding: 5px;
+        background-color: #F3B9B7;
+        border: 3px dashed #FFEEB8;
+        color: #444;
+        font-size:0.8em;
+  }
+  .waitingon {
+        border-left: 10px solid #FFC;
+        margin: -10px;
+  }
+  .waitingon:before {
+        display: block;
+        content: "Status: waiting on input.";
+        border: solid thin #090;
+        position: absolute;
+        left: 4px;
+        background-color: #FC0;
+        width: 50px;
+        font-size: 9px;
+        color: #000;
+        padding: 2px;
+  }
+  li>ol {
+        list-style-type:upper-alpha;
+  }
+  span {
+        border: 1px dotted #C3C;
+  }
+
+  #ta td {
+      vertical-align: top;
+  }
+
+    /*]]>*/
+  </style>
+
+   <link href="http://www.w3.org/StyleSheets/TR/base" rel="stylesheet"
+  type="text/css" />
+ <style type="text/css">
+<!--
+em.ct1 {	text-transform:uppercase;
+	font-style:normal;
+	font-weight:normal;
+}
+em.ct-samp {	text-transform:uppercase;
+	font-style:normal;
+	font-weight:normal;
+}
+-->
+ </style>
+ </head>
+
+<body>
+<div class="head">
+   <p><a href="http://www.w3.org/"><img alt="W3C" height="48"
+    src="http://www.w3.org/Icons/w3c_home" width="72" /></a></p>
+   <!--end-logo--> <!--end-logo-->
+<h1 class="head"> Test Suite for the <cite>Widget Updates</cite> Specification</h1>
+<dl>
+   <dt>Maintainers:</dt>
+     <dd>Hari Kumar G, <a href="http://opera.com">Opera Software ASA</a></dd>
+     <dd><a href="http://richt.me/">Richard Tibbett</a>, <a href="http://opera.com">Opera Software ASA</a> </dd>
+     <dd><a href="http://datadriven.com.au/">Marcos Cáceres</a>, W3C Invited Expert </dd>
+
+   </dl>
+  <p class="copyright"><a
+    href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
+    &copy; 2010 <a href="http://www.w3.org/"><acronym title="World Wide Web
+    Consortium">W3C</acronym></a><sup>&reg;</sup> (<a
+    href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute
+    of Technology">MIT</acronym></a>, <a
+    href="http://www.ercim.org/"><acronym title="European Research Consortium
+    for Informatics and Mathematics">ERCIM</acronym></a>, <a
+    href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a
+    href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+    <a
+    href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>
+
+    and <a
+    href="http://www.w3.org/Consortium/Legal/copyright-documents">document
+    use</a> rules apply.</p>
+</div>
+<hr />
+<h2 id="prologue">Prologue</h2>
+ <p>This document provides an overview of the test suite for the <a
+   href="http://www.w3.org/TR/widgets-updates/">Widgets Updates</a>  specification. The Working Group
+has developed this test suite so to have a test case for every conformance requirement in the specification. </p>
+ <p><strong>Please note that this document puts a number <a href="requirements">requirements</a> on user agents, which must be supported in order to be able to run the tests. </strong></p>
+ <p>The keywords <dfn title=""><em class="ct-samp">must</em></dfn>, <dfn title=""><em class="ct-samp">must not</em></dfn>, <dfn title=""><em class="ct-samp">should</em></dfn>, <dfn title=""><em class="ct-samp">recommended</em></dfn>, <dfn title=""><em class="ct-samp">may</em></dfn> and <dfn title=""><em class=
+  "ct-samp">optional</em></dfn> in this document are to be interpreted as described in <span>[RFC2119]</span>.</p>
+ <h2>Status of this Test Suite</h2>
+ <p>Publication of this test suite does not imply endorsement by the W3C Membership. This   test suite is constantly evolving and the tests within in may be updated, replaced or obsoleted by other test at any time. When new tests become available, old obsoleted tests should be discarded. It is inappropriate to cite this document as other than a work in progress.</p>
+<h2>Licenses and Contributions</h2>
+ 
+<p>This test suite is distributed under the <a 
+href="http://www.w3.org/Consortium/Legal/2008/04-testsuite-copyright">W3C test 
+suite licensing scheme</a>. Note that claims of performance can only be made 
+against unaltered tests. </p>
+<p>The Working Group encourages the public and W3C 
+  members to contribute tests. To contribute to a W3C Test Suite, see the <a 
+href="http://www.w3.org/2004/10/27-testcases">policies and contribution 
+    forms</a>.</p>
+<h2 id="user-agent-requirements">Method used for testing </h2>
+<p>This specification adheres to the guidelines described in  <cite><a href="http://www.w3.org/TR/test-methodology/">A Method for Writing Testable Conformance Requirements</a></cite>. Please refer to that document for terminology and the approach that was taken to create this test suite. </p>
+<h2 id="requirements">User Agent Requirements
+</h2>
+ <p>In addition to the specifications required to be supported by user
+   agents by the Widgets Updates specification, some tests require, at a minimum,
+</p>
+ <ul>
+   <li>[ISO-8859-1]
+     <ul>
+       <li>Used in tests relating to content element encoding.</li>
+     </ul>
+   </li>
+ </ul>
+ <p>Without support for the above specifications, it may not be possible for a user agent to effectively run the test cases of the test suite (and false results may occur). 
+</p>
+ <p>To test localizations, the user agent must  support the &quot;<code>en</code>&quot; locale.</p>
+<h2>How to get the tests and test descriptions</h2>
+<p><strong>Before you run the tests, please make sure you read this document thoroughly.</strong></p>
+<p>Tests can be downloaded using CVS using the following commands:</p>
+<pre>CVSROOT=:pserver:anonymous@dev.w3.org:/sources/public cvs login 
+</pre>
+
+<p>Then enter the password <kbd>anonymous</kbd> when prompted, and then: </p>
+<pre>
+CVSROOT=:pserver:anonymous@dev.w3.org:/sources/public cvs checkout 2006/waf/widgets-updates/test-suite/
+</pre>
+<p>The Working Group also
+  provides an <a href="test-suite.xml">XML file</a> that describes each test case, links to each test
+  case, and identifies the assertion being tested.</p>
+<h2>Tests</h2>
+<p><strong>Vendors doing testing are strongly encouraged to submit their results to the working group</strong>. Having evidence that all tests in the test suite can be passed allows the specification to proceed along the W3C's Recommendation track. See also the <a href="../imp-report/">implementation report</a>. </p>
+
+<h2 id="testedAssertions">&nbsp;</h2>
+ <div id="tests"></div>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="../../widgets-shared/javascript/ShowTestSuite.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+<files "*.wgt">
+	forcetype application/widget
+</files>
+
+<files "*.oex">
+	forcetype application/x-opera-extension
+</files>
+
+<files "fail-wrong-ct.wgt">
+	forcetype text/plain
+</files>
+

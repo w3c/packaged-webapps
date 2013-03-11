@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="ta-acquisition3:1" version="42.0">
+	<name>ta-acquisition3-1</name>
+	<description>Tests that the preferred language of the user is sent in Accept-Language header when update description document is requested.</description>
+	<update-description xmlns="http://www.w3.org/ns/widgets" href="http://people.opera.com/harig/wupdres/resources/out.php?udd-accept-language"/>
+</widget>

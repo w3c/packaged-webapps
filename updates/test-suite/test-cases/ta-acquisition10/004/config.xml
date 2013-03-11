@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="ta-acquisition10:4" version="42.0">
+	<name>ta-acquisition10-4</name>
+	<description>Tests that if the src of update-info element gives a 301 HTTP response it is followed to fetch the update package.</description>
+	<update-description xmlns="http://www.w3.org/ns/widgets" href="http://people.opera.com/harig/wupdres/resources/out.php?udd-udi-301"/>
+</widget>

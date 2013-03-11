@@ -1,0 +1,22 @@
+<results testsuite="http://dev.w3.org/2006/waf/widgets-updates/test-suite/test-suite.xml"
+   id="wookie"
+   product="Apache Wookie"
+   href="http://incubator.apache.org/wookie">
+
+	<result for="ta-processing2-3" verdict="pass"/>
+	<result for="ta-processing2-8" verdict="pass"/>
+	<result for="ta-processing2-9" verdict="pass"/>
+	<result for="ta-processing2-10" verdict="pass"/>
+	<result for="ta-processing2-11" verdict="pass"/>
+	<result for="ta-processing2-12" verdict="pass"/>
+	<result for="ta-processing2-13" verdict="pass"/>
+	<result for="ta-processing2-15" verdict="pass"/>
+	<result for="ta-processing2-16" verdict="pass"/>
+	<result for="ta-processing2-17" verdict="pass"/>
+	<result for="ta-processing2-18" verdict="fail">Both descriptions processed</result>
+	<result for="ta-processing2-19" verdict="fail">Both descriptions processed</result>
+	<result for="ta-processing2-20" verdict="pass"/>	
+	<result for="ta-processing2-21" verdict="pass"/>
+
+
+</results>

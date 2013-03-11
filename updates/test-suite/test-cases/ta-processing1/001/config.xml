@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="ta-processing1:1" version="42.0">
+	<name>ta-processing1-1</name>
+	<description>Tests that update-description href has a default value of null.</description>
+	<update-description />
+</widget>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="ta-acquisition13:1" version="42.0">
+	<name>ta-acquisition13-1</name>
+	<description>Tests that if the network connection breaks down while doing an update check, the update process is terminated and user is notified.</description>
+	<update-description xmlns="http://www.w3.org/ns/widgets" href="http://people.opera.com/harig/wupdres/resources/out.php?udd-none-delayed"/>
+</widget>

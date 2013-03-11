@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="ta-processing2:18" version="42.0">
+	<name>ta-processing2-18</name>
+	<description>Tests that when multiple usable details elements are present in the update-description document all but the first are ignored.</description>
+	<update-description xmlns="http://www.w3.org/ns/widgets" href="http://people.opera.com/harig/wupdres/resources/out.php?udd-details-multiple"/>
+</widget>

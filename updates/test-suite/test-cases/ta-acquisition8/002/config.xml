@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="ta-acquisition8:2" version="42.0">
+	<name>ta-acquisition8-2</name>
+	<description>Tests that if the update-description document is served with a 304 HTTP response it is ignored and the widget update is terminated.</description>
+	<update-description xmlns="http://www.w3.org/ns/widgets" href="http://people.opera.com/harig/wupdres/resources/out.php?udd-304"/>
+</widget>

@@ -1,0 +1,1170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+
+<title>Digital Signatures for Widgets</title>
+
+<link href="style.css" rel="stylesheet" type="text/css" />
+
+<link href="http://www.w3.org/StyleSheets/TR/W3C-WD" rel="stylesheet"
+      type="text/css" />
+
+</head>
+
+<body>
+<div class="head">
+<!--logo-->
+
+<h1 class="head">Digital Signatures for Widgets</h1>
+
+<h2 class="no-num no-toc">W3C Working Draft [DATE]<!--[LONGSTATUS]--></h2>
+
+<dl>
+<dt>This Version:</dt>
+
+<dd><a href=
+"http://www.w3.org/TR/[YEAR]/WD-widgets-digsig-[CDATE]/">http://www.w3.org/TR/[YEAR]/WD-widgets-digsig-[CDATE]/</a></dd>
+
+<dt>Latest Version:</dt>
+
+<dd><a href="http://www.w3.org/TR/widgets-digsig/">http://www.w3.org/TR/widgets-digsig/</a></dd>
+<dt>Previous Versions:</dt>
+<dd><a href="http://www.w3.org/TR/2009/CR-widgets-digsig-20090625/">http://www.w3.org/TR/2009/CR-widgets-digsig-20090625/</a></dd>
+<dd><a href="http://www.w3.org/TR/2009/WD-widgets-digsig-20090430/">http://www.w3.org/TR/2009/WD-widgets-digsig-20090430/</a></dd>
+<dd><a href="http://www.w3.org/TR/2009/WD-widgets-digsig-20090331/">http://www.w3.org/TR/2009/WD-widgets-digsig-20090331/</a></dd>
+<dd><a
+     href="http://www.w3.org/TR/2008/WD-widgets-digsig-20080414/">http://www.w3.org/TR/2008/WD-widgets-digsig-20080414/</a></dd>
+
+
+<dt>Latest Editor's Draft:</dt>
+
+<dd><a href=
+"http://dev.w3.org/2006/waf/widgets-digsig/">http://dev.w3.org/2006/waf/widgets-digsig/</a></dd>
+<dt>Version history:</dt>
+<dd>Twitter messages (non-editorial changes only): <a href="http://twitter.com/widgetspecs">http://twitter.com/widgetspecs</a> (<a href="http://twitter.com/statuses/user_timeline/14349303.rss">RSS</a>)</dd>
+<dt>Editor:</dt>
+<dd>Frederick Hirsch, Nokia</dd>
+<dd><a href="http://datadriven.com.au/">Marcos Cáceres</a>, Opera Software ASA</dd>
+<dd>Mark Priestley, Vodafone</dd>
+</dl>
+<!--copyright-->
+</div>
+<hr />
+
+<h2 id="abstract" class="no-num no-toc">Abstract</h2>
+
+<p class="no-num no-toc">This document defines a profile of the <cite><a href=
+"http://www.w3.org/2008/xmlsec/Drafts/xmldsig-core-11/Overview.htm">XML
+Signature
+Syntax and Processing 1.1</a></cite>
+specification to allow a <span>widget package</span> to be digitally
+signed.  
+Widget authors and distributors can digitally sign widgets as a
+mechanism to ensure continuity of authorship and distributorship.
+Prior to instantiation, a user agent can use the digital  
+signature to verify the integrity of the <span>widget package</span>
+and
+to confirm the signing key(s). 
+This document specifies conformance
+requirements on both widget packages and user agents.</p>
+
+<h2 id="status" class="no-num no-toc">Status of this Document</h2>
+<p><em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current W3C publications and the latest revision of this technical report can be found in the <a href="http://www.w3.org/TR/">W3C technical reports index</a>  at http://www.w3.org/TR/.</em></p>
+<p>This is the 15 April 2010 Last Call Working Draft of "Digital Signatures
+for Widgets". The Last Call period ends on 6 May 2010.
+</p>
+<p>The title of the document has been changed from "Widgets 1.0: Digital
+Signatures", and the processing of same-document XML References has been
+changed to require use of a Transform to specify Canonical XML 1.1 to
+minimize ambiguities, while recommending validators also support the
+case without a transform for backward compatibility. References
+have also been updated.
+</p>
+<p>This document was produced by a group operating under the <a href=
+"http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 W3C Patent
+Policy</a>. W3C maintains a <a rel="disclosure" href=
+"http://www.w3.org/2004/01/pp-impl/42538/status">public list of any patent
+disclosures</a> made in connection with the deliverables of the group; that page also
+includes instructions for disclosing a patent. An individual who has
+actual knowledge of 
+a patent which the individual believes contains <a
+href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential 
+Claim(s)</a> must disclose the information in accordance with <a href= 
+"http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section 6 of the
+W3C Patent Policy</a>.</p>
+
+<p><strong>You can find the latest <a href=
+"http://dev.w3.org/2006/waf/widgets-digsig/">Editor's Draft</a> of
+this document in the 
+<a href="http://dev.w3.org/">W3C's CVS repository</a>, which is
+updated on a very regular 
+basis.</strong> The public is encouraged to send comments to the
+WebApps Working Group's public mailing 
+list <a href="mailto:public-webapps@w3.org">public-webapps@w3.org</a> (<a href=
+"http://lists.w3.org/Archives/Public/public-webapps/">archive</a>). See <a href=
+"http://www.w3.org/Mail/">W3C mailing list and archive usage
+guidelines</a>. A detailed <a
+href="http://dev.w3.org/cvsweb/2006/waf/widgets-digsig/">list of
+changes</a> from 
+the previous version is also available from the W3C's CVS server.</p>
+<p>This document is produced by
+  the <a href="http://www.w3.org/2008/webapps/">Web 
+Applications  WG</a>, part of the <a
+href="http://www.w3.org/2006/rwc/Activity">Rich Web Clients
+Activity</a> in 
+the W3C <a href="http://www.w3.org/Interaction/">Interaction
+Domain</a>. 
+</p>
+
+<h2 class="no-num no-toc" id="toc">Table of Contents</h2><!--toc-->
+
+<h2 id="introduction">Introduction </h2>
+
+<p class="no-num no-toc">This document defines a profile of the <cite><a href=
+"http://www.w3.org/2008/xmlsec/Drafts/xmldsig-core-11/Overview.htm">XML
+Signature
+Syntax and Processing 1.1</a></cite>
+specification to allow a <span>widget package</span> to be digitally
+signed.  
+Widget authors and distributors can digitally sign widgets as a
+mechanism to ensure continuity of authorship and distributorship.
+Prior to instantiation, a user agent can use the digital  
+signature to verify the integrity of the <span>widget package</span>
+and
+to confirm the signing key(s). 
+This document specifies conformance
+requirements on both widget packages and user agents.</p>
+<p>
+A <span>widget package</span> can be signed by the author of the
+widget producing an 
+ <span>[XMLDSIG11]</span> signature that cryptographically includes all of the file entries other than <span title="signature file">signature files</span>. A widget package can also be
+signed by one or more 
+distributors of the widget, producing <span>[XMLDSIG11]</span>
+signatures that each cryptographically includes 
+all of the non-signature file entries as well as any <span>author
+signature</span>.
+</p> 
+<h3>Versions, Namespaces and Identifiers</h3>
+  <p>This specification makes use of <span>[XML-Namespaces]</span>, and uses Uniform Resource Identifiers <span>[URI]</span> to identify resources, algorithms, and semantics.</p>
+  
+  <p>Implementations of this specification <em class="ct">MUST</em>
+  use the following URI as the XML namespace for <span>[XML]</span> elements used by this specification:</p> 
+<dl>
+<dt>URI:</dt>
+<dd><code>http://www.w3.org/ns/widgets-digsig</code></dd>
+
+</dl>
+  
+  <p> Implementations <em class="ct">MUST</em> support the <span>[XML]</span> specification and
+the <span>[XML-Namespaces]</span> specification.</p>
+<p> While use of the above namespace 
+    URI is <em class="ct">REQUIRED</em> for XML elements used by this specification, the 
+    namespace prefix and entity declaration
+    given below are merely editorial 
+    conventions used in this document.  Their use by authors of digital signature documents is
+  <em class="ct">OPTIONAL</em>.</p>
+  <dl>
+    <dt>XML internal entity:</dt>
+    <dd><code>&lt;!ENTITY wsig
+      &quot;http://www.w3.org/ns/widgets-digsig&quot;&gt;</code></dd>
+    <dt>Namespace Prefix:</dt>
+    <dd><code>wsig:</code></dd>
+  </dl>
+<div class="example">    <p>For resources not under the control
+  of this specification, we use 
+  the designated Uniform
+  Resource Identifiers <span>[URI]</span> defined by the
+  relevant specifications. For example:</p>
+  <dl>
+    <dt style="font-weight: normal;">XML Signature
+    <span>[XMLDSIG-2ndEd]</span> resources are
+    defined in the <code>ds:</code> 
+    namespace</dt>
+    <dd><code>http://www.w3.org/2000/09/xmldsig</code></dd>
+    <dt style="font-weight: normal;"> Additional XML Signature 1.1
+    <span>[XMLDSIG11]</span> 
+resources are defined in the <code>ds11:</code> 
+    namespace</dt>
+    <dd><code>http://www.w3.org/2009/xmldsig11</code>
+    </dd>
+    
+    <dt style="font-weight: normal;">Individual Signature Properties    <span>[XMLDSIG-Properties]</span>
+    such as <code>Role</code> are defined in the
+    <code>dsp:</code>  
+    namespace</dt>
+    <dd><code>http://www.w3.org/2009/xmldsig-properties</code></dd>
+
+    <dt style="font-weight: normal;">Algorithms used by XML Security
+    are defined in a number of places, including XML Signature
+    1.1.</dt>
+    <dd>See the 
+    XML Security Algorithm Cross-Reference for details    [<span>XMLSecAlgs</span>].  </dd>
+  </dl>
+</div>
+<p class="note">Note: No provision is made for an explicit version number in this
+    specification.  If a future version of 
+    this specification requires explicit versioning of the document
+    format, a different namespace will 
+be used.</p>
+<h3 id="definitions">Definitions</h3>
+<p>A <dfn>widget package</dfn> is a <span>[Zip]</span> archive that conforms  to the <span>[Widgets Packaging]</span> specification.</p>
+
+  <p>A <dfn>file entry</dfn> is the data held by a <dfn class="external">local file
+    header</dfn>, <dfn class="external">file data</dfn>, and (optional) <dfn class=
+    "external">data descriptor</dfn>, as defined in the <span>[ZIP]</span> specification,
+    for each physical file contained in a Zip archive.</p>
+
+<p>The <dfn>root of the widget package</dfn> is the top-most path
+level of the <span>widget package</span> that can logically contain one or more file entries, as defined in the <span>[Widgets Packaging]</span> specification.</p>
+
+<p>A <dfn>file name</dfn> is the name of a file contained in
+a <span>widget package</span> (derived from the  <var>file name field</var> of a <var>local file header</var> of a <span>file entry</span>), as defined in the <span>[Widgets
+Packaging]</span> specification. All file names <em class="ct">MUST</em> be treated as
+case-sensitive. In other words, case matters in file name comparisons.</p>
+<p>A <dfn>digitally signed widget package</dfn> is a <span>widget package</span> that contains one or more <span title="signature file">signature files</span>.</p>
+<p>An <dfn>unsigned widget package</dfn> is a widget package that does not contain any signature files. </p>
+<p>A <dfn>signature file</dfn> is a <span>file entry</span> containing a
+  detached  
+  <span>[XMLDSIG11]</span> signature (as profiled in this specification) whose file name
+follows the naming conventions of a <span>signature file name</span>.</p>
+
+<p>A <dfn>signature file name</dfn> is a <span>file name</span> for a <span>file entry</span> that represents a <span>signature file</span>. This specification defines the naming conventions for both <span title="author signature">author signatures</span> and <span title="distributor signature">distributor signatures</span>.</p>
+
+<p>A <dfn>widget signature</dfn> is an <span>[XMLDSIG11]</span>
+signature, as contained in a <span>signature file</span>.</p>
+
+<p>An <dfn>author signature</dfn> is a <span>widget signature</span>
+with a <span> signature file name</span> that adheres to the
+<span>naming convention for an author  
+  signature</span> and has an <span>[XMLDSIG-Properties]</span> <code>Role</code> element whose  <code>URI</code> attribute  is equivalent to the <span class="label">author role attribute value</span>. An author signature is intended to be generated by the author of
+a widget (i.e., the person who authored the widget).</p>
+
+<p>A <dfn>distributor signature</dfn> is a <span>widget
+signature</span> with a <span>signature file name</span> that adheres
+to the <span>naming convention for a distributor 
+signature</span> and has an <span>[XMLDSIG-Properties]</span> <code>Role</code> element whose <code>URI</code>  is equivalent to the <span class="label">distributor role attribute value</span>. A distributor signature is intended to be generated by the distributor of
+a widget (i.e., a third party that is distributing the widget on behalf of the author).</p>
+<p>A <dfn>wall clock timestamp</dfn> is defined in the <span>[XMLDSIG-Properties]</span> specification. </p>
+<p> A
+<dfn>zip relative path</dfn> <em class="ct">MUST</em> conform to the <span>[ABNF]</span> for <code>zip-rel-path</code> as specified in <span>[Widgets Packaging]</span>.</p>
+
+<h3 id="conventions">Conventions</h3>
+<p>This section is non-normative.</p>
+<p>Defined terms appear as this <dfn>sample defined term</dfn>. Such
+terms are referenced as <span>sample defined term</span>, providing a
+link back to where the term is defined.</p>
+<p>
+Words that denote a conformance clause or testable assertion use
+keywords from <span>[RFC2119]</span>:
+ <em class="ct">MUST</em>, <em class="ct">MUST
+NOT</em>, <em class= "ct">REQUIRED</em>, <em class="ct">SHOULD</em>, <em class="ct">SHOULD NOT</em>, <em class="ct">RECOMMENDED</em>, <em
+class="ct">MAY</em> and <em class="ct">OPTIONAL</em>.</p>
+<p>
+Variables are formatted specially, e.g. <var>variable</var>. Code is
+also specially formatted, such as <code>code</code>.</p>
+<p>
+Examples are highlighted to indicate the whole:
+</p>
+<div class="example">
+This is an example containing some code<br />
+<code>if (a &lt;> 1234122){
+	//...do something
+}</code>
+</div>
+<p class="note">Notes are highlighted specially and are used to note
+editorial issues, or items to be aware of.</p>
+
+<p>This specification uses <span>[ABNF]</span> syntax to define file
+names. Rules are concatenated by being written 
+next to each other. A rule prefixed by <code>*</code> means zero or
+more. See 
+ <span>[ABNF] </span>for details on this syntax. </p>
+
+<h3 id="example">Example</h3>
+<p><em>This section is non-normative.</em></p>
+<div class="example">
+  <p>Example of a <span>distributor signature</span> document, named
+  <code>signature1.xml</code>:</p> 
+  <pre>
+<code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;Signature xmlns=&quot;http://www.w3.org/2000/09/xmldsig#&quot; 
+  Id=&quot;DistributorASignature&quot;&gt;
+ &lt;SignedInfo&gt;
+  &lt;CanonicalizationMethod 
+   Algorithm=&quot;http://www.w3.org/2006/12/xml-c14n11&quot;/&gt;
+  &lt;SignatureMethod
+   Algorithm=&quot;http://www.w3.org/2001/04/xmldsig-more#rsa-sha256&quot;/&gt;
+  &lt;Reference URI=&quot;config.xml&quot;&gt;
+   &lt;DigestMethod
+    Algorithm=&quot;http://www.w3.org/2001/04/xmlenc#sha256&quot;/&gt;
+   &lt;DigestValue&gt;...&lt;/DigestValue&gt;
+  &lt;/Reference&gt;
+  &lt;Reference URI=&quot;index.html&quot;&gt;
+    &lt;DigestMethod
+     Algorithm=&quot;http://www.w3.org/2001/04/xmlenc#sha256&quot;/&gt;
+     &lt;DigestValue&gt;...&lt;/DigestValue&gt;
+  &lt;/Reference&gt;
+  &lt;Reference URI=&quot;icon.png&quot;&gt;
+   &lt;DigestMethod
+     Algorithm=&quot;http://www.w3.org/2001/04/xmlenc#sha256&quot;/&gt;
+   &lt;DigestValue&gt;...&lt;/DigestValue&gt;
+  &lt;/Reference&gt;
+  &lt;Reference URI=&quot;#prop&quot;&gt;
+   &lt;Transforms&gt;
+    &lt;Transform Algorithm="http://www.w3.org/2006/12/xml-c14n11"/&gt;
+   &lt;/Transforms&gt;
+   &lt;DigestMethod 
+    Algorithm=&quot;http://www.w3.org/2001/04/xmlenc#sha256&quot;/&gt;
+   &lt;DigestValue&gt;...&lt;/DigestValue&gt;
+  &lt;/Reference&gt;
+ &lt;/SignedInfo&gt;
+ &lt;SignatureValue&gt;...&lt;/SignatureValue&gt;
+ &lt;KeyInfo&gt;
+  &lt;X509Data&gt;
+   &lt;X509Certificate&gt;...&lt;/X509Certificate&gt;
+  &lt;/X509Data&gt;
+ &lt;/KeyInfo&gt;
+ &lt;Object Id=&quot;prop&quot;&gt; 
+  &lt;SignatureProperties
+   xmlns:dsp=&quot;http://www.w3.org/2009/xmldsig-properties&quot;&gt;
+   &lt;SignatureProperty Id=&quot;profile&quot; Target=&quot;#DistributorASignature&quot;&gt;
+    &lt;dsp:Profile URI=&quot;http://www.w3.org/ns/widgets-digsig#profile&quot;/&gt;
+   &lt;/SignatureProperty&gt; 
+   &lt;SignatureProperty Id=&quot;role&quot; Target=&quot;#DistributorASignature&quot;&gt;
+    &lt;dsp:Role
+      URI=&quot;http://www.w3.org/ns/widgets-digsig#role-distributor&quot;/&gt;
+   &lt;/SignatureProperty&gt; 
+   &lt;SignatureProperty Id=&quot;identifier&quot; Target=&quot;#DistributorASignature&quot;&gt;
+    &lt;dsp:Identifier&gt;07425f59c544b9cebff04ab367e8854a&lt;/dsp:Identifier&gt;
+   &lt;/SignatureProperty&gt; 
+  &lt;/SignatureProperties&gt; 
+ &lt;/Object&gt;  
+&lt;/Signature&gt;</code>
+</pre>
+</div>
+
+<h2 id="requirements">Design Goals and Requirements</h2>
+<p>The design goals and requirements for this specification are
+addressed in the <cite>Widgets 1.0 Requirements</cite> document <span>[Widgets
+    Requirements]</span>. This document addresses the
+  following requirements: </p> 
+<ul>
+  <li><a
+          href="http://www.w3.org/TR/widgets-reqs/#digital-signatures">R48. Digital Signatures</a>: this specification relies on <span>[XMLDSIG11]</span> and 
+<span>[RFC5280]</span> to address
+  this requirement.</li>
+
+  <li><a href="http://www.w3.org/TR/widgets-reqs/#multiple-signatures-and-certificate-chains">R49. Multiple Signatures and Certificate Chains</a>:  this
+  specification relies on <span>[XMLDSIG11]</span> and
+<span>[RFC5280]</span> to address this requirement. </li>
+  <li><a href="http://www.w3.org/TR/widgets-reqs/#signature-document-format">R50. Signature Document Format</a>: see signature file. </li>
+  <li><a href="http://dev.w3.org/2006/waf/widgets-reqs/#support-for-multiple-message-digest-algorithms">R51. Support for Multiple Message Digest Algorithms</a>: this
+  specification supports SHA-256, the <code>reference</code> element, and <code>ds:SignedInfo</code> 
+  element. </li> 
+  <li><a href="http://www.w3.org/TR/widgets-reqs/#support-for-multiple-signature-algorithms">R52. Support for Multiple Signature Algorithms</a>: DSA-SHA-1, RSA-SHA-256, and ECDSA-SHA-256. </li> 
+  <li><a href="http://www.w3.org/TR/widgets-reqs/#key-lengths"> R53. Key Lengths</a>: minimum of 1024, but 2048 recommended. </li>
+  <li><a href="http://www.w3.org/TR/widgets-reqs/#key-usage-extension">R54. Key Usage Extension</a>: part of X.509v3.</li>
+  <li><a href="http://www.w3.org/TR/widgets-reqs/#inclusion-of-revocation-information">R55. Inclusion of Revocation Information</a>:  this specification
+  relies on <span>[XMLDSIG11]</span> and <span>[RFC5280]</span>
+to address this
+  requirement. </li> 
+</ul>
+<p>In particular, this specification explicitly supports both 
+<span title="author signature">author signatures</span>
+and <span title="distributor signature">distributor signatures</span>.</p>
+
+<h2  id="conformance">Conformance</h2>
+<p>The key words <em class="ct">MUST</em>, <em class="ct">MUST
+NOT</em>, <em class= "ct">REQUIRED</em>, <em class="ct">SHOULD</em>, <em class="ct">SHOULD NOT</em>, <em class="ct">RECOMMENDED</em>, <em
+class="ct">MAY</em> and <em class="ct">OPTIONAL</em> in this
+specification are to be interpreted as described in <span>[RFC2119]</span>. </p>
+<p>
+As well as sections marked as non-normative, the examples and notes,
+and security considerations in this specification are non-normative.
+Everything else in this specification is normative. 
+</p>
+<p>There are two classes of product that can claim conformance to this specification:</p>
+
+<ul>
+<li>A <span>signature file</span>.</li>
+<li>A <span>user agent</span>.</li>
+</ul>
+
+<p>Products that generate a <span>widget signature</span> <em
+class="ct">MUST</em> 
+generate 
+  <span>[XML]</span> documents that conform to <span>[XMLDSIG11]</span>  and conform to
+this specification.</p>
+<p>A <dfn> user agent</dfn> is an implementation that attempts to support this
+  specification. A user agent <em class="ct">MUST</em> behave as described by
+  this specification 
+in order to claim conformance.</p> 
+
+<p>Implementers are encouraged to provide mechanisms to enable
+  end-users to install certificates for enabling verification of
+  digital signatures within the widget package.</p> 
+<h2 id="locating-signatures">Locating and Processing Digital
+Signatures for the Widget</h2> 
+<p>
+This section defines how to locate signature files in a widget package for processing. An implementation <em class="ct">MUST</em>
+achieve the same result 
+as the following algorithm used to locate signature files in a
+<span>widget package</span>:
+</p>
+<ol>
+<li>
+  <p>Let 
+  <code>signatures</code> be an empty list. </p>
+</li>
+<li>
+  <p>For each <span>file entry</span> in the <span>root of the widget package</span>, if the <span>file name</span>
+    matches the <span>naming convention for a distributor
+      signature</span> then append this <span>file entry</span> to the 
+  <code>signatures</code> list. An Implementation <em class="ct">MUST</em> perform a case-sensitive comparison.</p>
+</li>  
+<li>
+  <p>If the <code>signatures</code> list is not empty,
+    sort the list of 
+  <code>signatures</code>
+    by the file name field in ascending numerical order
+    (e.g. <code>signature1.xml</code> 
+    followed by <code>signature2.xml</code> followed by
+  <code>signature3.xml</code> etc.).</p>
+</li>  
+<li>
+  <p>Search the <span>root of the widget package</span> for any <span>file name</span>
+    that matches the <span>naming convention for an author
+      signature</span> and then append this <span>file entry</span> to the 
+    <code>signatures</code> list.   An Implementation <em class="ct">MUST</em> perform a case-sensitive comparison. </p>
+</li>
+<li>
+  <p>If the <code>signatures</code> list is  empty (meaning no
+  <span title="signature file">signature files</span> were found), terminate this algorithm
+  and treat this widget package as an <span>unsigned widget package</span>. </p>
+</li>
+<li>
+  <p>Validate the signature files in the signature list in
+numerical descending order, with <span title="distributor signature">distributor signatures</span> first (if
+  any).</p>
+<p>The decision of which (if any) <span title="distributor signature">distributor signatures</span> are to 
+be validated and whether the <span>author signature</span> is
+validated is out of scope of this specification. This <em class="ct">MAY</em> be
+determined by the security policy used by the user agent.</p>
+<p><dfn>Numerical order</dfn> is the order based on the numeric portion of the  
+signature file name. 
+Thus in the case more than one distributor signature is to be
+processed, the highest numbered distributor signature is 
+processed first.
+</p>
+<p>Ordering of widget <span title="signature file">signature files</span> by the numeric
+portion of the <span>file name</span> can be used to allow consistent
+processing and possible   
+optimization.</p></li>
+<li>
+  <p>Every signature that is verified <em
+class="ct">MUST</em> be verified
+    according to <a href="#signature-verification">Signature Verification</a>
+    defined in this specification.</p>
+</li>
+</ol>
+
+<h2 id="use-and-syntax">Signature Syntax and use in Widget Packages</h2>
+<h3 id="use">Use of XML Signature in Widgets</h3>
+<p>
+A <span>widget package</span> <em class="ct">MAY</em> be digitally
+signed using
+the profile of <span>[XMLDSIG11]</span> defined by this specification.
+</p>
+<p class="note">Note: A user agent's security policy can affect how
+signature validation 
+  impacts operation, and may<em class="ct"></em> have additional constraints on
+  establishing trust, including additional requirements on certificate
+  chain validation and certificate revocation processing using CRLs
+  <span>[RFC5280]</span> or 
+OCSP <span>[RFC2560]</span>. </p> 
+<p class="note">Security policy may also require additional information to be conveyed in <code>ds:KeyInfo</code>. Security policy is out of scope of this specification
+  but has important implications for signature file processing.
+</p>
+<p>
+When a
+<span>widget package</span> is signed according to this specification, the
+following <dfn>requirements on a widget signature</dfn> apply to any <span>widget signature</span> included in <span>widget package</span>: </p>
+<ul>
+<li>
+  <p>Each <span>signature file</span> <em class="ct">MUST</em> appear
+  at the <span>root of the widget package</span>.</p>
+</li> 
+<li>
+  <p>Each <span>widget signature</span> <em class="ct">MUST</em> be a detached XML
+    Signature that complies with 
+    XML Signature 1.1 syntax <span>[XMLDSIG11]</span>.</p>
+</li>
+<li>
+  <p>Each <span>widget signature</span> <em class="ct">MUST</em> be generated and
+    validated in a manner compliant with XML Signature 1.1 processing
+    rules <span>[XMLDSIG11]</span>.</p>
+</li>
+<li>
+  <p>Each <span>widget signature</span> <em class="ct">MUST</em> contain a
+  <code>dsp:Profile</code> signature properties element 
+    compliant with the <span>[XMLDSIG-Properties]</span> and this
+    specification. This 
+  <code>dsp:Profile</code> property 
+  <em class="ct">MUST</em> have the 
+  <code>URI</code> attribute value of 
+  <code>http://www.w3.org/ns/widgets-digsig#profile</code>.
+  </p>
+</li>
+<li>
+  <p>Each <span>widget signature</span> <em class="ct">MUST</em> contain a
+  <code>dsp:Role</code> signature properties element 
+    compliant with the 
+  <span>[XMLDSIG-Properties]</span> and this specification.</p>
+</li> 
+<li>
+  <p>Each <span>widget signature</span> <em class="ct">MUST</em> contain  a <code>dsp:Identifier</code>
+    signature properties   
+    element compliant with XML Signature Properties
+  <span>[XMLDSIG-Properties]</span>
+    and this specification.</p>
+</li> 
+
+<li>
+  <p>Every <code>ds:Reference</code> used within a <span>widget signature</span> <em class="ct">MUST</em> 
+    have a <code>URI</code> attribute.</p>
+</li>
+<li>
+  <p>Every <code>ds:Reference</code> used within a <span>widget signature</span> <em class="ct">MUST</em> be one of
+    the following two 
+    kinds of reference:</p>
+<dl>
+      <dt>Reference to content within the same <code>ds:Signature</code> element</dt>
+        <dd>
+          <p>Every <code>ds:Reference</code> to an item
+            within the <span>widget signature</span> <em class="ct">MUST</em> use an <code>IDREF</code> value for the <code>ds:Reference</code> <code>URI</code> attribute, referring   
+            to a unique ID (as defined in <span>[XML-Schema-Datatypes]</span>) within the <span>widget signature</span>.</p>
+        </dd>
+        <dt>Reference to a <span>file entry</span> in the same <span>widget package</span></dt>
+        <dd>
+          <p>The URI attribute of every <code>ds:Reference</code> to a <span>file entry</span> <em
+class="ct">MUST</em> be a  URL-encoded <span>[URI]</span> <span>zip
+relative path</span> that identifies a file inside the widget
+package.</p></dd></dl></li>
+</ul>
+<h3 id="author-signatures">Author Signature</h3>
+<p>The <span>author signature</span> can be used to determine:</p>
+<ul>
+  <li> the author of a widget,  </li>
+  <li>that the integrity of the
+    widget is as the author intended,</li>
+  <li>and  whether two
+    widgets came from the same author.</li>
+</ul>
+<p>
+  A <span>widget package</span> <em class="ct">MAY</em> contain zero or
+one <span title="author signature">author signatures</span>. </p>
+<p>In addition to the  <span>requirements on a widget signature</span>, the
+following <em class="ct">MUST</em> be true of an <span>author signature</span>'s  <span>[XMLDSIG-Properties]</span> <code>Role</code> element's <code>URI</code> attribute value: </p>
+<dl>
+  <dt class="label"><dfn>Author <code>Role</code> Attribute value</dfn> (<code>URI</code>):</dt>
+  <dd>
+  <code>http://www.w3.org/ns/widgets-digsig#role-author</code></dd>
+  <dt class="label">Meaning:</dt>
+  <dd>This widget signature represents the digital signature of the
+  author of the <span>widget package</span>.</dd> 
+</dl>
+<p>In addition, the <code>ds:Signature</code> <em class="ct">MUST</em> have <code>ds:Reference</code>s for every <span>file entry</span> of the <span>widget package</span> other
+than any <span>widget signature</span>. </p>
+<h4>Naming Convention for an Author Signature </h4>
+<p>The <code>author-sig-filename</code> <span>[ABNF]</span> rule defines the <dfn>naming convention for an
+author signature</dfn>, as it applies to the <span>signature file name</span> of the <span>author signature</span>: </p>
+<pre> <code><dfn>author-sig-filename</dfn> = %x61.75.74.68.6f.72.2d.73.69.67.6e.61.74.75.72.65.2e.78.6d.6c</code></pre>
+<p>The <code>author-sig-filename</code> rule  defines the lower-case (case-sensitive) string &quot;<code>author-signature.xml</code>&quot;.</p>
+<p>
+A file matching
+the <code>author-sig-filename</code> <span>[ABNF]</span> rule
+<em class="ct">MUST</em> contain a <code>dsp:Role</code> signature
+property having 
+the URI for an Author role as defined in this specification or the
+signature <em class="ct">MUST</em> be flagged as being in error.
+</p>
+<h3 id="distributor-signatures">Distributor Signatures</h3>
+<p>
+The <span>distributor signature</span> can be used to determine:</p>
+<ul>
+  <li> that a particular
+    distributor has distributed this widget resource, </li>
+  <li>and that the integrity of the <span>widget package</span> is as the distributor intended. </li>
+</ul>
+<p>
+  A <span>widget package</span> <em class="ct">MAY</em> contain zero, one, or
+more <span title="distributor signature">distributor signatures</span>. </p>
+<p>
+In addition to the  <span>requirements on a widget signature</span>, the
+following <em class="ct">MUST</em> be true of an <span>distributor signature</span>'s   <span>[XMLDSIG-Properties]</span> <code>Role</code> element's <code>URI</code> attribute value: </p>
+<dl>
+  <dt class="label"><dfn>Distributor <code>Role</code> Attribute value</dfn> (<code>URI</code>):</dt>
+  <dd>
+  <code>http://www.w3.org/ns/widgets-digsig#role-distributor</code></dd>
+  <dt class="label">Meaning:</dt>
+  <dd>This widget signature represents the digital signature of a
+  distributor of the <span>widget package</span>.</dd> 
+</dl>
+<p>In addition, the <code>ds:Signature</code> <em class="ct">MUST</em> include <code>ds:Reference</code>s for every <span>file entry</span> of the <span>widget package</span>, including any <span>author signature</span>, but excluding any
+<span title="distributor signature">distributor signatures</span>.  In other words, <em class="ct">distributor signature</em>s <em
+class="ct">MUST</em> countersign <span title="author signature">author signatures</span>, but <em class="ct">MUST NOT</em> countersign other <span title="distributor signature">distributor signatures</span>.</p>
+<h4><dfn>Naming Convention for a
+    Distributor Signature</dfn></h4>
+  <p> Each <span>distributor signature</span> <em class="ct">MUST</em> have a <span>file name</span> consisting of the  lower-case
+          string &quot;<code>signature</code>&quot; followed by a digit in the range
+          1-9 inclusive, followed by 
+          zero or more digits in the range 0-9 inclusive and then the lower-case
+  string &quot;<code title="">.xml</code>&quot;. </p>
+  <p>The <code>dist-sig-filename</code> <span>[ABNF]</span> rule formally defines the  <dfn>naming convention for a
+    distributor signature</dfn>, as it applies to the <span>signature file name</span> of a <span>distributor signature</span>: </p>
+    <pre><code><dfn>dist-sig-filename</dfn> = signature-string non-zero-digit 
+                    *DIGIT  xml-suffix-string
+signature-string  = %x73.69.67.6e.61.74.75.72.65
+non-zero-digit    = %x31-39
+xml-suffix-string = %x2e.78.6d.6c</code></pre>
+<ul>
+      <li>
+        <p>The <code>signature-string</code> rule defines the lower-case
+        (case-sensitive) string &quot;<code>signature</code>&quot;.</p>
+</li>
+      <li>
+        <p>The <code>non-zero-digit</code> rule defines a digit in the
+        range <code>1-9</code>.</p>
+  </li>
+  <li><p><code>DIGIT</code> is defined in <span>[ABNF]</span> as a
+          digit in the range <code>0-9</code>.</p></li>
+      <li><p> The <code>xml-suffix-string</code> rule defines the lower-case
+    (case-sensitive) string &quot;<code title="">.xml</code>&quot;.</p></li>
+</ul>
+<p class="example">An example is &quot;signature20.xml&quot;. </p>
+<p>Leading zeros are disallowed in the numbers.</p>
+<p>A <span>file entry</span> whose <span>file name</span> does not
+match the above ABNF <em 
+class="ct">MUST</em> be ignored, meaning that an implementation <em class="ct">MUST NOT</em> treat the file entry as a <span>signature file</span>.</p>
+<p class="example">For example,  a 
+      file with the <span>file name</span> &quot;<code>signature01.xml</code>&quot; will be ignored.  </p>
+<p>It is <em class="ct">OPTIONAL</em> that   the <span>signature file name</span>s of <span title="distributor signature">distributor signatures</span> form a
+contiguous set of numeric values.</p>
+<p>Within a widget package these signature files <em
+class="ct">MUST</em> be ordered based   
+on the numeric portion of the signature file name.</p>
+<p class="example">Thus, for example, <code>signature2.xml</code>
+  precedes <code>signature11.xml</code>.</p>
+<p>
+A file matching
+the <code>dist-sig-filename</code> <span>[ABNF]</span> rule
+<em class="ct">MUST</em> contain a <code>dsp:Role</code> signature
+property having 
+the URI for a Distributor role as defined in this specification or the
+signature <em class="ct">MUST</em> be flagged as being in error.
+</p>
+
+<h3>X.509 Data</h3>
+<p>Every widget signature <em class="ct">MAY</em> have additional  information contained
+in the signature <code>ds:X509Data</code> element as specified by the 
+<span>[XMLDSIG11] </span>specification. This <em class="ct">MAY</em> include X.509 certificates, and/or
+CRL and/or OCSP response information that, if included, <em class="ct">MUST</em> be conveyed according
+to the <span>[XMLDSIG11]</span> specification.</p>
+<p>The X.509 certificate format <em class="ct">MUST</em> be
+supported when certificates are used in the
+<code>ds:X509Data</code>. This is the   
+<dfn>mandatory certificate format</dfn>. The <em
+class="ct">RECOMMENDED</em> version of the certificate format is 
+X.509 version 3 as specified in <span>[RFC5280]</span>.
+Implementations <em class="ct">MUST</em> be prepared
+to accept X.509 v3 certificates <span>[RFC5280]</span>. </p>
+<p class="note">Note: v3 certificates are necessary to
+  use the v3 extension to  
+  express the basic constraints on a certificate. This allows CA  
+  certificates to be distinguished from end entity certificates,
+enabling more robust trust verification. </p>
+
+<h3><code>Identifier</code> Signature Property</h3>
+<p>
+The signer uses the <code>dsp:Identifier</code> signature property to
+uniquely identify the signature to enable signature management.
+It  
+<em class="ct">MUST</em> be unique for a given signer.
+Signing parties are expected to ensure that the <code>dsp:Identifier</code>
+signature property value is unique for the widget packages that they sign.
+</p>
+<h2 id="algorithms">Algorithms</h2>
+<p>Definitions of the algorithm URI identifiers specified in
+<span>[XMLDSIG11]</span> take precedence if there is any difference in
+this document.  Rules specified in <span>[XMLDSIG11]</span> regarding
+use of these algorithms <em class="ct">MUST</em> be followed. Note
+that use of optional algorithms may result in signatures that are not
+interoperable with implementations that do not support these
+algorithms. Authors are cautioned to take this into consideration.
+</p>
+
+<h3>Signature Algorithms</h3>
+<p>The following <dfn>signature algorithms</dfn> <em class="ct">MUST</em> be supported:</p>
+<dl>
+<dt>RSAwithSHA256:</dt>
+<dd><code>http://www.w3.org/2001/04/xmldsig-more#rsa-sha256</code></dd>
+<dt>DSAwithSHA1:</dt>
+<dd><code>http://www.w3.org/2000/09/xmldsig#dsa-sha1</code></dd>
+<dd><em class="ct">REQUIRED</em> for signature verification, <em class="ct">OPTIONAL</em> for generation</dd>
+</dl>
+<p>The following <dfn>signature algorithms</dfn> <em
+class="ct">SHOULD</em> be supported:</p> 
+<dl>
+<dt>ECDSAwithSHA256:</dt>
+<dd><code>http://www.w3.org/2001/04/xmldsig-more#ecdsa-sha256</code></dd>
+<dd><br />This is ECDSA over the P-256 prime curve specified in
+Section D.2.3 of FIPS 186-3 <span>[FIPS186-3]</span> (and using the SHA-256 hash
+algorithm). </dd>
+<dd><p class="note">Note: Although all implementations may not support this
+  optional algorithm, implementation is encouraged since it may become
+  mandatory in a subsequent release of this specification. This may
+  also be
+  necessary if any 
+security issues are discovered with the currently required algorithm.</p>
+</dd>
+</dl>
+<p>A user agent <em class="ct">MAY</em>
+support additional signature algorithms. </p>
+
+<p>The <em class="ct">RECOMMENDED</em> key length (<dfn>recommended key
+length</dfn>) of the
+key used to generate the signature is 2048 bits. The key length of the
+key used to generate the signature <em class="ct">MUST NOT</em> be
+less than 1024 bits. The signer  
+<em class="ct">MUST NOT</em> generate signatures using
+key lengths of less than 2048 bits unless the life time of the
+signature is less than one year.
+</p> 
+<h3>Digest Algorithms</h3>
+<p>The following <dfn>digest algorithms</dfn> <em class="ct">MUST</em> be supported:</p>
+<ul>
+<li><p><em class="ct">REQUIRED</em>: SHA-256<br />
+<code>http://www.w3.org/2001/04/xmlenc#sha256</code> </p>
+</li>
+</ul>
+<p>A user agent <em class="ct">MAY</em>
+support additional digest methods. </p>
+
+<h3>Canonicalization Algorithms</h3>
+<p>The following <dfn>canonicalization algorithms</dfn> <em class="ct">MUST</em> be supported:</p>
+<ul>
+<li><p><em class="ct">REQUIRED</em>:
+
+Exclusive XML Canonicalization 1.0 (omits
+comments) 
+<span>[XML-exc-C14N]</span>
+<br />
+<code>http://www.w3.org/2001/10/xml-exc-c14n#</code>
+</p></li>
+</ul>
+<p>A user agent <em
+class="ct">MAY</em> support additional XML
+canonicalization methods. </p>
+
+<h2 id="processing-rules">Processing Rules</h2>
+<h3 id="common-constraints">Common Constraints for Signature Generation and Validation</h3>
+<p>
+The following constraints apply to both 
+<a href="#signature-generation">Signature Generation</a>
+ and 
+<a href="#signature-verification">Signature Verification</a>. These 
+constraints <em class="ct">MUST</em> 
+be observed when 
+generating a <span>widget signature</span> and <em
+class="ct">MUST</em> be verified as met when 
+validating a <span>widget signature</span>.
+</p>
+<ol>
+<li>
+  <p>A <span>widget signature</span> <em class="ct">MUST</em>
+have a <code>ds:Reference</code> for every <span>file entry</span> that is not a <span>widget signature</span>. </p></li>
+<li>
+  <p>A <span>distributor signature</span> <em
+class="ct">MUST</em> have a <code>ds:Reference</code> for
+any <span>author signature</span>, if one is present within the <span>widget package</span>. </p></li>
+<li><p>For each <code>ds:Reference</code> element:  </p>
+    <ol style="list-style-type:lower-alpha">
+      <li>
+        <p> The <code>URI</code> attribute  <em class="ct">MUST</em>
+          be a <span>zip relative path</span> from the <span>root of
+          the widget package</span> to the <span>file entry</span> being
+          referenced.</p>
+      </li> 
+      <li>
+        <p>The <code>Algorithm</code> attribute of the
+          <code>ds:digestMethod</code> <em class="ct">MUST</em> be one of the <span>digest algorithms</span>. </p>
+      </li>  
+      <li>
+<p>
+A <code>ds:Reference</code> to same-document XML content <em
+class="ct">MUST</em> have a <code>ds:Transform</code>   
+element child that specifies the canonicalization method. Canonical  
+XML 1.1 <em class="ct">MUST</em> be specified as the Canonicalization
+Algorithm for this   
+transform.  A <code>ds:Reference</code> that is not to same-document
+XML content   
+<em class="ct">MUST NOT</em> have any <code>ds:Transform</code> elements.
+</p><p>
+An implementation <em class="ct">SHOULD</em> be able to process a
+<code>ds:Reference</code> to same-  
+document XML content when that <code>ds:Reference</code> does not have
+a <code>ds:Transform</code> child element, for backward
+compatibility. In this case 
+the default    
+canonicalization algorithm Canonical XML 1.0 will be used, as   
+specified in XML Signature 1.1.
+</p>
+<p class="note">Note: The relevant section in  XML Signature 1.1 is section 4.4.3.2,  
+"The Reference Processing Model". This section states "Unless the URI- 
+Reference is such a 'same-document' reference , the result of  
+dereferencing the URI-Reference MUST be an octet stream. In  
+particular, an XML document identified by URI is not parsed by the  
+signature application unless the URI is a same-document reference or  
+unless a transform that requires XML parsing is applied." In the same  
+section the specification notes, "In this specification, a 'same- 
+document' reference is defined as a URI-Reference that consists of a  
+hash sign ('#') followed by a fragment or alternatively consists of an  
+empty URI..." <span>[XMLDSIG11]</span>.
+</p>
+      </li>
+    </ol>
+</li>
+<li>
+<p>Every Signature Property required by this specification <em
+class="ct">MUST</em> be 
+incorporated into the signature as follows:
+</p>
+<ol style="list-style-type:lower-alpha">
+<li>
+  <p>A <span>widget signature</span> <em class="ct">MUST</em>
+include a <code>ds:Object</code> element within the
+<code>ds:Signature</code> element. This <code>ds:Object</code> element 
+<em class="ct">MUST</em> have an <code>Id</code> attribute that is
+referenced by a <code>ds:Reference</code> element within the signature
+<code>ds:SignedInfo</code> element.</p></li>
+<li>
+  <p>This <code>ds:Object</code> element <em class="ct">MUST</em>
+contain a single <code>ds:SignatureProperties</code> element that <em
+class="ct">MUST</em>
+contain a different <code>ds:SignatureProperty</code> element for each property
+required by 
+this specification.</p></li>
+<li><p>Each <code>ds:Signature</code> property required by this
+specification <em 
+class="ct">MUST</em> meet the syntax requirements of
+<span>[XMLDSIG-Properties]</span>.
+</p></li>
+</ol>
+</li>
+<li><p>The <code>ds:Signature</code> <em class="ct">MUST</em>
+meet the following requirements:
+</p>
+    <ol style="list-style-type:lower-alpha">
+      <li>
+        <p>The <code>Algorithm</code> attribute of the
+      <code>ds:CanonicalizationMethod</code> element 
+ <em class="ct">MUST</em> be one of the  <span>canonicalization  algorithms</span>.</p></li> 
+      <li>
+        <p>The <code>ds:SignatureMethod</code> algorithm used in the 
+      <code>ds:SignatureValue</code> element <em
+      class="ct">MUST</em> be one of the <span>signature
+      algorithms</span>. The <code>ds:Signature</code> <em
+      class="ct">MUST</em> 
+      be produced using a key 
+      of the <span>recommended key
+      length</span> or stronger (meaning larger than 2048 bits).</p></li> 
+      <li>
+        <p>The <code>ds:KeyInfo</code> element <em class="ct">MAY</em> be
+      included and <em class="ct">MAY</em> include certificate, CRL and/or OCSP
+      information. If so, it <em class="ct">MUST</em> be compliant with the
+      <span>[XMLDSIG11]</span> specification. If certificates are used,
+      they <em class="ct">MUST</em> conform to the 
+      <span>mandatory certificate format</span>.</p></li> 
+      <li>
+        <p>The <code>ds:SignedInfo</code> element <em class="ct">MUST</em>
+      include all the <code>ds:Reference</code> elements listed in
+      items 1, 2 and 4 of this section.</p>
+      </li>  
+    </ol>
+  </li>
+  <li>
+    <p>The <span>widget signature</span> <em class="ct">MUST</em> be serialized
+as a <span>[UTF-8]</span> encoded <span>[XML]</span> document and be named using the appropriate naming convention: either the <span>naming convention for a distributor
+    signature</span> or the <span>naming convention for an author
+    signature</span>.</p>
+</li> 
+</ol>
+
+<h3 id="signature-generation">Signature Generation</h3>
+<p>A <span>widget signature</span> <em class="ct">MUST</em> be
+generated according to the 
+Core Generation rules specified in <span>[XMLDSIG11]</span>, including
+rules on Reference Generation and Signature Generation.
+</p>
+<p>
+Every <code>ds:Reference</code> to same-document XML content <em class="ct">MUST</em> have
+exactly one   
+<code>ds:Transform</code> element to specify the canonicalization method. Canonical  
+XML 1.1 <em class="ct">MUST</em> be specified as the Canonicalization  Algorithm.
+</p>
+<p class="note">Note: that this specifically means that a <code>ds:Reference</code> to the  
+<code>ds:Object</code> element will  require a <code>ds:Transform</code> element to specify  
+canonicalization method. A reference to <code>config.xml</code> will
+not, however,   
+since it is not a same-document reference.
+</p>
+<p> The <a href="#common-constraints">Common Constraints for Signature
+Generation and 
+Validation</a> <em class="ct">MUST</em> be
+met on signature generation.</p>
+<p>
+A unique identifier string for the signature <em class="ct">MUST</em>
+be placed in the    
+<code>dsp:Identifier</code> signature property by the signer. This <em
+class="ct">MUST</em> be a   
+unique  signing string for all <span title="widget signature">widget signatures</span> created by
+the signer. 
+Signing parties are expected to ensure that the <code>dsp:Identifier</code>
+signature property value is unique for the widgets that they sign.
+</p> 
+<h3 id="signature-verification">Signature Verification</h3>
+<p>
+A widget signature <em class="ct">MUST</em> be validated according to Core  
+Validation, as defined in XML Signature <span>[XMLDSIG11]</span>,
+including Reference Validation and Signature Validation.
+</p>
+<p> The <a href="#common-constraints">Common Constraints for Signature
+Generation and 
+Validation</a> <em class="ct">MUST</em> be
+met on signature validation.</p>
+<p>If a <code>ds:KeyInfo</code> element is present, then it <em
+class="ct">MUST</em>
+conform to the <span>[XMLDSIG11]</span> specification.
+If present, the user agent <em class="ct">MUST</em> perform Basic Path
+Validation <span>[RFC5280]</span> on the signing key and <em
+class="ct">SHOULD</em> perform 
+revocation checking as appropriate.  
+</p>
+<p>
+When validating a Widget Signature, a
+validator <em class="ct">MUST</em> be able to   
+process a <code>ds:Reference</code> that has a <code>ds:Transform</code> specifying the  
+canonicalization method. The validator <em class="ct">MUST</em> be
+able to process a   
+<code>ds:Reference</code> that specifies Canonical XML 1.1 as a canonicalization  
+method. A validator <em class="ct">SHOULD</em> be able to process a <code>ds:Reference</code> to same- 
+document XML content when that <code>ds:Reference</code> does not have   
+<code>ds:Transform</code>, for backward compatibility.
+</p>
+<p>
+If <span>widget signature</span> validation is successful any external
+entities (e.g., a   
+user agent that implements <span>[Widgets
+Packaging]</span> relying on the  
+validation of the widget signature <em class="ct">MUST</em> be notified
+of the success. 
+</p>
+<p>
+If <span>widget signature</span> validation fails for any reason, any
+external entities (e.g., a user agent that implements <span>[Widgets
+Packaging]</span>) relying on the validation of the widget signature <em
+class="ct">MUST</em> be notified of the failure. This specification
+does not define the means or format of a failure notification, which
+is left up to implementers. The reason for validation failure <em
+class="ct">MAY</em> be returned by the implementation to an external
+entity, 
+including reasons   
+related to Reference validation, Signature validation, Signature  
+Property validation and/or certificate and CRL/OCSP verification.</p>
+<h2  id="security-considerations">Security Considerations</h2>
+<p><em>This section is non-normative.</em></p>
+<p>    The signature scheme described in this document deals with the
+content present inside a compressed widget package. This implies that,
+in order to verify a widget signature, implementations need to
+decompress a data stream that can come from an arbitrary source.  A
+signature according to this specification does <em>not</em> limit the
+attack surface of decompression and unpacking code used during
+signature extraction and verification. </p> 
+
+<p>Care should be taken to avoid resource exhaustion attacks through
+maliciously crafted widget packages during signature verification.</p> 
+
+<p>Implementations should be careful about trusting path components  
+found in the widget package. Such path components might be interpreted  
+by operating systems as pointing at security critical files outside  
+the widget environment proper, and naive unpacking of widget  
+packages into the file system might lead to undesirable and security  
+relevant effects, such as overwriting of startup or system files.
+</p>
+<p>
+There is no single <span>signature file</span> that includes all
+files of a widget package, 
+including all of the signature files. 
+
+This leaves a <span>widget package</span> subject to an  
+attack where <span title="distributor signature">distributor signatures</span> can be removed or added. An  
+<span>author signature</span> could also be attacked by removing it
+and any   
+<span title="distributor signature">distributor signatures</span> if they are present.
+A signature file may also be renamed, 
+which can affect the order in which
+distributor signatures are processed.
+</p>
+<p>
+Mechanisms to install new root certificates in a user agent
+should be subject to security critical mechanisms. End-users should be made aware of what they are doing and   
+why when installing a new root certificate. </p>
+
+<h2 id="acknowledgements" class="no-num">Acknowledgements</h2>
+<p>The Web Applications working group would like to thank members of
+the W3C XML Security working group for their comments and suggestions,
+as well as all reviewers of earlier drafts of this document.
+</p>
+
+<h2 id="references" class="no-num">References</h2>
+<dl class="bibliography">
+<dt><dfn id="abnf">[ABNF]</dfn></dt>
+  <dd>RFC 5234, <a
+  href="http://www.ietf.org/rfc/rfc5234.txt"><cite>Augmented BNF 
+                for Syntax Specifications: <abbr title="Augmented
+                Backus-Naur Form">ABNF</abbr></cite></a>, D. Crocker
+and P. Overell.
+  January 2008.
+http://www.ietf.org/rfc/rfc5234.txt </dd>
+
+<dt><dfn>[C14N11]</dfn></dt>
+
+<dd><a href="http://www.w3.org/TR/2008/REC-xml-c14n11-20080502/">Canonical XML Version 1.1</a>,  J. Boyer,
+M. Marcy. 2 May 2008, W3C Recommendation. 
+http://www.w3.org/TR/2008/REC-xml-c14n11-20080502/</dd>
+
+  <dt><dfn>[FIPS186-3]</dfn></dt>
+  <dd><a
+          href="http://csrc.nist.gov/publications/fips/fips186-3/fips_186-3.pdf">FIPS PUB 186-3</a>. <em>Digital Signature Standard (DSS).</em>  
+      U.S. Department of Commerce/National Institute of Standards
+      and Technology. June 2009.<br />
+http://csrc.nist.gov/publications/fips/fips186-3/fips_186-3.pdf
+</dd>
+
+<dt><dfn>[RFC2119]</dfn></dt>
+<dd><cite><a href="http://www.ietf.org/rfc/rfc2119">Key words for use in RFCs to Indicate
+Requirement Levels</a></cite>, S. Bradner. IETF, March 1997. http://www.ietf.org/rfc/rfc2119</dd>
+
+<dt><dfn>[RFC2560]</dfn></dt>
+<dd><cite><a href="http://www.ietf.org/rfc/rfc2560.txt">
+X.509 Public Key Infrastructure  Online Certificate Status Protocol - OCSP</a></cite>, M. Myers, R. Ankney, A. Malpani, S. Galperin, C. Adams;
+June 1999.
+http://www.ietf.org/rfc/rfc2560.txt </dd>
+
+<dt><dfn>[RFC5280]</dfn></dt>
+<dd><cite><a href="http://www.ietf.org/rfc/rfc5280.txt"> Internet
+X.509 Public Key Infrastructure Certificate and Certificate Revocation
+List (CRL) Profile</a></cite>,
+ D. Cooper,  S. Santesson, S. Farrell, S. Boeyen, R. Housley,
+ W. Polk, May 2008.
+http://www.ietf.org/rfc/rfc5280.txt
+</dd>
+
+<dt><dfn>[UTF-8]</dfn></dt>
+<dd><a href="http://www.ietf.org/rfc/rfc2279.txt">RFC 2279</a>,<cite>UTF-8, a transformation format of ISO 10646</cite>. F. Yergeau. January 1998. 
+http://www.ietf.org/rfc/rfc2279.txt</dd>
+
+<dt><dfn>[URI]</dfn></dt>
+<dd><cite><a href="http://www.ietf.org/rfc/rfc3986.txt">RFC
+3986. Uniform Resource Identifiers (URI): Generic
+Syntax</a></cite>, T. Berners-Lee, R. Fielding, L. Masinter. January 2005. 
+http://www.ietf.org/rfc/rfc3986.txt
+</dd>
+
+<dt><dfn>[Widgets Packaging]</dfn></dt>
+
+<dd><cite><a href="http://www.w3.org/TR/widgets/">Widget Packaging and Configuration</a></cite>, 
+M. Cáceres. W3C Candidate Recommendation. http://www.w3.org/TR/widgets/</dd>
+
+<dt><dfn>[Widgets Requirements]</dfn></dt>
+
+<dd><cite><a href="http://www.w3.org/TR/2009/WD-widgets-reqs-20090430/">Widgets 1.0
+      Requirements</a></cite>, M. Cáceres. W3C Working Draft, 30 April 2009.
+http://www.w3.org/TR/2009/WD-widgets-reqs-20090430/
+ </dd>
+
+<dt><dfn>[XML]</dfn></dt>
+<dd><cite><a href="http://www.w3.org/TR/REC-xml/">Extensible Markup Language (XML) 1.0
+  (Fifth Edition)</a></cite>, T. Bray, J. Paoli, C. M. Sperberg-McQueen, E. Maler,
+  F. Yergeau. W3C Recommendation 26 November 2008.</dd>
+
+<dt><dfn>[XML-exc-C14N]</dfn></dt>
+<dd>
+  <cite>
+    <a href="http://www.w3.org/TR/2002/REC-xml-exc-c14n-20020718/">Exclusive
+      XML Canonicalization Version 1.0</a></cite>, J. Boyer,
+      D. Eastlake 3rd., J. Reagle.  W3C Recommendation. 18 July 2002. 
+  http://www.w3.org/TR/2002/REC-xml-exc-c14n-20020718/
+</dd>
+
+<dt><dfn>[XML-Namespaces]</dfn></dt>
+<dd>
+  <cite>
+    <a
+        href="http://www.w3.org/TR/2006/REC-xml-names-20060816/">Namespaces
+    in XML 1.0 (Second Edition)</a></cite>, T. Bray, D. Hollander,
+    A. Layman,  R. Tobin. 
+    W3C Recommendation, 16 August 2006.
+    http://www.w3.org/TR/2006/REC-xml-names-20060816/
+</dd>
+
+<dt><dfn>[XMLDSIG11]</dfn></dt>
+<dd>
+<cite><a href="http://www.w3.org/TR/2010/WD-xmldsig-core1-20100204/">XML Signature Syntax and 
+Processing, Version 1.1</a></cite>, D. Eastlake et al. W3C Working Draft 04 February 2010. 
+http://www.w3.org/TR/2010/WD-xmldsig-core1-20100204/
+</dd>
+
+<dt><dfn>[XMLDSIG-2ndEd]</dfn></dt>
+<dd>
+<cite><a href="http://www.w3.org/TR/2008/REC-xmldsig-core-20080610/">XML Signature Syntax and
+Processing (Second Edition)</a></cite>, D. Eastlake et al. W3C
+Recommendation, 10 June 2008. http://www.w3.org/TR/2008/REC-xmldsig-core-20080610/ </dd>
+
+<dt><dfn>[XMLSecAlgs]</dfn></dt>
+<dd>
+<cite><a
+          href="http://www.w3.org/TR/2010/WD-xmlsec-algorithms-20100316/">
+XML Security Algorithm Cross-Reference</a></cite>,
+F. Hirsch, T. Roessler, K. Yiu, W3C Working Draft 16 March 2010. http://www.w3.org/TR/2010/WD-xmlsec-algorithms-20100316/
+</dd>
+
+<dt><dfn>[XMLDSIG-Properties]</dfn></dt>
+<dd>
+<cite><a
+          href="http://www.w3.org/TR/2010/WD-xmldsig-properties-20100204">
+XML Signature Properties</a></cite>,
+F. Hirsch, W3C Working Draft 04 February 2010. http://www.w3.org/TR/2010/WD-xmldsig-properties-20100204/
+</dd>
+
+<dt><dfn>[XML-Schema-Datatypes]</dfn></dt>
+<dd><cite><a href="http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/">
+XML Schema Part 2: Datatypes W3C Recommendation</a></cite>, P. Biron, A.  
+Malhotra. May 2001.
+http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/
+</dd>
+
+<dt><dfn>[ZIP]</dfn></dt>
+
+<dd><cite><a
+    href="http://www.pkware.com/documents/casestudies/APPNOTE.TXT">.ZIP File
+  Format Specification</a></cite>. PKWare Inc. September 28, 2007. Version 6.3.2.</dd>
+
+</dl>
+</body>
+</html>
+
+
+

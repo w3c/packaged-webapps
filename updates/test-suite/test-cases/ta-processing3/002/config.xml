@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="ta-processing3:2" version="42.0">
+	<name>ta-processing3-2</name>
+	<description>Tests that the UA ignores a response for update-description-document which is not well-formed XML</description>
+	<update-description xmlns="http://www.w3.org/ns/widgets" href="http://people.opera.com/harig/wupdres/resources/out.php?udd-malformed"/>
+</widget>

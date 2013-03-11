@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<testsuite spec="http://dev.w3.org/2006/waf/widgets-updates/" name="Widget Updates">
+	<test for="ta-preparation1" id="ta-preparation1-1" src="test-cases/ta-preparation1/001/ta-pr-001.wgt">
+		Tests that the UA recognises the update-description element and parses the href attribute as the update-source.
+		After parsing config.xml the update-description entry has href attribute pointing to http://people.opera.com/harig/wupdres/resources/out.php?udd-pass
+	</test>
+	<test for="ta-preparation1" id="ta-preparation1-2" src="test-cases/ta-preparation1/002/ta-pr-002.wgt">
+		Tests that the update-description element need to be a child of widget element for it to be recognised.
+		After parsing config.xml the update-description entry has href null
+	</test>
+	<test for="ta-preparation1" id="ta-preparation1-3" src="test-cases/ta-preparation1/003/ta-pr-003.wgt">
+		Tests that the update-description element need to be a direct child of widget element for it to be recognised.
+		After parsing config.xml the update-description entry has href null
+	</test>
+	<test for="ta-preparation1" id="ta-preparation1-4" src="test-cases/ta-preparation1/004/ta-pr-004.wgt">
+		Tests that id is not required on the widget element in order to process the update-description element.
+		The update-description element is processed.
+	</test>
+	<test for="ta-preparation1" id="ta-preparation1-5" src="test-cases/ta-preparation1/005/ta-pr-005.wgt">
+		Tests that version is required on the widget element for it to process the update-description element.
+		This widget should not be updated/replaced.
+	</test>
+	<test for="ta-preparation1" id="ta-preparation1-6" src="test-cases/ta-preparation1/006/ta-pr-006.wgt">
+		Tests that a relative URI as the update-description document is ignored by the UA.
+		This widget should not be updated/replaced.
+	</test>
+	<test for="ta-preparation1" id="ta-preparation1-7" src="test-cases/ta-preparation1/007/ta-pr-007.wgt">
+		Tests that only the first update-description element is used to get the update-description document.
+		PASS if the update-description document points to the first href attribute and the second element is ignored.
+	</test>
+	<test for="ta-preparation1" id="ta-preparation1-8" src="test-cases/ta-preparation1/008/ta-pr-008.wgt">
+		Tests that only the href attribute value is used from the update-description element.
+		You should see PASS when this widget is updated.
+	</test>
+	<test for="ta-preparation1" id="ta-preparation1-9" src="test-cases/ta-preparation1/009/ta-pr-009.wgt">
+		Tests that xml:lang does not affect the update-description element
+		The update-description element is processed and used.
+	</test>
+	<test for="ta-preparation1" id="ta-preparation1-10" src="test-cases/ta-preparation1/010/ta-pr-010.wgt">
+		Tests that xml:lang does not affect the update-description element and first element is used regardless.
+		The first update-description element is processed and used regardless of the unknown xml:lang.
+	</test>
+	<test for="ta-preparation1" id="ta-preparation1-11" src="test-cases/ta-preparation1/011/ta-pr-011.wgt">
+		Tests that dir does not affect the update-description element
+		The href attribute of update-description element points to udd-pass.xml
+	</test>
+	<test for="ta-preparation1" id="ta-preparation1-12" src="test-cases/ta-preparation1/012/ta-pr-012.wgt">
+		Tests that content of the update-description element does not affect its processing.
+		The href attribute of update-description element is not null.
+	</test>
+	<test for="ta-preparation1" id="ta-preparation1-13" src="test-cases/ta-preparation1/013/ta-pr-013.wgt">
+		Tests that the update-description element need to be in the W3C namespace to be recognised.
+		The update-description element is ignored and the widget is not updated.
+	</test>
+	<test for="ta-preparation1" id="ta-preparation1-14" src="test-cases/ta-preparation1/014/ta-pr-014.wgt">
+		Tests that the update-description element with the W3C namespace is recognised.
+		The update-description element should be recognised and update is done.
+	</test>
+	<test for="ta-acquisition6" id="ta-acquisition6-1" src="test-cases/ta-acquisition6/001/ta-ac-001.wgt">
+		Tests that the UA processes a response for update-description-document which is of the MIME type &apos;application/xml&apos;
+		The widget should be updated.
+	</test>
+	<test for="ta-acquisition4" id="ta-acquisition4-1" src="test-cases/ta-acquisition4/001/ta-ac-001.wgt">
+		Tests that the UA ignores the Cache-control header of the response for update-description-document
+		The next automatic update check for this widget should happen only as per the internal scheduling of the UA.
+	</test>
+	<test for="ta-acquisition4" id="ta-acquisition4-2" src="test-cases/ta-acquisition4/002/ta-ac-002.wgt">
+		Tests that the UA ignores the Cache-control header of the response for update-description-document
+		The next automatic update check for this widget should happen only as per the internal scheduling of the UA.
+	</test>
+	<test for="ta-acquisition4" id="ta-acquisition4-3" src="test-cases/ta-acquisition4/003/ta-ac-003.wgt">
+		Tests that the UA ignores the Pragma header of the response for update-description-document
+		The next automatic update check for this widget should happen only as per the internal scheduling of the UA.
+	</test>
+	<test for="ta-acquisition5" id="ta-acquisition5-1" src="test-cases/ta-acquisition5/001/ta-ac-001.wgt">
+		Tests that the UA honours the Expires header of the response for update-description-document
+		The next automatic update check for this widget should not be before 5 mins. of the first update check.
+	</test>
+	<test for="ta-acquisition7" id="ta-acquisition7-1" src="test-cases/ta-acquisition7/001/ta-ac-001.wgt">
+		Tests that the UA ignores a response for update-description-document which is not of the MIME type &apos;application/xml&apos;
+		The update-description document should not be used to update the widget.
+	</test>
+	<test for="ta-processing3" id="ta-processing3-1" src="test-cases/ta-processing3/001/ta-pr-001.wgt">
+		Tests that the UA ignores a response for update-description-document which is not well-formed XML
+		The update-description document should not be used to update the widget.
+	</test>
+	<test for="ta-processing3" id="ta-processing3-2" src="test-cases/ta-processing3/002/ta-pr-002.wgt">
+		Tests that the UA ignores a response for update-description-document which is not well-formed XML
+		The update-description document should not be used to update the widget.
+	</test>
+	<test for="ta-acquisition10" id="ta-acquisition10-1" src="test-cases/ta-acquisition10/001/ta-ac-001.wgt">
+		Tests that if the href attribute of update-description element gives a 302 HTTP response it is followed to fetch the update-description document.
+		The new location is used to fetch the update description document.
+	</test>
+	<test for="ta-acquisition10" id="ta-acquisition10-2" src="test-cases/ta-acquisition10/002/ta-ac-002.wgt">
+		Tests that if the href attribute of update-description element gives a 301 HTTP response it is followed to fetch the update-description document..
+		The new location is used to fetch the update description document.
+	</test>
+	<test for="ta-processing2" id="ta-processing2-1" src="test-cases/ta-processing2/001/ta-pr-001.wgt">
+		Tests that update-info element need to be in the W3C namespace to be recognised.
+		The update-description document should not be used to update the widget.
+	</test>
+	<test for="ta-processing2" id="ta-processing2-2" src="test-cases/ta-processing2/002/ta-pr-002.wgt">
+		Tests that update-info element neet to be the root element of the UDD.
+		The update-description document should not be used to update the widget.
+	</test>
+	<test for="ta-processing2" id="ta-processing2-3" src="test-cases/ta-processing2/003/ta-pr-003.wgt">
+		Tests that a different id on the new widget does not cause update errors.
+		The update-description document should be used to update the widget.
+	</test>
+	<test for="ta-processing2" id="ta-processing2-4" src="test-cases/ta-processing2/004/ta-pr-004.wgt">
+		Tests that update-info element need to have a version attribute in order to succeed.
+		The update-description document should not be used to update the widget.
+	</test>
+	<test for="ta-processing2" id="ta-processing2-5" src="test-cases/ta-processing2/005/ta-pr-005.wgt">
+		Tests that update-info element&apos;s version attribute should have a value higher than current version for the widget to be updated.
+		The widget is not updated or replaced.
+	</test>
+	<test for="ta-processing2" id="ta-processing2-6" src="test-cases/ta-processing2/006/ta-pr-006.wgt">
+		Tests that update-info element&apos;s version attribute should have a value higher than current version for the widget to be updated.
+		The widget is not updated or replaced.
+	</test>
+	<test for="ta-processing2" id="ta-processing2-7" src="test-cases/ta-processing2/007/ta-pr-007.wgt">
+		Tests that when there are multiple update-info elements the UDD is not considered valid.
+		The widget is not updated or replaced.
+	</test>
+	<test for="ta-processing2" id="ta-processing2-8" src="test-cases/ta-processing2/008/ta-pr-008.wgt">
+		Tests that xml:lang does not affect processing of the update-info document.
+		You should see PASS when this widget is updated.
+	</test>
+	<test for="ta-processing2" id="ta-processing2-9" src="test-cases/ta-processing2/009/ta-pr-009.wgt">
+		Tests that an unknown attribute does not affect processing of the update-info document.
+		You should see PASS when this widget is updated.
+	</test>
+	<test for="ta-processing2" id="ta-processing2-10" src="test-cases/ta-processing2/010/ta-pr-010.wgt">
+		Tests that dir does not affect processing of the update-info document.
+		You should see PASS when this widget is updated.
+	</test>
+	<test for="ta-processing2" id="ta-processing2-11" src="test-cases/ta-processing2/011/ta-pr-011.wgt">
+		Tests that dir does not affect processing of the update-info document.
+		You should see PASS when this widget is updated.
+	</test>
+	<test for="ta-processing2" id="ta-processing2-12" src="test-cases/ta-processing2/012/ta-pr-012.wgt">
+		Tests that dir does not affect processing of the update-info document.
+		You should see PASS when this widget is updated.
+	</test>
+	<test for="ta-processing2" id="ta-processing2-13" src="test-cases/ta-processing2/013/ta-pr-013.wgt">
+		Tests that dir does not affect processing of the update-info document.
+		You should see PASS when this widget is updated.
+	</test>
+	<test for="ta-processing1" id="ta-processing1-1" src="test-cases/ta-processing1/001/ta-pr-001.wgt">
+		Tests that update-description href has a default value of null.
+		There is no update href.
+	</test>
+	<test for="ta-processing2" id="ta-processing2-14" src="test-cases/ta-processing2/014/ta-pr-014.wgt">
+		Tests that update-info element&apos;s src attribute need to be valid, else it is ignored.
+		The widget is not updated or replaced.
+	</test>
+	<test for="ta-processing2" id="ta-processing2-15" src="test-cases/ta-processing2/015/ta-pr-015.wgt">
+		Tests that src of update-info document is used to fetch the update package.
+		You should see PASS when this widget is updated.
+	</test>
+	<test for="ta-processing2" id="ta-processing2-16" src="test-cases/ta-processing2/016/ta-pr-016.wgt">
+		Tests that a relative URI for src of update-info document is resolved to an absolute URI.
+		You should see PASS when this widget is updated.
+	</test>
+	<test for="ta-acquisition10" id="ta-acquisition10-3" src="test-cases/ta-acquisition10/003/ta-ac-003.wgt">
+		Tests that if the src of update-info element gives a 302 HTTP response it is followed to fetch the update package.
+		The new location is used to fetch the update package.
+	</test>
+	<test for="ta-acquisition11" id="ta-acquisition11-1" src="test-cases/ta-acquisition11/001/ta-ac-001.wgt">
+		Tests that if the src of update-info element gives a 401 HTTP response the HTTP authentication dialog is shown.
+		If the update process triggers a HTTP authentication dialog from the update location.
+	</test>
+	<test for="ta-acquisition10" id="ta-acquisition10-4" src="test-cases/ta-acquisition10/004/ta-ac-004.wgt">
+		Tests that if the src of update-info element gives a 301 HTTP response it is followed to fetch the update package.
+		The new location is used to fetch the update package.
+	</test>
+	<test for="ta-acquisition12" id="ta-acquisition12-1" src="test-cases/ta-acquisition12/001/ta-ac-001.wgt">
+		Tests that if the update-description document is served with a 410 HTTP response it is ignored and the widget update is terminated. The user might be notified too.
+		The content returned is not used to update the widget. The user may be notified that the widget would no longer be updated.
+	</test>
+	<test for="ta-acquisition13" id="ta-acquisition13-1" src="test-cases/ta-acquisition13/001/ta-ac-001.wgt">
+		Tests that if the network connection breaks down while doing an update check, the update process is terminated and user is notified.
+		Break the network connection after triggering the update for this widget, UA should stop the update process and notify the user.
+	</test>
+	<test for="ta-acquisition8" id="ta-acquisition8-1" src="test-cases/ta-acquisition8/001/ta-ac-001.wgt">
+		Tests that if the update-description document is served with a 204 HTTP response it is ignored and the widget update is terminated.
+		The content returned is not used to update the widget. The UA may show a message about this issue.
+	</test>
+	<test for="ta-acquisition8" id="ta-acquisition8-2" src="test-cases/ta-acquisition8/002/ta-ac-002.wgt">
+		Tests that if the update-description document is served with a 304 HTTP response it is ignored and the widget update is terminated.
+		The content returned is not used to update the widget.
+	</test>
+	<test for="ta-acquisition8" id="ta-acquisition8-3" src="test-cases/ta-acquisition8/003/ta-ac-003.wgt">
+		Tests that only if the src of update-info document returns 200 HTTP response with the update package it is used.
+		The content returned is not used to update the widget.
+	</test>
+	<test for="ta-acquisition8" id="ta-acquisition8-2" src="test-cases/ta-acquisition8/004/ta-ac-004.wgt">
+		Tests that on receiving an update-description document once, checking for update again if the server responds with a 304 HTTP response it is ignored and the widget update is terminated.
+		The widget is not updated.
+	</test>
+	<test for="ta-acquisition9" id="ta-acquisition9-1" src="test-cases/ta-acquisition9/001/ta-ac-001.wgt">
+		Tests that if the update-description document is served with a 206 HTTP response it is ignored and the widget update is terminated.
+		The content returned is not used to update the widget.
+	</test>
+	<test for="ta-verifying4" id="ta-verifying4-1" src="test-cases/ta-verifying4/001/ta-ve-001.wgt">
+		Tests that only if the src of update-info document returns content with MIME type application/widget the update package is used.
+		The content returned is not used to update the widget.
+	</test>
+	<test for="ta-verifying4" id="ta-verifying4-2" src="test-cases/ta-verifying4/002/ta-ve-002.wgt">
+		Tests that if the versions of the potential update and incumbent widget are the same, the update is terminated.
+		The widget is not updated.
+	</test>
+	<test for="ta-processing2" id="ta-processing2-17" src="test-cases/ta-processing2/017/ta-pr-017.wgt">
+		Tests that the content of the details element is parsed using the rules for getting text content from P &amp; C spec.
+		The update details says PASS.
+	</test>
+	<test for="ta-processing2" id="ta-processing2-18" src="test-cases/ta-processing2/018/ta-pr-018.wgt">
+		Tests that when multiple usable details elements are present in the update-description document all but the first are ignored.
+		The update details should contain the word &apos;PASS&apos; (if the UA supports displaying it).
+	</test>
+	<test for="ta-processing2" id="ta-processing2-19" src="test-cases/ta-processing2/019/ta-pr-019.wgt">
+		Tests that when multiple usable details elements with different xml:lang attributes are present in the update-description document the most specific one is used.
+		The update details should contain the word &apos;PASS&apos; (if the UA supports displaying it). Note that the UA should be using locale &apos;en&apos;.
+	</test>
+	<test for="ta-processing2" id="ta-processing2-20" src="test-cases/ta-processing2/020/ta-pr-020.wgt">
+		Tests that the content of the details element is parsed using the rules for getting text content from P &amp; C spec.
+		The update details says 
+		P
+		A
+		S
+		S
+
+	</test>
+	<test for="ta-acquisition3" id="ta-acquisition3-1" src="test-cases/ta-acquisition3/001/ta-ac-001.wgt">
+		Tests that the preferred language of the user is sent in Accept-Language header when update description document is requested.
+		The updated widget should show PASS. Alternatively you can use a network packet sniffer to check that the Accept-language header was sent.
+	</test>
+	<test for="ta-acquisition2" id="ta-acquisition2-1" src="test-cases/ta-acquisition2/001/ta-ac-001.wgt">
+		Tests that the last time of update check is sent in the If-Modified-Since header when update is requested.
+		The widget should be updated the first time only. Alternatively you can use a network packet sniffer to check that the If-Modified-Since header was sent.
+	</test>
+	<test for="ta-acquisition1" id="ta-acquisition1-1" src="test-cases/ta-acquisition1/001/ta-ac-001.wgt">
+		Tests that the Etag sent for last update check is sent in the If-None-Match header when the next update is requested.
+		The update check need to be done twice. First check will get an Etag, the second check will verify that it was sent back. Alternatively you can use a network packet sniffer to check that the If-None-Match header was sent.
+	</test>
+	<test for="ta-processing2" id="ta-processing2-21" src="test-cases/ta-processing2/021/ta-pr-021.wgt">
+		Tests that a widget is not updated if the potential update is an invalid widget.
+		The incumbent widget should not be replaced.
+	</test>
+</testsuite>

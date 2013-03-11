@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="ta-acquisition11:1" version="42.0">
+	<name>ta-acquisition11-1</name>
+	<description>Tests that if the src of update-info element gives a 401 HTTP response the HTTP authentication dialog is shown.</description>
+	<update-description xmlns="http://www.w3.org/ns/widgets" href="http://people.opera.com/harig/wupdres/resources/out.php?udd-udi-401"/>
+</widget>

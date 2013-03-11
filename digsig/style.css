@@ -1,0 +1,77 @@
+@charset "UTF-8";
+/* CSS Document */
+pre.idl {
+        border:solid thin;
+        background:#eee;
+        color:#000;
+        padding:0.5em
+}
+pre.idl :link, pre.idl :visited {
+        color:inherit;
+        background:transparent
+}
+dfn {
+        font-style:normal;
+        font-weight:bolder
+}
+
+em.ct {
+        font-style:normal;
+        font-weight:normal;
+        color:#990000 /*font-variant:small-caps*/
+}
+.issue {
+        padding:.5em;
+        border:solid red
+}
+.example {
+        padding:0 .5em;
+        border-left:double
+}
+.note {
+        margin-left:2em;
+        font-weight:bold;
+        font-style:italic;
+        color:#008000
+}
+
+h3 + .element {
+        margin-top:-3em;
+        padding-top:2.5em
+}
+h3 + p + .element {
+        margin-top:-5em;
+        padding-top:4em
+}
+p > span, li > span {
+        border: 1px #FF3366 dashed;
+        color: #996633;
+}
+.element {
+        background:#efe;
+        color:#000;
+        margin:0 0 1em -1em;
+        padding:0 1em 0.25em 0.75em;
+        border-left:solid #9f9 0.25em;
+}
+dd > dl {
+        margin:0px;
+        padding:0px
+}
+
+code {
+        font-style:italic;
+        font-size: 1em;
+}
+code :link, code :visited {
+        color:inherit
+}
+ol.a {
+  list-style-type: lower-alpha;
+}
+pre code {
+        color:inherit
+}
+body{ font-size: 1em}
+
+

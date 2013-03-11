@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="ta-preparation1:6" version="42.0">
+	<name>ta-preparation1-6</name>
+	<description>Tests that a relative URI as the update-description document is ignored by the UA.</description>
+	<update-description href="udd.xml"/>
+</widget>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="ta-acquisition6:1" version="42.0">
+	<name>ta-acquisition6-1</name>
+	<description>Tests that the UA processes a response for update-description-document which is of the MIME type 'application/xml'</description>
+	<update-description xmlns="http://www.w3.org/ns/widgets" href="http://people.opera.com/harig/wupdres/resources/out.php?udd-pass"/>
+</widget>

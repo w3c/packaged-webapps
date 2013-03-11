@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="ta-acquisition4:3" version="42.0">
+	<name>ta-acquisition4-3</name>
+	<description>Tests that the UA ignores the Pragma header of the response for update-description-document</description>
+	<update-description xmlns="http://www.w3.org/ns/widgets" href="http://people.opera.com/harig/wupdres/resources/out.php?udd-pragma=no-cache"/>
+</widget>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="ta-acquisition8:3" version="42.0">
+	<name>ta-acquisition8-3</name>
+	<description>Tests that only if the src of update-info document returns 200 HTTP response with the update package it is used.</description>
+	<update-description xmlns="http://www.w3.org/ns/widgets" href="http://people.opera.com/harig/wupdres/resources/out.php?udd-udi-204"/>
+</widget>

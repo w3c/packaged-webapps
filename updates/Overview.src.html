@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Widget Updates
+    </title>
+<style
+ type="text/css">
+        /*Editor CSS */
+        @import url("http://www.w3.org/StyleSheets/TR/base"); 
+    
+    
+</style>
+    <meta
+     http-equiv='Content-Type'
+     content='text/html;charset=utf-8'>
+    <link
+     class="remove"
+     href=""
+     rel="stylesheet"
+     type="text/css">
+<script
+ src='../../../2009/dap/ReSpec.js/js/respec.js'
+ type='text/javascript'
+ class='remove'>
+</script>
+<script
+ class='remove'
+ type='text/javascript'>
+      var respecConfig = {
+          specStatus:           "CR",
+          shortName:            "widgets-updates",
+
+          // Needs to be updated per publication!
+          publishDate:  "2012-05-24",
+		  crEnd: "2012-06-24",
+          
+          previousPublishDate:  "2012-04-03",
+          previousMaturity:  "LC",
+          edDraftURI:              "http://dev.w3.org/2006/waf/widgets-updates/",
+          testSuiteURI:            "http://dev.w3.org/2006/waf/widgets-updates/test-suite",
+          implementationReportURI: "http://dev.w3.org/2006/waf/widgets-updates/imp-report",
+          lcEnd: "2012-05-04",
+          extraCSS:             ["../../../2009/dap/ReSpec.js/css/respec.css"], // on W3 CVS: ../../../2009/dap/ReSpec.js/css/respec.css, local: ../../dap/ReSpec.js/css/respec.css
+          inlineCSS:      true,
+          editors:  [
+              { name: "Marcos C&aacute;ceres", url: "http://datadriven.com.au/",
+                    company: "W3C Invited Expert" },
+			  { name: "Richard Tibbett", url: "http://richt.me/",
+                    company: "Opera Software ASA", companyURL: "http://opera.com/" }
+          ],
+          wg:           "Web Applications Working Group",
+          wgURI:        "http://www.w3.org/2008/webapps/",
+          wgPublicList: "public-webapps",
+          wgPatentURI:  "http://www.w3.org/2004/01/pp-impl/42538/status",
+      };
+</script>
+<style
+ type="text/css">
+ 
+code           { font-family: monospace; }
+span.hilite { color: red; /* font-weight: bold */ }
+ul.rule,ol.rule { margin-top:0.6em }
+ul.rule li, ol.rule li { margin-bottom:0.6em }
+</style>
+  </head>
+  <body>
+    <section
+     id='abstract'>
+      <p>
+        This specification defines a process and a document format to allow a <a class="product-ua">user agent</a> to update an installed <a>widget package</a> with
+        a different version of a widget package. A widget cannot automatically update itself; instead, a widget relies on the user agent to manage the
+      update process. </p>
+    </section>
+    <section
+     id='sotd'>
+      <p>
+        User agents that wish to extend this specification in any way are encouraged to discuss their extensions on a public forum, such as
+        <a
+         href="mailto:public-webapps@w3.org">public-webapps</a> so their extensions can be considered for standardization.
+      </p>
+      <p>
+        This specification is part of the <a
+         href='http://www.w3.org/2008/webapps/wiki/WidgetSpecs'>Widgets Family of Specifications</a>.
+      </p>
+      <p>
+        This specification takes into account the <a
+         href="http://www.w3.org/2009/03/widgets-pag/pagreport.html">recommendations</a> from the <a
+         href="http://www.w3.org/2009/03/widgets-pag/">Widget Updates Patent Advisory Group</a> and considering <a
+         href="http://www.w3.org/2009/03/widgets-pag/prior-art.html">the  set of prior art</a> the Patent Advisory Group found.
+      </p>
+<p id="crexit">To exit the Candidate Recommendation (CR) stage, the following criteria must have been met:</p>
+
+<ul>
+<li>
+  <p>There will be at least two interoperable implementations passing all approved test cases in the <a href="http://dev.w3.org/2006/waf/widgets-updates/test-suite/">test suite</a> for this specification. An implementation is to be available (i.e. for download), shipping (i.e. not private), and not experimental (i.e. intended for a wide audience). The working group will decide when the test suite is of sufficient quality to test interoperability and will produce an implementation report (hosted together with the test suite).</p>
+</li>
+<li>
+  <p>A minimum of three months of the CR stage will have elapsed (i.e. not until after 24 August 2012). This is to ensure that enough time is given for any remaining major errors to be caught. The CR period will be extended if implementations are slow to appear.</p>
+</li>
+</ul>
+    </section>
+    <section
+     class='informative'>
+      <h2>
+        Introduction
+      </h2>
+      <p>
+      There are a multitude of reasons why an author of  might want to update an application including: </p>
+      <ul>
+        <li>addressing security vulnerabilities,</li>
+        <li>general bug fixes, </li>
+        <li>making
+          performance enhancements, </li>
+        <li>and/or adding new features. </li>
+      </ul>
+      <p>Sometimes an author may even want to revert back to a previous version of an application, if it is found that a newly deployed version of a application contains issues or vulnerabilities. </p>
+<p>
+    To facilitate the process of updating widgets, this specification introduces an XML element, called
+    an <a>update description source</a>, that is included as an <a href="#extensions-to-configuration-document">Extension to the Configuration Document</a>
+     of a widget package. This specification also introduces a new XML vocabulary, called an <a>update description document</a>. The <a>update description source</a> 
+     provides an author with a means to point to an <a>update description document</a>. 
+      </p>
+      <p>   
+         An <a>update description document</a> is metadata about a widget update including:
+      </p>
+
+      <ul>
+        <li>
+          <p>
+            a means to describe the purpose of the update.
+          </p>
+        </li>
+        <li>
+          <p>
+            a means to indicate the <a>version</a> identifier for the <a>potential update</a>.
+          </p>
+        </li>
+        <li>
+          <p>
+            a link to where the <a>potential update</a> widget package can be retrieved from.
+          </p>
+        </li>
+      </ul>
+      <p>
+        If a <a class="product-ua">user agent</a> determines, after <a href="#acquiring-an-update-description-document">Acquiring an Update Description Document</a> and 
+        during <a href="#processing-an-update-description-document">Processing an Update Description Document</a>, that two widget packages are not the
+        same <a>version</a>, and if the user consents, the <a class="product-ua">user agent</a> will attempt to replace the currently <a>installed widget</a> with the
+        <a>potential update</a>. Updates are designed to retain any locally stored data, so to protect end-users from losing data that a
+        widget may have stored at runtime.
+      </p>
+      <p>
+        A <a class="product-ua">user agent</a> must support the capability to acquire an <a>update description document</a> over HTTP protocols. For non-HTTP
+        protocols, UAs should act in equivalent ways.
+      </p>
+      <p>
+         This specification also discusses the <a href="#security-considerations">Security Considerations</a> that are left up to the discretion of implementers.
+      </p>
+    </section>
+    <section
+     id='conformance'>
+      <p>
+        This specification defines conformance requirements for a single class of product: <a
+         title="user agent">user agents</a>.
+      </p>
+    </section>
+    <section>
+      <h2>
+        Definitions
+      </h2>
+      <p>
+        The concepts of a <dfn
+         class="external">widget package</dfn>, a <dfn
+         class="external">configuration document</dfn>, a <dfn class="external">valid IRI</dfn>, a <dfn class="external">version attribute</dfn>, <dfn class="external">user agent locales</dfn>, <dfn class="external">global attributes</dfn> and the definition that <dfn class="external">one element is allowed per language</dfn> are defined in the [[!WIDGETS]] specification.
+      </p>
+      <p>
+        A <dfn>user agent</dfn> is an implementation of this specification that also implements the [[!WIDGETS]] specification and its
+        dependencies.
+      </p>
+      <p>
+        An <dfn>installed widget</dfn> is a <a>widget package</a> [[!WIDGETS]] that has been correctly installed and currently resides on or within a <a class="product-ua">user agent</a>.
+      </p>
+      <p>
+        An <dfn id="dfn-update-description-source">update description source</dfn> is the URI pointing to the location of an <a href="#dfn-update-description-document" class="internalDFN">update description document</a>. 
+      </p>
+      <p>
+        An <dfn>update description document</dfn> is an [[!XML10]] document that has a <a href="#dfn-update-info"><code>update-info</code></a> element at its root.
+      </p>
+      <p>
+        An <dfn>update source</dfn> is the URI referenced by the <a href="#dfn-src"><var>src</var></a> attribute of an <a href="#dfn-update-info"><code>update-info</code></a> element within an
+        <a>update description document</a>.
+      </p>
+      <p>
+        A <dfn>potential update</dfn> is a resource acquired via HTTP (from an <a>update source</a>) or from local media.
+      </p>
+      <p>
+        The <dfn>widget update process</dfn> is a multi-step process whereby a <a class="product-ua">user agent</a> acquires a <a>potential update</a>,
+        performs the <a>rule for verifying a widget update</a>, and then proceeds to <a>install the widget package</a>.
+      </p>
+      <p>
+        The <dfn>identity</dfn> of a <a>widget package</a> [[!WIDGETS]] is determined by the <a class="externalDFN" title="id" href="#"><var>id</var></a> attribute of the <a class="externalDFN" href="#"><code>widget</code></a>
+        element declared by an author in the <a>configuration document</a> [[!WIDGETS]] of a <a>widget package</a> [[!WIDGETS]].
+      </p>
+      <p>
+        The <dfn>version</dfn> of a <a>widget package</a> [[!WIDGETS]] is determined by the <a class="externalDFN" title="version" href="#"><var>version</var></a> attribute of the <a class="externalDFN" href="#"><code>widget</code></a>
+        element declared by an author in the <a>configuration document</a> [[!WIDGETS]] of a <a>widget package</a> [[!WIDGETS]].
+      </p>
+      <p>
+        An <dfn>incumbent widget</dfn> is an <a>installed widget</a> that is determined to have the same <a>identity</a> as the
+        <a>potential update</a>.
+      </p>
+      <p>
+        An <a>installed widget</a> is said to be <dfn>up-to-date</dfn> if a <a class="product-ua">user agent</a> determines that an <a>incumbent widget</a> does not need
+        updating.
+      </p>
+      <p>
+        A <dfn>failure notification</dfn> is an optional message emitted by the <a class="product-ua">user agent</a> to indicate to the user that a <a>widget
+        update</a> has failed.
+      </p>
+      <p>
+        Note: This specification does not define the means or format of a <a>failure notification</a>, which is left up to implementers.
+      </p>
+    </section>
+    <section>
+      <h2>
+        Update Extensions to Widget Configuration Documents 
+      </h2>
+          This specification introduces a new element, called the <a>update-description</a> element, for inclusion in a widget's <a>configuration document</a> [[!WIDGETS]].
+      <section>
+<h2>
+          The <code>update-description</code> Element
+        </h2>
+        <p>
+          The <dfn><code>update-description</code></dfn> element points, via the <a href="#dfn-href"><var>href</var></a> attribute, to an <a>update description
+          document</a>.
+        </p>
+        <p>
+          The <code>update-description</code> element is in the <code>http://www.w3.org/ns/widgets</code> namespace as defined in
+          [[!WIDGETS]].
+        </p>
+        <dl
+         class='eldef'>
+          <dt>
+            Context in which this element is  used:
+          </dt>
+          <dd>
+            As a child of the <code>widget</code> element defined in the [[!WIDGETS]] specification.
+          </dd>
+          <dt>
+            Content model:
+          </dt>
+          <dd>
+            Empty.
+          </dd>
+          <dt>
+            Occurrences:
+          </dt>
+          <dd>
+            Zero or one.
+          </dd>
+          <dt>
+            Expected children:
+          </dt>
+          <dd>
+            None.
+          </dd>
+          <dt>
+            Localizable via <code>xml:lang</code>:
+          </dt>
+          <dd>
+            No.
+          </dd>
+        </dl>
+        <section>
+          <h2>
+            Attributes
+          </h2>
+          <dl
+           class='attrs'>
+            <dt>
+              <code><dfn>href</dfn></code>
+            </dt>
+            <dd>
+              A <a>valid IRI</a> [[!WIDGETS]] that points to the location of an <a>update description document</a>.
+            </dd>
+          </dl>
+        </section>
+        <section>
+          <h2>
+            Usage example
+          </h2>
+          <p>
+            This example shows the expected usage of the <a href="#dfn-update-description"><code>update-description</code></a> element.
+          </p>
+<pre
+ class="example">
+&lt;widget xmlns  =&quot;http://www.w3.org/ns/widgets&quot; 
+        id     =&quot;http://example.com/my-widget&quot; 
+        version=&quot;1.0&quot;&gt;
+
+<span
+class="hilite">&lt;update-description 
+   href=&quot;http//example.com/update?widget=my-widget&amp;amp;version=1.0&quot;/&gt;</span>
+
+&lt;/widget&gt;</pre>
+        </section>
+      </section>
+      <section
+       id='processing'>
+        <h2>
+          Processing <code>update-description</code> elements in the Configuration Document
+        </h2>
+        <p id="ta-preparation1">
+           The <a class="product-ua">user agent</a> <em class="ct">MUST</em> process a <a>configuration document</a> [[!WIDGETS]] containing an <a href="#dfn-update-description"><code>update-description</code></a> element according 
+           to the <a>rule for processing the update-description element</a>.
+        </p>
+        <p>The <dfn>rule for processing the update-description element</dfn> is defined as follows.</p>
+        <ol>
+          <li>A <a class="product-ua">user agent</a> <em class="ct">MUST</em> add the following to the <a
+           href='http://www.w3.org/TR/widgets/#table-of-configuration-defaults'>Table of Configuration Defaults</a> [[!WIDGETS]] during Step 3 - Set the Configuration defaults. </li>
+        </ol>
+        <table
+         summary='The configuration defaults that a user agent must set prior to instantiation.'
+         class='simple'>
+          <caption>
+            Table of Configuration Defaults (addendum)
+          </caption>
+          <thead>
+            <tr>
+              <th
+               scope="col">
+                Variable
+              </th>
+              <th
+               scope="col">
+                Type
+              </th>
+              <th
+               scope="col">
+                Default Value
+              </th>
+              <th
+               scope="col">
+                Overridden in
+              </th>
+              <th
+               scope="col">
+                Description
+              </th>
+            </tr>
+          </thead>
+          <tr>
+            <th
+             scope="row">
+              <dfn><var>update href</var></dfn> 
+            </th>
+            <td>
+              URI
+            </td>
+            <td>
+              <code>null</code> 
+            </td>
+            <td>
+              <a
+               href="#processing">Processing <code>update-description</code> elements in the Configuration Document</a> 
+            </td>
+            <td>
+              The URI for where the widget's <a>update description document</a> can be downloaded, corresponding to the <code>update-description</code> element&#39;s
+              <a href="#dfn-href"><var>href</var></a> attribute.
+            </td>
+          </tr>
+        </table>
+        <p>&nbsp;</p>
+        <ol start="2">
+          <li><span id="ta-configuration1">During  <a href="http://www.w3.org/TR/widgets/#step-7--process-the-configuration-docume">Step 7 - Process the Configuration Document</a>, if this is not the first <a href="#dfn-update-description"><code>update-description</code></a> element, then the <a class="product-ua">user agent</a> <em class="ct">MUST</em> <a>ignore</a> this
+          element and its descendants.</span></li>
+          <li><span id="ta-configuration2">If this is the first <a href="#dfn-update-description"><code>update-description</code></a> element and the <a href="#dfn-href"><var>href</var></a> attribute is used, and it is a
+            <a>valid IRI</a> [[!WIDGETS]], then let <a><var>update href</var></a> be the value of the <a href="#dfn-href"><var>href</var></a> attribute.
+          Otherwise, this element is in error and the <a class="product-ua">user agent</a> <em class="ct">MUST</em> ignore this element. </span></li>
+        </ol>
+      </section>
+</section>
+    <section>
+      <h2>
+        The Update Description Document
+      </h2>
+      <p>
+        Within an <a>update description document</a> an author declares, amongst other things, what&#39;s new or different in the
+        <a>potential update</a>, the version that the widget will be updated to, and the <a>update source</a> from where the <a class="product-ua">user agent</a> can retrieve
+        the <a>potential update</a>.
+      </p>
+      <p>
+        The purpose of the <a>update description document</a> is to provide the details about a <a>potential update</a>, including a
+        pointer to a HTTP resource that will act as the <a>potential update</a>.
+      </p>
+      <p>
+        In order for a <a class="product-ua">user agent</a> to retrieve and process an <a>update description document</a>, an author will initially declare a
+        <a>valid IRI</a> [[!WIDGETS]] for the <code>update-description</code> element in the installed <a>configuration document</a> (e.g.
+        <code>&lt;update-description href=&quot;https://example.com/myWidget/updates&quot;/&gt;</code>), as defined in the <a href="#update-extensions-to-widget-configuration-documents">Update Extensions to Widget Configuration Documents</a> section.
+      </p>
+      <section>
+        <h2>
+          Example Update Description Document
+        </h2>
+        <p>
+          Below is an example of a typical <a>update description document</a>.
+        </p>
+<pre
+ class='example'>
+<span
+ class="hilite">&lt;update-info xmlns   = &quot;http://www.w3.org/ns/widgets&quot;
+             src     = &quot;https://w.example.com/2.1/RC/app.wgt&quot;
+             version = &quot;RC2.1&quot;&gt;
+  &lt;details xml:lang=&quot;en-us&quot;&gt;
+    Now supporting X, Y and Z features!
+  &lt;/details&gt;
+  &lt;details xml:lang=&quot;ar&quot; dir=&quot;rtl&quot;&gt;
+    دعم الآن سين وصاد وعين ملامح
+  &lt;/details&gt;
+  &lt;details xml:lang=&quot;pt&quot;&gt;
+    Agora com suporte a X, Y e Z recursos!
+  &lt;/details&gt;
+&lt;/update-info&gt;</span>
+</pre>
+      </section>
+      <section>
+        <h2>
+          Namespace
+        </h2>
+        <p>
+          All elements defined to be used in an <a>update description document</a> are in the <code>http://www.w3.org/ns/widgets</code>
+          namespace as defined in [[!WIDGETS]].
+        </p>
+      </section>
+      <section>
+        <h2>
+          The <code>update-info</code> Element
+        </h2>
+        <p>
+          The <dfn><code>update-info</code></dfn> element is intended to provide metadata about the <a>potential update</a>. In addition, it serves as
+          a container for the other elements.
+        </p>
+        <dl
+         class='eldef'>
+          <dt>
+            Context in which this element is to be used:
+          </dt>
+          <dd>
+            The root element of an <a>update description document</a>.
+          </dd>
+          <dt>
+            Content model:
+          </dt>
+          <dd>
+            Zero or more <a
+             class="internalDFN"
+             href="#dfn-details"><code>details</code></a> elements.
+          </dd>
+          <dt>
+            Occurrences:
+          </dt>
+          <dd>
+            Exactly one, at the root element of the document.
+          </dd>
+          <dt>
+            Expected children:
+          </dt>
+          <dd>
+            <a><code>details</code></a>.
+          </dd>
+          <dt>
+            Localizable via <code>xml:lang</code>:
+          </dt>
+          <dd>
+            No.
+          </dd>
+        </dl>
+        <section>
+          <h2>
+            Attributes
+          </h2>
+          <dl
+           class='attrs'>
+            <dt>
+              <code><dfn>version</dfn></code>
+            </dt>
+            <dd>
+              A <span>valid version tag</span> that denotes the version number of the <a>potential update</a>.
+            </dd>
+            <dt>
+              <code><dfn>src</dfn></code>
+            </dt>
+            <dd>
+              A <a>valid IRI</a> [[!WIDGETS]] that references a <a>potential update</a>. Over the wire, the potential update <em class="ct">MUST</em> be labeled with
+              a correct widget media type (i.e. <code>application/widget</code>).
+            </dd>
+          </dl>
+        </section>
+        <section>
+          <h2>
+            Usage example
+          </h2>
+          <p>
+            The example below shows how the <code>update-info</code> element can be used.
+          </p>
+<pre
+ class='example'>
+<span
+ class="hilite">&lt;update-info xmlns=&quot;http://www.w3.org/ns/widgets&quot;
+             src=&quot;http://sometld/somewidget_0_3_BETA.wgt&quot;
+             version=&quot;BETA 0.3&quot;&gt;</span>
+           
+<span
+ class="hilite">&lt;/update-info&gt;</span>
+</pre>
+        </section>
+      </section>
+      <section>
+        <h2>
+          The <code>details</code> Element
+        </h2>
+        <p>
+          The <dfn><code>details</code></dfn> element represents a human-readable description of what differentiates this <a>potential update</a> from
+          other versions.
+        </p>
+        <dl
+         class='eldef'>
+          <dt>
+            Context in which this element can be used:
+          </dt>
+          <dd>
+            Inside a <code>update-info</code> element.
+          </dd>
+          <dt>
+            Content model:
+          </dt>
+          <dd>
+            Anything.
+          </dd>
+          <dt>
+            Occurrences:
+          </dt>
+          <dd>
+            Zero or more.
+          </dd>
+          <dt>
+            Expected children:
+          </dt>
+          <dd>
+            Anything.
+          </dd>
+          <dt>
+            Localizable via <code>xml:lang</code>:
+          </dt>
+          <dd>
+            Yes (<a>one element is allowed per language</a>).
+          </dd>
+        </dl>
+        <p>
+            All <a>global attributes</a> [[!WIDGETS]], in particular <var>xml:lang</var> and <var>dir</var> attributes, can be applied to this element.
+        </p>
+        <section>
+          <h2>
+            Usage example
+          </h2>
+          <p>
+            The example below shows how the <code>details</code> element can be used.
+          </p>
+<pre
+ class='example'>
+&lt;update-info xmlns=&quot;http://www.w3.org/ns/widgets&quot;
+             src=&quot;http://foo.com/widget.wgt&quot;
+             version=&quot;1.3.1&quot;&gt;
+  <span
+ class="hilite">&lt;details&gt;
+    This update tries to make 2010 a little bit less like 1984.
+  &lt;/details&gt;
+  &lt;details xml:lang=&quot;pt&quot;&gt;
+    Esta atualização tenta fazer de 2010 um pouco menos parecido com 1984.
+  &lt;/details&gt;
+  &lt;details xml:lang=&quot;ar&quot; dir=&quot;rtl&quot;&gt;
+    يحاول هذا التحديث لجعل 2010 أقل قليلا مثل 1984.
+  &lt;/details&gt;</span>
+&lt;/update-info&gt;
+       
+</pre>
+        </section>
+      </section>
+</section>
+    <section>
+      <h2>
+        Acquiring an Update Description Document
+      </h2>
+      <p>
+        It is expected that user agents will perform a <a>widget update process</a> asynchronously and periodically check for any available
+        updates. The timing of any <a>widget update process</a> is an implementation detail left to the discretion of the implementer (e.g.
+        once a day or once a week).
+      </p>
+      <p>
+        To check for updates to a widget, the <a class="product-ua">user agent</a> issues a HTTP request towards the <a>update description source</a>.
+      </p>
+      <p id="ta-acquisition1">
+        The <a class="product-ua">user agent</a> <em 
+    class="ct">MUST</em> send the last known <var>ETag</var> response value, if available, in an <var>If-None-Match</var>
+        header.
+      </p>
+      <p id="ta-acquisition2">
+        The <a class="product-ua">user agent</a> <em 
+    class="ct">MUST</em> send an <var>If-Modified-Since</var> header indicating the time of the last check for an update from
+        the <a class="product-ua">user agent</a>.
+      </p>
+      <p id="ta-acquisition3">
+        The <a class="product-ua">user agent</a> <em 
+    class="ct">MUST</em> send an <var>Accept-Language</var> header representing the widget&#39;s locale.
+      </p>
+      <p>
+        As data is received, the <a class="product-ua">user agent</a> will then act as follows.
+      </p>
+      <p id="ta-acquisition4">
+        The <a class="product-ua">user agent</a> <em class="ct">MUST</em> ignore any <var>Cache-Control</var> or <var>Pragma</var> header with a value of <code>no-cache</code>.
+      </p>
+      <p id="ta-acquisition5">
+        The <a class="product-ua">user agent</a> <em class="ct">MUST</em> honor the value of any <var>Expires</var> header when scheduling the next <a>widget update process</a>
+        for the current <a>installed widget</a>.
+      </p>
+      <p id="ta-acquisition6">
+        The <a class="product-ua">user agent</a> <em class="ct">MUST</em> process HTTP 200 OK responses, with a <var>Content-Type</var> header specifying the type <code>application/xml</code>,
+        according to the rules defined in <a
+         href="#processing-an-update-description-document">Processing an Update Description Document</a>.
+      </p>
+      <p id="ta-acquisition7">
+        The <a class="product-ua">user agent</a> <em class="ct">MUST</em> <a>terminate the widget update</a> on HTTP 200 OK responses that have a <var>Content-Type</var> other than <code>application/xml</code>.
+      </p>
+      <p id="ta-acquisition8">
+        On receiving HTTP 204 No Content, 205 Reset Content, and 304 Not Modified responses, the <a class="product-ua">user agent</a> <em class="ct">MUST</em> <a>terminate the widget update</a>.
+      </p>
+      <p id="ta-acquisition9">
+        On receiving HTTP response codes in the 2xx range, other than HTTP 200 OK, the <a class="product-ua">user agent</a> <em class="ct">MUST</em> <a>terminate the widget update</a>. They are, however, likely to indicate an error
+        has occurred somewhere and may cause the <a>user agent</a> to emit a warning.
+      </p>
+      <p id="ta-acquisition10">
+        On receiving HTTP 301 Moved Permanently, 302 Found, 303 See Other, and 307 Temporary Redirect responses, the <a class="product-ua">user agent</a> <em class="ct">MUST</em> reconnect using the new server 
+        specified URL instead of the previously specified URL.
+      </p>
+      <p id="ta-acquisition11">
+        The <a class="product-ua">user agent</a> <em class="ct">SHOULD</em> treated HTTP 305 Use Proxy, 401 Unauthorized, and 407 Proxy Authentication Required responses transparently as for any other
+        subresource.
+      </p>
+      <p id="ta-acquisition12">
+        On receiving an HTTP 410 Gone response, the <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> <em class="ct"><em class="rfc2119" title="should">must</em></em> <a>terminate the widget update</a> and <a>remove the installed widget</a>.
+      </p>
+      <p id="ta-acquisition13">
+        Any other HTTP response code not listed here, and any network error that prevents the HTTP connection from being established in the
+        first place (e.g. DNS errors), <em class="ct"><em class="rfc2119" title="must">must</em></em> cause the <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> to <a>terminate the widget update</a>.
+      </p>
+      <p>&nbsp;
+        
+      </p>
+    </section>
+    <section>
+      <h2>
+        Processing an Update Description Document
+      </h2>
+      <p id="ta-processing1">
+        A <a class="product-ua">user agent</a> <em class="ct">MUST</em> assume the following defaults prior to processing an <a>update description document</a>:
+      </p>
+      <table
+       summary='The update configuration defaults that a user agent must set prior to update description document processing.'
+       class='simple'>
+        <caption>
+          <dfn>Update Defaults</dfn>
+        </caption>
+        <tbody>
+          <tr>
+            <th
+             scope="col">
+              Variable
+            </th>
+            <th
+             scope="col">
+              Type
+            </th>
+            <th
+             scope="col">
+              Default value
+            </th>
+            <th
+             scope="col">
+              Description
+            </th>
+          </tr>
+          <tr>
+            <th
+             scope="row">
+              <var>update-source</var> 
+            </th>
+            <td>
+              URI
+            </td>
+            <td>
+              <code>null</code> 
+            </td>
+            <td>&nbsp;
+              
+            </td>
+          </tr>
+          <tr>
+            <th
+             scope="row">
+              <var>version-tag</var> 
+            </th>
+            <td>
+              DOMString
+            </td>
+            <td>
+              <code>null</code>
+            </td>
+            <td>&nbsp;
+              
+            </td>
+          </tr>
+          <tr>
+            <th
+             scope="row">
+              details
+            </th>
+            <td>
+              DOMString
+            </td>
+            <td>
+              <code>null</code>
+            </td>
+            <td>&nbsp;
+              
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p id="ta-processing2">
+        A <a class="product-ua">user agent</a> <em class="ct">MUST</em> process an <a>update description document</a> according to the <a>rule for processing an update
+        description document</a>.
+      </p>
+      <p>
+        The following processing model is written with more concern for clarity over efficiency. As such, a <a class="product-ua">user agent</a> can optimize
+        the processing model so long as the end result is indistinguishable from the result that would be obtained by  following the
+        specification.
+      </p>
+      <p>
+        The term <dfn
+         id="in-error">in error</dfn>, typically used on an element or attribute, means that the element, attribute, or other construct
+        does not conform to the rules of this specification. Rules for exactly how a user agent needs to treat the erroneous construct are
+        always given when the term is used.
+      </p>
+      <p id="ta-processing3">
+        When an <dfn>invalid update description document</dfn> is determined then the <a class="product-ua">user agent</a> <em class="ct">MUST</em> <a>terminate the widget update</a>.
+      </p>
+      <p>
+        The <dfn>rule for processing an update description document</dfn> is defined as follows:
+      </p>
+      <ol
+       class="rule">
+        <li>
+          Let <var>doc</var> be the result of parsing the acquired <a>update description document</a> as a [[!DOM-LEVEL-3-CORE]]
+          <code>Document</code> using a [[!XML-NAMES]]-aware parser. If the document is not well-formed [[!XML10]], then treat this as an
+          <a>invalid update description document</a>.
+        </li>
+        <li>
+          Let <var>root element</var> be the <code>documentElement</code> of <var>doc</var>.
+        </li>
+        <li>
+          If the <var>root element</var> is not a <code>update-info</code> element in the widget namespace, then treat this <a>update
+          description document</a> as an <a>invalid update description document</a>.
+        </li>
+        <li>
+          If the <var>root element</var> is a <code>update-info</code> element: 
+          <ol
+           class="rule">
+            <li>
+              If the <code>version</code> attribute was used, and it is a valid <a>version attribute</a> [[!WIDGETS]], then let <var>version-tag</var>
+              be the value of <span><code>version</code></span>.
+            </li>
+            <li>
+              If no <code>version</code> attribute was used, or the value was <a>in error</a>, treat this as an <a>invalid update
+              description document</a>.
+            </li>
+            <li>
+              If the <a href="#dfn-src"><var>src</var></a> attribute was used, and it is a relative URL, then let
+              <var>update-source</var> be the absolute <a>valid IRI</a> [[!WIDGETS]] value of <a href="#dfn-src"><var>src</var></a> relative to the current 
+              <a title="update description document">update description document's</a> IRI. 
+            </li>
+            <li>
+              If the <a href="#dfn-src"><var>src</var></a> attribute was used, and it is an absolute <a>valid IRI</a> [[!WIDGETS]], then let
+              <var>update-source</var> be the value of <a href="#dfn-src"><var>src</var></a>. 
+            </li>
+            <li>
+              If no <a href="#dfn-src"><var>src</var></a> attribute was used, or the value was <a>in error</a>, treat this as an <a>invalid update description
+              document</a>.
+            </li>
+          </ol>
+        </li>
+        <li>
+          For any child element of the <var>root element</var>:
+        </li>
+        <li
+         style="list-style: none">
+          <ol>
+            <li>
+              If the child element is a <code>details</code> element: 
+              <ol
+               class="rule">
+                <li>
+                  If this is not the first <code>details</code> element, in <a href="http://www.w3.org/TR/xpath/#dt-document-order" class="external">document order</a>, that 
+                  matches a language range in the <a>user agent locales</a>; or, if no <code>details</code> element in the document matches the <a>user agent locales</a> and this is not the first element; then the element is <a>in error</a> and <em class="ct">MUST</em> be
+                  <span>ignored</span>.
+                </li>
+                <li>
+                  Let <var>details</var> be the result of applying the <a
+                   class='externalDFN'
+                   title="rule for getting text content">rule for getting text content</a> [[!WIDGETS]] to this element.
+                </li>
+              </ol>
+            </li>
+            <li>
+              Otherwise it <em class="ct">MUST</em> be ignored.
+            </li>
+          </ol>
+        </li>
+      </ol>
+      <p>&nbsp;
+        
+      </p>
+    </section>
+    <section>
+      <h2>
+        Verifying and Installing an Update
+      </h2>
+      <p>When a <a class="internalDFN" href="#dfn-user-agent">user agent</a> is to <dfn id="dfn-install-the-widget-package">install the widget package</dfn> it is to <a>remove the installed widget</a> and then
+      add the <a>potential update</a> as an <a>installed widget</a>. </p>
+      <p>
+         When a <a class="internalDFN" href="#dfn-user-agent">user agent</a> is to <dfn id="dfn-uninstall-the-incumbent-widget-package">remove the installed widget</dfn> it is to disable the current <a>incumbent widget</a>, if it exists. The <a>user agent</a> may also physically remove the <a>incumbent widget</a> from the device. 
+         The <a>user agent</a> may emit a notification warning that the <a>incumbent widget</a> is being removed.
+      </p>
+      <p>When a <a class="internalDFN" href="#dfn-user-agent">user agent</a> is to <dfn id="dfn-terminate-the-widget-update">terminate the widget update</dfn> it is to terminate the current <a>widget
+        update process</a>. The <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> may emit a <a>failure notification</a> warning that the widget update has been
+      terminated. </p>
+      <p id="ta-verifying4">
+        To verify and install a <a>potential update</a> the <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> <em class="ct"><em class="rfc2119" title="must">must</em></em> apply the <a>rule for verifying a widget update</a>.
+      </p>
+      <p>
+        The <dfn>rule for verifying a widget update</dfn> enables a <a class="product-ua">user agent</a> to match and verify a <a>potential update</a> -
+        acquired via HTTP or from local media - with an installed <a>widget package</a> [[!WIDGETS]] and is defined as follows:
+      </p>
+      <ol
+       class="rule">
+        <li>
+          Apply the <a
+           class='externalDFN'
+           title="steps for processing a widget package">steps for processing a widget package</a> [[!WIDGETS]] to the obtained
+          <a>potential update</a>. 
+          <ul
+           class="rule">
+            <li>
+              If an <a
+               class='externalDFN'
+               title="invalid widget package">invalid widget package</a> [[!WIDGETS]] is detected, the <a class="product-ua">user agent</a> <em class="ct">MUST</em> <a>terminate
+              the widget update</a>.
+            </li>
+          </ul>
+        </li>
+        <li>
+          If an <a>incumbent widget</a> could not be found then skip the rest of this rule and <a>install the widget package</a>.
+        </li>
+        <li>
+          If the <a>incumbent widget</a> has the same <a>version</a> as the <a>potential update</a> then the <a>installed widget</a> is
+          <a>up-to-date</a> and the <a class="product-ua">user agent</a> <em class="ct">MUST</em> <a>terminate the widget update</a>.
+        </li>
+        <li>
+          If the <a>potential update</a> is determined to be a <a
+           class='externalDFN'
+           title="digitally-signed widget package">digitally-signed widget package</a> when applying the rules for <a
+           class='externalDFN'
+           title="rules for signature validation">signature validation</a> [[!WIDGETS-DIGSIG]] then the <a class="product-ua">user agent</a> will act as
+          follows: 
+          <ul
+           class="rule">
+            <li>
+              If the <a>incumbent widget</a> is also determined to be a <a
+               class='externalDFN'
+               title="digitally-signed widget package">digitally-signed widget package</a> when applying the rules for <a
+               class='externalDFN'
+               title="rules for signature validation">signature validation</a> [[!WIDGETS-DIGSIG]] then the <a class="product-ua">user agent</a> will act as
+              follows: 
+              <ol
+               class="rule">
+                <li>
+                  Let <var>update_digsigs</var> be an enumerated list of all the digital signatures contained within the <a>potential
+                  update</a> obtained according to the rule to <a
+                   class='externalDFN'
+                   title="rules for locating and processing digital signatures">locate signature files in a widget package</a>
+                  [[!WIDGETS-DIGSIG]].
+                </li>
+                <li>
+                  If any of the elements within <var>update_digsigs</var> were determined to be <a>in error</a> then <a>terminate the
+                  widget update</a>.
+                </li>
+                <li>
+                  Let <var>incumbent_digsigs</var> be an enumerated list of all the digital signatures contained within the <a>incumbent
+                  widget</a> obtained according to the rule to <a
+                   class='externalDFN'
+                   title="rules for locating and processing digital signatures">locate signature files in a widget package</a>
+                  [[!WIDGETS-DIGSIG]].
+                </li>
+                <li>
+                  If any of the elements within <var>incumbent_digsigs</var> were determined to be <a>in error</a> then <a>terminate the
+                  widget update</a>. This is, however, likely to indicate an error has occurred somewhere in the installed <a>widget
+                  package</a> processing and may cause the <a class="product-ua">user agent</a> to emit a warning.
+                </li>
+              </ol>
+              <p>
+                Note: The decision of which (if any) <a
+                 class="externalDFN">distributor signatures</a> are to be validated and whether the <a
+                 class="externalDFN">author signature</a> is to be validated is out of scope [[WIDGETS-DIGSIG]].
+              </p>
+              <ol
+               start="5"
+               class="rule">
+                <li>
+                  For each <var>update_signature</var> to be validated in <var>update_digsigs</var>: 
+                  <ol
+                   class="rule">
+                    <li>
+                      Let <var>digSigsMatch</var> be the result of comparing the <code>dsp:Identifier</code> value [[WIDGETS-DIGSIG]] from <var>update_signature</var> with the same
+                      value obtained from the associated <var>incumbent_signature</var> within <var>incumbent_digsigs</var>. 
+                    </li>
+                    <li>
+                      If <var>digSigsMatch</var> is false then <a>terminate the widget update</a>.
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+          </ul>
+        </li>
+        <li>
+          If the <a>potential update</a> is determined not to be a <a
+           class='externalDFN'
+           title="digitally-signed widget package">digitally-signed widget package</a> when applying the rules for <a
+           class='externalDFN'
+           title="rules for signature validation">signature validation</a> [[!WIDGETS-DIGSIG]] then the <a class="product-ua">user agent</a> will act as
+          follows:
+          <ul class="rule">
+            <li>
+                If the <a>incumbent widget</a> is determined to be a <a
+               class='externalDFN'
+               title="digitally-signed widget package">digitally-signed widget package</a> when applying the rules for <a
+               class='externalDFN'
+               title="rules for signature validation">signature validation</a> [[!WIDGETS-DIGSIG]] then the <a class="product-ua">user agent</a> then <a>terminate the widget update</a>.
+            </li>
+          </ul>
+        </li>   
+        <li>
+          The <a class="product-ua">user agent</a> <em class="ct">MUST</em> <a>install the widget package</a>.
+        </li>
+      </ol>
+    </section>
+    <section>
+      <h2>
+        Security Considerations
+      </h2>
+      <p>
+        Because an <a>update description document</a> is not self-contained, it is conceivable that the update model could be subject to a
+        man-in-the-middle attack, as with any unencrypted requests performed over [[HTTP11]]. For this reason, it is <em class="ct">RECOMMENDED</em> that, for
+        widgets that have not been digitally signed, updates are always performed over [[HTTP-TLS]].
+      </p>
+      <p>
+        Another means of protection is for authors to always digitally sign their widget resources. During an update, the <a class="product-ua">user agent</a>
+        will then validate the signature before installation, ensuring that a widget resource&#39;s identity and integrity was maintained
+        over the network.
+      </p>
+      <p>
+        An <dfn>authoritative update URI</dfn> is an <a>update description source</a> referenced in the <a href="#dfn-href"><var>href</var></a> attribute of an
+        <a><code>update-description</code></a> element within an <a title="installed widget">installed widget's</a> <a>configuration document</a> [[!WIDGETS]].
+      </p>
+      <p>
+        Without the availability of a digitally signed <a>installed widget</a>, it is extremely easy to overwrite a widget resource with
+        another (potentially malicious) widget resource. Therefore it is <em class="ct">RECOMMENDED</em> that a <a class="product-ua">user agent</a> only allow updates to a
+        signed <a>installed widget</a> or to a non-signed <a>installed widget</a> only from a <a>potential update</a> obtained via its
+        <a>authoritative update URI</a>.
+      </p>
+    </section>
+    <section
+     class='appendix informative'>
+      <h2>
+        Design Goals and Requirements
+      </h2>
+      <p>
+        This document addresses the <a
+         href="http://www.w3.org/TR/widgets-reqs/#remote-and-local-updates">Remote and Local Updates</a> the requirement of the 30 April
+        2009 Working Draft of the <cite>Widgets 1.0: Requirements Document</cite> (see [[WIDGETS-REQS]]).
+      </p>
+    </section>
+    <section
+     class='appendix'>
+      <h2>
+        Acknowledgements
+      </h2>
+      <p>
+        The editors would like to thank the following contributors (in alphabetical order): Art Barstow, Raine Hillebrand, Hari G Kumar, Scott Wilson.
+      </p>
+      <p>
+        Special thanks to Robin Berjon for co-editing an early version of this specification.
+      </p>
+      <p>
+        Thanks to the W3C WebApps WG, and to participants on the public-webapps@w3.org listserv.
+      </p>
+    </section>
+  </body>
+</html>
+

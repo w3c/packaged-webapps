@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="ta-preparation1:12" version="42.0">
+	<name>ta-preparation1-12</name>
+	<description>Tests that content of the update-description element does not affect its processing.</description>
+	<update-description href="http://people.opera.com/harig/wupdres/resources/out.php?udd-pass">some text, <foo>child element</foo> and more text.</update-description>
+</widget>

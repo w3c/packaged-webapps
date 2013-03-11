@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+pass      The test passes
+fail      The test fails
+uncertain The tester is uncertain whether the test passes or fails
+invalid   The tester believes the test is invalid.
+na        The test is not applicable: the test is for a different device or media type, or the feature is not implemented
+-->
+<results testsuite="http://dev.w3.org/2006/waf/widgets-digsig/test-suite/test-suite.xml" 
+ id="obigo" 
+ product="OBIGO X10" 
+ href="http://obigo.com">
+<result for="bad_signature" verdict="pass"/>
+<result for="chagnedfile" verdict="pass"/>
+<result for="bad_hash" verdict="pass"/>
+<result for="11a" verdict="pass"/> 
+<result for="11b" verdict="pass"/> 
+<result for="12a" verdict="pass"/> 
+<result for="12b" verdict="pass"/> 
+<result for="16c" verdict="pass"/> 
+<result for="16e" verdict="pass"/> 
+<result for="16f" verdict="pass"/> 
+<result for="16g" verdict="pass"/> 
+<result for="24a" verdict="pass"/> 
+<result for="25a" verdict="pass"/> 
+<result for="29a" verdict="pass"/> 
+<result for="33a" verdict="pass"/> 
+<result for="34a" verdict="pass"/> 
+<result for="35a" verdict="pass"/> 
+<result for="37a" verdict="pass"/> 
+<result for="37b" verdict="pass"/> 
+<result for="40a" verdict="pass"/>
+</results>

@@ -1,0 +1,1394 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD HTML 4.01 Transitional//EN' 'http://www.w3.org/TR/html4/loose.dtd'>
+<html lang="en" dir="ltr">
+<head>
+    <title>
+      Widget Updates
+    </title>
+<style type="text/css">
+        /*Editor CSS */
+        @import url("http://www.w3.org/StyleSheets/TR/base"); 
+    
+    
+</style>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    
+
+
+<style type="text/css">
+ 
+code           { font-family: monospace; }
+span.hilite { color: red; /* font-weight: bold */ }
+ul.rule,ol.rule { margin-top:0.6em }
+ul.rule li, ol.rule li { margin-bottom:0.6em }
+</style>
+  <style type="text/css">
+/*****************************************************************
+ * ReSpec CSS
+ * Robin Berjon (robin at berjon dot com)
+ * v0.05 - 2009-07-31
+ *****************************************************************/
+
+
+/* --- INLINES --- */
+em.rfc2119 { 
+    text-transform:     lowercase;
+    font-variant:       small-caps;
+    font-style:         normal;
+    color:              #900;
+}
+
+h1 acronym, h2 acronym, h3 acronym, h4 acronym, h5 acronym, h6 acronym, a acronym,
+h1 abbr, h2 abbr, h3 abbr, h4 abbr, h5 abbr, h6 abbr, a abbr {
+    border: none;
+}
+
+dfn {
+    font-weight:    bold;
+}
+
+a.internalDFN {
+    color:  inherit;
+    border-bottom:  1px solid #99c;
+    text-decoration:    none;
+}
+
+a.externalDFN {
+    color:  inherit;
+    border-bottom:  1px dotted #ccc;
+    text-decoration:    none;
+}
+
+a.bibref {
+    text-decoration:    none;
+}
+
+code {
+    color:  #ff4500;
+}
+
+
+/* --- WEB IDL --- */
+pre.idl {
+    border-top: 1px solid #90b8de;
+    border-bottom: 1px solid #90b8de;
+    padding:    1em;
+    line-height:    120%;
+}
+
+pre.idl::before {
+    content:    "WebIDL";
+    display:    block;
+    width:      150px;
+    background: #90b8de;
+    color:  #fff;
+    font-family:    initial;
+    padding:    3px;
+    font-weight:    bold;
+    margin: -1em 0 1em -1em;
+}
+
+.idlType {
+    color:  #ff4500;
+    font-weight:    bold;
+    text-decoration:    none;
+}
+
+/*.idlModule*/
+/*.idlModuleID*/
+/*.idlInterface*/
+.idlInterfaceID, .idlDictionaryID {
+    font-weight:    bold;
+    color:  #005a9c;
+}
+
+.idlSuperclass {
+    font-style: italic;
+    color:  #005a9c;
+}
+
+/*.idlAttribute*/
+.idlAttrType, .idlFieldType, .idlMemberType {
+    color:  #005a9c;
+}
+.idlAttrName, .idlFieldName, .idlMemberName {
+    color:  #ff4500;
+}
+.idlAttrName a, .idlFieldName a, .idlMemberName a {
+    color:  #ff4500;
+    border-bottom:  1px dotted #ff4500;
+    text-decoration: none;
+}
+
+/*.idlMethod*/
+.idlMethType {
+    color:  #005a9c;
+}
+.idlMethName {
+    color:  #ff4500;
+}
+.idlMethName a {
+    color:  #ff4500;
+    border-bottom:  1px dotted #ff4500;
+    text-decoration: none;
+}
+
+/*.idlParam*/
+.idlParamType {
+    color:  #005a9c;
+}
+.idlParamName {
+    font-style: italic;
+}
+
+.extAttr {
+    color:  #666;
+}
+
+/*.idlConst*/
+.idlConstType {
+    color:  #005a9c;
+}
+.idlConstName {
+    color:  #ff4500;
+}
+.idlConstName a {
+    color:  #ff4500;
+    border-bottom:  1px dotted #ff4500;
+    text-decoration: none;
+}
+
+/*.idlException*/
+.idlExceptionID {
+    font-weight:    bold;
+    color:  #c00;
+}
+
+.idlTypedefID, .idlTypedefType {
+    color:  #005a9c;
+}
+
+.idlRaises, .idlRaises a.idlType, .idlRaises a.idlType code, .excName a, .excName a code {
+    color:  #c00;
+    font-weight:    normal;
+}
+
+.excName a {
+    font-family:    monospace;
+}
+
+.idlRaises a.idlType, .excName a.idlType {
+    border-bottom:  1px dotted #c00;
+}
+
+.excGetSetTrue, .excGetSetFalse, .prmNullTrue, .prmNullFalse, .prmOptTrue, .prmOptFalse {
+    width:  45px;
+    text-align: center;
+}
+.excGetSetTrue, .prmNullTrue, .prmOptTrue { color:  #0c0; }
+.excGetSetFalse, .prmNullFalse, .prmOptFalse { color:  #c00; }
+
+.idlImplements a {
+    font-weight:    bold;
+}
+
+dl.attributes, dl.methods, dl.constants, dl.fields, dl.dictionary-members {
+    margin-left:    2em;
+}
+
+.attributes dt, .methods dt, .constants dt, .fields dt, .dictionary-members dt {
+    font-weight:    normal;
+}
+
+.attributes dt code, .methods dt code, .constants dt code, .fields dt code, .dictionary-members dt code {
+    font-weight:    bold;
+    color:  #000;
+    font-family:    monospace;
+}
+
+.attributes dt code, .fields dt code, .dictionary-members dt code {
+    background:  #ffffd2;
+}
+
+.attributes dt .idlAttrType code, .fields dt .idlFieldType code, .dictionary-members dt .idlMemberType code {
+    color:  #005a9c;
+    background:  transparent;
+    font-family:    inherit;
+    font-weight:    normal;
+    font-style: italic;
+}
+
+.methods dt code {
+    background:  #d9e6f8;
+}
+
+.constants dt code {
+    background:  #ddffd2;
+}
+
+.attributes dd, .methods dd, .constants dd, .fields dd, .dictionary-members dd {
+    margin-bottom:  1em;
+}
+
+table.parameters, table.exceptions {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    margin: 0.5em 0;
+    width:  100%;
+}
+table.parameters { border-bottom:  1px solid #90b8de; }
+table.exceptions { border-bottom:  1px solid #deb890; }
+
+.parameters th, .exceptions th {
+    color:  #fff;
+    padding:    3px 5px;
+    text-align: left;
+    font-family:    initial;
+    font-weight:    normal;
+    text-shadow:    #666 1px 1px 0;
+}
+.parameters th { background: #90b8de; }
+.exceptions th { background: #deb890; }
+
+.parameters td, .exceptions td {
+    padding:    3px 10px;
+    border-top: 1px solid #ddd;
+    vertical-align: top;
+}
+
+.parameters tr:first-child td, .exceptions tr:first-child td {
+    border-top: none;
+}
+
+.parameters td.prmName, .exceptions td.excName, .exceptions td.excCodeName {
+    width:  100px;
+}
+
+.parameters td.prmType {
+    width:  120px;
+}
+
+table.exceptions table {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    width:  100%;
+}
+
+/* --- TOC --- */
+.toc a {
+    text-decoration:    none;
+}
+
+a .secno {
+    color:  #000;
+}
+
+/* --- TABLE --- */
+table.simple {
+    border-spacing: 0;
+    border-collapse:    collapse;
+    border-bottom:  3px solid #005a9c;
+}
+
+.simple th {
+    background: #005a9c;
+    color:  #fff;
+    padding:    3px 5px;
+    text-align: left;
+}
+
+.simple th[scope="row"] {
+    background: inherit;
+    color:  inherit;
+    border-top: 1px solid #ddd;
+}
+
+.simple td {
+    padding:    3px 10px;
+    border-top: 1px solid #ddd;
+}
+
+.simple tr:nth-child(even) {
+    background: #f0f6ff;
+}
+
+/* --- DL --- */
+.section dd > p:first-child {
+    margin-top: 0;
+}
+
+.section dd > p:last-child {
+    margin-bottom: 0;
+}
+
+.section dd {
+    margin-bottom:  1em;
+}
+
+.section dl.attrs dd, .section dl.eldef dd {
+    margin-bottom:  0;
+}
+
+/* --- EXAMPLES --- */
+pre.example {
+    border-top: 1px solid #ff4500;
+    border-bottom: 1px solid #ff4500;
+    padding:    1em;
+    margin-top: 1em;
+}
+
+pre.example::before {
+    content:    "Example";
+    display:    block;
+    width:      150px;
+    background: #ff4500;
+    color:  #fff;
+    font-family:    initial;
+    padding:    3px;
+    font-weight:    bold;
+    margin: -1em 0 1em -1em;
+}
+
+/* --- EDITORIAL NOTES --- */
+.issue {
+    padding:    1em;
+    margin: 1em 0em 0em;
+    border: 1px solid #f00;
+    background: #ffc;
+}
+
+.issue::before {
+    content:    "Issue";
+    display:    block;
+    width:  150px;
+    margin: -1.5em 0 0.5em 0;
+    font-weight:    bold;
+    border: 1px solid #f00;
+    background: #fff;
+    padding:    3px 1em;
+}
+
+.note {
+    margin: 1em 0em 0em;
+    padding:    1em;
+    border: 2px solid #cff6d9;
+    background: #e2fff0;
+}
+
+.note::before {
+    content:    "Note";
+    display:    block;
+    width:  150px;
+    margin: -1.5em 0 0.5em 0;
+    font-weight:    bold;
+    border: 1px solid #cff6d9;
+    background: #fff;
+    padding:    3px 1em;
+}
+
+/* --- Best Practices --- */
+div.practice {
+    border: solid #bebebe 1px;
+    margin: 2em 1em 1em 2em;
+}
+
+span.practicelab {
+    margin: 1.5em 0.5em 1em 1em;
+    font-weight: bold;
+    font-style: italic;
+}
+
+span.practicelab   { background: #dfffff; }
+
+span.practicelab {
+    position: relative;
+    padding: 0 0.5em;
+    top: -1.5em;
+}
+
+p.practicedesc {
+    margin: 1.5em 0.5em 1em 1em;
+}
+
+@media screen {
+    p.practicedesc {
+        position: relative;
+        top: -2em;
+        padding: 0;
+        margin: 1.5em 0.5em -1em 1em;
+    }
+}
+
+/* --- SYNTAX HIGHLIGHTING --- */
+pre.sh_sourceCode {
+  background-color: white;
+  color: black;
+  font-style: normal;
+  font-weight: normal;
+}
+
+pre.sh_sourceCode .sh_keyword { color: #005a9c; font-weight: bold; }           /* language keywords */
+pre.sh_sourceCode .sh_type { color: #666; }                            /* basic types */
+pre.sh_sourceCode .sh_usertype { color: teal; }                             /* user defined types */
+pre.sh_sourceCode .sh_string { color: red; font-family: monospace; }        /* strings and chars */
+pre.sh_sourceCode .sh_regexp { color: orange; font-family: monospace; }     /* regular expressions */
+pre.sh_sourceCode .sh_specialchar { color: 	#ffc0cb; font-family: monospace; }  /* e.g., \n, \t, \\ */
+pre.sh_sourceCode .sh_comment { color: #A52A2A; font-style: italic; }         /* comments */
+pre.sh_sourceCode .sh_number { color: purple; }                             /* literal numbers */
+pre.sh_sourceCode .sh_preproc { color: #00008B; font-weight: bold; }       /* e.g., #include, import */
+pre.sh_sourceCode .sh_symbol { color: blue; }                            /* e.g., *, + */
+pre.sh_sourceCode .sh_function { color: black; font-weight: bold; }         /* function calls and declarations */
+pre.sh_sourceCode .sh_cbracket { color: red; }                              /* block brackets (e.g., {, }) */
+pre.sh_sourceCode .sh_todo { font-weight: bold; background-color: #00FFFF; }   /* TODO and FIXME */
+
+/* Predefined variables and functions (for instance glsl) */
+pre.sh_sourceCode .sh_predef_var { color: #00008B; }
+pre.sh_sourceCode .sh_predef_func { color: #00008B; font-weight: bold; }
+
+/* for OOP */
+pre.sh_sourceCode .sh_classname { color: teal; }
+
+/* line numbers (not yet implemented) */
+pre.sh_sourceCode .sh_linenum { display: none; }
+
+/* Internet related */
+pre.sh_sourceCode .sh_url { color: blue; text-decoration: underline; font-family: monospace; }
+
+/* for ChangeLog and Log files */
+pre.sh_sourceCode .sh_date { color: blue; font-weight: bold; }
+pre.sh_sourceCode .sh_time, pre.sh_sourceCode .sh_file { color: #00008B; font-weight: bold; }
+pre.sh_sourceCode .sh_ip, pre.sh_sourceCode .sh_name { color: #006400; }
+
+/* for Prolog, Perl... */
+pre.sh_sourceCode .sh_variable { color: #006400; }
+
+/* for LaTeX */
+pre.sh_sourceCode .sh_italics { color: #006400; font-style: italic; }
+pre.sh_sourceCode .sh_bold { color: #006400; font-weight: bold; }
+pre.sh_sourceCode .sh_underline { color: #006400; text-decoration: underline; }
+pre.sh_sourceCode .sh_fixed { color: green; font-family: monospace; }
+pre.sh_sourceCode .sh_argument { color: #006400; }
+pre.sh_sourceCode .sh_optionalargument { color: purple; }
+pre.sh_sourceCode .sh_math { color: orange; }
+pre.sh_sourceCode .sh_bibtex { color: blue; }
+
+/* for diffs */
+pre.sh_sourceCode .sh_oldfile { color: orange; }
+pre.sh_sourceCode .sh_newfile { color: #006400; }
+pre.sh_sourceCode .sh_difflines { color: blue; }
+
+/* for css */
+pre.sh_sourceCode .sh_selector { color: purple; }
+pre.sh_sourceCode .sh_property { color: blue; }
+pre.sh_sourceCode .sh_value { color: #006400; font-style: italic; }
+
+/* other */
+pre.sh_sourceCode .sh_section { color: black; font-weight: bold; }
+pre.sh_sourceCode .sh_paren { color: red; }
+pre.sh_sourceCode .sh_attribute { color: #006400; }
+
+</style><link href="http://www.w3.org/StyleSheets/TR/W3C-CR" rel="stylesheet" type="text/css" charset="utf-8"></head>
+  <body style="display: inherit; "><div class="head"><p><a href="http://www.w3.org/"><img width="72" height="48" src="http://www.w3.org/Icons/w3c_home" alt="W3C"></a></p><h1 class="title" id="title">Widget Updates</h1><h2 id="w3c-candidate-recommendation-24-may-2012"><acronym title="World Wide Web Consortium">W3C</acronym> Candidate Recommendation 24 May 2012</h2><dl><dt>This version:</dt><dd><a href="http://www.w3.org/TR/2012/CR-widgets-updates-20120524/">http://www.w3.org/TR/2012/CR-widgets-updates-20120524/</a></dd><dt>Latest published version:</dt><dd><a href="http://www.w3.org/TR/widgets-updates/">http://www.w3.org/TR/widgets-updates/</a></dd><dt>Latest editor's draft:</dt><dd><a href="http://dev.w3.org/2006/waf/widgets-updates/">http://dev.w3.org/2006/waf/widgets-updates/</a></dd><dt>Test suite:</dt><dd><a href="http://dev.w3.org/2006/waf/widgets-updates/test-suite">http://dev.w3.org/2006/waf/widgets-updates/test-suite</a></dd><dt>Implementation report:</dt><dd><a href="http://dev.w3.org/2006/waf/widgets-updates/imp-report">http://dev.w3.org/2006/waf/widgets-updates/imp-report</a></dd><dt>Previous version:</dt><dd><a href="http://www.w3.org/TR/2012/WD-widgets-updates-20120403/">http://www.w3.org/TR/2012/WD-widgets-updates-20120403/</a></dd><dt>Editors:</dt><dd><a href="http://datadriven.com.au/">Marcos Cáceres</a>, <acronym title="World Wide Web Consortium">W3C</acronym> Invited Expert</dd>
+<dd><a href="http://richt.me/">Richard Tibbett</a>, <a href="http://opera.com/">Opera Software ASA</a></dd>
+</dl><p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2012 <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>, <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. <acronym title="World Wide Web Consortium">W3C</acronym> <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p><hr></div>
+    <div id="abstract" class="introductory section"><h2>Abstract</h2>
+      <p>
+        This specification defines a process and a document format to allow a <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> to update an installed <a href="#dfn-widget-package" class="internalDFN">widget package</a> with
+        a different version of a widget package. A widget cannot automatically update itself; instead, a widget relies on the user agent to manage the
+      update process. </p>
+    </div><div id="sotd" class="introductory section"><h2>Status of This Document</h2><p><em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current <acronym title="World Wide Web Consortium">W3C</acronym> publications and the latest revision of this technical report can be found in the <a href="http://www.w3.org/TR/"><acronym title="World Wide Web Consortium">W3C</acronym> technical reports index</a> at http://www.w3.org/TR/.</em></p>
+      <p>
+        User agents that wish to extend this specification in any way are encouraged to discuss their extensions on a public forum, such as
+        <a href="mailto:public-webapps@w3.org">public-webapps</a> so their extensions can be considered for standardization.
+      </p>
+      <p>
+        This specification is part of the <a href="http://www.w3.org/2008/webapps/wiki/WidgetSpecs">Widgets Family of Specifications</a>.
+      </p>
+      <p>
+        This specification takes into account the <a href="http://www.w3.org/2009/03/widgets-pag/pagreport.html">recommendations</a> from the <a href="http://www.w3.org/2009/03/widgets-pag/">Widget Updates Patent Advisory Group</a> and considering <a href="http://www.w3.org/2009/03/widgets-pag/prior-art.html">the  set of prior art</a> the Patent Advisory Group found.
+      </p>
+<p id="crexit">To exit the Candidate Recommendation (CR) stage, the following criteria must have been met:</p>
+
+<ul>
+<li>
+  <p>There will be at least two interoperable implementations passing all approved test cases in the <a href="http://dev.w3.org/2006/waf/widgets-updates/test-suite/">test suite</a> for this specification. An implementation is to be available (i.e. for download), shipping (i.e. not private), and not experimental (i.e. intended for a wide audience). The working group will decide when the test suite is of sufficient quality to test interoperability and will produce an implementation report (hosted together with the test suite).</p>
+</li>
+<li>
+  <p>A minimum of three months of the CR stage will have elapsed (i.e. not until after 24 August 2012). This is to ensure that enough time is given for any remaining major errors to be caught. The CR period will be extended if implementations are slow to appear.</p>
+</li>
+</ul>
+    <p>This document was published by the <a href="http://www.w3.org/2008/webapps/">Web Applications Working Group</a> as a Candidate Recommendation. This document is intended to become a <acronym title="World Wide Web Consortium">W3C</acronym> Recommendation. If you wish to make comments regarding this document, please send them to <a href="mailto:public-webapps@w3.org">public-webapps@w3.org</a> (<a href="mailto:public-webapps-request@w3.org?subject=subscribe">subscribe</a>, <a href="http://lists.w3.org/Archives/Public/public-webapps/">archives</a>). <acronym title="World Wide Web Consortium">W3C</acronym> publishes a Candidate Recommendation to indicate that the document is believed to be stable and to encourage implementation by the developer community. This Candidate Recommendation is expected to advance to Proposed Recommendation no earlier than 24 June 2012. All feedback is welcome.</p><p>Publication as a Candidate Recommendation does not imply endorsement by the <acronym title="World Wide Web Consortium">W3C</acronym> Membership. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.</p><p>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 <acronym title="World Wide Web Consortium">W3C</acronym> Patent Policy</a>. <acronym title="World Wide Web Consortium">W3C</acronym> maintains a <a href="http://www.w3.org/2004/01/pp-impl/42538/status" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section 6 of the <acronym title="World Wide Web Consortium">W3C</acronym> Patent Policy</a>.</p></div><div id="toc" class="section"><h2 class="introductory">Table of Contents</h2><ul class="toc"><li class="tocline"><a href="#introduction" class="tocxref"><span class="secno">1. </span>
+        Introduction
+      </a></li><li class="tocline"><a href="#conformance" class="tocxref"><span class="secno">2. </span>Conformance</a></li><li class="tocline"><a href="#definitions" class="tocxref"><span class="secno">3. </span>
+        Definitions
+      </a></li><li class="tocline"><a href="#update-extensions-to-widget-configuration-documents" class="tocxref"><span class="secno">4. </span>
+        Update Extensions to Widget Configuration Documents 
+      </a><ul class="toc"><li class="tocline"><a href="#the-update-description-element" class="tocxref"><span class="secno">4.1 </span>
+          The <code>update-description</code> Element
+        </a><ul class="toc"><li class="tocline"><a href="#attributes" class="tocxref"><span class="secno">4.1.1 </span>
+            Attributes
+          </a></li><li class="tocline"><a href="#usage-example" class="tocxref"><span class="secno">4.1.2 </span>
+            Usage example
+          </a></li></ul></li><li class="tocline"><a href="#processing" class="tocxref"><span class="secno">4.2 </span>
+          Processing <code>update-description</code> elements in the Configuration Document
+        </a></li></ul></li><li class="tocline"><a href="#the-update-description-document" class="tocxref"><span class="secno">5. </span>
+        The Update Description Document
+      </a><ul class="toc"><li class="tocline"><a href="#example-update-description-document" class="tocxref"><span class="secno">5.1 </span>
+          Example Update Description Document
+        </a></li><li class="tocline"><a href="#namespace" class="tocxref"><span class="secno">5.2 </span>
+          Namespace
+        </a></li><li class="tocline"><a href="#the-update-info-element" class="tocxref"><span class="secno">5.3 </span>
+          The <code>update-info</code> Element
+        </a><ul class="toc"><li class="tocline"><a href="#attributes-1" class="tocxref"><span class="secno">5.3.1 </span>
+            Attributes
+          </a></li><li class="tocline"><a href="#usage-example-1" class="tocxref"><span class="secno">5.3.2 </span>
+            Usage example
+          </a></li></ul></li><li class="tocline"><a href="#the-details-element" class="tocxref"><span class="secno">5.4 </span>
+          The <code>details</code> Element
+        </a><ul class="toc"><li class="tocline"><a href="#usage-example-2" class="tocxref"><span class="secno">5.4.1 </span>
+            Usage example
+          </a></li></ul></li></ul></li><li class="tocline"><a href="#acquiring-an-update-description-document" class="tocxref"><span class="secno">6. </span>
+        Acquiring an Update Description Document
+      </a></li><li class="tocline"><a href="#processing-an-update-description-document" class="tocxref"><span class="secno">7. </span>
+        Processing an Update Description Document
+      </a></li><li class="tocline"><a href="#verifying-and-installing-an-update" class="tocxref"><span class="secno">8. </span>
+        Verifying and Installing an Update
+      </a></li><li class="tocline"><a href="#security-considerations" class="tocxref"><span class="secno">9. </span>
+        Security Considerations
+      </a></li><li class="tocline"><a href="#design-goals-and-requirements" class="tocxref"><span class="secno">A. </span>
+        Design Goals and Requirements
+      </a></li><li class="tocline"><a href="#acknowledgements" class="tocxref"><span class="secno">B. </span>
+        Acknowledgements
+      </a></li><li class="tocline"><a href="#references" class="tocxref"><span class="secno">C. </span>References</a><ul class="toc"><li class="tocline"><a href="#normative-references" class="tocxref"><span class="secno">C.1 </span>Normative references</a></li><li class="tocline"><a href="#informative-references" class="tocxref"><span class="secno">C.2 </span>Informative references</a></li></ul></li></ul></div>
+    
+    <div class="informative section" id="introduction">
+      <!--OddPage--><h2><span class="secno">1. </span>
+        Introduction
+      </h2><p><em>This section is non-normative.</em></p>
+      <p>
+      There are a multitude of reasons why an author of  might want to update an application including: </p>
+      <ul>
+        <li>addressing security vulnerabilities,</li>
+        <li>general bug fixes, </li>
+        <li>making
+          performance enhancements, </li>
+        <li>and/or adding new features. </li>
+      </ul>
+      <p>Sometimes an author may even want to revert back to a previous version of an application, if it is found that a newly deployed version of a application contains issues or vulnerabilities. </p>
+<p>
+    To facilitate the process of updating widgets, this specification introduces an XML element, called
+    an <a href="#dfn-update-description-source" class="internalDFN">update description source</a>, that is included as an <a href="#extensions-to-configuration-document">Extension to the Configuration Document</a>
+     of a widget package. This specification also introduces a new XML vocabulary, called an <a href="#dfn-update-description-document" class="internalDFN">update description document</a>. The <a href="#dfn-update-description-source" class="internalDFN">update description source</a> 
+     provides an author with a means to point to an <a href="#dfn-update-description-document" class="internalDFN">update description document</a>. 
+      </p>
+      <p>   
+         An <a href="#dfn-update-description-document" class="internalDFN">update description document</a> is metadata about a widget update including:
+      </p>
+
+      <ul>
+        <li>
+          <p>
+            a means to describe the purpose of the update.
+          </p>
+        </li>
+        <li>
+          <p>
+            a means to indicate the <a href="#dfn-version-1" class="internalDFN">version</a> identifier for the <a href="#dfn-potential-update" class="internalDFN">potential update</a>.
+          </p>
+        </li>
+        <li>
+          <p>
+            a link to where the <a href="#dfn-potential-update" class="internalDFN">potential update</a> widget package can be retrieved from.
+          </p>
+        </li>
+      </ul>
+      <p>
+        If a <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> determines, after <a href="#acquiring-an-update-description-document">Acquiring an Update Description Document</a> and 
+        during <a href="#processing-an-update-description-document">Processing an Update Description Document</a>, that two widget packages are not the
+        same <a href="#dfn-version-1" class="internalDFN">version</a>, and if the user consents, the <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> will attempt to replace the currently <a href="#dfn-installed-widget" class="internalDFN">installed widget</a> with the
+        <a href="#dfn-potential-update" class="internalDFN">potential update</a>. Updates are designed to retain any locally stored data, so to protect end-users from losing data that a
+        widget may have stored at runtime.
+      </p>
+      <p>
+        A <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> must support the capability to acquire an <a href="#dfn-update-description-document" class="internalDFN">update description document</a> over HTTP protocols. For non-HTTP
+        protocols, UAs should act in equivalent ways.
+      </p>
+      <p>
+         This specification also discusses the <a href="#security-considerations">Security Considerations</a> that are left up to the discretion of implementers.
+      </p>
+    </div>
+    <div id="conformance" class="section"><!--OddPage--><h2><span class="secno">2. </span>Conformance</h2><p>As well as sections marked as non-normative, all authoring guidelines, diagrams, examples, and notes in this specification are non-normative. Everything else in this specification is normative.</p>
+<p>The key words <em class="rfc2119" title="must">must</em>, <em class="rfc2119" title="must not">must not</em>, <em class="rfc2119" title="required">required</em>, <em class="rfc2119" title="should">should</em>, <em class="rfc2119" title="should not">should not</em>, <em class="rfc2119" title="recommended">recommended</em>, <em class="rfc2119" title="may">may</em>, and <em class="rfc2119" title="optional">optional</em> in this specification are to be interpreted as described in [<cite><a class="bibref" rel="biblioentry" href="#bib-RFC2119">RFC2119</a></cite>].</p>
+
+      <p>
+        This specification defines conformance requirements for a single class of product: <a title="user agent" href="#dfn-user-agent" class="internalDFN">user agents</a>.
+      </p>
+    </div>
+    <div id="definitions" class="section">
+      <!--OddPage--><h2><span class="secno">3. </span>
+        Definitions
+      </h2>
+      <p>
+        The concepts of a <dfn class="external" id="dfn-widget-package">widget package</dfn>, a <dfn class="external" id="dfn-configuration-document">configuration document</dfn>, a <dfn class="external" id="dfn-valid-iri">valid IRI</dfn>, a <dfn class="external" id="dfn-version-attribute">version attribute</dfn>, <dfn class="external" id="dfn-user-agent-locales">user agent locales</dfn>, <dfn class="external" id="dfn-global-attributes">global attributes</dfn> and the definition that <dfn class="external" id="dfn-one-element-is-allowed-per-language">one element is allowed per language</dfn> are defined in the [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>] specification.
+      </p>
+      <p>
+        A <dfn id="dfn-user-agent">user agent</dfn> is an implementation of this specification that also implements the [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>] specification and its
+        dependencies.
+      </p>
+      <p>
+        An <dfn id="dfn-installed-widget">installed widget</dfn> is a <a href="#dfn-widget-package" class="internalDFN">widget package</a> [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>] that has been correctly installed and currently resides on or within a <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a>.
+      </p>
+      <p>
+        An <dfn id="dfn-update-description-source">update description source</dfn> is the URI pointing to the location of an <a href="#dfn-update-description-document" class="internalDFN">update description document</a>. 
+      </p>
+      <p>
+        An <dfn id="dfn-update-description-document">update description document</dfn> is an [<cite><a class="bibref" rel="biblioentry" href="#bib-XML10">XML10</a></cite>] document that has a <a href="#dfn-update-info"><code>update-info</code></a> element at its root.
+      </p>
+      <p>
+        An <dfn id="dfn-update-source">update source</dfn> is the URI referenced by the <a href="#dfn-src"><var>src</var></a> attribute of an <a href="#dfn-update-info"><code>update-info</code></a> element within an
+        <a href="#dfn-update-description-document" class="internalDFN">update description document</a>.
+      </p>
+      <p>
+        A <dfn id="dfn-potential-update">potential update</dfn> is a resource acquired via HTTP (from an <a href="#dfn-update-source" class="internalDFN">update source</a>) or from local media.
+      </p>
+      <p>
+        The <dfn id="dfn-widget-update-process">widget update process</dfn> is a multi-step process whereby a <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> acquires a <a href="#dfn-potential-update" class="internalDFN">potential update</a>,
+        performs the <a href="#dfn-rule-for-verifying-a-widget-update" class="internalDFN">rule for verifying a widget update</a>, and then proceeds to <a href="#dfn-install-the-widget-package" class="internalDFN">install the widget package</a>.
+      </p>
+      <p>
+        The <dfn id="dfn-identity">identity</dfn> of a <a href="#dfn-widget-package" class="internalDFN">widget package</a> [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>] is determined by the <a class="externalDFN" title="id" href="#"><var>id</var></a> attribute of the <a class="externalDFN" href="#"><code>widget</code></a>
+        element declared by an author in the <a href="#dfn-configuration-document" class="internalDFN">configuration document</a> [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>] of a <a href="#dfn-widget-package" class="internalDFN">widget package</a> [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>].
+      </p>
+      <p>
+        The <dfn id="dfn-version">version</dfn> of a <a href="#dfn-widget-package" class="internalDFN">widget package</a> [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>] is determined by the <a class="externalDFN" title="version" href="#"><var>version</var></a> attribute of the <a class="externalDFN" href="#"><code>widget</code></a>
+        element declared by an author in the <a href="#dfn-configuration-document" class="internalDFN">configuration document</a> [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>] of a <a href="#dfn-widget-package" class="internalDFN">widget package</a> [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>].
+      </p>
+      <p>
+        An <dfn id="dfn-incumbent-widget">incumbent widget</dfn> is an <a href="#dfn-installed-widget" class="internalDFN">installed widget</a> that is determined to have the same <a href="#dfn-identity" class="internalDFN">identity</a> as the
+        <a href="#dfn-potential-update" class="internalDFN">potential update</a>.
+      </p>
+      <p>
+        An <a href="#dfn-installed-widget" class="internalDFN">installed widget</a> is said to be <dfn id="dfn-up-to-date">up-to-date</dfn> if a <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> determines that an <a href="#dfn-incumbent-widget" class="internalDFN">incumbent widget</a> does not need
+        updating.
+      </p>
+      <p>
+        A <dfn id="dfn-failure-notification">failure notification</dfn> is an optional message emitted by the <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> to indicate to the user that a <a>widget
+        update</a> has failed.
+      </p>
+      <p>
+        Note: This specification does not define the means or format of a <a href="#dfn-failure-notification" class="internalDFN">failure notification</a>, which is left up to implementers.
+      </p>
+    </div>
+    <div id="update-extensions-to-widget-configuration-documents" class="section">
+      <!--OddPage--><h2><span class="secno">4. </span>
+        Update Extensions to Widget Configuration Documents 
+      </h2>
+          This specification introduces a new element, called the <a href="#dfn-update-description" class="internalDFN">update-description</a> element, for inclusion in a widget's <a href="#dfn-configuration-document" class="internalDFN">configuration document</a> [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>].
+      <div id="the-update-description-element" class="section">
+<h3><span class="secno">4.1 </span>
+          The <code>update-description</code> Element
+        </h3>
+        <p>
+          The <dfn id="dfn-update-description"><code>update-description</code></dfn> element points, via the <a href="#dfn-href"><var>href</var></a> attribute, to an <a href="#dfn-update-description-document" class="internalDFN">update description
+          document</a>.
+        </p>
+        <p>
+          The <code>update-description</code> element is in the <code>http://www.w3.org/ns/widgets</code> namespace as defined in
+          [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>].
+        </p>
+        <dl class="eldef">
+          <dt>
+            Context in which this element is  used:
+          </dt>
+          <dd>
+            As a child of the <code>widget</code> element defined in the [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>] specification.
+          </dd>
+          <dt>
+            Content model:
+          </dt>
+          <dd>
+            Empty.
+          </dd>
+          <dt>
+            Occurrences:
+          </dt>
+          <dd>
+            Zero or one.
+          </dd>
+          <dt>
+            Expected children:
+          </dt>
+          <dd>
+            None.
+          </dd>
+          <dt>
+            Localizable via <code>xml:lang</code>:
+          </dt>
+          <dd>
+            No.
+          </dd>
+        </dl>
+        <div id="attributes" class="section">
+          <h4><span class="secno">4.1.1 </span>
+            Attributes
+          </h4>
+          <dl class="attrs">
+            <dt>
+              <code><dfn id="dfn-href">href</dfn></code>
+            </dt>
+            <dd>
+              A <a href="#dfn-valid-iri" class="internalDFN">valid IRI</a> [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>] that points to the location of an <a href="#dfn-update-description-document" class="internalDFN">update description document</a>.
+            </dd>
+          </dl>
+        </div>
+        <div id="usage-example" class="section">
+          <h4><span class="secno">4.1.2 </span>
+            Usage example
+          </h4>
+          <p>
+            This example shows the expected usage of the <a href="#dfn-update-description"><code>update-description</code></a> element.
+          </p>
+<pre class="example">&lt;widget xmlns  ="http://www.w3.org/ns/widgets" 
+        id     ="http://example.com/my-widget" 
+        version="1.0"&gt;
+
+<span class="hilite">&lt;update-description 
+   href="http//example.com/update?widget=my-widget&amp;amp;version=1.0"/&gt;</span>
+
+&lt;/widget&gt;</pre>
+        </div>
+      </div>
+      <div id="processing" class="section">
+        <h3><span class="secno">4.2 </span>
+          Processing <code>update-description</code> elements in the Configuration Document
+        </h3>
+        <p id="ta-preparation1">
+           The <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> <em class="ct"><em class="rfc2119" title="must">must</em></em> process a <a href="#dfn-configuration-document" class="internalDFN">configuration document</a> [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>] containing an <a href="#dfn-update-description"><code>update-description</code></a> element according 
+           to the <a href="#dfn-rule-for-processing-the-update-description-element" class="internalDFN">rule for processing the update-description element</a>.
+        </p>
+        <p>The <dfn id="dfn-rule-for-processing-the-update-description-element">rule for processing the update-description element</dfn> is defined as follows.</p>
+        <ol>
+          <li>A <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> <em class="ct"><em class="rfc2119" title="must">must</em></em> add the following to the <a href="http://www.w3.org/TR/widgets/#table-of-configuration-defaults">Table of Configuration Defaults</a> [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>] during Step 3 - Set the Configuration defaults. </li>
+        </ol>
+        <table summary="The configuration defaults that a user agent must set prior to instantiation." class="simple">
+          <caption>
+            Table of Configuration Defaults (addendum)
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">
+                Variable
+              </th>
+              <th scope="col">
+                Type
+              </th>
+              <th scope="col">
+                Default Value
+              </th>
+              <th scope="col">
+                Overridden in
+              </th>
+              <th scope="col">
+                Description
+              </th>
+            </tr>
+          </thead>
+          <tbody><tr>
+            <th scope="row">
+              <dfn id="dfn-update-href"><var>update href</var></dfn> 
+            </th>
+            <td>
+              URI
+            </td>
+            <td>
+              <code>null</code> 
+            </td>
+            <td>
+              <a href="#processing">Processing <code>update-description</code> elements in the Configuration Document</a> 
+            </td>
+            <td>
+              The URI for where the widget's <a href="#dfn-update-description-document" class="internalDFN">update description document</a> can be downloaded, corresponding to the <code>update-description</code> element's
+              <a href="#dfn-href"><var>href</var></a> attribute.
+            </td>
+          </tr>
+        </tbody></table>
+        <p>&nbsp;</p>
+        <ol start="2">
+          <li><span id="ta-configuration1">During  <a href="http://www.w3.org/TR/widgets/#step-7--process-the-configuration-docume">Step 7 - Process the Configuration Document</a>, if this is not the first <a href="#dfn-update-description"><code>update-description</code></a> element, then the <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> <em class="ct"><em class="rfc2119" title="must">must</em></em> <a>ignore</a> this
+          element and its descendants.</span></li>
+          <li><span id="ta-configuration2">If this is the first <a href="#dfn-update-description"><code>update-description</code></a> element and the <a href="#dfn-href"><var>href</var></a> attribute is used, and it is a
+            <a href="#dfn-valid-iri" class="internalDFN">valid IRI</a> [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>], then let <a href="#dfn-update-href" class="internalDFN"><var>update href</var></a> be the value of the <a href="#dfn-href"><var>href</var></a> attribute.
+          Otherwise, this element is in error and the <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> <em class="ct"><em class="rfc2119" title="must">must</em></em> ignore this element. </span></li>
+        </ol>
+      </div>
+</div>
+    <div id="the-update-description-document" class="section">
+      <!--OddPage--><h2><span class="secno">5. </span>
+        The Update Description Document
+      </h2>
+      <p>
+        Within an <a href="#dfn-update-description-document" class="internalDFN">update description document</a> an author declares, amongst other things, what's new or different in the
+        <a href="#dfn-potential-update" class="internalDFN">potential update</a>, the version that the widget will be updated to, and the <a href="#dfn-update-source" class="internalDFN">update source</a> from where the <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> can retrieve
+        the <a href="#dfn-potential-update" class="internalDFN">potential update</a>.
+      </p>
+      <p>
+        The purpose of the <a href="#dfn-update-description-document" class="internalDFN">update description document</a> is to provide the details about a <a href="#dfn-potential-update" class="internalDFN">potential update</a>, including a
+        pointer to a HTTP resource that will act as the <a href="#dfn-potential-update" class="internalDFN">potential update</a>.
+      </p>
+      <p>
+        In order for a <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> to retrieve and process an <a href="#dfn-update-description-document" class="internalDFN">update description document</a>, an author will initially declare a
+        <a href="#dfn-valid-iri" class="internalDFN">valid IRI</a> [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>] for the <code>update-description</code> element in the installed <a href="#dfn-configuration-document" class="internalDFN">configuration document</a> (e.g.
+        <code>&lt;update-description href="https://example.com/myWidget/updates"/&gt;</code>), as defined in the <a href="#update-extensions-to-widget-configuration-documents">Update Extensions to Widget Configuration Documents</a> section.
+      </p>
+      <div id="example-update-description-document" class="section">
+        <h3><span class="secno">5.1 </span>
+          Example Update Description Document
+        </h3>
+        <p>
+          Below is an example of a typical <a href="#dfn-update-description-document" class="internalDFN">update description document</a>.
+        </p>
+<pre class="example"><span class="hilite">&lt;update-info xmlns   = "http://www.w3.org/ns/widgets"
+             src     = "https://w.example.com/2.1/RC/app.wgt"
+             version = "RC2.1"&gt;
+  &lt;details xml:lang="en-us"&gt;
+    Now supporting X, Y and Z features!
+  &lt;/details&gt;
+  &lt;details xml:lang="ar" dir="rtl"&gt;
+    دعم الآن سين وصاد وعين ملامح
+  &lt;/details&gt;
+  &lt;details xml:lang="pt"&gt;
+    Agora com suporte a X, Y e Z recursos!
+  &lt;/details&gt;
+&lt;/update-info&gt;</span></pre>
+      </div>
+      <div id="namespace" class="section">
+        <h3><span class="secno">5.2 </span>
+          Namespace
+        </h3>
+        <p>
+          All elements defined to be used in an <a href="#dfn-update-description-document" class="internalDFN">update description document</a> are in the <code>http://www.w3.org/ns/widgets</code>
+          namespace as defined in [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>].
+        </p>
+      </div>
+      <div id="the-update-info-element" class="section">
+        <h3><span class="secno">5.3 </span>
+          The <code>update-info</code> Element
+        </h3>
+        <p>
+          The <dfn id="dfn-update-info"><code>update-info</code></dfn> element is intended to provide metadata about the <a href="#dfn-potential-update" class="internalDFN">potential update</a>. In addition, it serves as
+          a container for the other elements.
+        </p>
+        <dl class="eldef">
+          <dt>
+            Context in which this element is to be used:
+          </dt>
+          <dd>
+            The root element of an <a href="#dfn-update-description-document" class="internalDFN">update description document</a>.
+          </dd>
+          <dt>
+            Content model:
+          </dt>
+          <dd>
+            Zero or more <a class="internalDFN" href="#dfn-details"><code>details</code></a> elements.
+          </dd>
+          <dt>
+            Occurrences:
+          </dt>
+          <dd>
+            Exactly one, at the root element of the document.
+          </dd>
+          <dt>
+            Expected children:
+          </dt>
+          <dd>
+            <a href="#dfn-details" class="internalDFN"><code>details</code></a>.
+          </dd>
+          <dt>
+            Localizable via <code>xml:lang</code>:
+          </dt>
+          <dd>
+            No.
+          </dd>
+        </dl>
+        <div id="attributes-1" class="section">
+          <h4><span class="secno">5.3.1 </span>
+            Attributes
+          </h4>
+          <dl class="attrs">
+            <dt>
+              <code><dfn id="dfn-version-1">version</dfn></code>
+            </dt>
+            <dd>
+              A <span>valid version tag</span> that denotes the version number of the <a href="#dfn-potential-update" class="internalDFN">potential update</a>.
+            </dd>
+            <dt>
+              <code><dfn id="dfn-src">src</dfn></code>
+            </dt>
+            <dd>
+              A <a href="#dfn-valid-iri" class="internalDFN">valid IRI</a> [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>] that references a <a href="#dfn-potential-update" class="internalDFN">potential update</a>. Over the wire, the potential update <em class="ct"><em class="rfc2119" title="must">must</em></em> be labeled with
+              a correct widget media type (i.e. <code>application/widget</code>).
+            </dd>
+          </dl>
+        </div>
+        <div id="usage-example-1" class="section">
+          <h4><span class="secno">5.3.2 </span>
+            Usage example
+          </h4>
+          <p>
+            The example below shows how the <code>update-info</code> element can be used.
+          </p>
+<pre class="example"><span class="hilite">&lt;update-info xmlns="http://www.w3.org/ns/widgets"
+             src="http://sometld/somewidget_0_3_BETA.wgt"
+             version="BETA 0.3"&gt;</span>
+           
+<span class="hilite">&lt;/update-info&gt;</span></pre>
+        </div>
+      </div>
+      <div id="the-details-element" class="section">
+        <h3><span class="secno">5.4 </span>
+          The <code>details</code> Element
+        </h3>
+        <p>
+          The <dfn id="dfn-details"><code>details</code></dfn> element represents a human-readable description of what differentiates this <a href="#dfn-potential-update" class="internalDFN">potential update</a> from
+          other versions.
+        </p>
+        <dl class="eldef">
+          <dt>
+            Context in which this element can be used:
+          </dt>
+          <dd>
+            Inside a <code>update-info</code> element.
+          </dd>
+          <dt>
+            Content model:
+          </dt>
+          <dd>
+            Anything.
+          </dd>
+          <dt>
+            Occurrences:
+          </dt>
+          <dd>
+            Zero or more.
+          </dd>
+          <dt>
+            Expected children:
+          </dt>
+          <dd>
+            Anything.
+          </dd>
+          <dt>
+            Localizable via <code>xml:lang</code>:
+          </dt>
+          <dd>
+            Yes (<a href="#dfn-one-element-is-allowed-per-language" class="internalDFN">one element is allowed per language</a>).
+          </dd>
+        </dl>
+        <p>
+            All <a href="#dfn-global-attributes" class="internalDFN">global attributes</a> [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>], in particular <var>xml:lang</var> and <var>dir</var> attributes, can be applied to this element.
+        </p>
+        <div id="usage-example-2" class="section">
+          <h4><span class="secno">5.4.1 </span>
+            Usage example
+          </h4>
+          <p>
+            The example below shows how the <code>details</code> element can be used.
+          </p>
+<pre class="example">&lt;update-info xmlns="http://www.w3.org/ns/widgets"
+             src="http://foo.com/widget.wgt"
+             version="1.3.1"&gt;
+  <span class="hilite">&lt;details&gt;
+    This update tries to make 2010 a little bit less like 1984.
+  &lt;/details&gt;
+  &lt;details xml:lang="pt"&gt;
+    Esta atualização tenta fazer de 2010 um pouco menos parecido com 1984.
+  &lt;/details&gt;
+  &lt;details xml:lang="ar" dir="rtl"&gt;
+    يحاول هذا التحديث لجعل 2010 أقل قليلا مثل 1984.
+  &lt;/details&gt;</span>
+&lt;/update-info&gt;</pre>
+        </div>
+      </div>
+</div>
+    <div id="acquiring-an-update-description-document" class="section">
+      <!--OddPage--><h2><span class="secno">6. </span>
+        Acquiring an Update Description Document
+      </h2>
+      <p>
+        It is expected that user agents will perform a <a href="#dfn-widget-update-process" class="internalDFN">widget update process</a> asynchronously and periodically check for any available
+        updates. The timing of any <a href="#dfn-widget-update-process" class="internalDFN">widget update process</a> is an implementation detail left to the discretion of the implementer (e.g.
+        once a day or once a week).
+      </p>
+      <p>
+        To check for updates to a widget, the <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> issues a HTTP request towards the <a href="#dfn-update-description-source" class="internalDFN">update description source</a>.
+      </p>
+      <p id="ta-acquisition1">
+        The <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> <em class="ct"><em class="rfc2119" title="must">must</em></em> send the last known <var>ETag</var> response value, if available, in an <var>If-None-Match</var>
+        header.
+      </p>
+      <p id="ta-acquisition2">
+        The <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> <em class="ct"><em class="rfc2119" title="must">must</em></em> send an <var>If-Modified-Since</var> header indicating the time of the last check for an update from
+        the <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a>.
+      </p>
+      <p id="ta-acquisition3">
+        The <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> <em class="ct"><em class="rfc2119" title="must">must</em></em> send an <var>Accept-Language</var> header representing the widget's locale.
+      </p>
+      <p>
+        As data is received, the <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> will then act as follows.
+      </p>
+      <p id="ta-acquisition4">
+        The <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> <em class="ct"><em class="rfc2119" title="must">must</em></em> ignore any <var>Cache-Control</var> or <var>Pragma</var> header with a value of <code>no-cache</code>.
+      </p>
+      <p id="ta-acquisition5">
+        The <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> <em class="ct"><em class="rfc2119" title="must">must</em></em> honor the value of any <var>Expires</var> header when scheduling the next <a href="#dfn-widget-update-process" class="internalDFN">widget update process</a>
+        for the current <a href="#dfn-installed-widget" class="internalDFN">installed widget</a>.
+      </p>
+      <p id="ta-acquisition6">
+        The <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> <em class="ct"><em class="rfc2119" title="must">must</em></em> process HTTP 200 OK responses, with a <var>Content-Type</var> header specifying the type <code>application/xml</code>,
+        according to the rules defined in <a href="#processing-an-update-description-document">Processing an Update Description Document</a>.
+      </p>
+      <p id="ta-acquisition7">
+        The <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> <em class="ct"><em class="rfc2119" title="must">must</em></em> <a href="#dfn-terminate-the-widget-update" class="internalDFN">terminate the widget update</a> on HTTP 200 OK responses that have a <var>Content-Type</var> other than <code>application/xml</code>.
+      </p>
+      <p id="ta-acquisition8">
+        On receiving HTTP 204 No Content, 205 Reset Content, and 304 Not Modified responses, the <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> <em class="ct"><em class="rfc2119" title="must">must</em></em> <a href="#dfn-terminate-the-widget-update" class="internalDFN">terminate the widget update</a>.
+      </p>
+      <p id="ta-acquisition9">
+        On receiving HTTP response codes in the 2xx range, other than HTTP 200 OK, the <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> <em class="ct"><em class="rfc2119" title="must">must</em></em> <a href="#dfn-terminate-the-widget-update" class="internalDFN">terminate the widget update</a>. They are, however, likely to indicate an error
+        has occurred somewhere and may cause the <a href="#dfn-user-agent" class="internalDFN">user agent</a> to emit a warning.
+      </p>
+      <p id="ta-acquisition10">
+        On receiving HTTP 301 Moved Permanently, 302 Found, 303 See Other, and 307 Temporary Redirect responses, the <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> <em class="ct"><em class="rfc2119" title="must">must</em></em> reconnect using the new server 
+        specified URL instead of the previously specified URL.
+      </p>
+      <p id="ta-acquisition11">
+        The <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> <em class="ct"><em class="rfc2119" title="should">should</em></em> treated HTTP 305 Use Proxy, 401 Unauthorized, and 407 Proxy Authentication Required responses transparently as for any other
+        subresource.
+      </p>
+      <p id="ta-acquisition12">
+        On receiving an HTTP 410 Gone response, the <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> <em class="ct"><em class="rfc2119" title="should">must</em></em> <a href="#dfn-terminate-the-widget-update" class="internalDFN">terminate the widget update</a> and <a href="#dfn-uninstall-the-incumbent-widget-package" class="internalDFN">remove the installed widget</a>.
+      </p>
+      <p id="ta-acquisition13">
+        Any other HTTP response code not listed here, and any network error that prevents the HTTP connection from being established in the
+        first place (e.g. DNS errors), <em class="ct"><em class="rfc2119" title="must">must</em></em> cause the <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> to <a href="#dfn-terminate-the-widget-update" class="internalDFN">terminate the widget update</a>.
+      </p>
+      <p>&nbsp;
+        
+      </p>
+    </div>
+    <div id="processing-an-update-description-document" class="section">
+      <!--OddPage--><h2><span class="secno">7. </span>
+        Processing an Update Description Document
+      </h2>
+      <p id="ta-processing1">
+        A <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> <em class="ct"><em class="rfc2119" title="must">must</em></em> assume the following defaults prior to processing an <a href="#dfn-update-description-document" class="internalDFN">update description document</a>:
+      </p>
+      <table summary="The update configuration defaults that a user agent must set prior to update description document processing." class="simple">
+        <caption>
+          <dfn id="dfn-update-defaults">Update Defaults</dfn>
+        </caption>
+        <tbody>
+          <tr>
+            <th scope="col">
+              Variable
+            </th>
+            <th scope="col">
+              Type
+            </th>
+            <th scope="col">
+              Default value
+            </th>
+            <th scope="col">
+              Description
+            </th>
+          </tr>
+          <tr>
+            <th scope="row">
+              <var>update-source</var> 
+            </th>
+            <td>
+              URI
+            </td>
+            <td>
+              <code>null</code> 
+            </td>
+            <td>&nbsp;
+              
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">
+              <var>version-tag</var> 
+            </th>
+            <td>
+              DOMString
+            </td>
+            <td>
+              <code>null</code>
+            </td>
+            <td>&nbsp;
+              
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">
+              details
+            </th>
+            <td>
+              DOMString
+            </td>
+            <td>
+              <code>null</code>
+            </td>
+            <td>&nbsp;
+              
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p id="ta-processing2">
+        A <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> <em class="ct"><em class="rfc2119" title="must">must</em></em> process an <a href="#dfn-update-description-document" class="internalDFN">update description document</a> according to the <a href="#dfn-rule-for-processing-an-update-description-document" class="internalDFN">rule for processing an update
+        description document</a>.
+      </p>
+      <p>
+        The following processing model is written with more concern for clarity over efficiency. As such, a <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> can optimize
+        the processing model so long as the end result is indistinguishable from the result that would be obtained by  following the
+        specification.
+      </p>
+      <p>
+        The term <dfn id="in-error">in error</dfn>, typically used on an element or attribute, means that the element, attribute, or other construct
+        does not conform to the rules of this specification. Rules for exactly how a user agent needs to treat the erroneous construct are
+        always given when the term is used.
+      </p>
+      <p id="ta-processing3">
+        When an <dfn id="dfn-invalid-update-description-document">invalid update description document</dfn> is determined then the <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> <em class="ct"><em class="rfc2119" title="must">must</em></em> <a href="#dfn-terminate-the-widget-update" class="internalDFN">terminate the widget update</a>.
+      </p>
+      <p>
+        The <dfn id="dfn-rule-for-processing-an-update-description-document">rule for processing an update description document</dfn> is defined as follows:
+      </p>
+      <ol class="rule">
+        <li>
+          Let <var>doc</var> be the result of parsing the acquired <a href="#dfn-update-description-document" class="internalDFN">update description document</a> as a [<cite><a class="bibref" rel="biblioentry" href="#bib-DOM-LEVEL-3-CORE">DOM-LEVEL-3-CORE</a></cite>]
+          <code>Document</code> using a [<cite><a class="bibref" rel="biblioentry" href="#bib-XML-NAMES">XML-NAMES</a></cite>]-aware parser. If the document is not well-formed [<cite><a class="bibref" rel="biblioentry" href="#bib-XML10">XML10</a></cite>], then treat this as an
+          <a href="#dfn-invalid-update-description-document" class="internalDFN">invalid update description document</a>.
+        </li>
+        <li>
+          Let <var>root element</var> be the <code>documentElement</code> of <var>doc</var>.
+        </li>
+        <li>
+          If the <var>root element</var> is not a <code>update-info</code> element in the widget namespace, then treat this <a href="#dfn-update-description-document" class="internalDFN">update
+          description document</a> as an <a href="#dfn-invalid-update-description-document" class="internalDFN">invalid update description document</a>.
+        </li>
+        <li>
+          If the <var>root element</var> is a <code>update-info</code> element: 
+          <ol class="rule">
+            <li>
+              If the <code>version</code> attribute was used, and it is a valid <a href="#dfn-version-attribute" class="internalDFN">version attribute</a> [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>], then let <var>version-tag</var>
+              be the value of <span><code>version</code></span>.
+            </li>
+            <li>
+              If no <code>version</code> attribute was used, or the value was <a href="#in-error" class="internalDFN">in error</a>, treat this as an <a href="#dfn-invalid-update-description-document" class="internalDFN">invalid update
+              description document</a>.
+            </li>
+            <li>
+              If the <a href="#dfn-src"><var>src</var></a> attribute was used, and it is a relative URL, then let
+              <var>update-source</var> be the absolute <a href="#dfn-valid-iri" class="internalDFN">valid IRI</a> [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>] value of <a href="#dfn-src"><var>src</var></a> relative to the current 
+              <a title="update description document" href="#dfn-update-description-document" class="internalDFN">update description document's</a> IRI. 
+            </li>
+            <li>
+              If the <a href="#dfn-src"><var>src</var></a> attribute was used, and it is an absolute <a href="#dfn-valid-iri" class="internalDFN">valid IRI</a> [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>], then let
+              <var>update-source</var> be the value of <a href="#dfn-src"><var>src</var></a>. 
+            </li>
+            <li>
+              If no <a href="#dfn-src"><var>src</var></a> attribute was used, or the value was <a href="#in-error" class="internalDFN">in error</a>, treat this as an <a href="#dfn-invalid-update-description-document" class="internalDFN">invalid update description
+              document</a>.
+            </li>
+          </ol>
+        </li>
+        <li>
+          For any child element of the <var>root element</var>:
+        </li>
+        <li style="list-style: none">
+          <ol>
+            <li>
+              If the child element is a <code>details</code> element: 
+              <ol class="rule">
+                <li>
+                  If this is not the first <code>details</code> element, in <a href="http://www.w3.org/TR/xpath/#dt-document-order" class="external">document order</a>, that 
+                  matches a language range in the <a href="#dfn-user-agent-locales" class="internalDFN">user agent locales</a>; or, if no <code>details</code> element in the document matches the <a href="#dfn-user-agent-locales" class="internalDFN">user agent locales</a> and this is not the first element; then the element is <a href="#in-error" class="internalDFN">in error</a> and <em class="ct"><em class="rfc2119" title="must">must</em></em> be
+                  <span>ignored</span>.
+                </li>
+                <li>
+                  Let <var>details</var> be the result of applying the <a class="externalDFN" title="rule for getting text content">rule for getting text content</a> [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>] to this element.
+                </li>
+              </ol>
+            </li>
+            <li>
+              Otherwise it <em class="ct"><em class="rfc2119" title="must">must</em></em> be ignored.
+            </li>
+          </ol>
+        </li>
+      </ol>
+      <p>&nbsp;
+        
+      </p>
+    </div>
+    <div id="verifying-and-installing-an-update" class="section">
+      <!--OddPage--><h2><span class="secno">8. </span>
+        Verifying and Installing an Update
+      </h2>
+      <p>When a <a class="internalDFN" href="#dfn-user-agent">user agent</a> is to <dfn id="dfn-install-the-widget-package">install the widget package</dfn> it is to <a href="#dfn-uninstall-the-incumbent-widget-package" class="internalDFN">remove the installed widget</a> and then
+      add the <a href="#dfn-potential-update" class="internalDFN">potential update</a> as an <a href="#dfn-installed-widget" class="internalDFN">installed widget</a>. </p>
+      <p>
+         When a <a class="internalDFN" href="#dfn-user-agent">user agent</a> is to <dfn id="dfn-uninstall-the-incumbent-widget-package">remove the installed widget</dfn> it is to disable the current <a href="#dfn-incumbent-widget" class="internalDFN">incumbent widget</a>, if it exists. The <a href="#dfn-user-agent" class="internalDFN">user agent</a> may also physically remove the <a href="#dfn-incumbent-widget" class="internalDFN">incumbent widget</a> from the device. 
+         The <a href="#dfn-user-agent" class="internalDFN">user agent</a> may emit a notification warning that the <a href="#dfn-incumbent-widget" class="internalDFN">incumbent widget</a> is being removed.
+      </p>
+      <p>When a <a class="internalDFN" href="#dfn-user-agent">user agent</a> is to <dfn id="dfn-terminate-the-widget-update">terminate the widget update</dfn> it is to terminate the current <a href="#dfn-widget-update-process" class="internalDFN">widget
+        update process</a>. The <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> may emit a <a href="#dfn-failure-notification" class="internalDFN">failure notification</a> warning that the widget update has been
+      terminated. </p>
+      <p id="ta-verifying4">
+        To verify and install a <a href="#dfn-potential-update" class="internalDFN">potential update</a> the <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> <em class="ct"><em class="rfc2119" title="must">must</em></em> apply the <a href="#dfn-rule-for-verifying-a-widget-update" class="internalDFN">rule for verifying a widget update</a>.
+      </p>
+      <p>
+        The <dfn id="dfn-rule-for-verifying-a-widget-update">rule for verifying a widget update</dfn> enables a <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> to match and verify a <a href="#dfn-potential-update" class="internalDFN">potential update</a> -
+        acquired via HTTP or from local media - with an installed <a href="#dfn-widget-package" class="internalDFN">widget package</a> [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>] and is defined as follows:
+      </p>
+      <ol class="rule">
+        <li>
+          Apply the <a class="externalDFN" title="steps for processing a widget package">steps for processing a widget package</a> [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>] to the obtained
+          <a href="#dfn-potential-update" class="internalDFN">potential update</a>. 
+          <ul class="rule">
+            <li>
+              If an <a class="externalDFN" title="invalid widget package">invalid widget package</a> [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>] is detected, the <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> <em class="ct"><em class="rfc2119" title="must">must</em></em> <a href="#dfn-terminate-the-widget-update" class="internalDFN">terminate
+              the widget update</a>.
+            </li>
+          </ul>
+        </li>
+        <li>
+          If an <a href="#dfn-incumbent-widget" class="internalDFN">incumbent widget</a> could not be found then skip the rest of this rule and <a href="#dfn-install-the-widget-package" class="internalDFN">install the widget package</a>.
+        </li>
+        <li>
+          If the <a href="#dfn-incumbent-widget" class="internalDFN">incumbent widget</a> has the same <a href="#dfn-version-1" class="internalDFN">version</a> as the <a href="#dfn-potential-update" class="internalDFN">potential update</a> then the <a href="#dfn-installed-widget" class="internalDFN">installed widget</a> is
+          <a href="#dfn-up-to-date" class="internalDFN">up-to-date</a> and the <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> <em class="ct"><em class="rfc2119" title="must">must</em></em> <a href="#dfn-terminate-the-widget-update" class="internalDFN">terminate the widget update</a>.
+        </li>
+        <li>
+          If the <a href="#dfn-potential-update" class="internalDFN">potential update</a> is determined to be a <a class="externalDFN" title="digitally-signed widget package">digitally-signed widget package</a> when applying the rules for <a class="externalDFN" title="rules for signature validation">signature validation</a> [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS-DIGSIG">WIDGETS-DIGSIG</a></cite>] then the <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> will act as
+          follows: 
+          <ul class="rule">
+            <li>
+              If the <a href="#dfn-incumbent-widget" class="internalDFN">incumbent widget</a> is also determined to be a <a class="externalDFN" title="digitally-signed widget package">digitally-signed widget package</a> when applying the rules for <a class="externalDFN" title="rules for signature validation">signature validation</a> [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS-DIGSIG">WIDGETS-DIGSIG</a></cite>] then the <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> will act as
+              follows: 
+              <ol class="rule">
+                <li>
+                  Let <var>update_digsigs</var> be an enumerated list of all the digital signatures contained within the <a href="#dfn-potential-update" class="internalDFN">potential
+                  update</a> obtained according to the rule to <a class="externalDFN" title="rules for locating and processing digital signatures">locate signature files in a widget package</a>
+                  [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS-DIGSIG">WIDGETS-DIGSIG</a></cite>].
+                </li>
+                <li>
+                  If any of the elements within <var>update_digsigs</var> were determined to be <a href="#in-error" class="internalDFN">in error</a> then <a href="#dfn-terminate-the-widget-update" class="internalDFN">terminate the
+                  widget update</a>.
+                </li>
+                <li>
+                  Let <var>incumbent_digsigs</var> be an enumerated list of all the digital signatures contained within the <a href="#dfn-incumbent-widget" class="internalDFN">incumbent
+                  widget</a> obtained according to the rule to <a class="externalDFN" title="rules for locating and processing digital signatures">locate signature files in a widget package</a>
+                  [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS-DIGSIG">WIDGETS-DIGSIG</a></cite>].
+                </li>
+                <li>
+                  If any of the elements within <var>incumbent_digsigs</var> were determined to be <a href="#in-error" class="internalDFN">in error</a> then <a href="#dfn-terminate-the-widget-update" class="internalDFN">terminate the
+                  widget update</a>. This is, however, likely to indicate an error has occurred somewhere in the installed <a href="#dfn-widget-package" class="internalDFN">widget
+                  package</a> processing and may cause the <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> to emit a warning.
+                </li>
+              </ol>
+              <p>
+                Note: The decision of which (if any) <a class="externalDFN">distributor signatures</a> are to be validated and whether the <a class="externalDFN">author signature</a> is to be validated is out of scope [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS-DIGSIG">WIDGETS-DIGSIG</a></cite>].
+              </p>
+              <ol start="5" class="rule">
+                <li>
+                  For each <var>update_signature</var> to be validated in <var>update_digsigs</var>: 
+                  <ol class="rule">
+                    <li>
+                      Let <var>digSigsMatch</var> be the result of comparing the <code>dsp:Identifier</code> value [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS-DIGSIG">WIDGETS-DIGSIG</a></cite>] from <var>update_signature</var> with the same
+                      value obtained from the associated <var>incumbent_signature</var> within <var>incumbent_digsigs</var>. 
+                    </li>
+                    <li>
+                      If <var>digSigsMatch</var> is false then <a href="#dfn-terminate-the-widget-update" class="internalDFN">terminate the widget update</a>.
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
+          </ul>
+        </li>
+        <li>
+          If the <a href="#dfn-potential-update" class="internalDFN">potential update</a> is determined not to be a <a class="externalDFN" title="digitally-signed widget package">digitally-signed widget package</a> when applying the rules for <a class="externalDFN" title="rules for signature validation">signature validation</a> [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS-DIGSIG">WIDGETS-DIGSIG</a></cite>] then the <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> will act as
+          follows:
+          <ul class="rule">
+            <li>
+                If the <a href="#dfn-incumbent-widget" class="internalDFN">incumbent widget</a> is determined to be a <a class="externalDFN" title="digitally-signed widget package">digitally-signed widget package</a> when applying the rules for <a class="externalDFN" title="rules for signature validation">signature validation</a> [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS-DIGSIG">WIDGETS-DIGSIG</a></cite>] then the <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> then <a href="#dfn-terminate-the-widget-update" class="internalDFN">terminate the widget update</a>.
+            </li>
+          </ul>
+        </li>   
+        <li>
+          The <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> <em class="ct"><em class="rfc2119" title="must">must</em></em> <a href="#dfn-install-the-widget-package" class="internalDFN">install the widget package</a>.
+        </li>
+      </ol>
+    </div>
+    <div id="security-considerations" class="section">
+      <!--OddPage--><h2><span class="secno">9. </span>
+        Security Considerations
+      </h2>
+      <p>
+        Because an <a href="#dfn-update-description-document" class="internalDFN">update description document</a> is not self-contained, it is conceivable that the update model could be subject to a
+        man-in-the-middle attack, as with any unencrypted requests performed over [<cite><a class="bibref" rel="biblioentry" href="#bib-HTTP11">HTTP11</a></cite>]. For this reason, it is <em class="ct"><em class="rfc2119" title="recommended">recommended</em></em> that, for
+        widgets that have not been digitally signed, updates are always performed over [<cite><a class="bibref" rel="biblioentry" href="#bib-HTTP-TLS">HTTP-TLS</a></cite>].
+      </p>
+      <p>
+        Another means of protection is for authors to always digitally sign their widget resources. During an update, the <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a>
+        will then validate the signature before installation, ensuring that a widget resource's identity and integrity was maintained
+        over the network.
+      </p>
+      <p>
+        An <dfn id="dfn-authoritative-update-uri">authoritative update URI</dfn> is an <a href="#dfn-update-description-source" class="internalDFN">update description source</a> referenced in the <a href="#dfn-href"><var>href</var></a> attribute of an
+        <a href="#dfn-update-description" class="internalDFN"><code>update-description</code></a> element within an <a title="installed widget" href="#dfn-installed-widget" class="internalDFN">installed widget's</a> <a href="#dfn-configuration-document" class="internalDFN">configuration document</a> [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>].
+      </p>
+      <p>
+        Without the availability of a digitally signed <a href="#dfn-installed-widget" class="internalDFN">installed widget</a>, it is extremely easy to overwrite a widget resource with
+        another (potentially malicious) widget resource. Therefore it is <em class="ct"><em class="rfc2119" title="recommended">recommended</em></em> that a <a class="product-ua internalDFN" href="#dfn-user-agent">user agent</a> only allow updates to a
+        signed <a href="#dfn-installed-widget" class="internalDFN">installed widget</a> or to a non-signed <a href="#dfn-installed-widget" class="internalDFN">installed widget</a> only from a <a href="#dfn-potential-update" class="internalDFN">potential update</a> obtained via its
+        <a href="#dfn-authoritative-update-uri" class="internalDFN">authoritative update URI</a>.
+      </p>
+    </div>
+    <div class="appendix informative section" id="design-goals-and-requirements">
+      <!--OddPage--><h2><span class="secno">A. </span>
+        Design Goals and Requirements
+      </h2><p><em>This section is non-normative.</em></p>
+      <p>
+        This document addresses the <a href="http://www.w3.org/TR/widgets-reqs/#remote-and-local-updates">Remote and Local Updates</a> the requirement of the 30 April
+        2009 Working Draft of the <cite>Widgets 1.0: Requirements Document</cite> (see [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS-REQS">WIDGETS-REQS</a></cite>]).
+      </p>
+    </div>
+    <div class="appendix section" id="acknowledgements">
+      <!--OddPage--><h2><span class="secno">B. </span>
+        Acknowledgements
+      </h2>
+      <p>
+        The editors would like to thank the following contributors (in alphabetical order): Art Barstow, Raine Hillebrand, Hari G Kumar, Scott Wilson.
+      </p>
+      <p>
+        Special thanks to Robin Berjon for co-editing an early version of this specification.
+      </p>
+      <p>
+        Thanks to the <acronym title="World Wide Web Consortium">W3C</acronym> WebApps WG, and to participants on the public-webapps@w3.org listserv.
+      </p>
+    </div>
+  
+
+
+<div id="references" class="appendix section"><!--OddPage--><h2><span class="secno">C. </span>References</h2><div id="normative-references" class="section"><h3><span class="secno">C.1 </span>Normative references</h3><dl class="bibliography"><dt id="bib-DOM-LEVEL-3-CORE">[DOM-LEVEL-3-CORE]</dt><dd>Gavin Nicol; et al. <a href="http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407"><cite>Document Object Model (DOM) Level 3 Core Specification.</cite></a> 7 April 2004. W3C Recommendation. URL: <a href="http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407">http://www.w3.org/TR/2004/REC-DOM-Level-3-Core-20040407</a> 
+</dd><dt id="bib-RFC2119">[RFC2119]</dt><dd>S. Bradner. <a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use in RFCs to Indicate Requirement Levels.</cite></a> March 1997. Internet RFC 2119.  URL: <a href="http://www.ietf.org/rfc/rfc2119.txt">http://www.ietf.org/rfc/rfc2119.txt</a> 
+</dd><dt id="bib-WIDGETS">[WIDGETS]</dt><dd>Marcos Cáceres. <a href="http://www.w3.org/TR/widgets/"><cite>Widget Packaging and XML Configuration</cite></a>. W3C Recommendation. URL: <a href="http://www.w3.org/TR/widgets/">http://www.w3.org/TR/widgets/</a> 
+</dd><dt id="bib-WIDGETS-DIGSIG">[WIDGETS-DIGSIG]</dt><dd>M. Cáceres; P. Bayers; Stuart Knightley; F. Hirsch; M Priestley. <a href="http://www.w3.org/TR/2010/CR-widgets-digsig-20100624"><cite>Digital Signatures for Widgets.</cite></a></dd><dt id="bib-XML-NAMES">[XML-NAMES]</dt><dd>Richard Tobin; et al. <a href="http://www.w3.org/TR/2009/REC-xml-names-20091208/"><cite>Namespaces in XML 1.0 (Third Edition).</cite></a> 8 December 2009. W3C Recommendation. URL: <a href="http://www.w3.org/TR/2009/REC-xml-names-20091208/">http://www.w3.org/TR/2009/REC-xml-names-20091208/</a> 
+</dd><dt id="bib-XML10">[XML10]</dt><dd>C. M. Sperberg-McQueen; et al. <a href="http://www.w3.org/TR/2008/REC-xml-20081126/"><cite>Extensible Markup Language (XML) 1.0 (Fifth Edition).</cite></a> 26 November 2008. W3C Recommendation. URL: <a href="http://www.w3.org/TR/2008/REC-xml-20081126/">http://www.w3.org/TR/2008/REC-xml-20081126/</a> 
+</dd></dl></div><div id="informative-references" class="section"><h3><span class="secno">C.2 </span>Informative references</h3><dl class="bibliography"><dt id="bib-HTTP-TLS">[HTTP-TLS]</dt><dd>E. Rescorla. <a href="http://www.ietf.org/rfc/rfc2818.txt"><cite>HTTP Over TLS.</cite></a> May 2000. Internet RFC 2818. URL: <a href="http://www.ietf.org/rfc/rfc2818.txt">http://www.ietf.org/rfc/rfc2818.txt</a> 
+</dd><dt id="bib-HTTP11">[HTTP11]</dt><dd>R. Fielding; et al. <a href="http://www.ietf.org/rfc/rfc2616.txt"><cite>Hypertext Transfer Protocol - HTTP/1.1.</cite></a> June 1999. Internet RFC 2616. URL: <a href="http://www.ietf.org/rfc/rfc2616.txt">http://www.ietf.org/rfc/rfc2616.txt</a> 
+</dd><dt id="bib-WIDGETS-REQS">[WIDGETS-REQS]</dt>
+<dd>Marcos Cáceres. <a href="http://www.w3.org/TR/widgets-reqs/"><cite> Requirements For Standardizing Widgets.</cite></a></dd></dl></div></div></body></html>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="ta-processing2:20" version="42.0">
+	<name>ta-processing2-20</name>
+	<description>Tests that the content of the details element is parsed using the rules for getting text content from P &amp; C spec.</description>
+	<update-description xmlns="http://www.w3.org/ns/widgets" href="http://people.opera.com/harig/wupdres/resources/out.php?udd-details-whitespace"/>
+</widget>
