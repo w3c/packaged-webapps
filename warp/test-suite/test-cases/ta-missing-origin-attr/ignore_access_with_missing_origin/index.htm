@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<title>Do not load script (ignore_access_with_missing_origin)</title> 
+<style>body{ background: white } </style> 
+<body id="body"> 
+<h1 id="verdict">Testing</h1> 
+<p id="reason">waiting for right script to load.</p> 
+<script src="infrastructure.js"></script>
+<!-- Test: The user agent must not load any of the following resources --> 
+<script src="http://w3c-test.org/webapps/widgets/warp/fail.js"></script>
+
+<!-- this script avoids false positives --> 
+<script src="http://dev.w3.org/2006/waf/widgets-access/test-suite/resources/pass.js"></script>

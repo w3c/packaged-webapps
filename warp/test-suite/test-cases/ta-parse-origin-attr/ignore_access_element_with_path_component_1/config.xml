@@ -1,0 +1,4 @@
+<widget xmlns='http://www.w3.org/ns/widgets'> 
+  <name>ignore access element with path component 1</name>
+  <access origin="http://w3c-test.org/webapps/widgets/warp/"/>
+</widget>

@@ -1,0 +1,4 @@
+<widget xmlns='http://www.w3.org/ns/widgets'>
+  <name>load script</name>
+  <access origin="http://w3c-test.org"/>
+</widget>

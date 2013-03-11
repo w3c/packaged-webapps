@@ -1,0 +1,5 @@
+<widget xmlns='http://www.w3.org/ns/widgets'>
+  <name>load image and script</name>
+  <access origin="http://dev.w3.org" subdomains="true"/>
+  <access origin="http://w3c-test.org" subdomains="true"/>
+</widget>

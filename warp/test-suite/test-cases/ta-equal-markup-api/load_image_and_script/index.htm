@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<title>Load image and script</title> 
+<style>body{ background: white } </style> 
+<body id="body"> 
+<h1 id="verdict">..Testing..</h1>  
+<p id="reason">Waiting for script and iframe to load.</p> 
+<script src="infrastructure.js"></script>
+<!-- Test: load the image, once it loads, load the script dynamically--> 
+<script>
+function loadScript(){
+   var script = document.createElement("script");
+   var head= document.getElementsByTagName('head')[0];
+   script.src = "http://w3c-test.org/webapps/widgets/warp/pass.js"
+   head.appendChild(script);
+   script.onload = function(){pass('script loaded.')}; 
+   //if the script loads, it will calls pass
+}
+</script>
+<!-- load the image, which causes the script to load -->
+<!-- Test: The user agent needs to load the following resources --> 
+<img src="http://dev.w3.org/2006/waf/widgets-access/test-suite/resources/test.png" 
+onload="loadScript()"
+ alt="Waiting to load">
+
+</body>

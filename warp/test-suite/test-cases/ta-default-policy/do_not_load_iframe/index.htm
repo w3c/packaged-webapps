@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<title>Do not load iframe</title> 
+<style>body{ background:green } </style> 
+<body id="body"> 
+<h1 id="verdict">PASS</h1> 
+<p id="reason">The iframe didn't load.</p> 
+<script src="infrastructure.js"></script>
+<script>
+//set up postMessage listener for iframe
+//if we receive a message, it means this has failed 
+window.addEventListener("message",
+	function(e){
+		if(e.origin === "http://dev.w3.org"){
+			fail("iframe should not have loaded"); 
+		}
+	},
+	false); 
+</script>
+<!-- Test: The user agent must not load any of the following resources --> 
+<iframe src="http://dev.w3.org/2006/waf/widgets-access/test-suite/resources/iframe_test.html">
+</iframe>

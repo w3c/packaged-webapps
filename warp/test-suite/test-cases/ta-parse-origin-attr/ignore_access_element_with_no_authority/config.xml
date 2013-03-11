@@ -1,0 +1,4 @@
+<widget xmlns='http://www.w3.org/ns/widgets'>
+  <name>ignore access element with no authority</name>
+  <access origin="http:"/>
+</widget>

@@ -1,0 +1,4 @@
+<widget xmlns='http://www.w3.org/ns/widgets'>
+  <name>load image from port 83</name>
+  <access origin="http://w3c-test.org:83" subdomains="true"/>
+</widget>

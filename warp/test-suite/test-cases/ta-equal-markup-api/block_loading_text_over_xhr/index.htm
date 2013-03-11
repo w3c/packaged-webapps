@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<title>Block loading text file over xhr</title> 
+<style>body{ background:white } </style> 
+
+<!-- Test: xhr should not be loaded--> 
+<script>
+function loadXHR(){
+	reason.innerHTML = "..performing request...";
+	var xmlhttp = new XMLHttpRequest();
+ 	xmlhttp.onreadystatechange = function() {
+  		if (xmlhttp.readyState === 4) {
+   			if(xmlhttp.responseText === "test text acquired"){
+   				fail("this shoult not load");
+   			}
+   		}
+   	}
+   	//open should throw
+   	try{
+   	   xmlhttp.open("GET", "http://w3c-test.org/webapps/widgets/warp/test.txt",true);
+   	   xmlhttp.send(null);
+ 	}catch(e){
+ 		pass("An exception was thrown: " + e);
+ 	}
+	pass("Partial pass... as some CORS implementations don't throw an error."); 
+}
+</script>
+
+<body id="body" onLoad="loadXHR()"> 
+<h1 id="verdict">..Testing..</h1>  
+<p id="reason">Waiting for XHR (which should not load!)</p> 
+<script src="infrastructure.js"></script>
+

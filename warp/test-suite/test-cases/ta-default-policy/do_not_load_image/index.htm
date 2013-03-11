@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<title>Do not load image</title> 
+<style>body{ background:green } </style> 
+<body id="body"> 
+<h1 id="verdict">PASS</h1> 
+<p id="reason">The image did not load</p> 
+<script src="infrastructure.js"></script>
+
+<!-- Test: The user agent must not load any of the following resources --> 
+<img src="http://w3c-test.org/webapps/widgets/warp/images/fail.png" 
+     onload="fail('Image should not load.'); this.style.display = 'none'; this.alt = 'Fail, this shouldn not load!'" alt="The test has passed.">

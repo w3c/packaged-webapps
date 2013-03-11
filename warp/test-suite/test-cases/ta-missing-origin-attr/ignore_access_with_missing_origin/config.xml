@@ -1,0 +1,6 @@
+<widget xmlns='http://www.w3.org/ns/widgets'>
+  <name>ignore access with missing origin</name>
+  <access subdomains="true">http://w3c-test.org</access>
+  <access origin="http://dev.w3.org"/>
+  
+</widget>

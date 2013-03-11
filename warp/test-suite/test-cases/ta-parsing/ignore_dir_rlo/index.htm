@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<title>ignore dir rlo</title> 
+<style>body{ background:white } </style> 
+<body id="body"> 
+<h1 id="verdict">Testing</h1> 
+<p id="reason">Waiting for script to load</p> 
+<script src="infrastructure.js"></script>
+<!-- Test: The user agent must the following script --> 
+<script src="http://www.w3c-test.org/webapps/widgets/warp/pass.js"></script>
+
+<!-- the following avoids false positives --> 
+<script src="http://dev.w3.org/2006/waf/widgets-access/test-suite/resources/fail.js"></script> 

@@ -1,0 +1,10 @@
+<widget xmlns='http://www.w3.org/ns/widgets'>
+  <name>ignore nested access in any element</name>
+  <license><access origin="http://dev.w3.org"/></license>
+  <feature><access origin="http://dev.w3.org"/></feature>
+  <description><access origin="http://dev.w3.org"/></description>
+  <icon><access origin="http://dev.w3.org"/></icon>
+  <content><access origin="http://dev.w3.org"/></content>
+  <preference><access origin="http://dev.w3.org"/></preference>
+  <access origin="http://w3c-test.org" subdomains="true"/>
+</widget>

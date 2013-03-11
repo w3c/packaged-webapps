@@ -1,0 +1,4 @@
+<widget xmlns='http://www.w3.org/ns/widgets'>
+  <name>load image</name>
+  <access origin="http://dev.w3.org" subdomains="true"/>
+</widget>

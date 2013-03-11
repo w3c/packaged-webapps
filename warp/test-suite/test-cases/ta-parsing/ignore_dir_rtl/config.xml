@@ -1,0 +1,4 @@
+<widget xmlns='http://www.w3.org/ns/widgets'>
+  <name>ignore dir rtl</name>
+  <access dir="rtl" origin="http://w3c-test.org" subdomains="true"/>
+</widget>

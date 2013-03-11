@@ -1,0 +1,790 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Widget Access Request Policy</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<style type="text/css">
+/*****************************************************************
+ * ReSpec CSS
+ * Robin Berjon (robin at berjon dot com)
+ * v0.05 - 2009-07-31
+ *****************************************************************/
+
+
+/* --- INLINES --- */
+em.rfc2119 {
+	text-transform:     lowercase;
+	font-variant:       small-caps;
+	font-style:         normal;
+	color:              #900;
+}
+h1 acronym, h2 acronym, h3 acronym, h4 acronym, h5 acronym, h6 acronym, a acronym, h1 abbr, h2 abbr, h3 abbr, h4 abbr, h5 abbr, h6 abbr, a abbr {
+	border: none;
+}
+dfn {
+	font-weight:    bold;
+}
+a.internalDFN {
+	color:  inherit;
+	border-bottom:  1px solid #99c;
+	text-decoration:    none;
+}
+a.externalDFN {
+	color:  inherit;
+	border-bottom:  1px dotted #ccc;
+	text-decoration:    none;
+}
+a.bibref {
+	text-decoration:    none;
+}
+code {
+	color:  #ff4500;
+}
+/* --- WEB IDL --- */
+pre.idl {
+	border-top: 1px solid #90b8de;
+	border-bottom: 1px solid #90b8de;
+	padding:    1em;
+	line-height:    120%;
+}
+
+.idlType {
+	color:  #ff4500;
+	font-weight:    bold;
+	text-decoration:    none;
+}
+/*.idlModule*/
+/*.idlModuleID*/
+/*.idlInterface*/
+.idlInterfaceID, .idlDictionaryID {
+	font-weight:    bold;
+	color:  #005a9c;
+}
+.idlSuperclass {
+	font-style: italic;
+	color:  #005a9c;
+}
+/*.idlAttribute*/
+.idlAttrType, .idlFieldType, .idlMemberType {
+	color:  #005a9c;
+}
+.idlAttrName, .idlFieldName, .idlMemberName {
+	color:  #ff4500;
+}
+.idlAttrName a, .idlFieldName a, .idlMemberName a {
+	color:  #ff4500;
+	border-bottom:  1px dotted #ff4500;
+	text-decoration: none;
+}
+/*.idlMethod*/
+.idlMethType {
+	color:  #005a9c;
+}
+.idlMethName {
+	color:  #ff4500;
+}
+.idlMethName a {
+	color:  #ff4500;
+	border-bottom:  1px dotted #ff4500;
+	text-decoration: none;
+}
+/*.idlParam*/
+.idlParamType {
+	color:  #005a9c;
+}
+.idlParamName {
+	font-style: italic;
+}
+.extAttr {
+	color:  #666;
+}
+/*.idlConst*/
+.idlConstType {
+	color:  #005a9c;
+}
+.idlConstName {
+	color:  #ff4500;
+}
+.idlConstName a {
+	color:  #ff4500;
+	border-bottom:  1px dotted #ff4500;
+	text-decoration: none;
+}
+/*.idlException*/
+.idlExceptionID {
+	font-weight:    bold;
+	color:  #c00;
+}
+.idlTypedefID, .idlTypedefType {
+	color:  #005a9c;
+}
+.idlRaises, .idlRaises a.idlType, .idlRaises a.idlType code, .excName a, .excName a code {
+	color:  #c00;
+	font-weight:    normal;
+}
+.excName a {
+	font-family:    monospace;
+}
+.idlRaises a.idlType, .excName a.idlType {
+	border-bottom:  1px dotted #c00;
+}
+.excGetSetTrue, .excGetSetFalse, .prmNullTrue, .prmNullFalse, .prmOptTrue, .prmOptFalse {
+	width:  45px;
+	text-align: center;
+}
+.excGetSetTrue, .prmNullTrue, .prmOptTrue {
+	color:  #0c0;
+}
+.excGetSetFalse, .prmNullFalse, .prmOptFalse {
+	color:  #c00;
+}
+.idlImplements a {
+	font-weight:    bold;
+}
+dl.attributes, dl.methods, dl.constants, dl.fields, dl.dictionary-members {
+	margin-left:    2em;
+}
+.attributes dt, .methods dt, .constants dt, .fields dt, .dictionary-members dt {
+	font-weight:    normal;
+}
+.attributes dt code, .methods dt code, .constants dt code, .fields dt code, .dictionary-members dt code {
+	font-weight:    bold;
+	color:  #000;
+	font-family:    monospace;
+}
+.attributes dt code, .fields dt code, .dictionary-members dt code {
+	background:  #ffffd2;
+}
+.attributes dt .idlAttrType code, .fields dt .idlFieldType code, .dictionary-members dt .idlMemberType code {
+	color:  #005a9c;
+	background:  transparent;
+	font-family:    inherit;
+	font-weight:    normal;
+	font-style: italic;
+}
+.methods dt code {
+	background:  #d9e6f8;
+}
+.constants dt code {
+	background:  #ddffd2;
+}
+.attributes dd, .methods dd, .constants dd, .fields dd, .dictionary-members dd {
+	margin-bottom:  1em;
+}
+table.parameters, table.exceptions {
+	border-spacing: 0;
+	border-collapse:    collapse;
+	margin: 0.5em 0;
+	width:  100%;
+}
+table.parameters {
+	border-bottom:  1px solid #90b8de;
+}
+table.exceptions {
+	border-bottom:  1px solid #deb890;
+}
+.parameters th, .exceptions th {
+	color:  #fff;
+	padding:    3px 5px;
+	text-align: left;
+	font-family:    initial;
+	font-weight:    normal;
+}
+.parameters th {
+	background: #90b8de;
+}
+.exceptions th {
+	background: #deb890;
+}
+.parameters td, .exceptions td {
+	padding:    3px 10px;
+	border-top: 1px solid #ddd;
+	vertical-align: top;
+}
+.parameters tr:first-child td, .exceptions tr:first-child td {
+	border-top: none;
+}
+.parameters td.prmName, .exceptions td.excName, .exceptions td.excCodeName {
+	width:  100px;
+}
+.parameters td.prmType {
+	width:  120px;
+}
+table.exceptions table {
+	border-spacing: 0;
+	border-collapse:    collapse;
+	width:  100%;
+}
+/* --- TOC --- */
+.toc a {
+	text-decoration:    none;
+}
+a .secno {
+	color:  #000;
+}
+/* --- TABLE --- */
+table.simple {
+	border-spacing: 0;
+	border-collapse:    collapse;
+	border-bottom:  3px solid #005a9c;
+}
+.simple th {
+	background: #005a9c;
+	color:  #fff;
+	padding:    3px 5px;
+	text-align: left;
+}
+ .simple th[scope="row"] {
+ background: inherit;
+ color:  inherit;
+ border-top: 1px solid #ddd;
+}
+.simple td {
+	padding:    3px 10px;
+	border-top: 1px solid #ddd;
+}
+/* --- DL --- */
+.section dd >
+p:first-child {
+	margin-top: 0;
+}
+.section dd {
+	margin-bottom:  1em;
+}
+.section dl.attrs dd, .section dl.eldef dd {
+	margin-bottom:  0;
+}
+/* --- EXAMPLES --- */
+pre.example {
+	border-top: 1px solid #ff4500;
+	border-bottom: 1px solid #ff4500;
+	padding:    1em;
+	margin-top: 1em;
+}
+
+/* --- EDITORIAL NOTES --- */
+.issue {
+	padding:    1em;
+	margin: 1em 0em 0em;
+	border: 1px solid #f00;
+	background: #ffc;
+}
+
+.note {
+	margin: 1em 0em 0em;
+	padding:    1em;
+	border: 2px solid #cff6d9;
+	background: #e2fff0;
+}
+
+/* --- Best Practices --- */
+div.practice {
+	border: solid #bebebe 1px;
+	margin: 2em 1em 1em 2em;
+}
+span.practicelab {
+	margin: 1.5em 0.5em 1em 1em;
+	font-weight: bold;
+	font-style: italic;
+}
+span.practicelab {
+	background: #dfffff;
+}
+span.practicelab {
+	position: relative;
+	padding: 0 0.5em;
+	top: -1.5em;
+}
+p.practicedesc {
+	margin: 1.5em 0.5em 1em 1em;
+}
+ @media screen {
+p.practicedesc {
+	position: relative;
+	top: -2em;
+	padding: 0;
+	margin: 1.5em 0.5em -1em 1em;
+}
+}
+/* --- SYNTAX HIGHLIGHTING --- */
+pre.sh_sourceCode {
+	background-color: white;
+	color: black;
+	font-style: normal;
+	font-weight: normal;
+}
+pre.sh_sourceCode .sh_keyword {
+	color: #005a9c;
+	font-weight: bold;
+}           /* language keywords */
+pre.sh_sourceCode .sh_type {
+	color: #666;
+}                            /* basic types */
+pre.sh_sourceCode .sh_usertype {
+	color: teal;
+}                             /* user defined types */
+pre.sh_sourceCode .sh_string {
+	color: red;
+	font-family: monospace;
+}        /* strings and chars */
+pre.sh_sourceCode .sh_regexp {
+	color: orange;
+	font-family: monospace;
+}     /* regular expressions */
+pre.sh_sourceCode .sh_specialchar {
+	color: 	#ffc0cb;
+	font-family: monospace;
+}  /* e.g., \n, \t, \\ */
+pre.sh_sourceCode .sh_comment {
+	color: #A52A2A;
+	font-style: italic;
+}         /* comments */
+pre.sh_sourceCode .sh_number {
+	color: purple;
+}                             /* literal numbers */
+pre.sh_sourceCode .sh_preproc {
+	color: #00008B;
+	font-weight: bold;
+}       /* e.g., #include, import */
+pre.sh_sourceCode .sh_symbol {
+	color: blue;
+}                            /* e.g., *, + */
+pre.sh_sourceCode .sh_function {
+	color: black;
+	font-weight: bold;
+}         /* function calls and declarations */
+pre.sh_sourceCode .sh_cbracket {
+	color: red;
+}                              /* block brackets (e.g., {, }) */
+pre.sh_sourceCode .sh_todo {
+	font-weight: bold;
+	background-color: #00FFFF;
+}   /* TODO and FIXME */
+/* Predefined variables and functions (for instance glsl) */
+pre.sh_sourceCode .sh_predef_var {
+	color: #00008B;
+}
+pre.sh_sourceCode .sh_predef_func {
+	color: #00008B;
+	font-weight: bold;
+}
+/* for OOP */
+pre.sh_sourceCode .sh_classname {
+	color: teal;
+}
+/* line numbers (not yet implemented) */
+pre.sh_sourceCode .sh_linenum {
+	display: none;
+}
+/* Internet related */
+pre.sh_sourceCode .sh_url {
+	color: blue;
+	text-decoration: underline;
+	font-family: monospace;
+}
+/* for ChangeLog and Log files */
+pre.sh_sourceCode .sh_date {
+	color: blue;
+	font-weight: bold;
+}
+pre.sh_sourceCode .sh_time, pre.sh_sourceCode .sh_file {
+	color: #00008B;
+	font-weight: bold;
+}
+pre.sh_sourceCode .sh_ip, pre.sh_sourceCode .sh_name {
+	color: #006400;
+}
+/* for Prolog, Perl... */
+pre.sh_sourceCode .sh_variable {
+	color: #006400;
+}
+/* for LaTeX */
+pre.sh_sourceCode .sh_italics {
+	color: #006400;
+	font-style: italic;
+}
+pre.sh_sourceCode .sh_bold {
+	color: #006400;
+	font-weight: bold;
+}
+pre.sh_sourceCode .sh_underline {
+	color: #006400;
+	text-decoration: underline;
+}
+pre.sh_sourceCode .sh_fixed {
+	color: green;
+	font-family: monospace;
+}
+pre.sh_sourceCode .sh_argument {
+	color: #006400;
+}
+pre.sh_sourceCode .sh_optionalargument {
+	color: purple;
+}
+pre.sh_sourceCode .sh_math {
+	color: orange;
+}
+pre.sh_sourceCode .sh_bibtex {
+	color: blue;
+}
+/* for diffs */
+pre.sh_sourceCode .sh_oldfile {
+	color: orange;
+}
+pre.sh_sourceCode .sh_newfile {
+	color: #006400;
+}
+pre.sh_sourceCode .sh_difflines {
+	color: blue;
+}
+/* for css */
+pre.sh_sourceCode .sh_selector {
+	color: purple;
+}
+pre.sh_sourceCode .sh_property {
+	color: blue;
+}
+pre.sh_sourceCode .sh_value {
+	color: #006400;
+	font-style: italic;
+}
+/* other */
+pre.sh_sourceCode .sh_section {
+	color: black;
+	font-weight: bold;
+}
+pre.sh_sourceCode .sh_paren {
+	color: red;
+}
+pre.sh_sourceCode .sh_attribute {
+	color: #006400;
+}
+</style>
+<link href="http://www.w3.org/StyleSheets/TR/W3C-PR" rel="stylesheet" type="text/css" charset="utf-8" />
+</head>
+<body style="display: inherit; ">
+<div class="head">
+<p><a href="http://www.w3.org/"><img width="72" height="48" src="http://www.w3.org/Icons/w3c_home" alt="W3C" /></a></p>
+<h1 class="title" id="title">Widget Access Request Policy</h1>
+<h2 id="w3c-proposed-recommendation-29-november-2011">W3C Proposed Recommendation 13 December 2011</h2>
+<dl>
+  <dt>This version:</dt>
+  <dd><a href="http://www.w3.org/TR/2011/PR-widgets-access-20111213/">http://www.w3.org/TR/2011/PR-widgets-access-20111213/</a></dd>
+  <dt>Latest published version:</dt>
+  <dd><a href="http://www.w3.org/TR/widgets-access/">http://www.w3.org/TR/widgets-access/</a></dd>
+  <dt>Latest editor's draft:</dt>
+  <dd><a href="http://dev.w3.org/2006/waf/widgets-access/">http://dev.w3.org/2006/waf/widgets-access/</a></dd>
+  <dt>Previous version:</dt>
+  <dd><a href="http://www.w3.org/TR/2010/CR-widgets-access-20100420/">http://www.w3.org/TR/2010/CR-widgets-access-20100420/</a></dd>
+  <dt>Implementation report:</dt>
+  <dd><a href="http://dev.w3.org/2006/waf/widgets-access/imp-report/">http://dev.w3.org/2006/waf/widgets-access/imp-report/</a></dd>
+  <dt>Editor:</dt>
+  <dd><a href="http://datadriven.com.au/">Marcos Cáceres</a>, W3C Invited Expert</dd>
+</dl>
+<p class="copyright"><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2011 <a href="http://www.w3.org/"><acronym title="World Wide Web Consortium">W3C</acronym></a><sup>®</sup> (<a href="http://www.csail.mit.edu/"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>, <a href="http://www.ercim.eu/"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights Reserved. W3C <a href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.</p>
+<hr />
+</div>
+<h2 id="abstract">Abstract</h2>
+This specification defines the security model controlling network access from within a
+      widget, as well as a method for  authors to request that the <a class="product-ua" href="#product-ua">user agent</a> <a href="#dfn-grant-access" class="internalDFN">grant access</a> to certain <a title="network resource" href="#dfn-network-resource" class="internalDFN">network resources</a> or sets thereof.
+      <h2 id="sotd">Status of This Document</h2>
+      <p><em>This section describes the status of this document at the time of its publication. Other documents may supersede this document. A list of current W3C publications and the latest revision of this technical report can be found in the <a href="http://www.w3.org/TR/">W3C technical reports index</a> at http://www.w3.org/TR/.</em></p>
+      <p>The public is encouraged to send comments to the WebApps Working Group's public mailing list <a href="mailto:public-webapps@w3.org">public-webapps@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-webapps/">archive</a>) by 17 January 2012. See <a href="http://www.w3.org/Mail/">W3C mailing list and archive usage guidelines</a>. Advisory Committee Representatives should consult their questionnaires.      </p>
+      <p> The Last Call review period for this specification ended on 13 January 2010, for which a <a href="http://www.w3.org/2006/02/lc-comments-tracker/42538/WD-widgets-access-20091208/doc/">disposition of comments</a> is available. </p>
+      <p> The Web Applications Working Group has demonstrated to the Director at least two <a href="http://dev.w3.org/2006/waf/widgets-access/imp-report/"> interoperable implementations</a> (interoperable meaning at least two implementations that pass each mandatory test in the <a href="http://dev.w3.org/2006/waf/widgets-access/test-suite/">test suite</a>). </p>
+      <p>This document was published by the <a href="http://www.w3.org/2008/webapps/">Web Applications WG</a> as a Proposed Recommendation. This document is intended to become a W3C Recommendation. If you wish to make comments regarding this document, please send them to <a href="mailto:public-webapps@w3.org">public-webapps@w3.org</a> (<a href="mailto:public-webapps-request@w3.org?subject=subscribe">subscribe</a>, <a href="http://lists.w3.org/Archives/Public/public-webapps/">archives</a>). All feedback is welcome.</p>
+<p>Publication as a Proposed Recommendation does not imply endorsement by the W3C Membership. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.</p>
+<p>This document was produced by a group operating under the <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 W3C Patent Policy</a>. W3C maintains a <a href="http://www.w3.org/2004/01/pp-impl/42538/status" rel="disclosure">public list of any patent disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential Claim(s)</a> must disclose the information in accordance with <a href="http://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section 6 of the W3C Patent Policy</a>.</p>
+<p>This Specification takes into account the <a href="http://www.w3.org/2009/11/widgets-pag/pagreport.html">recommendations</a> from the <a href="http://www.w3.org/2009/11/widgets-pag/">Widget  Patent Advisory Group</a> (Member only), which recommended that work on WARP &quot;should be continued without changes&quot; in light of the significant amount of <a href="http://www.w3.org/2009/11/widgets-pag/prior-art.html">prior art</a> the PAG found.</p>
+<h2 id="toc" class="introductory">Table of Contents</h2>
+<ul class="toc">
+  <li class="tocline"><a href="#Introduction" class="tocxref"><span class="secno">1. </span>Introduction</a>
+    <ul class="toc">
+      <li class="tocline"><a href="#design-goals-and-requirements" class="tocxref"><span class="secno">1.1 </span>Design Goals and Requirements</a></li>
+    </ul>
+  </li>
+  <li class="tocline"><a href="#definitions" class="tocxref"><span class="secno">2. </span>Definitions</a></li>
+  <li class="tocline"><a href="#conformance" class="tocxref"><span class="secno">3. </span>Conformance</a></li>
+  <li class="tocline"><a href="#user-agent" class="tocxref"><span class="secno">4. </span>User Agent</a></li>
+  <li class="tocline"><a href="#policy" class="tocxref"><span class="secno">5. </span>Policy</a></li>
+  <li class="tocline"><a href="#the-access-element" class="tocxref"><span class="secno">6. </span>The <span><code>access</code></span> Element</a>
+    <ul class="toc">
+      <li class="tocline"><a href="#attributes" class="tocxref"><span class="secno">6.1 </span>Attributes</a></li>
+      <li class="tocline"><a href="#usage-example" class="tocxref"><span class="secno">6.2 </span>Usage example</a></li>
+    </ul>
+  </li>
+  <li class="tocline"><a href="#processing" class="tocxref"><span class="secno">7. </span>Processing <span class="internalDFN formerLink"><code>access</code></span> elements in the Configuration Document</a></li>
+  <li class="tocline"><a href="#rule" class="tocxref"><span class="secno">8. </span>Rules for Granting Access to a Network Resource</a></li>
+  <li class="tocline"><a href="#changes" class="tocxref"> Changes since last publication</a></li>
+  
+<li><a href="#normative-references">Normative references</a> </li>
+  <li><a href="#informative-references" class="tocxref">Informative references</a></li>
+</ul>
+      
+<h2 id="Introduction"><span class="secno">1. </span>Introduction</h2>
+<p><em>This section is non-normative.</em></p>
+      <p>The purpose of this specification is to define a security model for widgets allowing them to access content on one or more domains. To achieve this purpose, the specification 
+  defines a default security policy, which blocks all network access, and a declarative means for an author to request access to specific 
+  resources across one or more <a title="network resource" href="#dfn-network-resource" class="internalDFN">network domains</a>. By requesting access to specific domains, the author is able to change the default security policy to make it less restrictive. </p>
+<h3 id="design-goals-and-requirements"><span class="secno">1.1 </span>Design Goals and Requirements</h3>
+      <p> The design goals and requirements for this specification are addressed in the <cite>Requirement For Standardizing Widgets</cite> [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS-REQS">WIDGETS-REQS</a></cite>] 
+  document. This document addresses the following requirements: </p>
+      <ul>
+  <li> <a href="http://www.w3.org/TR/widgets-reqs/#default-security-policy">Default Security Policy</a> </li>
+  <li> <a href="http://www.w3.org/TR/widgets-reqs/#security-declarations">Security Declarations</a> </li>
+  <li> Restrict access to external resources (to be published) </li>
+</ul>
+      <p> Additional considerations guiding this specification are maximal compatibility
+  with existing web technology (including not breaking linking to JS libraries,
+  embedded media, ads, etc.); and not restricting the platform in such a way that
+  would make it less powerful than the web platform. </p>
+      
+      <h2 id="definitions"><span class="secno">2. </span>Definitions</h2>
+      <p> An <dfn id="dfn-access-request">access request</dfn> is a request made by an author to the <a class="product-ua" href="#product-ua">user agent</a> for
+  the ability to retrieve one or more <a title="network resource" href="#dfn-network-resource" class="internalDFN">network resources</a>.
+  Access elements in the widget's configuration document express the author's requests to 
+  access <a title="network resource" href="#dfn-network-resource" class="internalDFN">network resources</a>. </p>
+      <p> To <dfn id="dfn-grant-access">grant access</dfn> means that the <a class="product-ua" href="#product-ua">user agent</a> authorizes <a>widget execution 
+        scopes</a> to retrieve one or more <a title="network resource" href="#dfn-network-resource" class="internalDFN">network resources</a> via the <a class="product-ua" href="#product-ua">user agent</a>. </p>
+      <p class="note"> Some schemes (e.g. <code>mailto:</code>) may be handled by third-party applications and 
+  are therefore not controlled by the access mechanism defined in this specification.
+  Similarly, policies defined using this specification do not apply to opening content in 
+  external applications. </p>
+      <p> To <dfn id="dfn-deny-access">deny access</dfn> means that the <a class="product-ua" href="#product-ua">user agent</a> rejects an author's request to <a href="#dfn-grant-access" class="internalDFN">grant access</a>. </p>
+      <p> An <dfn id="dfn-access-request-policy">access request policy</dfn>, or <dfn id="dfn-policy">policy</dfn> for short, is a set of rules
+  that details whether given some conditions the <a class="product-ua" href="#product-ua">user agent</a> will <a title="grant access" href="#dfn-grant-access" class="internalDFN">grant</a> or <a href="#dfn-deny-access" class="internalDFN">deny access</a> to a given <a href="#dfn-network-resource" class="internalDFN">network resource</a>. </p>
+      <p> A <dfn id="dfn-network-resource">network resource</dfn> is a retrievable resource of any media type that is identified by a 
+  URI that has a DNS or IP as its authority component [<cite><a class="bibref" rel="biblioentry" href="#bib-URI">URI</a></cite>]. </p>
+      <p class="note"> This deliberately excludes some schemes (e.g. <code>sms:</code>, <code>tel:</code>) from being
+  controlled by the means provided by this specification. </p>
+      <p> The <dfn id="dfn-widget-execution-scope">widget execution scope</dfn> is the scope (or set of scopes, seen  
+  as a single one for simplicity's sake) being the execution context for  
+  code running from documents that are part of the widget package. </p>
+      <p> The <dfn id="dfn-external-execution-scope">external execution scope</dfn> is the scope (or set thereof) being the  
+  execution context for code running from documents that originate outside
+  the widget package. </p>
+      
+<h2 id="conformance"><span class="secno">3. </span>Conformance</h2>
+<p>As well as sections marked as non-normative, all authoring guidelines, diagrams, examples, and notes in this specification are non-normative. Everything else in this specification is normative.</p>
+      <p>The key words <em class="ct">must</em>, <em class="ct" title="must not">must not</em>, <em class="ct" title="required">required</em>, <em class="ct" title="should">should</em>, <em class="ct" title="should not">should not</em>, <em class="ct" title="recommended">recommended</em>, <em class="ct" title="may">may</em>, and <em class="ct" title="optional">optional</em> in this specification are to be interpreted as described in [<cite><a class="bibref" rel="biblioentry" href="#bib-RFC2119">RFC2119</a></cite>].</p>
+      <p> This specification defines conformance criteria that apply to a single product: a <a href="#product-ua">user agent</a>. </p>
+      
+<h2 id="user-agent"><span class="secno">4. </span>User Agent</h2>
+      <p> A <dfn id="product-ua" title="user agent">user agent</dfn> a software application that implements this specification and 
+  the [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>] specification and its dependencies. </p>
+      <p>At runtime, when a request is made to access a <a href="#dfn-network-resource" class="internalDFN">network resource</a> from within the <a href="#dfn-widget-execution-scope" class="internalDFN">widget execution scope</a>, 
+  the <a class="product-ua" href="#product-ua">user agent</a> <em class="ct">must</em> compare the request against the <a href="#rule">Rules for Granting Access to a Network Resources</a>. </p>
+      <p id="ta-case-insensitive-compare">If <var>scheme</var> is &quot;<code>http</code>&quot; or &quot;<code>https</code>&quot;, the <a class="product-ua" href="#product-ua">user agent</a> <em class="ct">must</em> compare hosts
+  in a case-insensitive manner. </p>
+      
+<h2 id="policy"><span class="secno">5. </span>Policy</h2>
+      <p> A <a class="product-ua" href="#product-ua">user agent</a> enforces an <a href="#dfn-access-request-policy" class="internalDFN">access request policy</a>.
+  However, how a user agent enforces a policy is beyond the scope of this specification: this specification does not define any data indicative of a security event, which is left up to other specifications (e.g.,  <a href="#bib-xhr">[XMLHTTPRequest]</a> defines its own <a href="http://www.w3.org/TR/XMLHttpRequest/#security-err">security errors</a> which is indicative of a security event). </p>
+      <p id="ta-default-policy"> In the <dfn id="dfn-default-policy">default policy</dfn>, a <a class="product-ua" href="#product-ua">user agent</a> <em class="ct">must</em> <a href="#dfn-deny-access" class="internalDFN">deny access</a> to <a title="network resource" href="#dfn-network-resource" class="internalDFN">network resources</a> external to the widget by default, 
+  whether this access is requested through APIs (e.g. <code>XMLHttpRequest</code>) or through 
+  markup (e.g. <code>iframe</code>, <code>script</code>, <code>img</code>). </p>
+      <p> A <a class="product-ua" href="#product-ua">user agent</a> <em class="ct" title="may">may</em> apply a different <a href="#dfn-default-policy" class="internalDFN">default policy</a> if the widget is being used
+  in a context that defines its own policy, such as for instance a widget served over HTTP. </p>
+      <p id="ta-grant-access"> A more lenient <a href="#dfn-policy" class="internalDFN">policy</a> can be defined with the <a href="#dfn-access-request-list" class="internalDFN">access-request list</a> as defined in
+  the <a href="#processing">processing section</a>. A <a class="product-ua" href="#product-ua">user agent</a> <em class="ct" title="should">should</em> <a href="#dfn-grant-access" class="internalDFN">grant access</a> to <a title="network resource" href="#dfn-network-resource" class="internalDFN">network resources</a> listed in the <a href="#dfn-access-request-list" class="internalDFN">access-request list</a>;
+  in this case the <a class="product-ua" href="#product-ua">user agent</a> would <a href="#dfn-grant-access" class="internalDFN">grant access</a> based on the <a href="#rule">Rules for Granting Access to a Network Resources</a>. </p>
+      <p> Furthermore, a <a class="product-ua" href="#product-ua">user agent</a> <em class="ct" title="may">may</em> <a href="#dfn-grant-access" class="internalDFN">grant access</a> to certain URI schemes
+  (e.g., <code>mailto:</code>) without the need of an <a href="#dfn-access-request" class="internalDFN">access request</a> if its security
+  policy considers those schemes benign. A <a class="product-ua" href="#product-ua">user agent</a> <em class="ct" title="may">may</em> <a href="#dfn-deny-access" class="internalDFN">deny access</a> requests made via the <code>access</code> element (e.g. based on a security policy, user
+  prompting, etc.). </p>
+      <p id="ta-equal-markup-api"> When a <a class="product-ua" href="#product-ua">user agent</a> <a title="grant access" href="#dfn-grant-access" class="internalDFN">grants access</a> to a given set of <a title="network resource" href="#dfn-network-resource" class="internalDFN">network resources</a>, it <em class="ct">must</em> do so equally for APIs and 
+  markup. </p>
+      <p> The exact rules defining which execution scope applies to <a title="network resource" href="#dfn-network-resource" class="internalDFN">network resources</a> loaded into a document running in the <a href="#dfn-widget-execution-scope" class="internalDFN">widget execution scope</a> depend on the language that
+  is being used inside the widget. </p>
+      <p class="note"> For instance, in [<cite><a class="bibref" rel="biblioentry" href="#bib-HTML5">HTML</a></cite>] a script loaded off the network into a document running in the <a href="#dfn-widget-execution-scope" class="internalDFN">widget execution scope</a> is itself in the same scope, whereas a document loaded off the network 
+  in an <code>iframe</code> will be in the <a href="#dfn-external-execution-scope" class="internalDFN">external execution scope</a>. </p>
+      
+<h2 id="the-access-element"><span class="secno">6. </span>The <dfn id="dfn-access"><code>access</code></dfn> Element</h2>
+      <p> The <code>access</code> element allows authors to request permission from the <a class="product-ua" href="#product-ua">user agent</a> to
+  retrieve a set of <a title="network resource" href="#dfn-network-resource" class="internalDFN">network resources</a>. Zero or more <code>access</code> elements can be placed in the configuration document.
+  When multiple <code>access</code> elements are used by an author, the set of network connections that are
+  allowed is the union of all the access requests that were granted by the <a class="product-ua" href="#product-ua">user agent</a>. </p>
+      <p> The <code>access</code> element is in the <code>http://www.w3.org/ns/widgets</code> namespace
+  as defined in [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>]. </p>
+      <dl>
+  <dt>Context in which this element is used:</dt>
+  <dd>As a child of the <code>widget</code> element [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>].</dd>
+  <dt>Content model:</dt>
+  <dd>Empty.</dd>
+  <dt>Occurrences:</dt>
+  <dd>Zero or more.</dd>
+  <dt>Expected children:</dt>
+  <dd>none.</dd>
+  <dt>Localizable via <code>xml:lang</code>:</dt>
+  <dd>No.</dd>
+</dl>
+      <h3 id="attributes"><span class="secno">6.1 </span>Attributes</h3>
+      <dl>
+  <dt> <code><dfn id="dfn-origin">origin</dfn></code> </dt>
+  <dd> An <a class="externalDFN" href="http://dev.w3.org/2006/waf/widgets/#iri-attribute">IRI attribute</a> that defines the specifics of the access request that is made. Only the <a class="externalDFN">scheme</a> and <a class="externalDFN">authority</a> components can be present in the IRI that this 
+          attribute contains ([<cite><a class="bibref" rel="biblioentry" href="#bib-URI">URI</a></cite>], [<cite><a class="bibref" rel="biblioentry" href="#bib-RFC3987">RFC3987</a></cite>]). Additionally, an author can use the special value of U+002A ASTERISK (*).
+          This special value provides a means for an author to request from the <a class="product-ua" href="#product-ua">user agent</a> unrestricted access to <a title="network resource" href="#dfn-network-resource" class="internalDFN">network resources</a>. </dd>
+  <dt> <code><dfn id="dfn-subdomains">subdomains</dfn></code> </dt>
+  <dd> A <a class="externalDFN" href="http://dev.w3.org/2006/waf/widgets/#boolean-attribute">boolean attribute</a> that indicates whether or not the host component part of the access request applies to subdomains (as 
+          defined in [<cite><a class="bibref" rel="biblioentry" href="#bib-RFC1034">RFC1034</a></cite>]) of domain in the <code>origin</code> attribute. The default value when this 
+          attribute is absent is <code>false</code>, meaning that access to subdomains is not requested. </dd>
+</dl>
+      <h3 id="usage-example"><span class="secno">6.2 </span>Usage example</h3>
+      <p> All the examples below presume that <code>http://www.w3.org/ns/widgets</code> is the default namespace 
+  defined in their context and that there is a surrounding <code>widget</code> element: </p>
+      <p> Access request for <code>https://example.net</code> using the <code>https</code> protocol (port 443): </p>
+      <pre class="example sh_xml sh_sourceCode"><span class="sh_keyword">&lt;access</span> <span class="sh_type">origin</span><span class="sh_symbol">=</span><span class="sh_string">&quot;https://example.net&quot;</span><span class="sh_keyword">/&gt;</span></pre>
+      <p> Access request for <code>http://example.org</code> and all its [<cite><a class="bibref" rel="biblioentry" href="#bib-RFC1034">RFC1034</a></cite>] subdomains using the <code>http</code> protocol (port 443): </p>
+      <pre class="example sh_xml sh_sourceCode"><span class="sh_keyword">&lt;access</span> <span class="sh_type">origin</span><span class="sh_symbol">=</span><span class="sh_string">&quot;http://example.org&quot;</span> <span class="sh_type">subdomains</span><span class="sh_symbol">=</span><span class="sh_string">&quot;true&quot;</span><span class="sh_keyword">/&gt;</span></pre>
+      <p> Access request for <code>http://foo.example.com</code> using the <code>http</code> protocol (port 4242): </p>
+      <pre class="example sh_xml sh_sourceCode"><span class="sh_keyword">&lt;access</span> <span class="sh_type">origin</span><span class="sh_symbol">=</span><span class="sh_string">&quot;http://dahut.example.com:4242&quot;</span><span class="sh_keyword">/&gt;</span></pre>
+      <p> Access request to all network resources: </p>
+      <pre class="example sh_xml sh_sourceCode"><span class="sh_keyword">&lt;access</span> <span class="sh_type">origin</span><span class="sh_symbol">=</span><span class="sh_string">&quot;*&quot;</span><span class="sh_keyword">/&gt;</span></pre>
+      
+<h2 id="processing"><span class="secno">7. </span>Processing <a href="#dfn-access" class="internalDFN"><code>access</code></a> elements in the Configuration Document</h2>
+      <p>When processing <a href="#dfn-access" class="internalDFN"><code>access</code></a> elements in the configuration document, a <a class="product-ua" href="#product-ua">user agent</a> behaves as if the following had been defined in the <a href="http://dev.w3.org/2006/waf/widgets/#table-of-configuration-defaults">Table of Configuration Defaults</a> in <a href="http://dev.w3.org/2006/waf/widgets/#step-3-set-the-configuration-defaults">Step 3</a> of the [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>] specification. </p>
+      <table summary="The configuration defaults that a user agent must set prior to instantiation." class="simple">
+  <caption>
+        Table of Configuration Defaults (addendum)
+        </caption>
+  <thead>
+          <tr>
+      <th scope="col">Variable</th>
+      <th scope="col">Type</th>
+      <th scope="col">Default Value</th>
+      <th scope="col">Overridden in</th>
+      <th scope="col">Description</th>
+    </tr>
+        </thead>
+  <tbody>
+    <tr>
+      <th scope="row"><dfn id="dfn-access-request-list"><var>access-request list</var></dfn></th>
+      <td>List</td>
+      <td><code>null</code></td>
+      <td><a href="http://dev.w3.org/2006/waf/widgets/#step-7-process-the-configuration-document">Step 7</a></td>
+      <td>An empty list  that represent the
+              author's <a title="access request" href="#dfn-access-request" class="internalDFN">access requests</a> to <a title="network resource" href="#dfn-network-resource" class="internalDFN">network resources</a>. </td>
+    </tr>
+        </tbody>
+</table>
+      <p id="ta-parsing"> Secondly, a <a class="product-ua" href="#product-ua">user agent</a> <em class="ct">must</em> apply the <a href="#dfn-rule-for-processing-an-access-element" class="internalDFN">rule for processing an <code>access</code> element</a> at 
+  the appropriate point in the <a href="http://dev.w3.org/2006/waf/widgets/#algorithm-to-process-a-configuration-document">algorithm to process a
+        configuration document</a>: the appropriate point is where the algorithm allows for processing 
+  'any other type of element' [<cite><a class="bibref" rel="biblioentry" href="#bib-WIDGETS">WIDGETS</a></cite>]. </p>
+      <h4 id="rule-for-processing-an-access-element">Rule for processing an <code>access</code> element </h4>
+      <p class="note">The following sequence of steps relies on terminology that
+  is defined in RFC 3987 [<cite><a class="bibref" rel="biblioentry" href="#bib-RFC3987">RFC3987</a></cite>] and in the URI [<cite><a class="bibref" rel="biblioentry" href="#bib-URI">URI</a></cite>] specification. The
+  particular the terms derived from the URI and IRI specifications include: <a class="externalDFN"><code>host</code></a>, <a class="externalDFN"><code>port</code></a>, <a class="externalDFN"><code>scheme</code></a>, <a class="externalDFN"><code>ifragment</code></a>, and <a class="externalDFN"><code>iuser info</code></a>. </p>
+      <p class="note"> The <dfn id="dfn-rule-for-processing-an-access-element">rule for processing an <code>access</code> element</dfn> is given in the following algorithm. 
+  The algorithm does not return a value. </p>
+      <ol>
+  <li>
+          <p>Let <var>element</var> be the <code>access</code> element to be processed. </p>
+        </li>
+  <li>
+          <p id="ta-missing-origin-attr"> If the <code>origin</code> attribute is absent, then this <var>element</var> is <a class="externalDFN" href="http://dev.w3.org/2006/waf/widgets/#in-error">in error</a> and 
+      the <a class="product-ua" href="#product-ua">user agent</a> <em class="ct">must</em> <a class="externalDFN" href="http://dev.w3.org/2006/waf/widgets/#ignore">ignore</a> this element. </p>
+        </li>
+  <li>
+          <p id="ta-parsing-wildcard"> Let <var>origin</var> be the result of applying the <a class="externalDFN" href="http://dev.w3.org/2006/waf/widgets/#rule-for-getting-a-single-attribute-value">rule
+            for getting a single attribute value</a> to the value of the <code>origin</code> attribute. If the result is a 
+      single U+002A ASTERISK (<code>*</code>) character, then the <a class="product-ua" href="#product-ua">user agent</a> <em class="ct">must</em> prepend the U+002A ASTERISK to 
+      the <var>access-request list</var> and skip all steps below. </p>
+        </li>
+  <li>
+          <p id="ta-parse-origin-attr"> If <var>origin</var> is not a <a class="externalDFN" href="http://dev.w3.org/2006/waf/widgets/#valid-iri">valid 
+            IRI</a>, if it has components other than <a class="externalDFN"><code>scheme</code></a> and <a class="externalDFN"><code>iauthority</code></a>,
+      if it has no <a class="externalDFN"><code>host</code></a> component, or if it has a <a class="externalDFN"><code>iuser</code> info</a> component, then this element is <a class="externalDFN" href="http://dev.w3.org/2006/waf/widgets/#in-error">in error</a> and 
+      the <a class="product-ua" href="#product-ua">user agent</a> <em class="ct">must</em> <a class="externalDFN" href="http://dev.w3.org/2006/waf/widgets/#ignore">ignore</a> this element. </p>
+        </li>
+  <li>
+          <p> If  the <code>subdomains</code> attribute is absent, then let <var>sub domains</var> be the value <code>false</code>. Otherwise, or let <var>sub domains</var> be the result of applying the <a class="externalDFN" href="http://dev.w3.org/2006/waf/widgets/#rule-for-getting-a-single-attribute-value">rule 
+            for getting a single attribute value</a> to the value of the <code>subdomains</code> attribute. If the value of <var>sub domains</var> is not a <a class="externalDFN" href="http://dev.w3.org/2006/waf/widgets/#valid-boolean-value">valid
+            boolean value</a>, then let <var>sub domains</var> be the value <code>false</code>. </p>
+        </li>
+  <li>
+          <p id="ta-default-port"> Let <var>scheme</var> be the scheme component of <var>origin</var>. Let <var>host</var> be the host
+      component of <var>origin</var>. Let <var>port</var> be the port component of <var>origin.</var> If there is no
+      port component, the <a class="product-ua" href="#product-ua">user agent</a> <em class="ct">must</em> use the default value for the protocol that corresponds to <var>scheme</var>. </p>
+        </li>
+  <li>
+          <p id="ta-ignore-unsupported-scheme"> If <var>scheme</var> is <a class="externalDFN" href="http://dev.w3.org/2006/waf/widgets/#unsupported">unsupported</a> by the <a class="product-ua" href="#product-ua">user agent</a>, then this element is <a class="externalDFN" href="http://dev.w3.org/2006/waf/widgets/#in-error">in error</a> and the <a class="product-ua" href="#product-ua">user agent</a> <em class="ct">must</em> <a class="externalDFN">ignore</a> this element. </p>
+        </li>
+  <li>
+          <p id="ta-toASCII"> If <var>scheme</var> is &quot;<code>http</code>&quot; or &quot;<code>https</code>&quot;, then the <a class="product-ua" href="#product-ua">user agent</a> <em class="ct">must</em> process the value of <var>host</var> using the <a class="externalDFN">ToASCII</a> algorithm as per
+      [<cite><a class="bibref" rel="biblioentry" href="#bib-RFC3490">RFC3490</a></cite>].</p>
+        </li>
+  <li>
+          <p> The <a class="product-ua" href="#product-ua">user agent</a> <em class="ct">must</em> append an item inside the <var><a href="#dfn-access-request-list" class="internalDFN">access-request list</a></var> that is the tuple: <var>scheme</var>, <var>host</var>, <var>port</var>, <var>sub domains</var>. </p>
+        </li>
+</ol>
+      
+<h2 id="rule"><span class="secno">8. </span>Rules for Granting Access to a Network Resource</h2>
+      <p> The
+  following <dfn id="dfn-rules-for-granting-access-to-a-network-resource">rules for granting access to a network resource</dfn> is applied to determine what each <code>access</code> element is requesting
+  access to: </p>
+<ol>
+  <li>
+          <p> If the <a href="#dfn-access-request-list" class="internalDFN"><var>access-request list</var></a> contains an item that is just the U+002A ASTERISK
+      (<code>*</code>) character, then all <a title="access request" href="#dfn-access-request" class="internalDFN">access requests</a> are <a title="grant access" href="#dfn-grant-access" class="internalDFN">granted</a>. </p>
+  </li>
+  <li>
+          <p>An <a href="#dfn-access-request" class="internalDFN">access request</a> is <a title="grant access" href="#dfn-grant-access" class="internalDFN">granted</a> for a given URI if there exists 
+      an item inside the <a href="#dfn-access-request-list" class="internalDFN"><var>access-request list</var></a> such that: </p>
+          <ul>
+      <li>
+              <p>The URI's <a class="externalDFN">scheme component</a> is the same as <var>scheme</var>; and</p>
+            </li>
+      <li>
+              <p> if <var>subdomains</var> is <code>false</code> or if the URI's host component is not a domain
+          name (as defined in [<cite><a class="bibref" rel="biblioentry" href="#bib-RFC1034">RFC1034</a></cite>]), the URI's <a class="externalDFN">host component</a> is
+          the same as <var>host</var>; or </p>
+            </li>
+      <li>
+              <p> if <var>subdomains</var> is <code>true</code>, the URI's <a class="externalDFN">host component</a> is
+          either the same as <var>host</var>, or is a subdomain of <var>host</var> (as defined in [<cite><a class="bibref" rel="biblioentry" href="#bib-RFC1034">RFC1034</a></cite>]); and </p>
+            </li>
+      <li>
+              <p>the URI's <a class="externalDFN">port component</a> is the same as <var>port</var>.</p>
+            </li>
+    </ul>
+  </li>
+</ol>
+<h2 id="changes">Changes since last publication </h2>
+<p>There have been a few non-normative changes since last publication (<a href="http://www.w3.org/2007/10/htmldiff?doc1=http%3A%2F%2Fwww.w3.org%2FTR%2Fwidgets-access%2F&amp;doc2=http%3A%2F%2Fdev.w3.org%2F2006%2Fwaf%2Fwidgets-access%2F">see also the diff</a>): </p>
+<ul>
+  <li>Converted some conformance requirements into statements of fact, as they were redundant. </li>
+  <li>Made examples more realistic. </li>
+  <li>Cleaned up bibliography. </li>
+  <li>Minor stylistic cleanup to &quot;Rule for processing an access element&quot;. </li>
+</ul>
+<h2 id="normative-references">Normative references</h2>
+      <dl class="bibliography">
+  <dt id="bib-RFC1034">[RFC1034]</dt>
+  <dd><a href="http://www.ietf.org/rfc/rfc1034.txt"><cite>Domain Names - Concepts and Facilities.</cite></a> IETF.</dd>
+  <dt id="bib-RFC2119">[RFC2119]</dt>
+  <dd><a href="http://www.ietf.org/rfc/rfc2119.txt"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. IETF.</dd>
+  <dt id="bib-RFC3490">[RFC3490]</dt>
+  <dd><a href="http://www.rfc-editor.org/rfc/rfc3490.txt"><cite>Internationalizing Domain Names in Applications (IDNA).</cite></a> IETF.</dd>
+  <dt id="bib-RFC3987">[RFC3987]</dt>
+  <dd><a href="http://www.ietf.org/rfc/rfc3987.txt"><cite>Internationalized Resource Identifiers (IRIs).</cite></a> IETF.</dd>
+  <dt id="bib-URI">[URI]</dt>
+  <dd><a href="http://www.ietf.org/rfc/rfc3986.txt"><cite>Uniform Resource Identifiers (URI): generic syntax.</cite></a> IETF.</dd>
+  <dt id="bib-WIDGETS">[WIDGETS]</dt>
+  <dd><a href="http://dev.w3.org/2006/waf/widgets/"><cite>Widget Packaging and XML Configuration</cite></a>. W3C. </dd>
+</dl>
+<h2 id="informative-references">Informative references</h2>
+      <dl class="bibliography">
+  <dt id="bib-HTML5">[HTML]</dt>
+   <dd><cite><a href="http://www.w3.org/TR/html5/">HTML5</a></cite> (Work in progress). W3C.</dd>
+   
+    <dd><cite><a href="http://www.whatwg.org/specs/web-apps/current-work/">HTML: Living Standard</a></cite> (Work in progress). WHATWG.</dd>
+
+  <dt id="bib-WIDGETS-REQS">[WIDGETS-REQS]</dt>
+  <dd><a href="http://www.w3.org/TR/widgets-reqs/"><cite> Requirements For Standardizing Widgets.</cite></a> W3C. </dd>
+  <dt><dfn id="bib-xhr">[XHR]</dfn></dt>
+  <dd><a href="http://www.w3.org/TR/XMLHttpRequest/"><cite>XMLHttpRequest</cite></a> (Work in progress). W3C.</dd>
+</dl>
+</body>
+</html>

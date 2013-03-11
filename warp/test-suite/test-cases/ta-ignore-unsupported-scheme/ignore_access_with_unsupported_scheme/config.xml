@@ -1,0 +1,4 @@
+<widget xmlns="http://www.w3.org/ns/widgets">
+  <name>ignore access with unsupported scheme</name>
+  <access origin="w3c-test-scheme://w3.org"/>
+</widget>

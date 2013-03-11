@@ -1,0 +1,4 @@
+<widget xmlns='http://www.w3.org/ns/widgets'>
+  <name>ignore access element with iuserinfo</name>
+  <access origin="http://fail@w3c-test.org"/>
+</widget>

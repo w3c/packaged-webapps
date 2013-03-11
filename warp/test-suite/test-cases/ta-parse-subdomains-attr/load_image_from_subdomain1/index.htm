@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<title>Load image</title> 
+<style>body{ background: white } </style> 
+<body id="body"> 
+<h1 id="verdict">Testings</h1> 
+<p id="reason">Waiting for image.</p> 
+<script src="infrastructure.js"></script>
+
+<img src="http://dev.w3.org/2006/waf/widgets-access/test-suite/resources/test.png" 
+     onload="pass('image loaded successfully');" alt="Fail, the image did not load.">
+     	     
+<!-- the following avoids false positives --> 
+<script src="https://w3c-test.org/webapps/widgets/warp/fail.js" 
+  onload="window.pass = null; window.fail('fail.js should never load! Not in access request list.')"></script> 

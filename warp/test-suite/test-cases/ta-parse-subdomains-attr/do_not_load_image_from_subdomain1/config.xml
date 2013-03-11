@@ -1,0 +1,4 @@
+<widget xmlns='http://www.w3.org/ns/widgets'>
+  <name>do not load image from subdomain</name>
+  <access origin="http://w3.org" subdomains="false"/>
+</widget>

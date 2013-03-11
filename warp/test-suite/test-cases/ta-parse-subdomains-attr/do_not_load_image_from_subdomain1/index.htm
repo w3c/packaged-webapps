@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<title>Do not load image from subdomain</title> 
+<style>body{ background: green } </style> 
+<body id="body"> 
+<h1 id="verdict">PASS</h1> 
+<p id="reason">Image did not load.</p> 
+<script src="infrastructure.js"></script>
+
+<!-- Test: The user agent must not load any of the following resources --> 
+<img src="http://dev.w3.org/2006/waf/widgets-access/test-suite/resources/pass.png" 
+     onload="fail('image loaded, so fail'); this.style.display = 'none'; 
+     	     this.alt = 'Fail, image loaded!'" alt="Pass, the image did not load.">
+     	     
+<!-- the following avoids false positives --> 
+<script src="https://w3c-test.org/webapps/widgets/warp/fail.js" 
+  onload="window.pass = null; window.fail('fail.js should never load! Not in access request list.')"></script> 

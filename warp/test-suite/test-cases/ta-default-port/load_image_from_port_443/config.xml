@@ -1,0 +1,4 @@
+<widget xmlns='http://www.w3.org/ns/widgets'>
+  <name>load image from port 443</name>
+  <access origin="https://w3c-test.org" subdomains="false"/>
+</widget>

@@ -1,0 +1,5 @@
+<widget xmlns='http://www.w3.org/ns/widgets'>
+  <name>wildcard plus access element</name>
+  <access origin="*"/>
+  <access origin="http://w3.org" subdomains="true"/>
+</widget>

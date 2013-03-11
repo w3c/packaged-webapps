@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<title>Load image from port 443</title> 
+<style>body{ background: white } </style> 
+<body id="body"> 
+<h1 id="verdict">..Testing..</h1> 
+<p id="reason">Waiting for image.</p> 
+<script src="infrastructure.js"></script>
+
+<!-- Test: The user agent must load the image below from port 443--> 
+<img src="https://w3c-test.org:443/webapps/widgets/warp/images/test.png" 
+onload="var msg='resource loaded!'; 
+(pass) ? pass(msg) : window.addEventListener('load', function(e){pass(msg)}, false);
+ this.alt = 'Pass, image loaded!'" 
+alt="Fail, the image did not load.">
+
+<!-- the following avoids false positives --> 
+<script src="http://dev.w3.org/2006/waf/widgets-access/test-suite/resources/fail.js"></script> 

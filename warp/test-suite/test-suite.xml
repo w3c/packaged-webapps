@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite spec="http://dev.w3.org/2006/waf/widgets-access/" name="WARP">
+  
+    <test id="do_not_load_image" for="ta-default-policy" src="test-cases/ta-default-policy/do_not_load_image/do_not_load_image.wgt">
+	In the default policy, a user agent MUST deny access to network resources
+	external to the widget by default. 
+	To pass, the remote image must not load and PASS must remained displayed.
+    </test>
+
+	<test id="do_not_load_script" for="ta-default-policy" src="test-cases/ta-default-policy/do_not_load_script/do_not_load_script.wgt">
+	In the default policy, a user agent MUST deny access to network resources
+	external to the widget by default. 
+	To pass, the remote script must not be loaded and PASS must remain displayed.
+    </test>
+
+	<test id="do_not_load_iframe" for="ta-default-policy" src="test-cases/ta-default-policy/do_not_load_iframe/do_not_load_iframe.wgt">
+	In the default policy, a user agent MUST deny access to network resources external to the widget by default. 
+	To pass, the remote script must not be loaded and PASS must remain displayed.
+    </test>
+
+    <test id="load_script" for="ta-grant-access" src="test-cases/ta-grant-access/load_script/load_script.wgt">
+	A user agent should grant access to network resources listed in the access-request list.
+	To pass, the widget needs to be able to load a script from http://w3c-test.org. 
+    </test>
+	
+	<test id="load_image" for="ta-grant-access" src="test-cases/ta-grant-access/load_image/load_image.wgt">
+	A user agent should grant access to network resources listed in the access-request list.
+	To pass, the widget needs to be able to load a image from http://dev.w3.org. 
+    </test>
+	
+	<test id="load_iframe" for="ta-grant-access" src="test-cases/ta-grant-access/load_iframe/load_iframe.wgt">
+	A user agent should grant access to network resources listed in the access-request list.
+	To pass, the widget needs to be able to load an iframe from http://dev.w3.org. 
+    </test>
+	
+    <test id="load_image_and_script" for="ta-equal-markup-api" src="test-cases/ta-equal-markup-api/load_image_and_script/load_image_and_script.wgt">
+	When a user agent grants access to a given set of network resources, it
+	MUST do so equally for APIs and markup. 
+	To pass, the user agent must load an image from http://dev.w3.org, 
+	which causes an script to be loaded http://w3c-test.org. 
+	If all goes well, PASS will be displayed.  
+    </test>
+	
+	<test id="load_text_over_xhr" for="ta-equal-markup-api" src="test-cases/ta-equal-markup-api/load_text_over_xhr/load_text_over_xhr.wgt">
+	When a user agent grants access to a given set of network resources, it
+	MUST do so equally for APIs and markup. 
+	To pass, the user agent must load a text file over XMLHTTPRequest.  
+    </test>
+	
+	<test id="block_loading_text_over_xhr" for="ta-equal-markup-api" src="test-cases/ta-equal-markup-api/block_loading_text_over_xhr/block_loading_text_over_xhr.wgt">
+	When a user agent grants access to a given set of network resources, it
+	MUST do so equally for APIs and markup. 
+	To pass, the user agent must block a text file from loading over XMLHTTPRequest.  
+    </test>
+	
+	
+    <test id="ignore_nested_access_in_any_element" for="ta-parsing" src="test-cases/ta-parsing/ignore_nested_access_in_any_element/ignore_nested_access_in_any_element.wgt">
+	Tests that the user agent  ignores &lt;access&gt; elements inside other configuration document elements. 
+	To pass, the remote script must not load. 
+    </test>
+
+    <test id="ignore_nested_access_in_foo" for="ta-parsing" src="test-cases/ta-parsing/ignore_nested_access_in_foo/ignore_nested_access_in_foo.wgt">
+	Tests that the user agent  ignores &lt;access&gt; elements inside other unknown elements. 
+	To pass, the remote script must not load. 
+    </test>
+	
+    <test id="ignore_dir_ltr" for="ta-parsing" src="test-cases/ta-parsing/ignore_dir_ltr/ignore_dir_ltr.wgt">
+	Tests that dir 'ltr' does not affect &lt;access&gt; element. 
+	To pass, the remote script must load and PASS must remain displayed.
+    </test>
+
+    <test id="ignore_dir_rtl" for="ta-parsing" src="test-cases/ta-parsing/ignore_dir_rtl/ignore_dir_rtl.wgt">
+	Tests that dir 'rtl' does not affect &lt;access&gt; element. 
+	To pass, the remote script must load and PASS must remain displayed.
+    </test>
+
+    <test id="ignore_dir_lro" for="ta-parsing" src="test-cases/ta-parsing/ignore_dir_lro/ignore_dir_lro.wgt">
+	Tests that dir 'lro' does not affect &lt;access&gt; element. 
+	To pass, the remote script must load and PASS must remain displayed.
+    </test>
+
+    <test id="ignore_dir_rlo" for="ta-parsing" src="test-cases/ta-parsing/ignore_dir_rlo/ignore_dir_rlo.wgt">
+	Tests that dir 'rlo' does not affect &lt;access&gt; element. 
+	To pass, the remote script must load and PASS must remain displayed.
+    </test>
+	
+    <test id="ignore_access_with_missing_origin" for="ta-missing-origin-attr" src="test-cases/ta-missing-origin-attr/ignore_access_with_missing_origin/ignore_access_with_missing_origin.wgt">
+	Tests that the user agent  ignores &lt;access&gt; elements with no origin attribute. 
+	To pass, the remote script must not load.
+    </test>
+
+    <test id="wildcard_support" for="ta-parsing-wildcard" src="test-cases/ta-parsing-wildcard/wildcard_support/wildcard_support.wgt">
+	Tests that the user agent  processes and supports an &lt;access&gt; element with a wildcard ("*") origin. 
+	To pass, the remote script must load and PASS be displayed on a green background.
+    </test>
+
+    <test id="wildcard_ignore_whitespace" for="ta-parsing-wildcard" src="test-cases/ta-parsing-wildcard/wildcard_ignore_whitespace/wildcard_ignore_whitespace.wgt">
+	Tests that the user agent  processes and supports an &lt;access&gt; element with a wildcard ("*") origin ignoring whitespace. 
+	To pass, the remote script must load and PASS be displayed on a green background.
+    </test>
+
+    <test id="wildcard_plus_access_element" for="ta-parsing-wildcard" src="test-cases/ta-parsing-wildcard/wildcard_plus_access_element/wildcard_plus_access_element.wgt">
+	Tests that the user agent  prepends an &lt;access&gt; element with a wildcard ("*"). 
+	To pass, the remote script must load and PASS be displayed on a green background.
+    </test>
+	
+    <test id="ignore_access_element_with_invalid_uri_1" for="ta-parse-origin-attr" src="test-cases/ta-parse-origin-attr/ignore_access_element_with_invalid_uri_1/ignore_access_element_with_invalid_uri_1.wgt">
+	Tests that the user agent  ignores an &lt;access&gt; element with an origin containing an invalid IRI. 
+	To pass, the remote script must not load and PASS must remain displayed. 
+    </test>
+	
+	<test id="ignore_access_element_with_invalid_uri_2" for="ta-parse-origin-attr" src="test-cases/ta-parse-origin-attr/ignore_access_element_with_invalid_uri_2/ignore_access_element_with_invalid_uri_2.wgt">
+	Tests that the user agent  ignores an &lt;access&gt; element with an origin that uses the HTTP scheme and has no host component. To pass, the remote script must NOT load and PASS must remain displayed.
+    </test>
+	
+	<test id="ignore_access_element_with_invalid_uri_3" for="ta-parse-origin-attr" src="test-cases/ta-parse-origin-attr/ignore_access_element_with_invalid_uri_3/ignore_access_element_with_invalid_uri_3.wgt">
+	Tests that the user agent  ignores an invalid origin attribute value. To pass, the remote script must NOT load and PASS must remain displayed.
+    </test>
+
+    <test id="ignore_access_element_with_no_authority" for="ta-parse-origin-attr" src="test-cases/ta-parse-origin-attr/ignore_access_element_with_no_authority/ignore_access_element_with_no_authority.wgt">
+	Tests that the user agent  ignores an &lt;access&gt; element with an origin that does not contain an authority component. To pass, the remote script must NOT load and PASS must remain displayed.
+    </test>
+
+    <test id="ignore_access_element_with_iuserinfo" for="ta-parse-origin-attr" src="test-cases/ta-parse-origin-attr/ignore_access_element_with_iuserinfo/ignore_access_element_with_iuserinfo.wgt">
+	Tests that the user agent  ignores an &lt;access&gt; element with an origin that contains a iuserinfo component. To pass, the remote script must NOT load and PASS must remain displayed.
+    </test>
+
+    <test id="ignore_access_element_with_path_component_1" for="ta-parse-origin-attr" src="test-cases/ta-parse-origin-attr/ignore_access_element_with_path_component_1/ignore_access_element_with_path_component_1.wgt">
+	Tests that the user agent  ignores an &lt;access&gt; element with an origin that contains a path component. To pass, the remote script must NOT load and PASS must remain displayed.
+    </test>
+
+    <test id="ignore_access_element_with_path_component_2" for="ta-parse-origin-attr" src="test-cases/ta-parse-origin-attr/ignore_access_element_with_path_component_2/ignore_access_element_with_path_component_2.wgt">
+	Tests that the user agent  ignores an &lt;access&gt; element with an origin that contains a path component. To pass, the remote script must NOT load and PASS must remain displayed.
+    </test>
+
+    <test id="ignore_access_element_with_no_host" for="ta-parse-origin-attr" src="test-cases/ta-parse-origin-attr/ignore_access_element_with_no_host/ignore_access_element_with_no_host.wgt">
+	Tests that the user agent  ignores an &lt;access&gt; element with an origin that has no host component. To pass, the remote script must NOT load and PASS must remain displayed.
+    </test>
+
+    <test id="ignore_access_element_with_query_component" for="ta-parse-origin-attr" src="test-cases/ta-parse-origin-attr/ignore_access_element_with_query_component/ignore_access_element_with_query_component.wgt">
+	Tests that the user agent  ignores an &lt;access&gt; element with an origin that has a query component. To pass, the remote script must NOT load and PASS must remain displayed.
+    </test>
+
+    <test id="ignore_access_element_with_fragment" for="ta-parse-origin-attr" src="test-cases/ta-parse-origin-attr/ignore_access_element_with_fragment/ignore_access_element_with_fragment.wgt">
+	Tests that the user agent  ignores an &lt;access&gt; element with an origin that has a fragment component. To pass, the remote script must NOT load and PASS must remain displayed.
+    </test>
+
+    <test id="ignore_access_element_with_http_no_host" for="ta-parse-origin-attr" src="test-cases/ta-parse-origin-attr/ignore_access_element_with_http_no_host/ignore_access_element_with_http_no_host.wgt">
+	Tests that the user agent  ignores an &lt;access&gt; element with an origin that uses the HTTP scheme and has no host component. To pass, the remote script must NOT load and PASS must remain displayed.
+    </test>
+	
+    <test id="load_image_from_subdomain1" for="ta-parse-subdomains-attr" src="test-cases/ta-parse-subdomains-attr/load_image_from_subdomain1/load_image_from_subdomain1.wgt">
+	Tests that the user agent  processes an &lt;access&gt; element with a valid subdomains attribute. To pass, the user agent needs to load a remote image from a sub domain.
+    </test>
+	
+	<test id="load_image_from_subdomain2" for="ta-parse-subdomains-attr" src="test-cases/ta-parse-subdomains-attr/load_image_from_subdomain2/load_image_from_subdomain2.wgt">
+	Tests that the user agent  ignores leading and trailing spaces in the subdomains value. To pass, the user agent must load the remote image.
+    </test>
+
+    <test id="do_not_load_image_from_subdomain1" for="ta-parse-subdomains-attr" src="test-cases/ta-parse-subdomains-attr/do_not_load_image_from_subdomain1/do_not_load_image_from_subdomain1.wgt">
+	Tests that the user agent  processes an &lt;access&gt; element with a valid subdomains attribute. To pass, the user agent needs to block the remote image from loading as it sits on a subdomain.
+    </test>
+	
+	<test id="do_not_load_image_from_subdomain2" for="ta-parse-subdomains-attr" src="test-cases/ta-parse-subdomains-attr/do_not_load_image_from_subdomain2/do_not_load_image_from_subdomain2.wgt">
+	Tests that the subdomains attribute defaults to false when it is missing. 
+	To pass, the user agent needs to block the remote image from loading as it sits on a subdomain.
+    </test>
+
+    <test id="load_image_from_port_80" for="ta-default-port" src="test-cases/ta-default-port/load_image_from_port_80/load_image_from_port_80.wgt">
+	Tests that the user agent  assumes port 80 for the http protocol.
+	To pass, the remote image must load over port 80.
+    </test>
+	
+	<test id="load_image_from_port_83" for="ta-default-port" src="test-cases/ta-default-port/load_image_from_port_83/load_image_from_port_83.wgt">
+	Tests that the user agent  processes an &lt;access&gt; element with an explicit non-standard port number. 
+	To pass, the remote image must load over port 83.
+    </test>
+
+    <test id="load_image_from_port_443" for="ta-default-port" src="test-cases/ta-default-port/load_image_from_port_443/load_image_from_port_443.wgt">
+	Tests that the user agent  processes can assume the default port number of https. 
+	To pass, the user agent must assume port 443 for HTTPS and allow the image to load.
+    </test>
+
+    <test id="ignore_access_with_unsupported_scheme" for="ta-ignore-unsupported-scheme" src="test-cases/ta-ignore-unsupported-scheme/ignore_access_with_unsupported_scheme/ignore_access_with_unsupported_scheme.wgt">
+	Tests that the user agent  ignores an &lt;access&gt; element with an unsupported scheme. To pass, the remote script must NOT load and PASS must remain displayed.
+    </test>
+
+    <test id="load_image_using_toASCII" for="ta-toASCII" src="test-cases/ta-toASCII/load_image_using_toASCII/load_image_using_toASCII.wgt">
+		Tests that the user agent  processes &lt;access&gt; elements using the ToASCII algorithm as defined in RFC3490. 
+		To pass, the remote image must be loaded.
+    </test>
+
+	<test id="HTTP_compare_hosts_in_a_caseinsensitive_manner" for="ta-case-insensitive-compare" src="test-cases/ta-case-insensitive-compare/HTTP_compare_hosts_in_a_case-insensitive_manner/HTTP_compare_hosts_in_a_case-insensitive_manner.wgt">
+	If scheme is "http", the user agent must compare hosts in a case-insensitive manner.
+	To pass,the user agent must load the remote resource and display PASS. 
+    </test>
+
+	<test id="HTTPS_compare_hosts_in_a_caseinsensitive_manner" for="ta-case-insensitive-compare" src="test-cases/ta-case-insensitive-compare/HTTPS_compare_hosts_in_a_case-insensitive_manner/HTTPS_compare_hosts_in_a_case-insensitive_manner.wgt">
+	If scheme is "https", the user agent must compare hosts in a case-insensitive manner.
+	To pass,the user agent must load the remote resource and display PASS. 
+    </test>
+</testsuite>

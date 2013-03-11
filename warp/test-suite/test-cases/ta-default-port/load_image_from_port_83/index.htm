@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<title>Load image from port 83</title> 
+<style>body{ background: white } </style> 
+<body id="body"> 
+<h1 id="verdict">..Testing..</h1> 
+<p id="reason">Waiting for image.</p> 
+<script src="infrastructure.js"></script>
+
+<!-- Test: The user agent must load the image below from port 83--> 
+<img src="http://w3c-test.org:83/webapps/widgets/warp/images/test.png" 
+onload="var msg='resource loaded!'; 
+(pass) ? pass(msg) : window.addEventListener('load', function(e){pass(msg)}, false);
+ this.alt = 'Pass, image loaded!'" 
+alt="Fail, the image did not load.">
+
+<!-- the following avoids false positives --> 
+<script src="https://w3c-test.org/webapps/widgets/warp/fail.js"></script> 
+<script src="http://w3c-test.org:80/webapps/widgets/warp/fail.js"></script> 

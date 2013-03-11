@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>WARP background and Prior Art</title>
+<link href="http://www.w3.org/StyleSheets/TR/base.css" rel="stylesheet" type="text/css" charset="utf-8" />
+</head>
+
+<body>
+<h1>WARP, &quot;Widgets Security&quot; Terms, and Prior Art</h1>
+<hr/>
+<h2>What is WARP?</h2>
+<p>By default, Widgets run locally on a computer and cannot access content on the Web (i.e., they have no ability to access anything on the network). So, if widget tries to access an image on the Web, the widget runtime won't allow it by default:</p>
+<pre>&lt;!doctype html&gt;
+&lt;!-- this will fail by default --&gt;<br />&lt;img src=&quot;http://w3.org/logo.gif&quot;&gt;</pre>
+<p>To overcome this security restriction, the Working Group created the Widget Access Request Policy (WARP). WARP provides authors with a declarative means to say what domains on the Web a widget will access. For example, if a widget needs to access an image on &quot;w3.org&quot;, the author makes a WARP declaration in the configuration document of a widget:</p>
+<pre>&lt;widget xmlns=&quot;http://www.w3.org/ns/widgets&quot;&gt;
+  &lt;!-- Gimme access to W3C resources --&gt;
+  &lt;access origin=&quot;http://w3.org&quot;/&gt;
+&lt;/widget&gt; </pre>
+<p>Having declared an access request, the widget engine will now allow the image to be loaded from the domain w3.org:</p>
+<pre>&lt;!doctype html&gt;<br />&lt;!-- the user agent grants access to w3.org! --&gt;<br />&lt;img src=&quot;http://w3.org/logo.gif&quot;&gt;</pre>
+<p>If at runtime, the widget tries to access foo.com, that access is blocked by the widget engine.</p>
+<pre> &lt;!doctype html&gt;
+ &lt;!-- this will fail --&gt;
+ &lt;img src=&quot;http://foo.com/hello.gif&quot;&gt;
+  </pre>
+
+<p>So, the widget manager uses WARP declarations to decide whether to grant access to networked resources.</p>
+<p>The WARP declaration can be used to do other useful things also. For instance, when the user installs a widget, the widget engine can tell the end-user which domains the widget may try to contact. </p>
+<p>So, effectively, WARP shares similariteis with  <dfn><a href="http://en.wikipedia.org/wiki/Network_Access_Control">Network Access Control Lists</a></dfn> - particularly in setting who/what can access resources on the Web.</p>
+<h2>Software that use Network Access Control Lists</h2>
+
+<h3>XACML </h3>
+<p>The XACML specification, which became an OASIS Standard on 18 February 2003, is used  for creating security policies using XML..</p>
+<p>Rigo to desc</p>
+<h3>CISCO Firewalls</h3>
+<p>Retrived from <a href="http://web.archive.org/web/20051103040432/http://www.cisco.com/en/US/products/sw/secursw/ps1018/products_tech_note09186a00800a5b9a.shtml">Web Archive</a>  Jun 23, 2004 , and see also <a href="http://web.archive.org/web/20021031095829/http://www.cisco.com/en/US/tech/tk648/tk361/technologies_configuration_example09186a0080100548.shtml#allowHTTP">Web Archive October 2002.</a></p>
+<p>Just like WARP, CISCO's access control lists (ACLs) can be used to control what resources something can access. Instead of operating at the DNS level, it operates at the IP level:</p>
+<pre>access-list acl_permit permit ip 192.168.32.0 0.0.7.255</pre>
+<p>The above is used to permis access to all addresses in <code>192.168.32.??</code> range. </p>
+<p>These access lists can be grouped together, and then be allowed access to particular types of resources (e.g., resources over HTTP, denoted by <code>www</code> below):</p>
+<pre>access-list 102 permit tcp any any eq www
+</pre>
+<p>Hence, they provide similar functionality to WARP but on a larger scale (i.e., on computers or on routers). </p>
+<h3>Netscape: Configurable Security Policies</h3>
+<p>Web Archive, <a href="http://web.archive.org/web/20021031095829/http://www.cisco.com/en/US/tech/tk648/tk361/technologies_configuration_example09186a0080100548.shtml#allowHTTP">11 Apr 2000.</a></p>
+<p>In terms of security manager operating on requests to network resources, as early as 2000, Netscape navigator introduced <cite>Configurable Security Policies</cite>: </p>
+<blockquote><q>This is the idea that users should be able to set up security policies for their browsers, and also have different security policies for different internet sites</q></blockquote>
+<p>Much like WARP, these were stored in a text file and allowed a user control over what Websites could/could not do (e.g., a site could be blocked from loading or performing particular actions). In the following example, two websites are blocked from opening popups. </p>
+<pre>pref("security.policy.strict.sites","http://www.evil.org http://www.annoying.com");  
+pref("security.policy.strict.window.open", "noAccess"); 
+</pre>
+<h2>Claims, Identifying key words</h2>
+<p>The purpose of the claims chart below is to identify key terms in the patent's claim. The intent is to show where differences in meaning between W3C Widget terminology and terminology in the patent. This is to enable the contruction of a claims dictionary.</p>
+<table width="100%" border="0">
+  <tr>
+    <th width="72%" scope="col">CLAIMS</th>
+    <th width="28%" scope="col">Terms</th>
+  </tr>
+  <tr>
+    <td>1. A <strong>widget security method</strong>, comprising: detecting a <strong>security even</strong>t associated with a <strong>widget</strong>; generating <strong>data</strong> indicative of the security event; processing the data to determine a <strong>risk level</strong> associated with the detected security event, where the risk level is determined by an <strong>action</strong> selected from a <strong>group of actions</strong> consisting of reviewing information associated with the widget, comparing widget information with a <strong>user profile</strong>, and examining programming code associated with the widget; initiating a <strong>security action</strong> based on the risk level, where the detecting, generating, processing and initiating are performed by one or more <strong>processors</strong> of a hardware device. <br /></td>
+    <td>
+      <ul>
+        <li>Widget security method</li>
+        <li>Security event</li>
+        <li>Widget</li>
+        <li>Data</li>
+        <li>Risk level</li>
+        <li>(group of) (security) action </li>
+        <li>processor</li>
+        <li>user profile</li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td>2. The method of claim 1, wherein detecting includes detecting unauthorized access to <strong>resources</strong>. <br /></td>
+    <td><ul>
+      <li>Resource</li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td>3. The method of claim 1, wherein detecting includes detecting unauthorized access to <strong>content</strong>. <br /></td>
+    <td><ul>
+      <li>Content</li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td>4. The method of claim 1, wherein processing the data to determine a risk level associated with the detected security event includes: identifying <strong>risks</strong> based on characteristics of the event and one or more <strong>policies</strong> associated with the event; and identifying a risk based on the results of the comparison. <br /></td>
+    <td><ul>
+      <li>policy</li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td>5. The method of claim 1, wherein processing the data to determine a risk level associated with the detected security event includes: <strong>monitoring widget activity</strong>; and <strong>identifying a risk</strong> based on the activity. <br /></td>
+    <td><ul>
+      <li>monitoring widget activity</li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td>6. The method of claim 5, wherein monitoring widget activity includes<strong> logging widget activity</strong>. <br /></td>
+    <td><ul>
+      <li>loggin widget activity</li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td>7. The method of claim 1, wherein processing the data to<strong> determine a risk level associated with the detected security even</strong>t includes: <em>retrieving a list of widgets; determining if the widget is on the list; and assessing risk associated with the widget based on whether the widget is included on the list</em>. </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>8. The method of claim 1, wherein performing a security action includes:<em> informing a user about the security risk</em>; <em>requesting a response from the user</em>; <em>selecting a security action based on the response; and initiating the selected security action. </em><br /></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>9. The method of claim 1, wherein performing a security action is selected from a group of <strong>security actions</strong> including at least one of <em>disabling the widget, notifying the user of the security event, or changing resource access rights associated with the widget. </em><br /></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><p>10. A <strong>computer-readable medium</strong> having instructions stored thereon, which, when executed by a processor in a widget security system, causes the processor to perform the operations of: </p>
+      <ul>
+        <li>detecting a security event associated with a widget; </li>
+        <li>determining a risk level associated with the detected security event, where the risk level is determined by an action selected from a group of actions consisting of reviewing information associated with the widget, comparing widget information with a user profile, and examining programming code associated with the widget; and performing a security action based on the risk level. </li>
+      </ul></td>
+    <td><ul>
+      <li>computer readable medium</li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td>11. The computer-readable medium of claim 10, wherein detecting includes detecting unauthorized access to resources. </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>12. The computer-readable medium of claim 10, wherein detecting includes detecting unauthorized access to content. </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>13. The computer-readable medium of claim 10, wherein processing the data to determine a risk level associated with the detected security event includes: identifying risks based on characteristics of the event and one or more <em>policies</em> associated with the event; and identifying a risk based on the results of the comparison. </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>14. The computer-readable medium of claim 10, wherein processing the data to determine a risk level associated with the detected security event includes: monitoring widget activity; and identifying a risk based on the activity. </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>15. The computer-readable medium of claim 14, wherein monitoring widget activity includes logging widget activity. </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>16. The computer-readable medium of claim 10, wherein processing the data to determine a risk level associated with the detected security event includes: retrieving a list of widgets; determining if the widget is on the list; and assessing risk associated with the widget based on whether the widget is included on the list.</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>17. The computer-readable medium of claim 10, wherein performing a security action includes: informing a user about the security risk; requesting a response from the user; selecting a security action based on the response; and initiating the selected security action. </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>18. The computer-readable medium of claim 10, wherein performing a security action is selected from a group of security actions including at least one of disabling the widget, notifying the user of the security event, or changing resource access rights associated with the widget. </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><p>19. A<strong> widget security system</strong>, comprising:</p>
+      <ul>
+        <li> a <strong>widget security manager </strong>configured for detecting a <strong>security event</strong> associated with a <strong>widget</strong>; </li>
+        <li>a <strong>security module</strong> coupled to the widget security manager and configured for determining a <strong>risk level</strong> associated with the detected security event, where the risk level is determined by an action selected from a group of actions consisting of reviewing information associated with the widget, comparing widget information with a user profile, and examining programming code associated with the widget; </li>
+        <li>and a <strong>security action manager</strong> coupled to the<strong> widget security manager</strong> and configured for initiating a <strong>security action</strong> based on the assessed <strong>risk</strong>.</li>
+    </ul></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<p>Typology of Claim Terms </p>
+<table width="100%" border="0">
+  <tr>
+    <th colspan="5" scope="col">Typology of Claim Terms</th>
+  </tr>
+  <tr>
+    <td>Term</td>
+    <td>Synonyms</td>
+    <td>Lay Term at time of filing (Oct 2005) and after</td>
+    <td>&nbsp;</td>
+    <td>Technical Term</td>
+  </tr>
+  <tr>
+    <td>Widget </td>
+    <td>Gadgets, Desktets</td>
+    <td><p>&nbsp;</p></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</body>
+</html>

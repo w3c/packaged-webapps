@@ -1,0 +1,5 @@
+<widget xmlns='http://www.w3.org/ns/widgets'>
+  <foo><access origin="http://w3.org"/></foo>
+  <name>ignore nested access in foo</name>
+  <access origin="http://w3c-test.org" subdomains="true"/>
+</widget>

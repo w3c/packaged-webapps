@@ -1,0 +1,10 @@
+<!-- 
+Assertion ta-1
+
+In the default policy, a user agent MUST deny access to network resources
+external to the widget by default, whether this access is requested through
+APIs (e.g. XMLHttpRequest) or through markup (e.g. iframe, script, img).
+-->
+<widget xmlns='http://www.w3.org/ns/widgets'>
+  <name>do not load script</name>
+</widget>

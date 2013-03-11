@@ -1,0 +1,4 @@
+<widget xmlns='http://www.w3.org/ns/widgets'>
+  <name>Compare HTTPS hosts in a case-insensitive manner</name>
+  <access origin="https://W3C-test.ORG"/>
+</widget>

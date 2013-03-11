@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<title>Load text file over xhr</title> 
+<style>body{ background:white } </style> 
+
+<!-- Test: load some text over xhr--> 
+<script>
+function loadXHR(){
+	reason.innerHTML = "..performing request...";
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.open("GET", "http://w3c-test.org/webapps/widgets/warp/test.txt",true);
+ 	xmlhttp.onreadystatechange=function() {
+  		if (xmlhttp.readyState==4) {
+   			if(xmlhttp.responseText === "test text acquired"){
+   				pass("Text file was downloaded correctly");
+   			}else{
+   				fail("Got back the wrong text from XHR? " +
+   				   escape(xmlhttp.responseText ));
+   			}
+   		}
+   	}
+    xmlhttp.send(null)
+}
+</script>
+
+
+<body id="body" onLoad="loadXHR()"> 
+<h1 id="verdict">..Testing..</h1> 
+<p id="reason">Waiting for XHR</p> 
+<script src="infrastructure.js"></script>
+
+</body>
+     

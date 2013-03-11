@@ -1,0 +1,48 @@
+<results 
+  testsuite="http://dev.w3.org/2006/waf/widgets/test-suite/test-suite.xml" 
+ id="opera"
+  product="Opera 11.5 Beta" 
+  href="http://homepage">
+<!-- write: pass or fail (case sensitive) in each of the verdict attributes --> 
+<result for="do_not_load_image" verdict="pass"/> 
+<result for="do_not_load_script" verdict="pass"/> 
+<result for="do_not_load_iframe" verdict="pass"/> 
+<result for="load_script" verdict="pass"/> 
+<result for="load_image" verdict="pass"/> 
+<result for="load_iframe" verdict="pass"/> 
+<result for="load_image_and_script" verdict="pass"/> 
+<result for="load_text_over_xhr" verdict="pass"/> 
+<result for="block_loading_text_over_xhr" verdict="pass"/> 
+<result for="ignore_nested_access_in_any_element" verdict="pass"/> 
+<result for="ignore_nested_access_in_foo" verdict="pass"/> 
+<result for="ignore_dir_ltr" verdict="pass"/> 
+<result for="ignore_dir_rtl" verdict="pass"/> 
+<result for="ignore_dir_lro" verdict="pass"/> 
+<result for="ignore_dir_rlo" verdict="pass"/> 
+<result for="ignore_access_with_missing_origin" verdict="pass"/> 
+<result for="wildcard_support" verdict="pass"/> 
+<result for="wildcard_ignore_whitespace" verdict="pass"/> 
+<result for="wildcard_plus_access_element" verdict="pass"/> 
+<result for="ignore_access_element_with_invalid_uri_1" verdict="pass"/> 
+<result for="ignore_access_element_with_invalid_uri_2" verdict="pass"/> 
+<result for="ignore_access_element_with_invalid_uri_3" verdict="pass"/> 
+<result for="ignore_access_element_with_no_authority" verdict="pass"/> 
+<result for="ignore_access_element_with_iuserinfo" verdict="pass"/> 
+<result for="ignore_access_element_with_path_component_1" verdict="pass"/> 
+<result for="ignore_access_element_with_path_component_2" verdict="fail"/> 
+<result for="ignore_access_element_with_no_host" verdict="pass"/> 
+<result for="ignore_access_element_with_query_component" verdict="pass"/> 
+<result for="ignore_access_element_with_fragment" verdict="pass"/> 
+<result for="ignore_access_element_with_http_no_host" verdict="pass"/> 
+<result for="load_image_from_subdomain1" verdict="pass"/> 
+<result for="load_image_from_subdomain2" verdict="pass"/> 
+<result for="do_not_load_image_from_subdomain1" verdict="pass"/> 
+<result for="do_not_load_image_from_subdomain2" verdict="pass"/> 
+<result for="load_image_from_port_80" verdict="pass"/> 
+<result for="load_image_from_port_83" verdict="pass"/> 
+<result for="load_image_from_port_443" verdict="pass"/> 
+<result for="ignore_access_with_unsupported_scheme" verdict="pass"/> 
+<result for="load_image_using_toASCII" verdict="pass"/> 
+<result for="HTTP_compare_hosts_in_a_caseinsensitive_manner" verdict="pass"/> 
+<result for="HTTPS_compare_hosts_in_a_caseinsensitive_manner" verdict="pass"/> 
+</results>
