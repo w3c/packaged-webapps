@@ -616,12 +616,6 @@
 	To pass, the user agent must not contain any values in the feature list (i.e., the unknown feature is skipped).
     </test>
 
-    <test id="d6" for="ta-xlgUWUVzCY" src="test-cases/ta-xlgUWUVzCY/000/d6.wgt">
-	NOTE: this test assumes the widget engine supports the magic feature "feature:a9bb79c1". This feature does nothing: it's just used for conformance testing.
-	Tests the user agent's ability to correctly process a param element.
-	To pass, feature 'feature:a9bb79c1' must not have any associated parameters.
-    </test>
-
     <test id="d7" for="ta-LTUJGJFCOU" src="test-cases/ta-LTUJGJFCOU/000/d7.wgt">
 	Test that the user agent skips a content element with no src attribute and
 	loads default start file.
