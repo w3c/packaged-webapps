@@ -15,7 +15,7 @@ window.addEventListener("jqueryloaded", function(){
 var data = {};
 var SPEC_PAGE;
 if (window.SPEC_URL == undefined) {
-    SPEC_PAGE = "../Overview.html";
+    SPEC_PAGE = "../";
 } else {
     SPEC_PAGE = SPEC_URL;
 }
