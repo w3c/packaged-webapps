@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<style>
+footer {
+	border-top: 1px solid black;
+	text-align:center;
+}
+</style>
+<title>Widget Packaging and Configuration  Errata</title>
+
+        <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/TR/base.css" />
+
+    <body>
+    <header>
+    <p>
+          <a href="http://www.w3.org/">
+              <img src="http://www.w3.org/Icons/w3c_home" alt="W3C" height="48" width="72" />
+          </a>
+    </p>
+        <h1>Errata for <cite>Packaged Web Apps (Widgets) - Packaging and XML Configuration</cite></h1>
+      <h2>Last updated: 18 September, 2012</h2>
+        
+        <hr />
+        <h2>Abstract</h2>
+            <p> This document records all
+                known issues since publication of the <cite><a href="http://dev.w3.org/2006/waf/widgets/">Packaged Web Apps (Widgets) - Packaging and XML Configuration</a></cite> specification (hereinafter, "the specification" or "the
+                spec"). </p>
+            <p><strong>The best way to see what has changed is just to look at the <a href="http://www.w3.org/2007/10/htmldiff?doc1=http%3A//www.w3.org/TR/widgets/&doc2=http%3A//dev.w3.org/2006/waf/widgets/">differences document</a>. It's nice and color coded and fairly easy to follow. </strong></p>
+            <p> If you find errors in the specification that are not listed in this document, please
+                report them to <a href="mailto:public-webapps@w3.org"
+                    >public-webapps@w3.org</a>. Archives of the mailing list are available at
+                    <a href="http://lists.w3.org/Archives/Public/public-webapps/">public
+                    archive</a>
+            </p> 
+<h2>Table of Contents</h2>
+
+<ol>
+  <li>Edition 1 
+    <ol>
+      <li><a
+                    href="#substantiveItems">Substantive Errata</a>
+      </li>
+      <li><a
+                    href="#editorialItems">Editorial Errata</a></li>
+      <li><a
+                    href="#clarificationItems">Clarifications </a>
+        
+      </li>
+    </ol>
+  </li>
+  </ol>
+<h1>Edition 1 - Published September 25, 2012</h1>
+<h2 id="substantiveItems">1.1 Substantive
+              Errata</h2>
+<p><em>The following are changes that could potentially affect conformance</em>.</p>
+<p>In section 9.1.9 Rule for Getting Text Content with Normalized White Space, the rule changed from: 
+</p>
+<blockquote>In result, convert any sequence of one or more Unicode white space into a single U+0020 SPACE.</blockquote>
+
+<p>To:</p>
+<blockquote>In result , convert any sequence of one or more white space characters into a single U+0020 SPACE.</blockquote>
+
+<p>In effect, all whitespace is normalized to U+0020 SPACE.</p>
+<hr> 
+
+<p>In section 9.1.12 Rule for Deriving the user agent locales, step 2.C, it said: </p>
+<blockquote>If this range contains any subtag ' * ', remove the ' * ' and its preceding hyphen ( U+002F) (e.g., ' en-*-us ' becomes ' en-us '). </blockquote>
+
+<p>The unicode code for preceding hyphen was should actually have been U+002D. </p>
+
+<h2 id="editorialItems">1.2. Editorial Errata</h2>
+<p><em>The following are corrections that do not  changes to text content. </em></p>
+<p>In the spec, we made minor corrections to letter casing in various places. A few hyperlinks added to make the document a bit easier to use. Removed the dates from the bibliography as they just fall out of date.</p>
+    <h2 id="clarificationItems">1.3. Clarifications </h2>
+    <p><em>The following are corrections that do not affect conformance.</em></p>
+    <p>Changed the title of the document from: </p>
+    <blockquote><q>Widget packaging and XML Configuration</q></blockquote>
+    <p>To: </p>
+    <blockquote><q>Packaged Web Apps (Widgets) - Packaging and XML Configuration</q></blockquote>
+    <p>As people don't like the word &quot;widget&quot;. </p>
+    <hr>
+      <p>Combined definition of space characters and &quot;white space&quot; characters. Space characters are now just defined as a bunch of unicode code points as defined by the Unicode specification. </p>
+      <hr>
+      <p>Clarified a bit more the section 9.1.4 Rule for determining directionality  Determining Directionality. It was a bit terse. </p>
+      <hr>
+      <p>Clarified section 9.1.8 Rule for Getting Text Content. It was a bit confusing.</p>
+      <hr>
+      <p>Clarified what &quot;in error&quot; means in section 9.1.2 Algorithm to Process a Configuration Document, Step 5B by saying the id attribute is <q>not a  valid IRI  or is an empty string.</q></p>
+      <hr>
+      <p>Clarified processing of a feature element in section 9.1.2 Algorithm to Process a Configuration Document. </p>
+    <footer>
+  <p class="copyright"><small><a href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright"
+                    >Copyright</a>&nbsp;&copy;&nbsp;&nbsp;<a href="http://www.w3.org/"><acronym
+                        title="World Wide Web Consortium">W3C</acronym></a><sup>&reg;</sup> (<a
+                    href="http://www.csail.mit.edu/"><acronym
+                        title="Massachusetts Institute of Technology">MIT</acronym></a>, <a
+                    href="http://www.ercim.org/"><acronym
+                        title="European Research Consortium for Informatics and Mathematics"
+                        >ERCIM</acronym></a>, <a href="http://www.keio.ac.jp/">Keio</a>), All Rights
+            Reserved. W3C <a
+                    href="http://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer"
+                    >liability</a>, <a
+                    href="http://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks"
+                    >trademark</a> and <a
+                    href="http://www.w3.org/Consortium/Legal/copyright-documents">document use</a>
+  rules apply.</small></p>
+
+</footer>
