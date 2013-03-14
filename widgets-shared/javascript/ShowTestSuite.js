@@ -209,30 +209,11 @@ Modified by Marcos Caceres, right after quitting Opera Software ASA
     }
 
     function buildProductTab(prod) {
-      /*
-    Tab structure:
-    <div id="product-id">
-     <blockquote>product description</blockquote>
-     <ul>
-      <li>
-       <h4>ta-assertion-id</h4>
-       <blockquote>assertion description</blockquote>
-       <dl>
-        <dt>test name</dt>
-        <dd>test description</dd>
-        ...
-       </dl>
-      </li>
-      ...
-     </ul>
-    </div>
-    */
-
       var $pane = $('<div>').attr('id', prod.id);
 
       $pane.append('<h3>' + prod.id + '</h3>');
       $pane.append('<blockquote>' + prod.desc + '</blockquote>');
-      $pane.append($('<a href="#" class="toggleTests">Show all tests</a>').toggle(showTests, hideTests));
+      //$pane.append($('<a href="#" class="toggleTests">Show all tests</a>').toggle(showTests, hideTests));
       $pane.append('<hr>');
 
       var $asses = $('<div>');
@@ -245,7 +226,7 @@ Modified by Marcos Caceres, right after quitting Opera Software ASA
         if (ass.tests.length === 0) {
           $ass.append('<span class="bad">This assertion has no tests associated with it.</span>');
         } else {
-          var $tests = $('<dl>').hide();
+          var $tests = $('<dl>')//.hide();
           for (var t in ass.tests) {
             var test = ass.tests[t];
             // get the directory the widget is contained in
@@ -262,8 +243,7 @@ Modified by Marcos Caceres, right after quitting Opera Software ASA
             $tests.append('<dd><p>' + test.desc + '</p></dd>');
           }
 
-          $ass.append($('<a href="#" class="toggleTests">Show' +
-            '</a>').toggle(showTests, hideTests));
+          //$ass.append($('<a href="#" class="toggleTests">Show</a>').toggle(showTests, hideTests));
           $ass.append(" " + ass.tests.length + ' test' + ((ass.tests.length === 1) ? '' : 's'));
           $ass.append($tests);
         }
@@ -286,7 +266,7 @@ Modified by Marcos Caceres, right after quitting Opera Software ASA
     function hideTests() {
       var $this = $(this);
       $this.text($this.text().replace('Hide', 'Show'));
-      $this.parent().find('dl').hide();
+      $this.parent().find('dl')//.hide();
       return false;
     }
 
@@ -535,14 +515,14 @@ Modified by Marcos Caceres, right after quitting Opera Software ASA
             });
             if (s.click && !s.click.apply(this, [id, idList, tabs, s])) return s.change;
             for (i in aList) $(aList[i]).removeClass(s.selected);
-            for (i in idList) $(idList[i]).hide();
+            for (i in idList) $(idList[i])//.hide();
             $(this).addClass(s.selected);
             $(id).show();
             return s.change;
           }
           var list = $("a[href*='#']", tabs).unbind(s.event, showId).bind(s.event, showId);
           list.each(function () {
-            $("#" + this.href.split('#')[1]).hide();
+            $("#" + this.href.split('#')[1])//.hide();
           });
           var test = false;
           if ((test = list.filter('.' + s.selected)).length);
