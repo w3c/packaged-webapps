@@ -2,23 +2,16 @@
 Created by Stuart Knightley for the W3C while working for Opera Software ASA
 Modified by Marcos Caceres, right after quitting Opera Software ASA 
 */
-$(function () {
-  var event = document.createEvent("Events");
-  event.initEvent("jqueryloaded", true, true);
-  window.dispatchEvent(event);
-  $(document.head).append('<link href="../../widgets-shared/styles/testsuite.css" rel="stylesheet">')
-})
-
-window.addEventListener("jqueryloaded", function () {
-  (function () {
+(function () {  
     var data = {};
     var SPEC_PAGE;
-    if (window.SPEC_URL == undefined) {
+    var errors = [];
+	
+	if (window.SPEC_URL == undefined) {
       SPEC_PAGE = "../";
     } else {
       SPEC_PAGE = SPEC_URL;
     }
-    var errors = [];
 
     //fires a synthetic event at some target, otherwise fires it at the
     //window object.
@@ -30,7 +23,8 @@ window.addEventListener("jqueryloaded", function () {
     }
 
     $(document).ready(function () {
-      // Define console if it isn't already
+      var $loadSpec = $('<div>Loading data: <progress></progress></div>');
+	  // Define console if it isn't already
       if (typeof console == 'undefined') {
         console = {
           log: function () {},
@@ -40,13 +34,6 @@ window.addEventListener("jqueryloaded", function () {
         };
       }
 
-      // Add progress indicator for data that we're loading
-      var $loadSpec = $('<div>Loading data: <progress></progress></div>')
-
-      $("#tests").html($loadSpec.fadeIn(1000));
-
-
-
       // Returns a function that changes the loading message for the given
       // element, based on the xhr result.
       var handleError = function (filename, $infoEl) {
@@ -55,6 +42,9 @@ window.addEventListener("jqueryloaded", function () {
           $infoEl.addClass('bad').text('Loading "' + filename + '" failed: ' + errText);
         };
       }
+	  
+	  // Add progress indicator for data that we're loading
+      $("#tests").html($loadSpec.fadeIn(1000));
 
       // Get the data!
       $.ajax({
@@ -79,51 +69,31 @@ window.addEventListener("jqueryloaded", function () {
     });
 
     function start() {
-      if (!data.tests || !data.spec) {
+      var $processing,
+	  	  products,
+		  temp,
+		  assertions,
+		  unknownProducts,
+		  tests,
+		  unknownAssertions; 
+	  
+	  if (!data.tests || !data.spec) {
         console.log("data not ready");
         return;
       }
-
-      var $processing = $('<progress max="100" value="0">... Proccessing data...</progress>');
-
+      
+	  $processing = $('<progress max="100" value="0">... Proccessing data...</progress>');
       $("#tests").after($processing).fadeIn();
 
-      /*
-    Format for object:
-    products = {
-        'name': {desc, class, id,
-            assertions: [
-                    {
-                    'ta-id': {desc,
-                        tests: {id, src, desc}
-                    }
-                ]
-            }
-        }
-        'name': {...}
-    }
-    */
+	  products = parseProducts(data.spec);
 
-      //var html = attachElements()
-
-      var products = parseProducts(data.spec);
-      console.log('products', products);
-      /*
-    = {validator: {desc: '...', class: '.product-validator',
-        id: '#validator'}, assertions: {}, ...}
-    */
-
-      // = {ta-7: {description: "...", tests: {}}
-      var temp;
       temp = parseAssertions(data.spec, products);
-      var assertions = temp.assertions;
-      var unknownProducts = temp.unknownProducts;
-      console.log('assertions', assertions);
+      assertions = temp.assertions;
+      unknownProducts = temp.unknownProducts;
 
       temp = parseTests(data.tests, assertions);
-      console.log(temp);
-      var tests = temp.tests;
-      var unknownAssertions = temp.unknownAssertions;
+      tests = temp.tests;
+      unknownAssertions = temp.unknownAssertions;
 
       buildTabs(products, assertions, tests, unknownProducts, unknownAssertions);
 
@@ -618,6 +588,4 @@ window.addEventListener("jqueryloaded", function () {
     }
     if (ok) return init();
     add(src);
-  })();
-
-}, false);
+}());

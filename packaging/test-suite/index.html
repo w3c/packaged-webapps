@@ -1,24 +1,24 @@
 <!doctype html>
 <head>
-	<meta charset="utf-8">
-	<title>Test Suite for Widget Packaging and XML Configuration</title>
-    <link href="http://www.w3.org/StyleSheets/TR/base" rel="stylesheet">
-	
-    <body>
+  <meta charset="utf-8">
+  <title>Test Suite for Widget Packaging and XML Configuration</title>
+  <link href="http://www.w3.org/StyleSheets/TR/base" rel="stylesheet">
+  <link href="../../widgets-shared/styles/testsuite.css" rel="stylesheet">
+  <body>
     <header>
-      <h1> <a href="http://www.w3.org/"><img
+       <h1> <a href="http://www.w3.org/"><img
         src="http://www.w3.org/Icons/w3c_home" alt="W3C" width="72" height="48" align="absmiddle" /></a> 
         Test Suite for <cite class="specname">Widget Packaging and XML Configuration</cite></h1>
     </header>
     
     <section id="testing-panel">
-      <div id="tests">
-      </div>
+      <div id="tests"></div>
     </section>
     
     <section>
-      <h2>Download the tests</h2>
- 	  <p><a href="https://github.com/w3c/packaged-webapps/">Tests can be d/l from github</a>.</p>
+       <h2>Download the tests</h2>
+      <p>
+        <a href="https://github.com/w3c/packaged-webapps/">Tests can be d/l from github</a>.</p>
     </section>
     <footer>
       <p class="copyright" style="text-align:center; border-top: 1px solid black; padding-: 10px"><small><a
@@ -34,20 +34,20 @@
         href="http://www.w3.org/Consortium/Legal/copyright-documents">document
         use</a> rules apply. This test suite is distributed under the <a 
     href="http://www.w3.org/Consortium/Legal/2008/04-testsuite-copyright">W3C test 
-        suite licensing scheme</a>.</small></p>
+        suite licensing scheme</a>.</small>
+      </p>
     </footer>
     <script>
-	function loadalt(element, url){
-		element.parentElement.removeChild(element); 
-		var script = document.createElement("script");
-		script.src = url; 
-		script.addEventListener("load", function(){
-			fireSynthEvent("jqueryloaded");
-		} , false)
-		document.head.appendChild(script); 
-	}
-	</script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"
-	onerror="loadalt(this, '../../../widgets-shared/javascript/jqeury-1.5.min.js')">
+      function loadalt(element, url) {
+        element.parentElement.removeChild(element);
+        var script = document.createElement("script");
+        script.src = url;
+        script.addEventListener("load", function () {
+          fireSynthEvent("jqueryloaded");
+        }, false)
+        document.head.appendChild(script);
+      }
+    </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" onerror="loadalt(this, '../../../widgets-shared/javascript/jqeury-1.5.min.js')">
     </script>
     <script src="../../widgets-shared/javascript/ShowTestSuite.js"></script>
