@@ -45,6 +45,18 @@ Modified by Marcos Caceres, right after quitting Opera Software ASA
 	  
 	  // Add progress indicator for data that we're loading
       $("#tests").html($loadSpec.fadeIn(1000));
+	
+	  function loadSpec(){
+		  $.ajax({
+			url: SPEC_PAGE,
+			dataType: "html",
+			success: function (ret) {
+			  data.spec = $.parseHTML("<div>" + ret + "</div>");
+			  start();
+			},
+			error: handleError(SPEC_PAGE, $loadSpec)
+		  });
+	  }
 
       // Get the data!
       $.ajax({
@@ -53,19 +65,9 @@ Modified by Marcos Caceres, right after quitting Opera Software ASA
         success: function (ret) {
           $loadSpec.fadeOut(1000);
           data.tests = ret;
-          start();
         },
         error: handleError("test-suite.xml", $loadSpec),
-      });
-      $.ajax({
-        url: SPEC_PAGE,
-        dataType: "html",
-        success: function (ret) {
-          data.spec = ret;
-          start();
-        },
-        error: handleError(SPEC_PAGE, $loadSpec)
-      });
+      }).then(loadSpec);
     });
 
     function start() {
@@ -319,8 +321,7 @@ Modified by Marcos Caceres, right after quitting Opera Software ASA
     // Parsing functions //
     ///////////////////////
 
-    function parseProducts(spec) {
-      var $spec = $(spec);
+    function parseProducts($spec) {
       var products = {};
 
       var $prodLinks = $spec.find('a[class*="product-"]');
