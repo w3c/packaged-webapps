@@ -51,7 +51,7 @@ Modified by Marcos Caceres, right after quitting Opera Software ASA
 			url: SPEC_PAGE,
 			dataType: "html",
 			success: function (ret) {
-			  data.spec = $.parseHTML("<div>" + ret + "</div>");
+			  data.spec = $($.parseHTML(ret));
 			  start();
 			},
 			error: handleError(SPEC_PAGE, $loadSpec)
