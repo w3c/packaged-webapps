@@ -1,23 +1,10 @@
 <!doctype html>
 <head>
-	<script>	
-	function loadalt(element, url){
-		element.parentElement.removeChild(element); 
-		var script = document.createElement("script");
-		script.src = url; 
-		script.addEventListener("load", function(){
-			fireSynthEvent("jqueryloaded");
-		} , false)
-		document.head.appendChild(script); 
-	}
-	</script>
-	<title>Test Suite for Widget Packaging and XML Configuration</title>
 	<meta charset="utf-8">
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"
-	onerror="loadalt(this, '../../../widgets-shared/javascript/jqeury-1.5.min.js')">
-    </script>
+	<title>Test Suite for Widget Packaging and XML Configuration</title>
     <link href="http://www.w3.org/StyleSheets/TR/base" rel="stylesheet">
-<body>
+	
+    <body>
     <header>
       <h1> <a href="http://www.w3.org/"><img
         src="http://www.w3.org/Icons/w3c_home" alt="W3C" width="72" height="48" align="absmiddle" /></a> 
@@ -26,19 +13,12 @@
     
     <section id="testing-panel">
       <div id="tests">
-      <script src="../../widgets-shared/javascript/ShowTestSuite.js">   
-      </script>
       </div>
     </section>
     
     <section>
       <h2>Download the tests</h2>
-      <p>To run the tests locally or on a device, download them using CVS with the following commands:</p>
-      <pre>CVSROOT=:pserver:anonymous@dev.w3.org:/sources/public cvs login 
-    </pre>
-      <p>Then enter the password <kbd>anonymous</kbd> when prompted, and then: </p>
-      <pre>CVSROOT=:pserver:anonymous@dev.w3.org:/sources/public cvs checkout 2006/waf/widgets/test-suite/
-    </pre>
+ 	  <p><a href="https://github.com/w3c/packaged-webapps/">Tests can be d/l from github</a>.</p>
     </section>
     <footer>
       <p class="copyright" style="text-align:center; border-top: 1px solid black; padding-: 10px"><small><a
@@ -56,3 +36,18 @@
     href="http://www.w3.org/Consortium/Legal/2008/04-testsuite-copyright">W3C test 
         suite licensing scheme</a>.</small></p>
     </footer>
+    <script>
+	function loadalt(element, url){
+		element.parentElement.removeChild(element); 
+		var script = document.createElement("script");
+		script.src = url; 
+		script.addEventListener("load", function(){
+			fireSynthEvent("jqueryloaded");
+		} , false)
+		document.head.appendChild(script); 
+	}
+	</script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"
+	onerror="loadalt(this, '../../../widgets-shared/javascript/jqeury-1.5.min.js')">
+    </script>
+    <script src="../../widgets-shared/javascript/ShowTestSuite.js"></script>
