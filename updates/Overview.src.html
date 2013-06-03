@@ -98,7 +98,7 @@
       <p>Sometimes an author may even want to revert back to a previous version of an application, if it is found that a newly deployed version of a application contains issues or vulnerabilities. </p>
 <p>
     To facilitate the process of updating widgets, this specification introduces an XML element, called
-    an <a>update description source</a>, that is included as an <a href="#extensions-to-configuration-document">Extension to the Configuration Document</a>
+    an <a>update description source</a>, that is included as an Extension to the Configuration Document
      of a widget package. This specification also introduces a new XML vocabulary, called an <a>update description document</a>. The <a>update description source</a> 
      provides an author with a means to point to an <a>update description document</a>. 
       </p>
@@ -353,7 +353,7 @@ class="hilite">&lt;update-description
         </table>
         <p>&nbsp;</p>
         <ol start="2">
-          <li><span id="ta-configuration1">During  <a href="http://www.w3.org/TR/widgets/#step-7--process-the-configuration-docume">Step 7 - Process the Configuration Document</a>, if this is not the first <a href="#dfn-update-description"><code>update-description</code></a> element, then the <a class="product-ua">user agent</a> <em class="ct">MUST</em> <a>ignore</a> this
+          <li><span id="ta-configuration1">During  <a href="http://www.w3.org/TR/widgets/#step-7-process-the-configuration-document">Step 7 - Process the Configuration Document</a>, if this is not the first <a href="#dfn-update-description"><code>update-description</code></a> element, then the <a class="product-ua">user agent</a> <em class="ct">MUST</em> <a>ignore</a> this
           element and its descendants.</span></li>
           <li><span id="ta-configuration2">If this is the first <a href="#dfn-update-description"><code>update-description</code></a> element and the <a href="#dfn-href"><var>href</var></a> attribute is used, and it is a
             <a>valid IRI</a> [[!WIDGETS]], then let <a><var>update href</var></a> be the value of the <a href="#dfn-href"><var>href</var></a> attribute.
