@@ -1,7 +1,6 @@
-packed-webapps
-==============
+# Packaged Web Applications (Widgets)
 
-All packaged web apps deliverables.
+This repository contains the following discontinued specifications. They are archives here to keep a historical record.
 
  * [Widget API](http://w3c.github.io/packaged-webapps/api/Overview.html)
  * [XML Digital Signatures for Widgets](http://w3c.github.io/packaged-webapps/digsig/Overview.html)
